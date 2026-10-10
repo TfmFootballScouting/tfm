@@ -55,7 +55,7 @@ Four executed `.ipynb` notebooks cover data quality/EDA, model interpretation/ba
 python -m mlflow ui --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlartifacts --host 127.0.0.1 --port 5000
 ```
 
-Use commands from the repository root. Real, unverified legacy exploration and synthetic demonstrations have separate experiments. Runs include owner/project/dataset/environment/Git tags, dataset hashes, model artifact, plots and evaluation CSVs. Artifact locations are relative to this root. `reports/mlflow_export/` is a portable JSON/CSV export of actual run metadata plus copied artifact files; runtime SQLite/MLflow directories are ignored and retained in the cloud snapshot. No synthetic demonstration was run for the submission.
+Use commands from the repository root. Real, unverified legacy exploration and synthetic demonstrations have separate experiments. Runs include owner/project/dataset/environment/Git tags, dataset hashes, model artifact, plots and evaluation CSVs. Creation uses relative local locations; MLflow resolves runtime SQL-backed artifact URIs to absolute machine paths. The portable export makes artifact references and source paths relative, so copying it does not depend on that runtime store. `reports/mlflow_export/` is a portable JSON/CSV export of actual run metadata plus copied artifact files; runtime SQLite/MLflow directories are ignored and retained in the cloud snapshot. No synthetic demonstration was run for the submission.
 
 ### Process instrumentation
 

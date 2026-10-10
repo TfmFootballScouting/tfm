@@ -16,7 +16,12 @@ def run():
     export.mkdir(parents=True,exist_ok=True)
     payload=dict(run_id=record.info.run_id,experiment_id=record.info.experiment_id,status=record.info.status,
         start_time=record.info.start_time,end_time=record.info.end_time,
-        artifact_uri=record.info.artifact_uri,params=record.data.params,metrics=record.data.metrics,tags=record.data.tags)
+        artifact_root='.', runtime_artifact_uri_scope='machine-local URI omitted from portable export',
+        params=record.data.params,metrics=record.data.metrics,tags=dict(record.data.tags))
+    source_name=payload['tags'].get('mlflow.source.name')
+    if source_name and Path(source_name).is_absolute():
+        payload['tags']['mlflow.source.name']=Path(source_name).relative_to(ROOT).as_posix()
+        payload['export_normalization']='Artifact root and local source-name tag made relative; metrics and other tags unchanged'
     (export/'run.json').write_text(json.dumps(payload,indent=2))
     for folder in ['evaluation','lineage','models']:
         items=client.list_artifacts(record.info.run_id,folder)

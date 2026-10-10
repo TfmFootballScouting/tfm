@@ -68,4 +68,4 @@ FBref `player/team/position/nationality/age/minutes/games/goals/assists` map to 
 - Scenarios: style, position, rank, player/team/season, affinity, budget_status. No fabricated club mandate or fee.
 - Event log: case_id, activity, actual UTC timestamp, actor, event_kind, attributes JSON. Only actual app actions enter `data/events/`; simulation/test files are separate. DFG edge counts/median elapsed seconds and incomplete cases are descriptive and require genuine events.
 
-All MLflow artifact paths and checked-in metadata are repository-relative. Git commit, dirty status, dataset fingerprint, environment and owner tags identify each actual run.
+Checked-in model paths and portable-export metadata are repository-relative. Local SQL-backed MLflow normalizes runtime artifact URIs to machine-local absolute paths; those URIs are omitted from the export and its source-name tag is normalized without altering metrics. Git commit, dirty status, dataset fingerprint, environment and owner tags identify each actual run.
