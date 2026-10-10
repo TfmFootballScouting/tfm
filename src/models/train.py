@@ -37,7 +37,7 @@ def train_and_log(n_neighbors=15, n_clusters=6, tracking_uri=MLFLOW_TRACKING_URI
     metrics, baseline, robustness, stability, scenarios = analyze(rec)
     temporal = temporal_proxy(players)
     git_sha = subprocess.check_output(['git','rev-parse','HEAD'], cwd=ROOT, text=True).strip()
-    dirty = bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True).strip())
+    dirty = bool(subprocess.check_output(['git','status','--porcelain','--','src','scripts','tests','requirements.txt','requirements.lock.txt','.github'],cwd=ROOT,text=True).strip())
     report = ROOT / 'reports/experiments'
     report.mkdir(parents=True, exist_ok=True)
     for name,frame in [('baselines',baseline),('robustness',robustness),('cluster_stability',stability),('scenarios',scenarios),('temporal_proxy',temporal)]:
@@ -63,7 +63,7 @@ def train_and_log(n_neighbors=15, n_clusters=6, tracking_uri=MLFLOW_TRACKING_URI
         mlflow.set_tags({'owner':os.getenv('TFM_OWNER','tfm-team'), 'project':'tfm-scouting',
             'dataset':dataset['dataset_sha256'], 'dataset_kind':dataset['dataset_kind'],
             'environment':f'Python {platform.python_version()} / {platform.system()}',
-            'git_commit':git_sha, 'git_dirty':str(dirty), 'validation':'exploratory_descriptive_not_transfer_success'})
+            'git_commit':git_sha, 'git_dirty':str(dirty), 'git_dirty_scope':'source_and_dependencies', 'validation':'exploratory_descriptive_not_transfer_success'})
         mlflow.log_params(dict(n_players=len(players), n_features=len(cols), features=','.join(cols),
             n_clusters=rec.artifacts.kmeans.n_clusters, n_neighbors=n_neighbors, random_seed=42))
         mlflow.log_metrics(metrics)
@@ -72,7 +72,7 @@ def train_and_log(n_neighbors=15, n_clusters=6, tracking_uri=MLFLOW_TRACKING_URI
         mlflow.log_artifacts(str(report),artifact_path='evaluation')
         mlflow.log_artifact(str(ROOT/'reports/dataset.json'),artifact_path='lineage')
         meta = dict(feature_cols=cols, metrics=metrics, model_path=model_path.relative_to(ROOT).as_posix(),
-            dataset=dataset, git_commit=git_sha, git_dirty=dirty, run_id=run.info.run_id,
+            dataset=dataset, git_commit=git_sha, git_dirty=dirty, git_dirty_scope='source_and_dependencies', run_id=run.info.run_id,
             evaluation_scope='descriptive exploratory; no transfer or future-performance claims',
             temporal_status='executed' if len(temporal) else 'blocked: fewer than two comparable consecutive seasons')
         MODELS_DIR.mkdir(parents=True,exist_ok=True)

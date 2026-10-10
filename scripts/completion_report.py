@@ -39,7 +39,7 @@ Checked at {v['checked_at']} (UTC). Work branch: `improve/reproducible-scouting`
 
 ## Actually executed exploratory results
 
-Run ID: `{m['run_id']}`. Recorded source commit: `{m['git_commit']}`; recorded dirty state: `{m['git_dirty']}`. Dataset SHA-256: `{m['dataset']['dataset_sha256']}`. Full precision and tags are in `models/real/metrics.json` and `reports/mlflow_export/run.json`.
+Run ID: `{m['run_id']}`. Recorded source commit: `{m['git_commit']}`; recorded source/dependency dirty state: `{m['git_dirty']}`. Dataset SHA-256: `{m['dataset']['dataset_sha256']}`. Full precision and tags are in `models/real/metrics.json` and `reports/mlflow_export/run.json`.
 
 {values}
 
