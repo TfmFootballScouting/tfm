@@ -186,14 +186,17 @@ STYLE_ICONS = {
 
 @st.cache_resource
 def load_model() -> PlayerRecommender:
+    import json
+    from src.data.provenance import sha256
+    from src.config import PLAYERS_PARQUET
     path = MODELS_DIR / "recommender.joblib"
-    if path.exists():
-        return PlayerRecommender.load(path)
-    players = load_players()
-    rec = PlayerRecommender()
-    rec.fit(players)
-    rec.save()
-    return rec
+    meta_path = MODELS_DIR / "metrics.json"
+    if not path.exists() or not meta_path.exists():
+        raise FileNotFoundError("No audited real-data model; old mixed-data artifacts are excluded")
+    meta = json.loads(meta_path.read_text())
+    if sha256(PLAYERS_PARQUET) != meta["dataset"]["dataset_sha256"]:
+        raise ValueError("Model and dataset fingerprints differ; retrain before use")
+    return PlayerRecommender.load(path)
 
 
 def radar_figure(
@@ -263,7 +266,7 @@ def bar_figure(df: pd.DataFrame) -> go.Figure:
         y=df["player"],
         orientation="h",
         marker_color=colors,
-        text=df["affinity_pct"].astype(str) + "%",
+        text=df["affinity_pct"].astype(str),
         textposition="outside",
         textfont=dict(color=TEXT_LIGHT, size=11),
     ))
@@ -272,10 +275,10 @@ def bar_figure(df: pd.DataFrame) -> go.Figure:
         plot_bgcolor=BG_CARD,
         font=dict(color=TEXT_LIGHT),
         xaxis=dict(
-            title="Afinidad %",
+            title="Coseno ×100",
             gridcolor="#1f3d2a",
             tickfont=dict(color=TEXT_MUTED),
-            range=[0, 115],
+            range=[-100, 115],
         ),
         yaxis=dict(
             categoryorder="total ascending",
@@ -344,7 +347,13 @@ def main() -> None:
         st.exception(exc)
         return
 
-    styles = list_styles()
+    import json
+    meta = json.loads((MODELS_DIR / "metrics.json").read_text())
+    if "legacy" in meta["dataset"]["dataset_kind"]:
+        st.warning("Exploración de datos FBref heredados 2023/24: procedencia original sin verificar. Solo goles y asistencias; no validación final ni costes de fichaje.")
+    st.caption("Afinidad coseno: puntuación descriptiva de −1 a 1, no probabilidad de éxito. Features: " + ", ".join(rec.artifacts.feature_cols))
+    from src.features.styles import measured_weight_fraction
+    styles = {k:v for k,v in list_styles().items() if measured_weight_fraction(k, rec.artifacts.feature_cols) >= .6}
     style_labels = {k: v["label"] for k, v in styles.items()}
 
     # ── Sidebar ───────────────────────────────────────────────────────────────
@@ -367,18 +376,27 @@ def main() -> None:
         leagues = ["Todas"] + sorted(rec.players["league"].dropna().unique().tolist())
         league = st.selectbox("Liga", leagues)
 
-        max_age = st.slider("Edad máxima", 18, 40, 32)
-        max_budget = st.slider("Presupuesto máx. (M€)", 1.0, 80.0, 40.0, 1.0)
+        season = st.selectbox("Temporada observada", sorted(rec.players.season.unique(), reverse=True))
+        max_age = st.slider("Edad máxima", 18, 40, 32) if rec.players.age.notna().any() else None
+        max_budget = None
+        st.caption("Filtro de presupuesto pendiente de valoraciones históricas verificadas. Valores desconocidos no equivalen a cero.")
         top_n = st.slider("Nº de resultados", 5, 30, 10)
 
         st.divider()
         run = st.button("🔍 Buscar jugadores", type="primary")
+        if run:
+            import uuid
+            from src.process.events import record_event
+            st.session_state['scouting_case'] = str(uuid.uuid4())
+            attrs = dict(style=style_key, position=position, season=season, league=league, max_age=max_age)
+            record_event(st.session_state.scouting_case, 'need_defined', 'app_user', attrs)
+            record_event(st.session_state.scouting_case, 'search_executed', 'system', attrs)
 
     # ── KPIs globales ─────────────────────────────────────────────────────────
     total = len(rec.players)
     n_teams = rec.players["team"].nunique()
     n_leagues = rec.players["league"].nunique()
-    n_styles = len(PLAY_STYLES)
+    n_styles = len(styles)
 
     k1, k2, k3, k4 = st.columns(4)
     k1.metric("Jugadores analizados", f"{total:,}")
@@ -405,13 +423,20 @@ def main() -> None:
                 max_budget=max_budget,
                 league=None if league == "Todas" else league,
                 top_n=top_n,
+                season=season,
             )
+            if run:
+                from src.process.events import record_event
+                record_event(st.session_state.scouting_case, 'ranking_generated', 'system', {'candidates': len(result)})
             st.session_state["last_result"] = result
             st.session_state["last_style"] = style_key
         else:
             result = st.session_state["last_result"]
             style_key = st.session_state.get("last_style", style_key)
 
+        if st.session_state.get('scouting_case') and st.button("Registrar revisión de shortlist"):
+            from src.process.events import record_event
+            record_event(st.session_state.scouting_case, 'shortlist_reviewed', 'app_user', {'count': len(result)})
         icon = STYLE_ICONS.get(style_key, "⚽")
         st.subheader(f"{icon} Ranking · {style_labels[style_key]}")
 
@@ -425,7 +450,7 @@ def main() -> None:
                 show.rename(columns={
                     "player": "Jugador", "team": "Equipo", "league": "Liga",
                     "season": "Temp.", "pos": "Pos", "age": "Edad",
-                    "affinity": "Afinidad %", "budget_est": "Presupuesto est. M€",
+                    "affinity": "Afinidad coseno ×100",
                     "minutes": "Minutos",
                 }),
                 use_container_width=True,
@@ -436,7 +461,7 @@ def main() -> None:
 
             # Gráficos
             top = result.iloc[0]
-            feats = [c for c in FEATURE_COLS if c in rec.players.columns]
+            feats = rec.artifacts.feature_cols
             c1, c2 = st.columns(2)
 
             with c1:
@@ -458,9 +483,9 @@ def main() -> None:
             with st.expander(f"📄 Detalle · {top['player']}", expanded=False):
                 d1, d2, d3, d4 = st.columns(4)
                 d1.metric("Equipo", str(top.get("team", "—")))
-                d2.metric("Edad", str(int(top.get("age", 0))))
+                d2.metric("Edad", str(int(top.age)) if pd.notna(top.age) else "Desconocida")
                 d3.metric("Minutos", f"{int(top.get('minutes', 0)):,}")
-                d4.metric("Afinidad", f"{top.get('affinity', 0)*100:.1f}%")
+                d4.metric("Afinidad coseno", f"{top.get('affinity', 0):.3f}")
 
     # ── Tab 2: Similares ──────────────────────────────────────────────────────
     with tab2:
@@ -493,7 +518,7 @@ def main() -> None:
             # Radar comparativo del jugador seleccionado
             ref_row = rec.players[rec.players["player_id"] == selected]
             if not ref_row.empty:
-                feats = [c for c in FEATURE_COLS if c in rec.players.columns]
+                feats = rec.artifacts.feature_cols
                 st.plotly_chart(
                     radar_figure(
                         ref_row.iloc[0], feats,

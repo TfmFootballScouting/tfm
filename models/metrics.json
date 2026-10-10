@@ -24,5 +24,6 @@
     "style_diversity": 0.9413402788015791,
     "silhouette_kmeans": 0.27312949383557683
   },
-  "model_path": "C:\\Users\\cvalencs\\OneDrive - NTT DATA EMEAL\\Documentos\\Carlos Valencia S\u00e1nchez\\TFM\\tfm_futbol\\models\\recommender.joblib"
+  "model_path": "models/recommender.joblib",
+  "status": "legacy_mixed_synthetic_unverified_do_not_use"
 }

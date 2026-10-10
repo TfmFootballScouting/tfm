@@ -12,9 +12,9 @@ def style_vector(style_key: str, feature_cols: list[str] | None = None) -> np.nd
     feature_cols = feature_cols or FEATURE_COLS
     weights = PLAY_STYLES[style_key]["weights"]
     vec = np.array([float(weights.get(c, 0.0)) for c in feature_cols], dtype=float)
-    if vec.sum() == 0:
-        vec = np.ones_like(vec)
-    return vec / vec.sum()
+    if np.abs(vec).sum() == 0:
+        raise ValueError("No measured features support this style")
+    return vec / np.abs(vec).sum()
 
 
 def list_styles() -> dict:
@@ -44,3 +44,8 @@ def build_scaler(df_features: pd.DataFrame) -> tuple[StandardScaler, np.ndarray]
     scaler = StandardScaler()
     X = scaler.fit_transform(df_features.values)
     return scaler, X
+
+
+def measured_weight_fraction(style_key, feature_cols):
+    weights = PLAY_STYLES[style_key]['weights']
+    return sum(abs(w) for c,w in weights.items() if c in feature_cols) / sum(abs(w) for w in weights.values())

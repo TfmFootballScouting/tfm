@@ -1,33 +1,10 @@
-# Módulo 9 — Evidencias para la entrega
+# Evidencias ejecutadas y pendientes
 
-Checklist de capturas / enlaces a aportar al máster.
+- Python 3.12 y dependencias: `scripts/setup.sh`, `requirements.lock.txt`, pip check.
+- Pruebas: `reports/verification.json`; tests funcionales de ranking/filtros/similares/Streamlit y protección contra leakage.
+- Notebooks: cuatro `.ipynb` ejecutados; `reports/notebook_execution.json`.
+- MLflow: experimento separado `tfm-scouting-legacy-exploratory`; `reports/mlflow_export/run.json` y artefactos reales del run.
+- Cobertura y bloqueos: `reports/source_coverage.csv`, `reports/transfermarkt_sample_access.csv`, `docs/SOURCE_ACCESS.md`.
+- Datos originales preservados; los resultados antiguos mezclados con sintéticos no validan el TFM.
 
-## 1. Repositorio
-- [ ] URL del repo: https://github.com/valen28030/tfm_futbol
-- [ ] Captura de la estructura de carpetas en GitHub
-- [ ] Captura del README
-
-## 2. Process mining
-- [ ] Captura o PDF/export de `docs/modulo9_process_mining.md` (AS-IS / TO-BE / KPIs)
-
-## 3. Cloud
-- [ ] Documento `docs/modulo9_cloud_estimacion.md` con costes rellenados
-- [ ] (Si lo piden) Captura de la calculadora oficial del máster con t3.medium / B2s / 50 GB
-
-## 4. MLflow
-Cómo reproducir y capturar:
-
-```powershell
-cd "...\TFM\tfm_futbol"
-.\.venv\Scripts\Activate.ps1
-.\.venv\Scripts\python.exe src\models\train_mlflow_demo.py
-mlflow ui --backend-store-uri sqlite:///mlflow.db
-```
-
-Capturas recomendadas:
-- [ ] Lista de experimentos (`tfm-scouting-recomendacion`)
-- [ ] Detalle del run (`knn_cosine_demo_v1`) con parámetros
-- [ ] Métrica `mean_neighbor_distance_sample`
-
-## 5. Recordatorio
-No subir `mlflow.db` ni `.venv` a GitHub (ya están en `.gitignore`).
+No se presentan capturas, validación de fichajes, métricas de precisión o descubrimiento de un proceso humano que no se hayan obtenido. El demo sintético mantiene su propio experimento y no se ha ejecutado para esta entrega. Véase `COMPLETION_REPORT.md` para estados completos.

@@ -1,18 +1,20 @@
-"""Pipeline end-to-end: datos -> limpieza -> entrenamiento."""
-from __future__ import annotations
-
+"""Real-data pipeline. Collection is explicit; no synthetic fallback."""
+import argparse
+from src.data.prepare import prepare
 from src.models.train import train_and_log
-from src.preprocessing.clean import clean_players, save_processed
-from src.scraping.fbref import build_raw_dataset
 
 
-def run_all() -> None:
-    raw = build_raw_dataset(use_demo_if_needed=True)
-    clean = clean_players(raw)
-    save_processed(clean)
-    train_and_log()
-    print("[pipeline] Completado.")
+def run_all(legacy=False, collect=False):
+    if collect:
+        from src.scraping.collect import collect as collect_sources
+        collect_sources()
+    prepare(legacy=legacy)
+    train_and_log(allow_legacy=legacy)
 
 
-if __name__ == "__main__":
-    run_all()
+if __name__ == '__main__':
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--collect', action='store_true')
+    p.add_argument('--legacy-exploratory', action='store_true', help='Use only pre-existing FBref-labelled standard rows, with explicit unverified provenance tags')
+    args = p.parse_args()
+    run_all(legacy=args.legacy_exploratory, collect=args.collect)

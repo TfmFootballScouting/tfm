@@ -1,10 +1,10 @@
-﻿# Caso de uso de ciencia de datos — TFM Scouting de futbolistas
+# Caso de uso de ciencia de datos — TFM Scouting de futbolistas
 
 ## 1. Contexto y problema de negocio
 Los departamentos de scouting de clubes profesionales y semiprofesionales basan gran parte de la identificación de talento en observación subjetiva. Eso dificulta comparar jugadores de forma objetiva, reproducir criterios entre analistas y alinear fichajes con el estilo de juego del equipo.
 
 ## 2. Objetivo del caso de uso
-Desarrollar un sistema de recomendación que, dado un estilo de juego (vector de métricas ponderadas), una posición y filtros (edad, presupuesto estimado), proponga un ranking de jugadores cuyo perfil estadístico sea afín a ese estilo.
+Desarrollar un sistema de recomendación que, dado un estilo de juego (vector de métricas ponderadas), una posición y filtros (edad, presupuesto basado en valoraciones históricas verificadas), proponga un ranking de jugadores cuyo perfil estadístico sea afín a ese estilo.
 
 ## 3. Usuario final
 - Director deportivo / responsable de scouting
@@ -14,16 +14,16 @@ Desarrollar un sistema de recomendación que, dado un estilo de juego (vector de
 ¿Qué jugadores disponibles se ajustan mejor al estilo de juego X, en la posición Y, dentro de un rango de edad y presupuesto Z?
 
 ## 5. Datos
-- Fuente: FBref (y soccerdata), ligas La Liga y Segunda División (temporadas 2022-23 a 2024-25)
-- Volumen estimado: 1.500–2.500 jugadores, >40 métricas por jugador
-- Tipos de métricas: ofensivas (xG, xAG, progresión), presión, creación (GCA/SCA), defensivas y de posesión
+- Cobertura objetivo: FBref, Understat (La Liga) y Transfermarkt; La Liga/Segunda 2020/21–2025/26.
+- Cobertura realmente ejecutada: 420 observaciones heredadas FBref sin procedencia original verificada; muestra actual Transfermarkt de 50 valores y dos perfiles.
+- Solo goles/asistencias por 90 en la exploración; cobertura ampliada, métricas defensivas y validación de fichajes pendientes. Véase SOURCE_ACCESS.md y COMPLETION_REPORT.md.
 
 ## 6. Pipeline de ciencia de datos
 1. Extracción (scraping / soccerdata)
 2. Limpieza y estructuración (SQLite / tablas procesadas)
 3. Feature engineering: normalización y vectores de estilo de juego
 4. Modelado: similitud coseno, KNN, PCA y K-Means
-5. Evaluación con casos de fichajes conocidos
+5. Evaluación de fichajes históricos (diseño documentado; ejecución bloqueada sin datos/etiquetas verificadas)
 6. Despliegue en app Streamlit (ranking + radars)
 
 ## 7. Output esperado

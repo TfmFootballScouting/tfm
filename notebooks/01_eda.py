@@ -1,11 +1,6 @@
-# EDA rápido del dataset de scouting
-# Ejecutar tras: python -m src.pipeline
-
-import pandas as pd
-from pathlib import Path
-
-players = pd.read_parquet(Path("data/processed/players.parquet"))
-print(players.shape)
-print(players["league"].value_counts())
-print(players["pos_main"].value_counts())
-players[["gls_p90","ast_p90","int_p90","tklw_p90","crs_p90"]].describe()
+"""Legacy quick entry point. Full executed analysis: 01_data_quality_eda.ipynb."""
+from src.preprocessing.clean import load_players
+players=load_players()
+print('Source provenance:',players.provenance_status.unique())
+print(players.groupby(['source','league','season']).size())
+print(players[['gls_p90','ast_p90']].describe())

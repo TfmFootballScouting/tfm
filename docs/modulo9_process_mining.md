@@ -1,4 +1,6 @@
-﻿# Módulo 9 — Problema de negocio con visión Process Mining
+> Estado de entrega: el proceso siguiente es un diseño TO-BE, no un proceso observado de un club. La aplicación registra necesidad/búsqueda/ranking y revisión explícita; no infiere fichajes. `src/process/events.py` implementa log formal y descubrimiento directly-follows. No hay sesiones humanas genuinas en la entrega, por lo que descubrimiento organizativo y KPIs quedan bloqueados. Véase `notebooks/04_process_mining.ipynb` y `COMPLETION_REPORT.md`.
+
+# Módulo 9 — Problema de negocio con visión Process Mining
 
 ## 1. Proceso analizado
 Proceso de scouting y recomendación de futbolistas para la toma de decisión de fichaje.

@@ -43,100 +43,23 @@ def _read_fbref_html_table(path: Path) -> pd.DataFrame | None:
     return df.reset_index(drop=True)
 
 
-def load_from_soccerdata_cache(
-    league_key: str = "ESP-La Liga",
-    season: str = "2324",
-) -> pd.DataFrame | None:
-    """Lee HTML cacheado por soccerdata y combina standard + shooting + misc."""
+def load_from_soccerdata_cache(league_key="ESP-La Liga", season="2324"):
+    """Compatibility adapter; join cached HTML by stable source IDs, never row index."""
+    from src.scraping.collect import parse_fbref
+    from src.data.fbref import merge_tables
     frames = {}
     for stat in STAT_TYPES:
         path = SOCCERDATA_FBREF / f"players_{league_key}_{season}_{stat}.html"
-        df = _read_fbref_html_table(path)
-        if df is None:
-            continue
-        frames[stat] = df
-
+        if path.exists():
+            frame = parse_fbref(path.read_text(encoding="utf8"), stat)
+            frame["league"] = LEAGUES.get(league_key, league_key)
+            frame["season"] = season
+            frames[stat] = frame
     if "standard" not in frames:
         return None
-
-    base = frames["standard"].copy()
-    key_cols = [c for c in ["Player", "Squad", "Pos", "Age", "Nation"] if c in base.columns]
-
-    def pick(df: pd.DataFrame, mapping: dict[str, str]) -> pd.DataFrame:
-        out = df[key_cols].copy() if key_cols else df.iloc[:, :5].copy()
-        for src, dst in mapping.items():
-            matches = [c for c in df.columns if c == src or c.endswith(src) or src in c]
-            if matches:
-                out[dst] = pd.to_numeric(df[matches[0]], errors="coerce")
-        return out
-
-    std = pick(
-        base,
-        {
-            "Playing Time_Min": "minutes",
-            "Playing Time_MP": "mp",
-            "Playing Time_90s": "nineties",
-            "Performance_Gls": "gls",
-            "Performance_Ast": "ast",
-            "Performance_G+A": "ga",
-            "Per 90 Minutes_Gls": "gls_p90_raw",
-            "Per 90 Minutes_Ast": "ast_p90_raw",
-            "Per 90 Minutes_G+A": "ga_p90_raw",
-        },
-    )
-    # Fallback nombres planos
-    for alt, dst in [
-        ("Min", "minutes"),
-        ("MP", "mp"),
-        ("90s", "nineties"),
-        ("Gls", "gls"),
-        ("Ast", "ast"),
-    ]:
-        if dst not in std.columns and alt in base.columns:
-            std[dst] = pd.to_numeric(base[alt], errors="coerce")
-
-    out = std.copy()
-    # Evitar columnas duplicadas PascalCase / snake_case
-    drop_caps = [c for c in ["Player", "Squad", "Pos", "Age", "Nation"] if c in out.columns]
-    out = out.drop(columns=drop_caps, errors="ignore")
-    out["player"] = base["Player"].astype(str) if "Player" in base.columns else ""
-    out["team"] = base["Squad"].astype(str) if "Squad" in base.columns else ""
-    out["pos"] = base["Pos"].astype(str) if "Pos" in base.columns else ""
-    out["age"] = pd.to_numeric(base["Age"], errors="coerce") if "Age" in base.columns else np.nan
-    out["nation"] = base["Nation"].astype(str) if "Nation" in base.columns else ""
-    out["league"] = LEAGUES.get(league_key, league_key)
-    out["season"] = season
-
-    if "shooting" in frames:
-        sh = frames["shooting"]
-        for src, dst in [("Standard_Sh", "sh"), ("Sh", "sh"), ("Standard_SoT", "sot"), ("SoT", "sot")]:
-            if dst in out.columns:
-                continue
-            if src in sh.columns:
-                out[dst] = pd.to_numeric(sh[src], errors="coerce")
-
-    if "misc" in frames:
-        misc = frames["misc"]
-        mapping = {
-            "Int": "int",
-            "Performance_Int": "int",
-            "TklW": "tklw",
-            "Performance_TklW": "tklw",
-            "Crs": "crs",
-            "Performance_Crs": "crs",
-            "Fls": "fls",
-            "Performance_Fls": "fls",
-            "Fld": "fld",
-            "Performance_Fld": "fld",
-        }
-        for src, dst in mapping.items():
-            if dst in out.columns:
-                continue
-            cols = [c for c in misc.columns if c == src or c.endswith("_" + src)]
-            if cols:
-                out[dst] = pd.to_numeric(misc[cols[0]], errors="coerce")
-
-    return out
+    result = merge_tables(frames["standard"], [f for key,f in frames.items() if key != "standard"])
+    result["source"] = "fbref"
+    return result
 
 
 def try_soccerdata_download(league: str, season: str, stat_type: str = "standard") -> pd.DataFrame | None:
@@ -257,38 +180,8 @@ def generate_demo_players(n: int = 1800, seed: int = RANDOM_SEED) -> pd.DataFram
     return pd.DataFrame(rows)
 
 
-def build_raw_dataset(use_demo_if_needed: bool = True) -> pd.DataFrame:
-    """Construye dataset raw: caché FBref + demo para cubrir volumen del TFM."""
-    DATA_RAW.mkdir(parents=True, exist_ok=True)
-    parts: list[pd.DataFrame] = []
-
-    cached = load_from_soccerdata_cache("ESP-La Liga", "2324")
-    if cached is not None and len(cached) > 0:
-        cached["source"] = "fbref_cache"
-        parts.append(cached)
-        print(f"[scraping] Caché FBref La Liga 2324: {len(cached)} filas")
-
+def build_raw_dataset(use_demo_if_needed: bool = False) -> pd.DataFrame:
+    """Deprecated legacy entry point: never mix synthetic and real data."""
     if use_demo_if_needed:
-        demo = generate_demo_players()
-        # Si hay caché real, mezclamos demo de otras temporadas/ligas
-        if parts:
-            demo = demo[demo["season"] != "2324"].copy()
-            demo = demo[demo["league"] != "La Liga"].copy()
-            # Añadir también otras temporadas La Liga sintéticas
-            extra = generate_demo_players(n=900, seed=RANDOM_SEED + 7)
-            extra = extra[extra["league"] == "La Liga"]
-            extra = extra[extra["season"] != "2324"]
-            demo = pd.concat([demo, extra], ignore_index=True)
-        parts.append(demo)
-        print(f"[scraping] Dataset demo añadido: {len(demo)} filas")
-
-    if not parts:
-        raise RuntimeError("No hay datos disponibles")
-
-    df = pd.concat(parts, ignore_index=True, sort=False)
-    raw_path = DATA_RAW / "players_raw.parquet"
-    df.to_parquet(raw_path, index=False)
-    csv_path = DATA_RAW / "players_raw.csv"
-    df.to_csv(csv_path, index=False)
-    print(f"[scraping] Guardado {raw_path} ({len(df)} filas)")
-    return df
+        raise ValueError("Synthetic fallback removed. Use source collection or explicit separate demonstrations.")
+    raise RuntimeError("Use python -m src.scraping.collect then python -m src.pipeline")

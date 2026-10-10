@@ -1,96 +1,75 @@
 # TFM — Análisis y scouting de futbolistas
 
-Sistema de recomendación de jugadores por **afinidad con estilos de juego** (vectores de métricas ponderadas), con datos FBref (caché) + dataset ampliado, modelos scikit-learn, MLflow y app Streamlit.
+Improved existing football scouting project: source-separated ingestion, auditable preprocessing, the original cosine/KNN/K-means/PCA engine, MLflow and Streamlit. Authors: Iván Galán López, Basma Marso, Carlos Valencia Sánchez.
 
-**Autores:** Iván Galán López, Basma Marso, Carlos Valencia Sánchez
+**Submission status:** working **exploratory** application and executed notebooks. Six-season final validation is blocked by source access and historical data gaps. No synthetic data is substituted for downloads. See [completion report](docs/COMPLETION_REPORT.md), [source access](docs/SOURCE_ACCESS.md) and [data dictionary](docs/DATA_DICTIONARY.md).
 
-## Qué incluye
+## Reproduce (Python 3.12, Linux/cloud)
 
-- Pipeline de datos → SQLite / Parquet
-- 6 estilos de juego (posesión, presión alta, vertical, contraataque, solidez, desborde)
-- Modelos: afinidad coseno, KNN, K-Means, PCA
-- Tracking MLflow
-- App interactiva Streamlit (ranking, radar, similares, clusters)
-- Tests básicos
-
-## Quick start
-
-```powershell
-git clone https://github.com/valen28030/tfm_futbol.git
+```bash
 cd tfm_futbol
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+bash scripts/setup.sh
+source .venv/bin/activate
+export MPLCONFIGDIR=/tmp/tfm-matplotlib
+export XDG_CACHE_HOME=/tmp/tfm-cache
 ```
 
-### Opción A — Usar datos/modelo ya generados (rápido)
+`requirements.txt` pins direct dependencies; `requirements.lock.txt` records the installed, tested dependency closure. Windows-only packages and unrelated browser/GUI dependencies were removed. `scripts/setup.sh` uses the lock, installs the local notebook kernel, runs pip consistency checks and tests. Existing raw files and old artifacts are preserved.
 
-```powershell
-streamlit run src/app/streamlit_app.py
-```
+### Real-data acquisition and default pipeline
 
-### Opción B — Regenerar todo el pipeline
-
-```powershell
+```bash
+python -m src.scraping.collect
+python -m scripts.transfermarkt_snapshots
 python -m src.pipeline
-streamlit run src/app/streamlit_app.py
 ```
 
-### MLflow UI
+The default pipeline **fails explicitly** when no eligible collected football statistics exist. The collector checks robots, caches successful raw responses with hashes, respects host delays and stops on denials/challenges. It does not bypass Understat/FBref restrictions. Coverage is recorded even when downloads are blocked. Current Transfermarkt values are not attached retrospectively to historical football statistics.
 
-```powershell
-python -m src.models.train
-mlflow ui --backend-store-uri sqlite:///mlflow.db
+### Explicit legacy exploration (preliminary, not final results)
+
+```bash
+python -m src.pipeline --legacy-exploratory
+python -m pytest -q
+python -m streamlit run src/app/streamlit_app.py --server.headless true
 ```
 
-Abre http://127.0.0.1:5000 → **Model training** → Experiments.
+The legacy raw file has 609 FBref-labelled La Liga 2023/24 rows and 840 synthetic rows. Exploration excludes every synthetic row, drops suspect row-merged statistics, applies the minutes/aggregate filter and retains 420 observations. Original HTML and retrieval dates are absent, so provenance remains unverified. The old mixed model is never loaded by the app. New outputs live in `data/processed/real/` and `models/real/`, with explicit `real_legacy_unverified` metadata.
 
-## Estructura
+Only the measured goals/assists profiles are exposed for this limited dataset. Six broad tactical styles require at least 60% measured absolute feature weight and are disabled here. Cosine direction is not transfer success, and can rank a balanced low-output player above a more productive one: inspect rates and baseline comparisons. Unknown prices are not free players; budgets require dated as-of EUR values.
 
-```text
-tfm_futbol/
-├── data/raw/              # extracción
-├── data/processed/        # players.parquet, scouting.db
-├── docs/                  # caso de uso, process mining, cloud, anteproyecto
-├── models/                # recommender.joblib + metrics.json
-├── notebooks/             # EDA
-├── src/
-│   ├── scraping/          # FBref caché + demo
-│   ├── preprocessing/     # limpieza y per-90
-│   ├── features/          # estilos de juego
-│   ├── models/            # recomendación + train MLflow
-│   ├── app/               # Streamlit
-│   └── pipeline.py
-└── tests/
+### Executable notebooks
+
+```bash
+export JUPYTER_PATH="$PWD/.jupyter/share/jupyter"
+export IPYTHONDIR=/tmp/tfm-ipython
+export JUPYTER_RUNTIME_DIR=/tmp/tfm-jupyter
+python -m scripts.execute_notebooks
 ```
 
-## Estilos de juego
+Four executed `.ipynb` notebooks cover data quality/EDA, model interpretation/baselines, scouting scenarios and process mining. Their blocked sections display precise prerequisites; a successful notebook execution does not mean the blocked analyses were performed. `scripts/build_notebooks.py` is the authored source and regenerates notebooks without outputs.
 
-| Clave | Nombre |
-|-------|--------|
-| `posesion` | Posesión / construcción |
-| `presion_alta` | Presión alta |
-| `vertical` | Juego vertical / directo |
-| `contraataque` | Contraataque |
-| `solidez_defensiva` | Solidez defensiva |
-| `desborde_banda` | Desborde / banda |
+### MLflow
 
-## Datos
+```bash
+python -m mlflow ui --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlartifacts --host 127.0.0.1 --port 5000
+```
 
-- **FBref (caché soccerdata):** La Liga 2023-24 (standard, shooting, misc) cuando está disponible en `~/soccerdata/data/FBref`
-- **Demo sintético:** completa Segunda y otras temporadas para alcanzar el volumen del anteproyecto (~1.2k jugadores tras filtro de minutos)
-- FBref a veces muestra CAPTCHA; el pipeline no se bloquea gracias al modo demo
+Use commands from the repository root. Real, unverified legacy exploration and synthetic demonstrations have separate experiments. Runs include owner/project/dataset/environment/Git tags, dataset hashes, model artifact, plots and evaluation CSVs. Artifact locations are relative to this root. `reports/mlflow_export/` is a portable JSON/CSV export of actual run metadata plus copied artifact files; runtime SQLite/MLflow directories are ignored and retained in the cloud snapshot. No synthetic demonstration was run for the submission.
 
-## Documentación
+### Process instrumentation
 
-| Doc | Contenido |
-|-----|-----------|
-| [docs/modulo2_caso_uso.md](docs/modulo2_caso_uso.md) | Caso de uso |
-| [docs/modulo9_process_mining.md](docs/modulo9_process_mining.md) | Process mining |
-| [docs/modulo9_cloud_estimacion.md](docs/modulo9_cloud_estimacion.md) | Cloud (~35 €/mes VM) |
-| [docs/modulo9_evidencias.md](docs/modulo9_evidencias.md) | Checklist evidencias |
-| [docs/memoria_resumen.md](docs/memoria_resumen.md) | Resumen técnico del sistema |
+Explicit Streamlit searches append observed need/search/ranking events; the review button records an actual review action. `TFM_EVENT_LOG` can select a private destination. No signing decision is inferred. Logs are ignored to avoid publishing user scouting activity. There are no genuine human sessions in this submission, so process discovery is blocked; temporary AppTest logs only verify instrumentation.
 
-## Stack
+## Repository layout
 
-Python, pandas, scikit-learn, MLflow, Streamlit, Plotly, SQLite, soccerdata (opcional).
+- `src/scraping/`: source access/policy, parsers and legacy compatibility.
+- `src/data/`: immutable provenance, validated FBref joins, conservative identity proposals and as-of valuation selection.
+- `src/preprocessing/`, `src/features/`, `src/models/`: existing architecture repaired; temporal proxy and descriptive evaluation added.
+- `data/raw/`: preserved original datasets and content-addressed source responses.
+- `data/external/`: separately normalized source samples.
+- `reports/`: coverage, lineage, evaluation and executed-notebook evidence.
+- `notebooks/`: EDA and analysis with actual outputs.
+- `docs/`: updated first-submission TFM account and limitations.
+
+Work is on `improve/reproducible-scouting`; main is unchanged. Existing legacy modules and author documents remain, but old claims should be read with the updated completion report. Cloud tasks already have isolated checkouts: use the existing repository, not a new worktree.

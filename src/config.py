@@ -3,8 +3,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_RAW = ROOT / "data" / "raw"
-DATA_PROCESSED = ROOT / "data" / "processed"
-MODELS_DIR = ROOT / "models"
+DATA_PROCESSED = ROOT / "data" / "processed" / "real"
+MODELS_DIR = ROOT / "models" / "real"
 DB_PATH = DATA_PROCESSED / "scouting.db"
 PLAYERS_PARQUET = DATA_PROCESSED / "players.parquet"
 FEATURES_PARQUET = DATA_PROCESSED / "features.parquet"
@@ -16,13 +16,13 @@ LEAGUES = {
     "ESP-Segunda División": "Segunda",
 }
 
-SEASONS = ["2223", "2324", "2425"]
+SEASONS = [f"{y}-{y + 1}" for y in range(2020, 2026)]
 STAT_TYPES = ["standard", "shooting", "misc"]
 
 MIN_MINUTES = 450
 RANDOM_SEED = 42
 
-# Estilos de juego: pesos sobre features normalizadas (0–1 tras StandardScaler en runtime)
+# Expert-defined style directions on standardized features; affinity is not a probability.
 PLAY_STYLES = {
     "posesion": {
         "label": "Posesión / construcción",
@@ -45,7 +45,7 @@ PLAY_STYLES = {
         "weights": {
             "int_p90": 0.25,
             "tklw_p90": 0.25,
-            "fls_p90": 0.10,
+            "fls_p90": -0.10,
             "fld_p90": 0.05,
             "crs_p90": 0.05,
             "gls_p90": 0.05,
@@ -88,7 +88,7 @@ PLAY_STYLES = {
         "weights": {
             "int_p90": 0.30,
             "tklw_p90": 0.30,
-            "fls_p90": 0.10,
+            "fls_p90": -0.10,
             "crs_p90": 0.05,
             "gls_p90": 0.05,
             "ast_p90": 0.05,
@@ -127,3 +127,7 @@ FEATURE_COLS = [
 
 MLFLOW_TRACKING_URI = "sqlite:///mlflow.db"
 MLFLOW_EXPERIMENT = "tfm-scouting-recomendacion"
+
+# Honest limited-feature profiles when broad tactical categories lack coverage.
+PLAY_STYLES['finisher'] = {'label': 'Finalizador (goles)', 'description': 'Perfil descriptivo de goles por 90; no mide pressing ni progresión.', 'weights': {'gls_p90': 1.0}}
+PLAY_STYLES['creator'] = {'label': 'Asistente (asistencias)', 'description': 'Perfil descriptivo de asistencias por 90; no mide construcción con pases.', 'weights': {'ast_p90': 1.0}}

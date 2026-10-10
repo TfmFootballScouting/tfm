@@ -1,6 +1,5 @@
-"""Motor de recomendación: cosine, KNN y clustering."""
+"""Existing cosine/KNN/PCA/K-means engine with training-only preprocessing."""
 from __future__ import annotations
-
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -9,15 +8,17 @@ import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
+from sklearn.impute import SimpleImputer
 from sklearn.neighbors import NearestNeighbors
 from sklearn.preprocessing import StandardScaler
 
 from src.config import FEATURE_COLS, MODELS_DIR, RANDOM_SEED
-from src.features.styles import affinity_scores
+from src.features.styles import affinity_scores, measured_weight_fraction
 
 
 @dataclass
 class RecommenderArtifacts:
+    imputer: SimpleImputer
     scaler: StandardScaler
     knn: NearestNeighbors
     kmeans: KMeans
@@ -27,104 +28,109 @@ class RecommenderArtifacts:
 
 
 class PlayerRecommender:
-    def __init__(self, n_neighbors: int = 15, n_clusters: int = 6, n_pca: int = 4):
-        self.n_neighbors = n_neighbors
-        self.n_clusters = n_clusters
-        self.n_pca = n_pca
-        self.artifacts: RecommenderArtifacts | None = None
-        self.players: pd.DataFrame | None = None
-        self.X: np.ndarray | None = None
+    def __init__(self, n_neighbors=15, n_clusters=6, n_pca=4):
+        if min(n_neighbors, n_clusters, n_pca) < 1:
+            raise ValueError('Model dimensions must be positive')
+        self.n_neighbors, self.n_clusters, self.n_pca = n_neighbors, n_clusters, n_pca
+        self.artifacts = self.players = self.X = None
 
-    def fit(self, players: pd.DataFrame, feature_cols: list[str] | None = None) -> "PlayerRecommender":
-        feature_cols = feature_cols or [c for c in FEATURE_COLS if c in players.columns]
+    def fit(self, players, feature_cols=None):
+        if len(players) < 2:
+            raise ValueError('At least two observations required')
+        if players.player_id.duplicated().any():
+            raise ValueError('player_id must identify unique observations')
+        requested = feature_cols or [c for c in FEATURE_COLS if c in players]
+        # All-empty and constant features cannot support meaningful similarity.
+        cols = [c for c in requested if players[c].notna().any() and players[c].nunique() > 1]
+        if not cols:
+            raise ValueError('No usable features; unavailable data are not zero')
+        if not np.isfinite(players[cols].dropna().to_numpy()).all():
+            raise ValueError('Infinite feature values')
         self.players = players.reset_index(drop=True).copy()
-        feats = self.players[feature_cols].fillna(0.0)
-
+        imputer = SimpleImputer(strategy='median')
         scaler = StandardScaler()
-        X = scaler.fit_transform(feats.values)
-
-        knn = NearestNeighbors(n_neighbors=min(self.n_neighbors, len(X)), metric="cosine")
-        knn.fit(X)
-
-        kmeans = KMeans(n_clusters=min(self.n_clusters, len(X)), random_state=RANDOM_SEED, n_init=10)
-        clusters = kmeans.fit_predict(X)
-        self.players["cluster"] = clusters
-
-        pca = PCA(n_components=min(self.n_pca, X.shape[1]), random_state=RANDOM_SEED)
+        X = scaler.fit_transform(imputer.fit_transform(self.players[cols]))
+        knn = NearestNeighbors(n_neighbors=min(self.n_neighbors, len(X)), metric='cosine').fit(X)
+        kmeans = KMeans(n_clusters=min(self.n_clusters, len(np.unique(X, axis=0))),
+                        random_state=RANDOM_SEED, n_init=10).fit(X)
+        self.players['cluster'] = kmeans.labels_
+        pca = PCA(n_components=min(self.n_pca, X.shape[1], X.shape[0]), random_state=RANDOM_SEED)
         pcs = pca.fit_transform(X)
         for i in range(pcs.shape[1]):
-            self.players[f"pc{i+1}"] = pcs[:, i]
-
+            self.players[f'pc{i+1}'] = pcs[:, i]
         self.X = X
-        self.artifacts = RecommenderArtifacts(
-            scaler=scaler,
-            knn=knn,
-            kmeans=kmeans,
-            pca=pca,
-            feature_cols=feature_cols,
-            player_ids=self.players["player_id"].to_numpy(),
-        )
+        self.artifacts = RecommenderArtifacts(imputer, scaler, knn, kmeans, pca, cols,
+                                               self.players.player_id.to_numpy())
         return self
 
-    def recommend(
-        self,
-        style_key: str,
-        position: str | None = None,
-        max_age: int | None = None,
-        max_budget: float | None = None,
-        league: str | None = None,
-        top_n: int = 10,
-    ) -> pd.DataFrame:
-        if self.players is None or self.X is None or self.artifacts is None:
-            raise RuntimeError("Modelo no entrenado")
+    def transform(self, players):
+        if self.artifacts is None:
+            raise RuntimeError('Model not fitted')
+        return self.artifacts.scaler.transform(self.artifacts.imputer.transform(players[self.artifacts.feature_cols]))
 
-        scores = affinity_scores(self.X, style_key, self.artifacts.feature_cols)
+    def recommend(self, style_key, position=None, max_age=None, max_budget=None,
+                  league=None, top_n=10, cutoff=None, season=None, exclude_club=None):
+        if self.players is None or self.artifacts is None:
+            raise RuntimeError('Model not fitted')
+        if top_n < 1:
+            raise ValueError('top_n must be positive')
+        if measured_weight_fraction(style_key, self.artifacts.feature_cols) < .6:
+            raise ValueError('Insufficient measured features for this tactical style; use a supported profile')
         result = self.players.copy()
-        result["affinity"] = scores
-
-        if position and position != "Todas":
-            result = result[result["pos_main"].str.contains(position, case=False, na=False)]
+        result['affinity'] = affinity_scores(self.X, style_key, self.artifacts.feature_cols)
+        if season:
+            result = result[result.season == season]
+        if cutoff:
+            # Never retrospectively rank a model fitted on seasons after the decision date.
+            t = pd.Timestamp(cutoff)
+            model_ends = pd.to_datetime(self.players.season.str[5:] + '-06-30')
+            if (model_ends > t.tz_localize(None)).any():
+                raise ValueError('Model contains future/full-season information; fit on past data first')
+        if position and position != 'Todas':
+            result = result[result.pos.astype(str).str.split(',').map(lambda x: position.upper() in [s.strip().upper() for s in x])]
         if max_age is not None:
-            result = result[result["age"].fillna(99) <= max_age]
+            result = result[result.age.notna() & (result.age <= max_age)]
         if max_budget is not None:
-            result = result[result["budget_est"].fillna(0) <= max_budget]
-        if league and league != "Todas":
-            result = result[result["league"] == league]
+            required = {'market_value_eur', 'valuation_date', 'valuation_known_at'}
+            if not cutoff or not required <= set(result):
+                raise ValueError('Budget requires dated EUR valuations and a decision cutoff; unknown values are excluded')
+            cutoff_utc = pd.Timestamp(cutoff)
+            cutoff_utc = cutoff_utc.tz_localize('UTC') if cutoff_utc.tzinfo is None else cutoff_utc.tz_convert('UTC')
+            result = result[(pd.to_datetime(result.valuation_date, utc=True) <= cutoff_utc) &
+                            (pd.to_datetime(result.valuation_known_at, utc=True) <= cutoff_utc) &
+                            result.market_value_eur.notna() & (result.market_value_eur >= 0) &
+                            (result.market_value_eur <= max_budget * 1_000_000)]
+        if league and league != 'Todas':
+            result = result[result.league == league]
+        if exclude_club:
+            result = result[result.team != exclude_club]
+        result = result.sort_values(['affinity', 'player_id'], ascending=[False, True])
+        # Multiple season observations cannot occupy multiple shortlist slots.
+        if 'entity_id' in result:
+            result = result.drop_duplicates('entity_id')
+        return result.head(top_n)
 
-        cols = [
-            "player_id", "player", "team", "league", "season", "pos", "pos_main",
-            "age", "minutes", "affinity", "cluster", "budget_est",
-            "gls_p90", "ast_p90", "ga_p90", "sh_p90", "int_p90", "tklw_p90", "crs_p90",
-        ]
-        cols = [c for c in cols if c in result.columns]
-        return result.sort_values("affinity", ascending=False).head(top_n)[cols]
-
-    def similar_players(self, player_id: int, top_n: int = 10) -> pd.DataFrame:
-        assert self.artifacts and self.players is not None and self.X is not None
-        idx = self.players.index[self.players["player_id"] == player_id]
+    def similar_players(self, player_id, top_n=10):
+        if self.artifacts is None or self.players is None:
+            raise RuntimeError('Model not fitted')
+        idx = self.players.index[self.players.player_id == player_id]
         if len(idx) == 0:
-            raise ValueError(f"player_id {player_id} no encontrado")
+            raise ValueError(f'Unknown player_id {player_id}')
         i = int(idx[0])
-        distances, indices = self.artifacts.knn.kneighbors(
-            self.X[i].reshape(1, -1), n_neighbors=min(top_n + 1, len(self.X))
-        )
-        rows = []
-        for dist, j in zip(distances[0], indices[0]):
-            if j == i:
-                continue
-            row = self.players.iloc[j].copy()
-            row["similarity"] = 1.0 - float(dist)
-            rows.append(row)
-        return pd.DataFrame(rows).head(top_n)
+        distances, indices = self.artifacts.knn.kneighbors(self.X[i:i+1], n_neighbors=len(self.X))
+        out = self.players.iloc[indices[0]].copy()
+        out['similarity'] = 1 - distances[0]
+        out = out[out.player_id != player_id]
+        if 'entity_id' in out:
+            out = out[out.entity_id != self.players.iloc[i].entity_id].drop_duplicates('entity_id')
+        return out.head(top_n)
 
-    def save(self, path: Path | None = None) -> Path:
-        path = path or (MODELS_DIR / "recommender.joblib")
-        MODELS_DIR.mkdir(parents=True, exist_ok=True)
-        joblib.dump({"recommender": self, "players": self.players}, path)
+    def save(self, path=None):
+        path = Path(path or MODELS_DIR / 'recommender.joblib')
+        path.parent.mkdir(parents=True, exist_ok=True)
+        joblib.dump({'recommender': self, 'players': self.players}, path)
         return path
 
     @classmethod
-    def load(cls, path: Path | None = None) -> "PlayerRecommender":
-        path = path or (MODELS_DIR / "recommender.joblib")
-        payload = joblib.load(path)
-        return payload["recommender"]
+    def load(cls, path=None):
+        return joblib.load(path or MODELS_DIR / 'recommender.joblib')['recommender']
