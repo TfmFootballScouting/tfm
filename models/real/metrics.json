@@ -1,0 +1,33 @@
+{
+  "feature_cols": [
+    "gls_p90",
+    "ast_p90"
+  ],
+  "metrics": {
+    "silhouette_kmeans": 0.4387664231563881,
+    "pca_explained_variance_sum": 1.0,
+    "mean_top10_jaccard_overlap": 0.0,
+    "cluster_seed_ari_mean": 0.9056938561818292
+  },
+  "model_path": "models/real/recommender.joblib",
+  "dataset": {
+    "dataset_kind": "real_legacy_unverified",
+    "rows": 420,
+    "sources": [
+      "fbref_cache"
+    ],
+    "snapshots": [
+      "0d1f16e60c2116c4e6a3cefd468932effcc5d21fa527e1639d79ca551f909003"
+    ],
+    "dataset_sha256": "05e6266ab5f45651ff69c763413d3fbb196de6fd061d44bb48899b09b305fc6c",
+    "limitations": [
+      "Legacy retrieval date and original HTML absent; ancillary stats discarded"
+    ]
+  },
+  "git_commit": "602f883bae3ee6feadfea2c51cab551ec619692b",
+  "git_dirty": false,
+  "git_dirty_scope": "source_and_dependencies",
+  "run_id": "7931521312e34ea981241165f423977c",
+  "evaluation_scope": "descriptive exploratory; no transfer or future-performance claims",
+  "temporal_status": "blocked: fewer than two comparable consecutive seasons"
+}

@@ -1,6 +1,6 @@
 # Completion report — first reproducible submission
 
-Checked at 2026-10-10T15:23:42.646132+00:00 (UTC). Work branch: `improve/reproducible-scouting` in `valen28030/tfm_futbol`. Existing architecture retained; main unchanged. No changes have been pushed. The originally selected `TfmFootballScouting/tfm` checkout is still empty and was not overwritten. Breakout is retained as an unchanged reference.
+Checked at 2026-10-10T15:27:45.570417+00:00 (UTC). Work branch: `improve/reproducible-scouting` in `valen28030/tfm_futbol`. Existing architecture retained; main unchanged. No changes have been pushed. The originally selected `TfmFootballScouting/tfm` checkout is still empty and was not overwritten. Breakout is retained as an unchanged reference.
 
 ## Completion by requirement
 
@@ -12,7 +12,7 @@ Checked at 2026-10-10T15:23:42.646132+00:00 (UTC). Work branch: `improve/reprodu
 | 4. ML | **Exploratory only; final validation blocked** | Cosine/KNN/PCA/K-means preserved and repaired. Linear weighted, minutes and G+A baseline agreements; seed ARI, silhouette, weight perturbations and observed-row bootstraps; PCA loadings and cluster profiles interpreted. Legacy dataset provenance unverified; no final recommendation-quality claim. Temporal profile-retrieval benchmark implemented/tested on unit fixtures, unrun on multi-season real data. |
 | 5. Real-world validation | **Partial / blocked** | Position/style/season/excluded-club scenarios executed; dated budget scenario refuses unknown historical values. No actual club mandates, eligible historical universe, verified transfer labels or fees: no retrospective transfer precision/recall/NDCG results. |
 | 6. Process mining | **Instrumentation implemented / discovery blocked** | Case/activity/UTC timestamp/actor/attributes event log and directly-follows discovery implemented/tested. App logs actual search/review actions. No genuine human scouting sessions or club decisions; no simulated events used as evidence. |
-| 7. MLflow | **Executed for exploration** | Separate legacy-exploratory, real and synthetic experiment routes. Actual run tags include owner/project/dataset hash/environment/Git commit+dirty state. Logged model, plots, evaluation CSVs, lineage and relative artifact paths. Portable export downloaded from the recorded run. No synthetic demo used for submission. |
+| 7. MLflow | **Executed for exploration** | Separate legacy-exploratory, real and synthetic experiment routes. Actual run tags include owner/project/dataset hash/environment/Git commit+dirty state. Logged model, plots, evaluation CSVs, lineage and portable exported artifact paths. Local MLflow runtime resolves machine-local absolute URIs; the export omits those URIs and normalizes the source-name tag. Export downloaded from the recorded run. No synthetic demo used for submission. |
 | 8. Project quality | **Completed locally; remote CI unverified** | Python 3.12 direct pins + resolved lock, reproducible setup, portable metadata, 24 tests, Streamlit functional AppTest and live health, MLflow live API, four executed notebooks and updated TFM docs. GitHub Actions added but not executed remotely. Cloud snapshot publication/fresh-task restoration remain user/product actions, not verified here. |
 
 ## Data evidence and safeguards
@@ -26,7 +26,7 @@ Checked at 2026-10-10T15:23:42.646132+00:00 (UTC). Work branch: `improve/reprodu
 
 ## Actually executed exploratory results
 
-Run ID: `fc22dbab233241de97abf5caa3ba4cb8`. Recorded source commit: `2cf3385cd8f3ddd41cbc608a5942564cba03100c`; recorded dirty state: `True`. Dataset SHA-256: `05e6266ab5f45651ff69c763413d3fbb196de6fd061d44bb48899b09b305fc6c`. Full precision and tags are in `models/real/metrics.json` and `reports/mlflow_export/run.json`.
+Run ID: `7931521312e34ea981241165f423977c`. Recorded source commit: `602f883bae3ee6feadfea2c51cab551ec619692b`; recorded source/dependency dirty state: `False`. Dataset SHA-256: `05e6266ab5f45651ff69c763413d3fbb196de6fd061d44bb48899b09b305fc6c`. Full precision and tags are in `models/real/metrics.json` and `reports/mlflow_export/run.json`.
 
 - silhouette_kmeans: 0.438766
 - pca_explained_variance_sum: 1.000000

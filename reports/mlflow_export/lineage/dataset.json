@@ -1,0 +1,14 @@
+{
+  "dataset_kind": "real_legacy_unverified",
+  "rows": 420,
+  "sources": [
+    "fbref_cache"
+  ],
+  "snapshots": [
+    "0d1f16e60c2116c4e6a3cefd468932effcc5d21fa527e1639d79ca551f909003"
+  ],
+  "dataset_sha256": "05e6266ab5f45651ff69c763413d3fbb196de6fd061d44bb48899b09b305fc6c",
+  "limitations": [
+    "Legacy retrieval date and original HTML absent; ancillary stats discarded"
+  ]
+}

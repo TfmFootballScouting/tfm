@@ -1,0 +1,44 @@
+{
+  "checked_at": "2026-10-10T15:27:45.570417+00:00",
+  "tests": {
+    "tests": 24,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit_code": 0
+  },
+  "pip_check": "passed",
+  "default_pipeline_without_collected_stats": "expected_failure_no_synthetic_fallback",
+  "final_training_with_unverified_legacy": "expected_failure_provenance_guard",
+  "raw_snapshot_checksums": {
+    "records_verified": 146,
+    "unique_snapshots": 103
+  },
+  "notebooks": [
+    {
+      "notebook": "notebooks/01_data_quality_eda.ipynb",
+      "status": "executed",
+      "code_cells": 6
+    },
+    {
+      "notebook": "notebooks/02_model_analysis.ipynb",
+      "status": "executed",
+      "code_cells": 5
+    },
+    {
+      "notebook": "notebooks/03_scouting_validation.ipynb",
+      "status": "executed",
+      "code_cells": 4
+    },
+    {
+      "notebook": "notebooks/04_process_mining.ipynb",
+      "status": "executed",
+      "code_cells": 2
+    }
+  ],
+  "streamlit_service": "passed",
+  "mlflow_service": "passed",
+  "genuine_process_log": "absent_discovery_blocked",
+  "run_id": "7931521312e34ea981241165f423977c",
+  "portable_artifact_relocation": "passed: copied source/model/data/export loaded under different root and ranked 5 FW observations"
+}

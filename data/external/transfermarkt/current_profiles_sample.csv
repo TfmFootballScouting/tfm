@@ -1,0 +1,3 @@
+source_player_id,player,source,league,snapshot_sha256,retrieved_at,date_of_birth,height_cm,nation,position,foot
+937958,Lamine Yamal,transfermarkt,La Liga,4c1b9c6f7d5107770fe4aba396250565380d6e0c9fa17dd83aa17e06fc457600,2026-10-10T15:12:17.302785+00:00,2007-07-13,183.0,Spain,Attack - Right Winger,left
+527966,Andrei Rațiu,transfermarkt,Segunda,73843bdd914776d45a1ba4056d81f85d325389f5c497465b9d856a0d7d4bcfad,2026-10-10T15:12:27.437042+00:00,1998-06-20,183.0,Romania Spain,Defender - Right-Back,right
