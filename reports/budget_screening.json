@@ -1,0 +1,54 @@
+{
+  "status": "reported_market_value_screening_enabled_verified",
+  "verified_at_utc": "2026-10-11T16:28:55.937337+00:00",
+  "source_git_commit": "95c2501e63ee9f5df36d0674187471b8f719cf3b",
+  "source_use_scope": "local_user_requested_reported_value_display_and_post_ranking_screening_no_model_fit_or_transform",
+  "latest_reported_date": "2025-09-11",
+  "valuation_records": 901429,
+  "application_observations": 420,
+  "application_people": 419,
+  "provisionally_linked_observations": 349,
+  "positive_value_observations": 338,
+  "positive_value_people": 338,
+  "status_counts": {
+    "reported_positive": 338,
+    "unmatched": 71,
+    "reported_zero_ambiguous": 11
+  },
+  "observations_under_1M": 56,
+  "observations_under_10M": 249,
+  "identity_match_approval": false,
+  "source_use_authorization_for_model_fit": false,
+  "historical_budget_validation_performed": false,
+  "original_publication_dates_known": false,
+  "estimated_missing_prices_generated": false,
+  "transfer_fee_predictions_generated": false,
+  "model_retraining_performed": false,
+  "zero_values_screened_as_free": false,
+  "prior_evidence_unchanged": true,
+  "tests": {
+    "tests": 94,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "streamlit_health": "200 ok",
+  "input_and_code_sha256": {
+    "src/app/budget.py": "c60fa0bfb07442676f8effcf13ca65b421934935c3d8e440dd3db41739af772f",
+    "src/app/streamlit_app.py": "bfdabb57c4175cdffcc51ebc91157576e9ce0778a414fc603572fd221b7bed4c",
+    "tests/test_budget_screening.py": "1cc7774540a61277cb40a8ec2c151e10042f1d541452c56436d3d5f3ef5c073a",
+    "scripts/budget_screening_audit.py": "110d715fd6956726f0b7b5a5e8083fc2b30d5b51083590fecbb1ca472a7b1ceb",
+    "reports/budget_screening_tests.xml": "98bf803db343fdae944d1e9bdde03637e2ebfca86c9d6e39d4644b1d8b786094",
+    "data/processed/real/collected_salimt_values.parquet": "c05d1b1e2b424fb3a19d5281f11640668c099cfbd9e098d0408bb3588b5f0dd7",
+    "data/processed/real/collected_salimt_identity_candidates.parquet": "ff1a15f7b0a595a3e537f349c3a4c366825d6a3784482e0d9be6178b6f75e103",
+    "data/processed/real/collected_player_seasons.parquet": "0d7f05a189c8763c142535a03fc5ff7955e481dd508a04df852579fe2ceb62bf",
+    "models/real/recommender.joblib": "28201ef98cbcaf0376eba12a2977715e78e3d1f139bd0188c00f717328356d65"
+  },
+  "limitations": [
+    "Market values are reported assessments, not agreed fees.",
+    "Source dates support backward-only association, not publication-time availability.",
+    "Player identity links remain provisional and are labelled in the UI/export.",
+    "Latest zero/invalid values are unknown; no fallback to older positive values.",
+    "The currently served model uses legacy 2023/24 profiles; valuation cutoff is independent and displayed."
+  ]
+}
