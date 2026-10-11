@@ -23,6 +23,8 @@ def require_source_use(source, purpose):
 
 def require_model_data_use(players):
     """Check retained source labels and explicit restrictions before fitting."""
+    if 'identity_match_status' in players and players.identity_match_status.ne('reviewed').fillna(True).any():
+        raise ValueError('Unreviewed cross-source identity links cannot enter model fitting or transformation')
     for column in ('source', 'original_source', 'valuation_source', 'mapping_source'):
         if column in players:
             for source in players[column].dropna().unique():
