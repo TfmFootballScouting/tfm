@@ -1,0 +1,67 @@
+{
+  "validation_version": "eeccdb33fbcfbedaa60a4c9398d02584cca3f837d461fa765e735f897b9f5b09",
+  "dataset_version": "28dc55e8885f1db9cef608567ca2626231f3bab94d1bb3ad13d73b7273dfa87a",
+  "git_commit": "38a9af5f7ea95aa29cc40841b7fccfb87ef493c5",
+  "git_source_dirty": false,
+  "code_hashes": {
+    "src/models/validation.py": "fca8f68d6a38ef1ca36eba726725933e2f5d0ee15d380970c1ce6cd6d27fa530",
+    "scripts/collected_validation.py": "258068039f01826656f53ecc5ce0ebbb96b72bc3e393e4a849463f31291e23f6",
+    "scripts/collected_validation_notebook.py": "6bad0a28f9a9f34527ce737b0b47708da367036f34527d88f792c5dedb42c925",
+    "src/models/collected.py": "b1f6c8922fcb2026ec53b538a833eafc56c4a3680c7ec34e6e2ecba63e89b66f",
+    "src/models/recommend.py": "fc92931cd24f54ecfb232b4c3d4bff1ff0f2302f978a652404cafef80e449f1b",
+    "src/features/styles.py": "d033f056cee418b9fcf97811dd271a734adf9d34ded2107008f654bb0dc46a57",
+    "src/config.py": "e0adca1f20a8c1d1d4db5ee7a23b7f0ebbe86e70fb20ba8049197be5d2927b72"
+  },
+  "parameters": {
+    "person_block_trials": 30,
+    "seed": 42,
+    "query_bootstrap_trials": 500,
+    "k": "fixed_previously_selected",
+    "pca": "fixed_previously_selected_width",
+    "interpretation": "post_hoc_diagnostics_no_parameter_tuning"
+  },
+  "experiment": {
+    "base_run_id": "c9e47c4ca7984652b79dd95131063041",
+    "base_model_path": "models/real/collected_offensive_recommender.joblib",
+    "base_model_sha256": "2852c15c8bbfa7522b23257beb4619d0fffc650cf8111d028735d85c1db4a3d9",
+    "selected_method": "euclidean_profile",
+    "train_rows": 1183,
+    "train_people": 644,
+    "train_seasons": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023"
+    ],
+    "metrics": {
+      "cluster_ari_reference_mean": 0.9451281861264511,
+      "cluster_ari_reference_min": 0.8127122142137276,
+      "cluster_ari_oob_mean": 0.9429030218166978,
+      "cluster_ari_oob_min": 0.813258762223275,
+      "cluster_oob_trials_measured": 30,
+      "neighbor_top5_jaccard_mean": 0.9677248677248678,
+      "style_top5_jaccard_mean": 0.9611111111111111,
+      "pca2_max_angle_mean": 2.1133889401358434,
+      "pca4_max_angle_mean": 4.977687816238343
+    },
+    "output_files": {
+      "reports/experiments/collected_validation_offensive_cluster_bootstrap.csv": "b49b0ed0e07efb3150f7592f6647f3e528570f1bc0de5d569901aa6a1acaf687",
+      "reports/experiments/collected_validation_offensive_pca_loading_bootstrap.csv": "e602e89031c956bf9f449f33d0053efa6da75cbaa65a2e661054a503401dc678",
+      "reports/experiments/collected_validation_offensive_pca_subspace_bootstrap.csv": "e18dd09a19a1a0b90537f2d2016283902ed490079be287ed96fc7b29f8bed73c",
+      "reports/experiments/collected_validation_offensive_pca_variance_bootstrap.csv": "c2ed152bd8288c768503518fd0881ea61aa13db9472f07c477e1518d42501136",
+      "reports/experiments/collected_validation_offensive_pca_eigenvalues.csv": "99a9bd76f01c44891fe44060b38f871428d45b5d6e8c7d27a32e7970c28a0018",
+      "reports/experiments/collected_validation_offensive_ranking_bootstrap.csv": "f43e09c64dce60113bc8f442a75948408e92e20af13d64bbe2caf33d8fd44615",
+      "reports/experiments/collected_validation_offensive_style_shortlists.csv": "b51a22315cd351edd27dde4b0aa8b0a47f575fe69eb376606ac2f7fb77fde77d",
+      "reports/experiments/collected_validation_offensive_style_overlap.csv": "f0844a3dc5ff727e5a6dbd9475180aa5e751f02f92fe9c2ab964bfae707bd9d7",
+      "reports/experiments/collected_validation_offensive_style_coverage.csv": "7c862a104fdd1d11c4bc1de27380888cf3b625c53d779e54ba5bf41ee4f7149b",
+      "reports/experiments/collected_validation_offensive_cluster_distribution.csv": "7dc8289ea285cff5d9d14c7d160e1acb5fdced6e3c138f9c28334d698726bc62",
+      "reports/experiments/collected_validation_offensive_temporal_cluster_quality.csv": "a46caccf2a21a9ecccd5cac05c2575e0a01607ed25d82fadcbe82ebacb841215",
+      "reports/experiments/collected_validation_offensive_feature_drift.csv": "c03665570440cd36be4698ba89ac9b9d6ea98eb9c56446bcce7df3bc73aa2713",
+      "reports/experiments/collected_validation_offensive_cluster_transitions.csv": "010ba622e2e8c051e60fb2685daab14e7e9e0a90b81be2548bc0f66a1355c93e",
+      "reports/experiments/collected_validation_offensive_position_retrieval.csv": "2516c89ca22136d35c0aeb8009ce7f6900537e69f6766b2127d3bdc103c15f1b",
+      "reports/experiments/collected_validation_offensive_bootstrap.png": "5c587d3d4d52a3d0ee8775d867352854e71a3c39d20163b4c425bd699d165160",
+      "reports/experiments/collected_validation_offensive_positions.png": "482454741826b9c9a37892fcb652389d77c52fff778bae08eb439dbb764b6df4",
+      "reports/experiments/collected_validation_offensive_drift.png": "968c8c9ec88bd40200a8efc2b3b55b72304b530ddcd2aab90648307c751af462",
+      "reports/experiments/collected_validation_offensive_styles.png": "39f28b7e7939264a296f166a0e2ea2ed1af5e9a65dc6a198694fd242381f4581"
+    }
+  }
+}

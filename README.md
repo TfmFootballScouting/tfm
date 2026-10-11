@@ -6,7 +6,7 @@ Improved existing football scouting project: source-separated ingestion, auditab
 
 ## New data route: worldfootballR archives
 
-The [11 October archive trial](docs/WORLDFOOTBALLR_TRIAL.md) successfully retrieved multi-season FBref tables, Understat shots and older Transfermarkt season-labelled records from publicly published GitHub assets. Provider pages were not crawled. See `reports/worldfootballr_coverage.csv` and the period-mismatch audit before using these records: 2025/26 is partial, some categories have incompatible 2024/25 exposure, and Segunda remains unavailable. The existing model has not been retrained on these archives.
+The [11 October archive trial](docs/WORLDFOOTBALLR_TRIAL.md) successfully retrieved multi-season FBref tables, Understat shots and older Transfermarkt season-labelled records from publicly published GitHub assets. Provider pages were not crawled. See `reports/worldfootballr_coverage.csv` and the period-mismatch audit before using these records: 2025/26 is partial, some categories have incompatible 2024/25 exposure, and Segunda remains unavailable. The collected-data experiments below train separate FBref archive models; the application's earlier model remains in use.
 
 ```bash
 .venv/bin/python -m pip install -r requirements-archives.txt
@@ -95,3 +95,7 @@ The existing layout is preserved. Run `.venv/bin/python -m src.preprocessing.col
 ### Collected-data modelling and tracked experiments
 
 Run `.venv/bin/python -m scripts.collected_models`, then `.venv/bin/python -m scripts.collected_model_notebook`. The new [model-analysis notebook](notebooks/06_collected_model_analysis.ipynb) compares chronological real-data profile retrieval, PCA, clusters, baselines and robustness. New models and reports use `collected_` prefixes in the existing folders. Matching proposals are retained for source-agreement exploration; trained features remain FBref-only. See [experiment scope, results and limitations](docs/COLLECTED_MODELS.md). These models do not overwrite the Streamlit application's previous model/data.
+
+### Extended real-data validation
+
+Run `.venv/bin/python -m scripts.collected_validation`, then `.venv/bin/python -m scripts.collected_validation_notebook`. The executed [extended validation notebook](notebooks/07_collected_extended_validation.ipynb) adds person-block PCA/K-means refits, OOB agreement, seasonal drift/transitions, position-specific retrieval and all six original core playing styles. The existing folder structure and raw/model files are preserved. [Results and reproducible commands](docs/COLLECTED_VALIDATION.md) document the unstable core PC4 boundary and distinguish these post-hoc diagnostics from external transfer validation. Check evidence with `.venv/bin/python -m scripts.verify_collected_validation` after running the documented test command; the current suite has 62 passing tests.

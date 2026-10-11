@@ -6,6 +6,8 @@
 
 # Completion report — first reproducible submission
 
+**Latest evidence (11 October):** collected-data modelling and extended validation supersede the earlier single-season diagnostic status below. See [extended validation](COLLECTED_VALIDATION.md): 62 passing tests, seven executed analysis notebooks across the successive phases, and person-block/PCA/cluster/position/style results. Historical first-submission sections remain as an audit trail; actual transfer, budget, Segunda and genuine process validation remain incomplete.
+
 Checked at 2026-10-10T15:27:45.570417+00:00 (UTC). Work branch: `improve/reproducible-scouting` in `valen28030/tfm_futbol`. Existing architecture retained; main unchanged. No changes have been pushed. The originally selected `TfmFootballScouting/tfm` checkout is still empty and was not overwritten. Breakout is retained as an unchanged reference.
 
 ## Completion by requirement
@@ -97,3 +99,11 @@ Both main tracks selected full standardized Euclidean profiles. Offensive holdou
 Partial: the accepted identity matching method supports provisional source-agreement diagnostics; individual cross-source links remain unverified. Model features and temporal identity labels remain FBref-only. Historical shortlist examples have age/position/club constraints but no eligible dated budgets. The Streamlit app remains operational with its earlier dataset/model; integration of the new models is a separate outstanding step.
 
 Blocked/unverified: independent recommendation relevance, actual historical transfer success, complete Segunda coverage, goalkeeper-specific evaluation, strict historical as-of availability, budget validation and genuine event-process discovery. These retrieval results do not constitute transfer-quality validation. See `docs/COLLECTED_MODELS.md` and `reports/collected_model_results.json` for precise scope and artifact paths.
+
+## Extended PCA, K-means and recommendation validation update
+
+Completed: 30 whole-player development bootstrap refits per model track; training-only median/scaler/PCA/K-means; OOB cluster agreement and aligned centroids; sign/order-aware PCA loading analysis, subspace angles and full eigenvalue spectra; frozen-cluster seasonal distributions/transitions and descriptive feature drift; seasonal DF/MF/FW retrieval with identity-paired baseline intervals; all six original core style rankings, shortlist overlap and bootstrap stability; notebook 07 executed nine code cells without errors; three selected finished validation MLflow runs with 57 checked logged/exported artifacts; 62 passing tests, no failures/errors/skips. Raw archives, source tables, identity proposals, baseline fitted models and original application files remain unchanged.
+
+Core mean OOB cluster ARI is 0.9731 and mean neighbor top-five Jaccard is 0.9444. Core PC4 has a bootstrap loading cosine as low as 0.1303, with a maximum top-four subspace angle of 82.54°; eigenvalue diagnostics identify sensitivity near the component cutoff. Core holdout Recall@5 is 29.0% for DF, 36.8% for FW and 37.6% for MF. All six original styles were exercised; mean style top-five Jaccard is 0.9026. These are measured stability/profile-persistence diagnostics rather than labelled tactical or transfer quality.
+
+Partial/unverified: the diagnostics are post hoc on previously examined cohorts, conditional on selected K/component width and archive coverage. They do not supply new independent confirmation. Dated budgets, full Segunda, transfer labels, source as-of proof, human identity accuracy and genuine scouting events remain unavailable. Streamlit still uses the earlier dataset/model; collected-model application integration is the next implementation step. See `docs/COLLECTED_VALIDATION.md`, `reports/collected_validation_results.json` and `reports/collected_validation_verification.json`.

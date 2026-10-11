@@ -1,0 +1,5 @@
+phase,season,observations,silhouette,status
+train,2020-2021,396,0.47788824032576793,measured
+train,2021-2022,399,0.47849809655694886,measured
+validation,2022-2023,388,0.480706484181057,measured
+holdout,2023-2024,393,0.4916150493509969,measured
