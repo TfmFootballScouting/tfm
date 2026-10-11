@@ -34,6 +34,7 @@ class PlayerRecommender:
             raise ValueError('Model dimensions must be positive')
         self.n_neighbors, self.n_clusters, self.n_pca = n_neighbors, n_clusters, n_pca
         self.artifacts = self.players = self.X = None
+        self.neighbor_method = 'cosine_profile'
 
     def fit(self, players, feature_cols=None):
         require_model_data_use(players)
@@ -63,6 +64,8 @@ class PlayerRecommender:
         self.X = X
         self.artifacts = RecommenderArtifacts(imputer, scaler, knn, kmeans, pca, cols,
                                                self.players.player_id.to_numpy())
+        if getattr(self, 'neighbor_method', 'cosine_profile') != 'cosine_profile':
+            self.configure_neighbors(self.neighbor_method)
         return self
 
     def transform(self, players):
@@ -70,6 +73,27 @@ class PlayerRecommender:
         if self.artifacts is None:
             raise RuntimeError('Model not fitted')
         return self.artifacts.scaler.transform(self.artifacts.imputer.transform(players[self.artifacts.feature_cols]))
+
+    def configure_neighbors(self, method):
+        """Use the validation-selected representation without refitting features."""
+        supported = {'cosine_profile', 'euclidean_profile', 'pca2_cosine', 'pca2_euclidean',
+                     'pca4_cosine', 'pca4_euclidean', 'cluster_cosine'}
+        if method not in supported:
+            raise ValueError('Unsupported similarity method')
+        if self.artifacts is None:
+            raise RuntimeError('Model not fitted')
+        self.neighbor_method = method
+        matrix = self._neighbor_matrix()
+        metric = 'euclidean' if 'euclidean' in method else 'cosine'
+        self.artifacts.knn = NearestNeighbors(n_neighbors=min(self.n_neighbors, len(matrix)), metric=metric).fit(matrix)
+        return self
+
+    def _neighbor_matrix(self):
+        method = getattr(self, 'neighbor_method', 'cosine_profile')
+        if method.startswith('pca'):
+            width = int(method[3])
+            return self.artifacts.pca.transform(self.X)[:, :width]
+        return self.X
 
     def recommend(self, style_key, position=None, max_age=None, max_budget=None,
                   league=None, top_n=10, cutoff=None, season=None, exclude_club=None):
@@ -120,9 +144,16 @@ class PlayerRecommender:
         if len(idx) == 0:
             raise ValueError(f'Unknown player_id {player_id}')
         i = int(idx[0])
-        distances, indices = self.artifacts.knn.kneighbors(self.X[i:i+1], n_neighbors=len(self.X))
+        matrix = self._neighbor_matrix()
+        distances, indices = self.artifacts.knn.kneighbors(matrix[i:i+1], n_neighbors=len(self.X))
         out = self.players.iloc[indices[0]].copy()
-        out['similarity'] = 1 - distances[0]
+        out['distance'] = distances[0]
+        # Euclidean display affinity is bounded, not a probability. Cosine keeps
+        # its original definition so existing fitted models remain compatible.
+        out['similarity'] = (1/(1+distances[0]) if self.artifacts.knn.metric == 'euclidean' else 1-distances[0])
+        if getattr(self, 'neighbor_method', 'cosine_profile') == 'cluster_cosine':
+            out = out[out.cluster.eq(self.players.iloc[i].cluster)]
+        out = out.sort_values(['distance', 'player_id'])
         out = out[out.player_id != player_id]
         if 'entity_id' in out:
             out = out[out.entity_id != self.players.iloc[i].entity_id].drop_duplicates('entity_id')
