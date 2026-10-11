@@ -282,8 +282,8 @@
   "new_downloads": 0,
   "new_models_trained": 0,
   "estimated_values_generated": 0,
-  "git_source_commit": "508f65072cc8bffe6c49d4788a35f7c6edabd88d",
-  "git_source_dirty": true,
+  "git_source_commit": "b83972f5fa6481b59ce29ebd3ed40ce2fd2d87ed",
+  "git_source_dirty": false,
   "code_sha256": {
     "src/data/kaggle_values.py": "a1b7cb9f9727fd043fa8b4b118aa21f4bd5d6b533fbf5ecbaa28f95969f41d2b",
     "scripts/kaggle_value_audit.py": "0dd8987d814e368ec35a05e04ded8aa92a384797361473a9cbaa915261a10414"
