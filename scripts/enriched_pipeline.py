@@ -238,7 +238,11 @@ def run():
                    'Advanced mandatory features absent in uploaded source; 2025/26 partial.',
                    'Model metrics are temporal profile retrieval, not transfer-success validation.']}
     for path in REPORT.rglob('*'):
-        if path.is_file() and path.name != 'pipeline.json': outputs[str(path.relative_to(ROOT))] = sha(path)
+        # Execution evidence is created after this stage; never freeze mutable
+        # test/notebook verification files into the dataset artifact manifest.
+        if (path.is_file() and path.suffix != '.xml' and
+                path.name not in ['pipeline.json', 'notebook_execution.json', 'verification.json']):
+            outputs[str(path.relative_to(ROOT))] = sha(path)
     for name, info in experiments.items(): outputs[info['model_path']] = info['model_sha256']
     (REPORT / 'pipeline.json').write_text(json.dumps(report, indent=2) + '\n')
     for name, digest in preserved.items():

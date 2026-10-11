@@ -46,6 +46,13 @@ assert not seasons.duplicated(['source_player_id','season','league']).any()
 assert tables['integration_review'].observation_id.is_unique
 assert not tables['reported_price_context'].historical_budget_eligible.any()
 display(pd.read_csv(ROOT/'reports/enrichment/season_quality.csv'))
+agreement=pd.read_csv(ROOT/'reports/enrichment/cross_source_agreement.csv')
+comparison=[]
+for fb, tm, label in [('minutes','minutes_played','minutes'),('gls','goals','goals'),('ast','assists','assists')]:
+    available=agreement.dropna(subset=[fb,'salimt_'+tm])
+    comparison.append({'measurement':label,'comparable_proposed_rows':len(available),'equal_reported_values':int(available[fb].eq(available['salimt_'+tm]).sum())})
+display(pd.DataFrame(comparison))
+display(Markdown('Agreement is a join/provider diagnostic, not identity accuracy. Different minute totals make it unsafe to derive rates by combining FBref counts with uploaded minutes. No source value replaces a FBref observation.'))
 '''),
         ('md', '## Missingness and cleaning decisions\n\nNumeric count/minute parsing preserves raw text. Negative, nonfinite and fractional event counts are flagged and left unknown. Missing minutes are never replaced with zero, appearance count ×90 or global means. Players with no appearances have unknown minutes in this source; the next analysis separates these from missing minutes among players who did appear. Missingness can select the per-90 cohort, so this is not a representative completeness claim.'),
         ('code', '''numeric=['minutes_played','goals','assists','yellow_cards','nb_on_pitch']
@@ -58,6 +65,7 @@ display(Markdown(f"Missing stint minutes: **{report['minutes_missing_stints']}**
         ('code', '''display(seasons[['minutes_played','goals','assists','gls_p90','ast_p90']].describe(percentiles=[.01,.25,.5,.75,.99]).T)
 display(stints[[c for c in stints if c.endswith('_invalid')]].sum().rename('invalid').to_frame())
 display(pd.Series({'inconsistent_counts':report['count_inconsistencies'],'outlier_rows_retained':report['outlier_rows_retained']}))
+display(pd.read_csv(ROOT/'reports/enrichment/distribution_tail_flags.csv'))
 display(Image(filename=str(ROOT/'reports/enrichment/quality_distributions_correlations.png')))
 '''),
         ('md', '## League, season and position comparisons\n\n2025/26 is a partial source snapshot and cannot be compared with completed seasons as final production. The minute floor is applied after all club stints have been aggregated. Position comparisons below use the uploaded current profile label: they are descriptive metadata groupings, not verified historical tactical roles. Large differences in availability between leagues or seasons should be investigated before league-wide recommendation claims.'),

@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from src.config import ROOT
+from src.config import ROOT, FEATURE_COLS
 from src.preprocessing.enrichment import numeric_reported, aggregate_seasons, merge_review_only
 from src.data.source_rights import require_model_data_use, SourceUseRestricted
 from scripts.salimt_history_audit import sha
@@ -39,6 +39,9 @@ def test_real_join_preserves_base_and_never_enters_models():
     proposals = pd.read_parquet(ROOT / 'data/processed/real/collected_salimt_identity_candidates.parquet')
     bad = pd.concat([proposals, proposals[proposals.supported_review_candidate].iloc[:1]])
     seasons = pd.read_parquet(ROOT / 'data/processed/real/collected_enrichment_player_seasons.parquet')
+    assert set(FEATURE_COLS).issubset(seasons.columns)
+    absent = [column for column in FEATURE_COLS if column not in ['gls_p90', 'ast_p90', 'ga_p90']]
+    assert seasons[absent].isna().all().all()
     with pytest.raises(ValueError, match='Ambiguous'): merge_review_only(base, seasons, bad)
 
 
@@ -68,3 +71,15 @@ def test_real_artifacts_and_eligible_model_reruns():
         np.testing.assert_allclose(info['holdout_mrr'], original['experiments'][name]['holdout_metrics']['mrr'])
         assert info['selected_method'] == original['experiments'][name]['selected_method']
     assert len(report['new_model_experiments']) == 3
+
+
+def test_executed_real_enrichment_notebook():
+    import nbformat
+    record = json.loads((ROOT / 'reports/enrichment/notebook_execution.json').read_text())
+    assert record['status'] == 'executed' and record['error_outputs'] == 0
+    assert sha(ROOT / record['path']) == record['sha256']
+    document = nbformat.read(ROOT / record['path'], as_version=4)
+    code = [cell for cell in document.cells if cell.cell_type == 'code']
+    assert len(code) == record['code_cells'] == 9
+    assert all(cell.execution_count is not None for cell in code)
+    assert all(output.output_type != 'error' for cell in code for output in cell.outputs)
