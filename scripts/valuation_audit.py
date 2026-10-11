@@ -22,6 +22,11 @@ def verified_inputs():
     previous = json.loads((ROOT/'reports/collected_validation_results.json').read_text())
     original = json.loads((ROOT/'reports/collected_model_verification.json').read_text())
     preserved = {**previous['preserved_input_hashes'], **original['preserved_application_and_raw_files']}
+    for info in previous['experiments'].values():
+        preserved.update(info['output_files'])
+    for name in ['collected_model_notebook_execution', 'collected_validation_notebook_execution']:
+        record = json.loads((ROOT/f'reports/{name}.json').read_text())
+        preserved[record['notebook']] = record['sha256']
     for name in ['collected_preprocessing', 'identity_resolution', 'collected_model_results',
                  'collected_validation_results', 'source_rights']:
         path = f'reports/{name}.json'
@@ -167,7 +172,7 @@ def run():
     dictionary_path = ROOT/'reports/valuation_audit_dictionary.csv'
     dictionary.to_csv(dictionary_path, index=False); paths.append(dictionary_path)
     code_paths = ['src/data/valuations.py', 'scripts/valuation_audit.py', 'src/data/source_rights.py',
-                  'src/scraping/transfermarkt.py']
+                  'src/scraping/transfermarkt.py', 'scripts/verify_valuation_audit.py']
     code = {path: sha256(ROOT/path) for path in code_paths}
     version = hashlib.sha256(json.dumps(dict(inputs=preserved, code=code), sort_keys=True).encode()).hexdigest()
     result = dict(dataset_version=version, base_dataset_version=manifest['dataset_version'],
