@@ -221,21 +221,10 @@ __marimo__/
 mlruns/
 mlartifacts/
 
-
 mlflow.db
-
-
-mlflow.db
-
 
 # Local MLflow / caches
-mlflow.db
-mlruns/
-mlartifacts/
-__pycache__/
 *.pyc
-.pytest_cache/
-
 
 # Local notebook kernel and private observed scouting sessions
 .jupyter/

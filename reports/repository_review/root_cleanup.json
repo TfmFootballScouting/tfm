@@ -1,0 +1,42 @@
+{
+  "removed_duplicate_ignore_lines": [
+    "mlflow.db",
+    "mlflow.db",
+    "mlruns/",
+    "mlartifacts/",
+    "__pycache__/",
+    ".pytest_cache/"
+  ],
+  "ignored_path_behavior_unchanged": true,
+  "paths_checked": 1011,
+  "dependencies_changed": false,
+  "training_code_changed": false,
+  "raw_data_removed": false,
+  "historical_evidence_removed": false,
+  "verified_at": "2026-10-11T22:39:12.499003+00:00",
+  "local_document_links": "passed",
+  "pip_check": "No broken requirements found",
+  "preserved_artifact_hashes_verified": 335,
+  "critical_training_source_hashes_verified": 8,
+  "latest_pipeline_output_hashes_verified": 4,
+  "latest_model_hashes_verified": 3,
+  "tracked_changes_before_new_review_files": [
+    ".gitignore",
+    "README.md"
+  ],
+  "semantic_review_complete": [
+    "Root files"
+  ],
+  "semantic_review_pending": [
+    ".streamlit",
+    ".github",
+    "src",
+    "scripts",
+    "tests",
+    "data",
+    "models",
+    "notebooks",
+    "reports",
+    "docs"
+  ]
+}
