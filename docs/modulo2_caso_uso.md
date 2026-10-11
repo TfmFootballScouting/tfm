@@ -1,3 +1,5 @@
+> Collected-data preprocessing update: real retained archives are now cleaned and audited across seasons without changing the original folder structure or fitted model. See [mandatory features, cohorts and executed EDA](COLLECTED_PREPROCESSING.md).
+
 # Caso de uso de ciencia de datos — TFM Scouting de futbolistas
 
 ## 1. Contexto y problema de negocio

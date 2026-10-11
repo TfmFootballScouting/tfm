@@ -86,3 +86,7 @@ Work is on `improve/reproducible-scouting`; main is unchanged. Existing legacy m
 ### Uploaded scraper trial and source rights
 
 The additional toolkit was tested: it contains no data; new provider access is network-blocked. Transfermarkt terms explicitly prohibit automated copying and AI/ML use without permission. Its retained records are now restricted for model use. See [the evidence and next steps](docs/UPLOADED_SCRAPER_TRIAL.md).
+
+### Collected-data preprocessing and mandatory features
+
+The existing layout is preserved. Run `.venv/bin/python -m src.preprocessing.collected`, then `.venv/bin/python -m scripts.collected_eda`. New `collected_*` tables in `data/processed/real/` preserve 3,378 FBref player seasons and prepare 1,975 historical outfield baseline candidates. All ten core per-90 feature columns remain; unknown values and unavailable dated budgets remain missing. The current legacy model dataset is unchanged. Execute `notebooks/05_collected_data_preprocessing.ipynb` for multi-season EDA. See [the feature contract and preprocessing decisions](docs/COLLECTED_PREPROCESSING.md).

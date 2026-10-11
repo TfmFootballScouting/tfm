@@ -1,3 +1,5 @@
+> Collected-data preprocessing update: real retained archives are now cleaned and audited across seasons without changing the original folder structure or fitted model. See [mandatory features, cohorts and executed EDA](COLLECTED_PREPROCESSING.md).
+
 > Update, 11 October 2026, uploaded scraper trial: Transfermarkt terms section 11.1 explicitly restrict automated copying and AI/ML use. Its retained datasets are blocked for model use pending an explicit licence. Three new providers require cloud network changes before access can be tested. See [uploaded scraper trial](UPLOADED_SCRAPER_TRIAL.md).
 
 > Update, 11 October 2026: published worldfootballR archives now provide additional historical data without crawling provider sites. See [archive trial](WORLDFOOTBALLR_TRIAL.md) and `reports/worldfootballr_coverage.csv`. The original direct-access results and first-submission model below remain valid for their stated scope. No model retraining is claimed by the archive trial.

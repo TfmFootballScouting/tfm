@@ -63,3 +63,59 @@ def profile(html):
     if not info:
         raise ValueError('No supported profile fields parsed')
     return info
+
+
+def scorer_sample(html, season):
+    """Parse the already retained Segunda sample offline; never fetch a page.
+
+    A goalscorer leaderboard is not a complete player universe or verified club
+    stint. Age(today) and a dash in a numeric cell are not historical facts/zeros.
+    """
+    soup = BeautifulSoup(html, 'lxml')
+    year = int(season[:4])
+    label = f'{year % 100:02d}/{(year+1) % 100:02d}'
+    title = soup.title.get_text(' ', strip=True) if soup.title else ''
+    selected = soup.select_one('select[name=saison_id] option[selected]')
+    if 'LaLiga2' not in title or label not in title or selected is None or selected.get('value') != str(year):
+        raise ValueError('Retained scorer response does not confirm the requested Segunda season')
+    table = soup.select_one('table.items')
+    if table is None:
+        raise ValueError('Scorer items table missing')
+    labels = []
+    for th in table.select('thead th'):
+        icon = th.select_one('[title]')
+        labels.append(th.get_text(' ', strip=True) or (icon.get('title') if icon else ''))
+    needed = ['Player','Club','Appearances','Assists','Minutes played','Goals']
+    if not all(label in labels for label in needed):
+        raise ValueError('Scorer header schema changed; do not parse columns by guess')
+    def number(text):
+        text = text.strip().rstrip("'")
+        if not re.fullmatch(r'\d+(?:\.\d{3})*', text):
+            return None
+        return int(text.replace('.', ''))
+    rows = []
+    for tr in table.select(':scope > tbody > tr'):
+        cells = tr.find_all('td', recursive=False)
+        if len(cells) != len(labels):
+            continue
+        player_cell, club_cell = cells[labels.index('Player')], cells[labels.index('Club')]
+        link = player_cell.find('a', href=re.compile(r'/profil/spieler/\d+'))
+        if not link:
+            continue
+        club = club_cell.find('a', href=re.compile(r'/startseite/verein/'))
+        inline = player_cell.select_one('table.inline-table')
+        position = inline.select('tr')[-1].get_text(' ',strip=True) if inline else None
+        rows.append(dict(source_player_id=re.search(r'/spieler/(\d+)',link['href'])[1],
+            player=link.get_text(strip=True),team=club.get('title') if club else None,
+            pos_source=position,league='Segunda',season=season,source='transfermarkt',
+            mp=number(cells[labels.index('Appearances')].get_text(strip=True)),
+            ast=number(cells[labels.index('Assists')].get_text(strip=True)),
+            minutes=number(cells[labels.index('Minutes played')].get_text(strip=True)),
+            gls=number(cells[labels.index('Goals')].get_text(strip=True)),
+            age_reported_text=cells[labels.index('Age (today)')].get_text(' ',strip=True) if 'Age (today)' in labels else None,
+            observation_scope='first-page goalscorer league-season totals; reported club is not a verified stint',
+            ml_use_status='restricted_pending_explicit_license'))
+    result = pd.DataFrame(rows)
+    if result.empty or result.source_player_id.duplicated().any():
+        raise ValueError('Missing or duplicate scorer player IDs')
+    return result

@@ -1,3 +1,5 @@
+> Collected-data preprocessing update: real retained archives are now cleaned and audited across seasons without changing the original folder structure or fitted model. See [mandatory features, cohorts and executed EDA](COLLECTED_PREPROCESSING.md).
+
 # Uploaded football-data-webscraping trial — 11 October 2026
 
 The ZIP was inspected as reference material, not as instructions overriding the user's requirements. Its README identifies `sahil-gidwani/football-data-webscraping`. Actual uploaded bytes have SHA-256 `8a47e63169071bcd8c1d2bc27929fb2c681e977bc6ee542a02d4f3b88a0afda1`; no Git commit is inferred from the ZIP. All 16 Python modules parse, but it bundles **no datasets**, season collectors, identity registry or tests. Syntax validation is not successful live collection.
