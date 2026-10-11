@@ -96,6 +96,10 @@ The existing layout is preserved. Run `.venv/bin/python -m src.preprocessing.col
 
 Run `.venv/bin/python -m scripts.collected_models`, then `.venv/bin/python -m scripts.collected_model_notebook`. The new [model-analysis notebook](notebooks/06_collected_model_analysis.ipynb) compares chronological real-data profile retrieval, PCA, clusters, baselines and robustness. New models and reports use `collected_` prefixes in the existing folders. Matching proposals are retained for source-agreement exploration; trained features remain FBref-only. See [experiment scope, results and limitations](docs/COLLECTED_MODELS.md). These models do not overwrite the Streamlit application's previous model/data.
 
+### Recorded value audit
+
+Run `.venv/bin/python -m scripts.valuation_audit` to audit retained amounts, identity proposals and date evidence offline. It recovers two explicit 2026 current-value dates from saved profile headers; the 1,925 archive amounts remain undated and cannot support target-season budgets. New audit tables stay in `data/processed/real/` and reports stay in `reports/`; original tables/models are preserved and no estimated prices are generated. See [exact coverage and verification commands](docs/VALUATION_AUDIT.md). The expanded suite has 68 passing tests.
+
 ### Extended real-data validation
 
 Run `.venv/bin/python -m scripts.collected_validation`, then `.venv/bin/python -m scripts.collected_validation_notebook`. The executed [extended validation notebook](notebooks/07_collected_extended_validation.ipynb) adds person-block PCA/K-means refits, OOB agreement, seasonal drift/transitions, position-specific retrieval and all six original core playing styles. The existing folder structure and raw/model files are preserved. [Results and reproducible commands](docs/COLLECTED_VALIDATION.md) document the unstable core PC4 boundary and distinguish these post-hoc diagnostics from external transfer validation. Check evidence with `.venv/bin/python -m scripts.verify_collected_validation` after running the documented test command; the current suite has 62 passing tests.
