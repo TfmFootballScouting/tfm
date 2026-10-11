@@ -82,3 +82,7 @@ Explicit Streamlit searches append observed need/search/ranking events; the revi
 - `docs/`: updated first-submission TFM account and limitations.
 
 Work is on `improve/reproducible-scouting`; main is unchanged. Existing legacy modules and author documents remain, but old claims should be read with the updated completion report. Cloud tasks already have isolated checkouts: use the existing repository, not a new worktree.
+
+### Uploaded scraper trial and source rights
+
+The additional toolkit was tested: it contains no data; new provider access is network-blocked. Transfermarkt terms explicitly prohibit automated copying and AI/ML use without permission. Its retained records are now restricted for model use. See [the evidence and next steps](docs/UPLOADED_SCRAPER_TRIAL.md).

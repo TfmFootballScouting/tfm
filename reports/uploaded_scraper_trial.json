@@ -1,0 +1,299 @@
+{
+  "archive_sha256": "8a47e63169071bcd8c1d2bc27929fb2c681e977bc6ee542a02d4f3b88a0afda1",
+  "python_modules": [
+    {
+      "path": "fbref/fbref_player_data.py",
+      "sha256": "4f5b5a12c139c30a0bcc85841554b94f2a0f2ccdf83b254429b0ede75601fe2e",
+      "syntax": "valid",
+      "imports": [
+        "fake_useragent",
+        "pandas",
+        "requests"
+      ]
+    },
+    {
+      "path": "fbref/fbref_selenium.py",
+      "sha256": "ab34ffce6ce56cadb05cb24981e65f220d96d099a1ebc642db49488884f62eb6",
+      "syntax": "valid",
+      "imports": [
+        "bs4",
+        "fake_useragent",
+        "io",
+        "pandas",
+        "re",
+        "requests",
+        "selenium.webdriver.common.by",
+        "selenium.webdriver.support",
+        "selenium.webdriver.support.ui",
+        "time",
+        "utils.driver"
+      ]
+    },
+    {
+      "path": "fbref/fbref_team_data.py",
+      "sha256": "6b9039a13096948108f919ec800ea76e43a6fd7142a12e798ee373c97f1bc3d9",
+      "syntax": "valid",
+      "imports": [
+        "bs4",
+        "fake_useragent",
+        "io",
+        "pandas",
+        "re",
+        "requests"
+      ]
+    },
+    {
+      "path": "opta/league_rankings.py",
+      "sha256": "badbd21b9ff57def86a33a3e262d96f3f09a2333022fb8196c71a87205abaee6",
+      "syntax": "valid",
+      "imports": [
+        "__future__",
+        "os",
+        "pandas",
+        "requests",
+        "sys"
+      ]
+    },
+    {
+      "path": "opta/power_rankings.py",
+      "sha256": "ac88f5e56f18a9536e649a9212ad66cc6080bfc41a6cd60af7a8ff77e2249a1e",
+      "syntax": "valid",
+      "imports": [
+        "__future__",
+        "ast",
+        "json",
+        "os",
+        "pandas",
+        "re",
+        "requests",
+        "sys"
+      ]
+    },
+    {
+      "path": "scraping-countermeasures/delays.py",
+      "sha256": "d96a0db0a17020bacd69cbe7b853e69c00ed17f36002a21851d57e236116a695",
+      "syntax": "valid",
+      "imports": [
+        "random",
+        "time"
+      ]
+    },
+    {
+      "path": "scraping-countermeasures/rate_limiter.py",
+      "sha256": "fdd5ff2c6165d33622b392a50f60c34fdf6048d0526f5872456ac5687c43f14f",
+      "syntax": "valid",
+      "imports": [
+        "collections",
+        "time"
+      ]
+    },
+    {
+      "path": "scraping-countermeasures/user_agent_rotation.py",
+      "sha256": "395650b4c2350819835f11b66e562085a4623e42c767fc15d8a75949b086723b",
+      "syntax": "valid",
+      "imports": [
+        "fake_useragent",
+        "random"
+      ]
+    },
+    {
+      "path": "sofascore/sofascore_api.py",
+      "sha256": "9499e0e7d22c8d9f7a9c07fe5da89d77f10b2f8dd8fec56878b2932d7c8cffd2",
+      "syntax": "valid",
+      "imports": [
+        "json",
+        "requests",
+        "uncurl"
+      ]
+    },
+    {
+      "path": "sofascore/sofascore_endpoints.py",
+      "sha256": "164ab985e96b30879b0685ec174c45976253555984ce9753c2d60f397d7de43f",
+      "syntax": "valid",
+      "imports": [
+        "json",
+        "requests"
+      ]
+    },
+    {
+      "path": "sofascore/sofascore_json.py",
+      "sha256": "cc493e17de87b217419b45e472d15057f27e31edd7aa7785557452ecfe67113e",
+      "syntax": "valid",
+      "imports": [
+        "json",
+        "pandas"
+      ]
+    },
+    {
+      "path": "sofascore/sofascore_selenium.py",
+      "sha256": "0f89178625e1315910534eca6e2535aa0c20918607860c23cdc8ee7cb38ef8f1",
+      "syntax": "valid",
+      "imports": [
+        "json",
+        "time",
+        "utils.driver"
+      ]
+    },
+    {
+      "path": "transfermarkt/transfermarkt_data.py",
+      "sha256": "7dd87e61fa2c45f378e5b90b2efa03dd994e3ddba443fe8f4191d33090d130a8",
+      "syntax": "valid",
+      "imports": [
+        "bs4",
+        "fake_useragent",
+        "re",
+        "requests"
+      ]
+    },
+    {
+      "path": "understat/understat_shots_data.py",
+      "sha256": "438c7bcccdf34a20cb4b250d752b7231e66db479305dbcf35959587eab8686a3",
+      "syntax": "valid",
+      "imports": [
+        "bs4",
+        "fake_useragent",
+        "json",
+        "pandas",
+        "re",
+        "requests"
+      ]
+    },
+    {
+      "path": "utils/driver.py",
+      "sha256": "cf267cda829c8160174e0b941dbd8590652a29d1f36d24a109f00268d50985ad",
+      "syntax": "valid",
+      "imports": [
+        "fake_useragent",
+        "selenium",
+        "selenium.webdriver.chrome.options",
+        "selenium.webdriver.chrome.service",
+        "webdriver_manager.chrome"
+      ]
+    },
+    {
+      "path": "whoscored/whoscored_events_data.py",
+      "sha256": "6e9dcac3d6200e4ebe7ff426bca464fb3b842a70d4fc9f6f3354286f059aa9f9",
+      "syntax": "valid",
+      "imports": [
+        "bs4",
+        "json",
+        "pandas",
+        "selenium.webdriver.common.by",
+        "selenium.webdriver.support",
+        "selenium.webdriver.support.ui",
+        "utils.driver"
+      ]
+    }
+  ],
+  "bundled_data_files": [],
+  "execution": "static AST inspection; original main routines were not executed",
+  "transfermarkt_evidence": {
+    "record": {
+      "source": "transfermarkt",
+      "url": "https://www.transfermarkt.com/laliga2/torschuetzenliste/wettbewerb/ES2/saison_id/2024/plus/1",
+      "retrieved_at": "2026-10-11T10:05:07.490878+00:00",
+      "sha256": "b8c738ba3c6685f9832bbae67b63e0c21e867a035781eeb4e4ad973ba2fda519",
+      "path": "data/raw/sources/transfermarkt/b8c738ba3c6685f9832bbae67b63e0c21e867a035781eeb4e4ad973ba2fda519.html",
+      "http_status": 200,
+      "category": "uploaded_toolkit_trial",
+      "requested_league": "Segunda",
+      "requested_season": "2024-2025"
+    },
+    "title": "LaLiga2 - List of goalscorers 24/25 (Detailed view) | Transfermarkt",
+    "verified_season": "2024-2025",
+    "league": "Segunda",
+    "sample_rows": 25,
+    "headers": [
+      "#",
+      "Player",
+      "Nat.",
+      "Age (today)",
+      "Club",
+      "Appearances",
+      "Assists",
+      "Penalty kicks",
+      "Minutes played",
+      "Minutes per goal",
+      "Goals per match",
+      "Goals"
+    ],
+    "advertised_pages": 14,
+    "pages_fetched": 1,
+    "coverage": "goalscorers first page; not all players or a complete season",
+    "ml_use_status": "restricted_pending_explicit_license",
+    "player_statistics_exported": false,
+    "age_warning": "Age (today) column is not historical age; do not use as historical feature"
+  },
+  "rights": {
+    "source": "transfermarkt",
+    "status": "restricted_pending_explicit_license",
+    "terms_url": "https://www.transfermarkt.com/intern/anb",
+    "terms_record": {
+      "source": "transfermarkt",
+      "url": "https://www.transfermarkt.com/intern/anb",
+      "retrieved_at": "2026-10-11T10:22:01.518631+00:00",
+      "sha256": "7c46c0514a311f4bbb6af63b08c9be1d2011be06c22ceb8c30b4bed0cc3927d3",
+      "path": "data/raw/sources/transfermarkt/7c46c0514a311f4bbb6af63b08c9be1d2011be06c22ceb8c30b4bed0cc3927d3.html",
+      "http_status": 200,
+      "category": "terms_review_uploaded_trial"
+    },
+    "section": "11.1",
+    "quote": "The User is not permitted to access or copy the Digital Content using bots, spiders, screen scraping or other automated processes.",
+    "ml_quote": "The user is also prohibited from using the digital content for the training or development of artificial intelligence (AI), including language models, machine learning, neural networks or other AI systems.",
+    "reviewed_provider_license_available": false
+  },
+  "access": [
+    {
+      "source": "fbref",
+      "status": "provider_access_blocked",
+      "reason": "robots.txt returned HTTP 403; policy unknown; no Segunda page requested"
+    },
+    {
+      "source": "understat",
+      "status": "provider_policy_blocked",
+      "reason": "robots.txt disallows /; no league page requested"
+    },
+    {
+      "source": "transfermarkt",
+      "status": "sample_preserved_use_restricted",
+      "record": {
+        "source": "transfermarkt",
+        "url": "https://www.transfermarkt.com/laliga2/torschuetzenliste/wettbewerb/ES2/saison_id/2024/plus/1",
+        "retrieved_at": "2026-10-11T10:05:07.490878+00:00",
+        "sha256": "b8c738ba3c6685f9832bbae67b63e0c21e867a035781eeb4e4ad973ba2fda519",
+        "path": "data/raw/sources/transfermarkt/b8c738ba3c6685f9832bbae67b63e0c21e867a035781eeb4e4ad973ba2fda519.html",
+        "http_status": 200,
+        "category": "uploaded_toolkit_trial",
+        "requested_league": "Segunda",
+        "requested_season": "2024-2025"
+      },
+      "reason": "One 2024/25 Segunda first-page scorer sample acquired before terms review. Further copying and AI/ML use blocked by terms section 11.1."
+    },
+    {
+      "source": "sofascore",
+      "status": "environment_network_blocked",
+      "attempted_url": "https://www.sofascore.com/robots.txt",
+      "reason": "ProxyError: Tunnel connection failed: 403 Forbidden. Provider policy/content not reached; domain additions saved, not applied.",
+      "observed_date": "2026-10-11"
+    },
+    {
+      "source": "whoscored",
+      "status": "environment_network_blocked",
+      "attempted_url": "https://1xbet.whoscored.com/robots.txt",
+      "reason": "ProxyError: Tunnel connection failed: 403 Forbidden. Provider policy/content not reached; domain additions saved, not applied.",
+      "observed_date": "2026-10-11"
+    },
+    {
+      "source": "opta",
+      "status": "environment_network_blocked",
+      "attempted_url": "https://dataviz.theanalyst.com/robots.txt",
+      "reason": "ProxyError: Tunnel connection failed: 403 Forbidden. Provider policy/content not reached; domain additions saved, not applied.",
+      "observed_date": "2026-10-11"
+    }
+  ],
+  "generated_at": "2026-10-11T10:26:42.221265+00:00",
+  "model_retrained": false,
+  "final_experiments_run": false,
+  "original_network_and_browser_routines_executed": false,
+  "safe_adaptations": "Fixed research UA, source-ID/season checks, bounded requests, retained raw evidence; no cookies or stealth"
+}

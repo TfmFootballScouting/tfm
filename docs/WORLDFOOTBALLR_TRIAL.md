@@ -1,3 +1,5 @@
+> Update, 11 October 2026, uploaded scraper trial: Transfermarkt terms section 11.1 explicitly restrict automated copying and AI/ML use. Its retained datasets are blocked for model use pending an explicit licence. Three new providers require cloud network changes before access can be tested. See [uploaded scraper trial](UPLOADED_SCRAPER_TRIAL.md).
+
 # worldfootballR archive trial — 11 October 2026
 
 The pasted article was tested against the actual `JaseZiv/worldfootballR` code and `JaseZiv/worldfootballR_data` datasets. **The archive route works.** No blocked FBref or Understat provider pages were crawled. The upstream data repository is archived and explicitly says it will no longer be maintained. Its `load_understat_league_shots` function takes a league argument, not the article's `season_start_year` argument; filter the loaded archive by season instead.

@@ -12,6 +12,7 @@ import pandas as pd
 import requests
 from src.config import ROOT
 from src.data.provenance import sha256, snapshot
+from src.data.source_rights import require_source_use, RESTRICTED
 
 TARGET_YEARS=range(2020,2026)
 KEYS=['source_player_id','team','season']
@@ -40,6 +41,8 @@ def ensure_snapshot(record,download=False):
     if not path.exists():
         if not download:
             raise FileNotFoundError(f'Missing {record["category"]} archive; use --download')
+        rights_source = 'transfermarkt' if record.get('category') == 'player_mapping' else record.get('original_source', '')
+        require_source_use(rights_source, 'archive acquisition')
         r=requests.get(record['url'],timeout=90)
         r.raise_for_status()
         if hashlib.sha256(r.content).hexdigest()!=record['sha256']:
@@ -111,6 +114,7 @@ def run(download=False):
             frame['fbref_id']=frame.UrlFBref.str.extract(r'/players/([^/]+)',expand=False)
             frame['transfermarkt_id']=frame.UrlTmarkt.str.extract(r'/spieler/(\d+)',expand=False)
             frame['mapping_status']='upstream_published_not_locally_reviewed'
+            frame['ml_use_status']=RESTRICTED
             frame.to_parquet(out/'player_mapping.parquet',index=False)
             inspection.append(dict(category=cat,rows=len(frame),missing_fbref_ids=int(frame.fbref_id.isna().sum()),missing_tm_ids=int(frame.transfermarkt_id.isna().sum()),duplicate_fbref_ids=int(frame.fbref_id.duplicated().sum()),duplicate_tm_ids=int(frame.transfermarkt_id.duplicated().sum())))
             continue
@@ -137,6 +141,7 @@ def run(download=False):
             selected['source_player_id']=selected.player_url.str.extract(r'/spieler/(\d+)',expand=False)
             selected['season']=year.map(lambda y:f'{y}-{y+1}')
             selected['temporal_validation']='season_label_only_no_effective_date_or_known_at'
+            selected['ml_use_status']=RESTRICTED
             league='La Liga'
         selected['source']=source
         selected['acquisition']='worldfootballr_archive'
@@ -153,6 +158,9 @@ def run(download=False):
                 row.update(matches=g.match_id.nunique(),first_date=g.date.min(),last_date=g.date.max())
             if source=='transfermarkt' and len(g):
                 row['note']='Archived season-labelled records; no valuation knowledge date or exact transfer date. Not ready for leakage-safe historical validation.'
+            if source=='transfermarkt':
+                row['ml_use_status']=RESTRICTED
+                row['note']+=' Terms section 11.1: no AI/ML use without an explicit licence.'
             coverage.append(row)
             coverage.append(dict(source=source,acquisition='worldfootballr_archive',league='Segunda',season=f'{y}-{y+1}',category=cat,rows=0,players=0,status='not_in_archive',note='These selected assets cover Big Five top divisions / Understat La Liga, not Segunda'))
     audits=[]

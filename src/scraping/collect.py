@@ -17,6 +17,7 @@ from bs4 import BeautifulSoup, Comment
 
 from src.config import ROOT
 from src.data.provenance import snapshot
+from src.data.source_rights import require_source_use, SourceUseRestricted
 
 SEASONS = [f'{y}-{y+1}' for y in range(2020, 2026)]
 CATEGORIES = {
@@ -49,6 +50,15 @@ class Client:
                     self.cached[item['url']] = item
 
     def get(self, url, source, **metadata):
+        # Terms review changed the previous robots-only access assessment.
+        # Allow reading the policy itself; do not expose a CLI bypass for data.
+        parsed = urlsplit(url)
+        is_transfermarkt = 'transfermarkt' in source.lower() or parsed.hostname == 'transfermarkt.com' or (parsed.hostname or '').endswith('.transfermarkt.com')
+        if is_transfermarkt and parsed.path not in ('/robots.txt', '/intern/anb'):
+            try:
+                require_source_use('transfermarkt', 'automated collection')
+            except SourceUseRestricted as exc:
+                raise AccessBlocked(str(exc)) from exc
         host = urlsplit(url).netloc
         if host in self.denied:
             raise AccessBlocked(self.denied[host])

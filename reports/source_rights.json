@@ -1,0 +1,23 @@
+{
+  "source": "transfermarkt",
+  "status": "restricted_pending_explicit_license",
+  "terms_url": "https://www.transfermarkt.com/intern/anb",
+  "terms_record": {
+    "source": "transfermarkt",
+    "url": "https://www.transfermarkt.com/intern/anb",
+    "retrieved_at": "2026-10-11T10:22:01.518631+00:00",
+    "sha256": "7c46c0514a311f4bbb6af63b08c9be1d2011be06c22ceb8c30b4bed0cc3927d3",
+    "path": "data/raw/sources/transfermarkt/7c46c0514a311f4bbb6af63b08c9be1d2011be06c22ceb8c30b4bed0cc3927d3.html",
+    "http_status": 200,
+    "category": "terms_review_uploaded_trial"
+  },
+  "section": "11.1",
+  "quote": "The User is not permitted to access or copy the Digital Content using bots, spiders, screen scraping or other automated processes.",
+  "ml_quote": "The user is also prohibited from using the digital content for the training or development of artificial intelligence (AI), including language models, machine learning, neural networks or other AI systems.",
+  "reviewed_provider_license_available": false,
+  "affected_assets": [
+    "direct Transfermarkt samples",
+    "worldfootballR Transfermarkt valuations/transfers",
+    "provider-derived FBref\u2013Transfermarkt mapping"
+  ]
+}

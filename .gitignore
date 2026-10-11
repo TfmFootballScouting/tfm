@@ -244,3 +244,5 @@ data/events/
 # Large published research archives: retained locally, reproducible via pinned hashes
 # Do not assume the package license licenses provider data redistribution.
 data/raw/sources/*_worldfootballr/
+# User-supplied examples contain browser cookies; retain the original locally.
+data/raw/sources/uploaded_toolkit/

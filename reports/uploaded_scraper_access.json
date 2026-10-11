@@ -1,0 +1,49 @@
+[
+  {
+    "source": "fbref",
+    "status": "provider_access_blocked",
+    "reason": "robots.txt returned HTTP 403; policy unknown; no Segunda page requested"
+  },
+  {
+    "source": "understat",
+    "status": "provider_policy_blocked",
+    "reason": "robots.txt disallows /; no league page requested"
+  },
+  {
+    "source": "transfermarkt",
+    "status": "sample_preserved_use_restricted",
+    "record": {
+      "source": "transfermarkt",
+      "url": "https://www.transfermarkt.com/laliga2/torschuetzenliste/wettbewerb/ES2/saison_id/2024/plus/1",
+      "retrieved_at": "2026-10-11T10:05:07.490878+00:00",
+      "sha256": "b8c738ba3c6685f9832bbae67b63e0c21e867a035781eeb4e4ad973ba2fda519",
+      "path": "data/raw/sources/transfermarkt/b8c738ba3c6685f9832bbae67b63e0c21e867a035781eeb4e4ad973ba2fda519.html",
+      "http_status": 200,
+      "category": "uploaded_toolkit_trial",
+      "requested_league": "Segunda",
+      "requested_season": "2024-2025"
+    },
+    "reason": "One 2024/25 Segunda first-page scorer sample acquired before terms review. Further copying and AI/ML use blocked by terms section 11.1."
+  },
+  {
+    "source": "sofascore",
+    "status": "environment_network_blocked",
+    "attempted_url": "https://www.sofascore.com/robots.txt",
+    "reason": "ProxyError: Tunnel connection failed: 403 Forbidden. Provider policy/content not reached; domain additions saved, not applied.",
+    "observed_date": "2026-10-11"
+  },
+  {
+    "source": "whoscored",
+    "status": "environment_network_blocked",
+    "attempted_url": "https://1xbet.whoscored.com/robots.txt",
+    "reason": "ProxyError: Tunnel connection failed: 403 Forbidden. Provider policy/content not reached; domain additions saved, not applied.",
+    "observed_date": "2026-10-11"
+  },
+  {
+    "source": "opta",
+    "status": "environment_network_blocked",
+    "attempted_url": "https://dataviz.theanalyst.com/robots.txt",
+    "reason": "ProxyError: Tunnel connection failed: 403 Forbidden. Provider policy/content not reached; domain additions saved, not applied.",
+    "observed_date": "2026-10-11"
+  }
+]

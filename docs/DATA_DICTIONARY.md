@@ -84,3 +84,7 @@ Transfermarkt archived valuation/profile fields retain country/competition, squa
 The upstream mapping retains PlayerFBref, UrlFBref, UrlTmarkt and TmPos, with extracted fbref_id/transfermarkt_id, mapping_status and archive_text_encoding. It is an upstream published proposal, not locally approved. Missing/duplicate IDs are reported in the archive inventory.
 
 `worldfootballr_coverage.csv` adds the acquisition route, observed counts, snapshot/partial/mismatch status and actual Understat date/match ranges. `worldfootballr_merge_audit.csv` records matched/missing keys, incompatible exposure counts and maximum exposure differences. Source URL/hash/retrieval time and byte-preservation rules are in the archive manifest and trial report. Archives contain some incomplete and differently dated category snapshots; their presence does not upgrade the old model's validation status.
+
+## Source-use restriction discovered in the uploaded scraper trial
+
+`ml_use_status=restricted_pending_explicit_license` marks Transfermarkt valuations, transfers and the provider-derived player mapping. This is a rights restriction, separate from completeness or temporal validity. Do not use these records in ML experiments or redistribute them absent a reviewed licence. Previously acquired raw bytes are retained as evidence. `reports/uploaded_scraper_trial.json` contains policy URL, SHA-256 and quotes; the 25-row Segunda scorer response is access evidence only and has no player-statistics export.

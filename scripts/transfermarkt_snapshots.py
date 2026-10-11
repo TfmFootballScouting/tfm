@@ -7,9 +7,11 @@ import pandas as pd
 from src.config import ROOT
 from src.scraping.collect import Client,AccessBlocked
 from src.scraping.transfermarkt import market_snapshot,profile
+from src.data.source_rights import require_source_use
 
 
 def run():
+    require_source_use('transfermarkt', 'automated collection')
     records=[json.loads(x) for x in (ROOT/'data/raw/provenance.jsonl').read_text().splitlines()]
     pages={}
     for r in records:

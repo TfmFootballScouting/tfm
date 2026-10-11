@@ -14,6 +14,7 @@ from sklearn.preprocessing import StandardScaler
 
 from src.config import FEATURE_COLS, MODELS_DIR, RANDOM_SEED
 from src.features.styles import affinity_scores, measured_weight_fraction
+from src.data.source_rights import require_model_data_use
 
 
 @dataclass
@@ -35,6 +36,7 @@ class PlayerRecommender:
         self.artifacts = self.players = self.X = None
 
     def fit(self, players, feature_cols=None):
+        require_model_data_use(players)
         if len(players) < 2:
             raise ValueError('At least two observations required')
         if players.player_id.duplicated().any():
@@ -64,6 +66,7 @@ class PlayerRecommender:
         return self
 
     def transform(self, players):
+        require_model_data_use(players)
         if self.artifacts is None:
             raise RuntimeError('Model not fitted')
         return self.artifacts.scaler.transform(self.artifacts.imputer.transform(players[self.artifacts.feature_cols]))
