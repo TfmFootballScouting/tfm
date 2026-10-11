@@ -1,0 +1,6 @@
+source,league,season,rows,use
+demo,La Liga,2223,180,preserved_only; synthetic excluded and overlapping legacy rows not pooled
+demo,La Liga,2425,180,preserved_only; synthetic excluded and overlapping legacy rows not pooled
+demo,Segunda,2223,240,preserved_only; synthetic excluded and overlapping legacy rows not pooled
+demo,Segunda,2425,240,preserved_only; synthetic excluded and overlapping legacy rows not pooled
+fbref_cache,La Liga,2324,609,preserved_only; synthetic excluded and overlapping legacy rows not pooled
