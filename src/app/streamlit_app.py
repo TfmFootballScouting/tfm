@@ -18,6 +18,7 @@ from src.config import FEATURE_COLS, MODELS_DIR, PLAY_STYLES
 from src.features.styles import list_styles
 from src.models.recommend import PlayerRecommender
 from src.preprocessing.clean import load_players
+from src.app.budget import load_budget_inputs, candidate_links, attach_reported_values, screen_budget
 
 # ── Paleta verde fútbol ──────────────────────────────────────────────────────
 GREEN_PRIMARY   = "#1a7a3c"   # verde campo
@@ -199,6 +200,11 @@ def load_model() -> PlayerRecommender:
     return PlayerRecommender.load(path)
 
 
+@st.cache_data
+def load_reported_budget_data():
+    return load_budget_inputs()
+
+
 def radar_figure(
     player_row: pd.Series,
     feature_cols: list[str],
@@ -355,6 +361,13 @@ def main() -> None:
     from src.features.styles import measured_weight_fraction
     styles = {k:v for k,v in list_styles().items() if measured_weight_fraction(k, rec.artifacts.feature_cols) >= .6}
     style_labels = {k: v["label"] for k, v in styles.items()}
+    try:
+        reported_values, price_candidates, canonical_profiles = load_reported_budget_data()
+        price_links = candidate_links(rec.players, price_candidates, canonical_profiles)
+        budget_data_available = True
+    except (FileNotFoundError, ValueError, KeyError):
+        reported_values = price_links = None
+        budget_data_available = False
 
     # ── Sidebar ───────────────────────────────────────────────────────────────
     with st.sidebar:
@@ -378,8 +391,20 @@ def main() -> None:
 
         season = st.selectbox("Temporada observada", sorted(rec.players.season.unique(), reverse=True))
         max_age = st.slider("Edad máxima", 18, 40, 32) if rec.players.age.notna().any() else None
+        budget_enabled = st.checkbox("Filtrar por valor de mercado", disabled=not budget_data_available)
+        valuation_cutoff = None
         max_budget = None
-        st.caption("Filtro de presupuesto pendiente de valoraciones históricas verificadas. Valores desconocidos no equivalen a cero.")
+        if budget_data_available:
+            valuation_cutoff = st.date_input("Fecha límite del valor reportado",
+                value=reported_values.valuation_date.max().date())
+            st.caption(f"Valoraciones registradas hasta {reported_values.valuation_date.max().date()}. "
+                       "Cruces de identidad provisionales. Precio de mercado reportado, no coste de fichaje. "
+                       "La fecha original de publicación es desconocida; este filtro no valida presupuestos históricos.")
+            if budget_enabled:
+                max_budget = st.number_input("Presupuesto máximo (M€)", min_value=0.01, value=10.0, step=1.0)
+                st.caption("Se excluyen valores desconocidos y ceros ambiguos. No se estiman precios faltantes.")
+        else:
+            st.caption("Valoraciones no disponibles: conserva los archivos de datos subidos y sus manifiestos.")
         top_n = st.slider("Nº de resultados", 5, 30, 10)
 
         st.divider()
@@ -388,7 +413,9 @@ def main() -> None:
             import uuid
             from src.process.events import record_event
             st.session_state['scouting_case'] = str(uuid.uuid4())
-            attrs = dict(style=style_key, position=position, season=season, league=league, max_age=max_age)
+            attrs = dict(style=style_key, position=position, season=season, league=league, max_age=max_age,
+                         reported_value_budget_million=max_budget, reported_value_cutoff=str(valuation_cutoff),
+                         price_match_status='provisional', historical_budget_validation=False)
             record_event(st.session_state.scouting_case, 'need_defined', 'app_user', attrs)
             record_event(st.session_state.scouting_case, 'search_executed', 'system', attrs)
 
@@ -415,21 +442,28 @@ def main() -> None:
 
     # ── Tab 1: Recomendaciones ────────────────────────────────────────────────
     with tab1:
-        if run or "last_result" not in st.session_state:
+        filters = (style_key, position, league, season, max_age, max_budget, str(valuation_cutoff), top_n)
+        if run or "last_result" not in st.session_state or st.session_state.get('last_filters') != filters:
             result = rec.recommend(
                 style_key=style_key,
                 position=None if position == "Todas" else position,
                 max_age=max_age,
-                max_budget=max_budget,
+                max_budget=None,
                 league=None if league == "Todas" else league,
-                top_n=top_n,
+                top_n=len(rec.players),
                 season=season,
             )
+            if budget_data_available:
+                result = attach_reported_values(result, price_links, reported_values, valuation_cutoff)
+                if max_budget is not None:
+                    result = screen_budget(result, max_budget)
+            result = result.head(top_n)
             if run:
                 from src.process.events import record_event
                 record_event(st.session_state.scouting_case, 'ranking_generated', 'system', {'candidates': len(result)})
             st.session_state["last_result"] = result
             st.session_state["last_style"] = style_key
+            st.session_state['last_filters'] = filters
         else:
             result = st.session_state["last_result"]
             style_key = st.session_state.get("last_style", style_key)
@@ -446,16 +480,38 @@ def main() -> None:
             # Tabla
             show = result.copy()
             show["affinity"] = (show["affinity"] * 100).round(1)
+            if 'reported_value_status' in show:
+                show['reported_value_status'] = show.reported_value_status.map({
+                    'reported_positive': 'Valor reportado disponible',
+                    'reported_zero_ambiguous': 'Cero reportado; significado desconocido',
+                    'unmatched': 'Jugador sin cruce de identidad',
+                    'no_record_on_or_before_cutoff': 'Sin valor anterior a la fecha límite',
+                    'invalid_or_unknown': 'Valor desconocido o no válido',
+                })
+                show['price_identity_status'] = show.price_identity_status.map({
+                    'provisional_not_reviewed': 'Provisional, sin revisión individual', 'unmatched': 'Sin cruce'})
+            visible = ['player', 'team', 'league', 'season', 'pos', 'age', 'minutes', 'affinity']
+            visible += rec.artifacts.feature_cols
+            visible += ['reported_market_value_eur', 'reported_valuation_date',
+                        'reported_value_source', 'price_identity_status', 'reported_value_status']
+            visible = list(dict.fromkeys(column for column in visible if column in show))
             st.dataframe(
-                show.rename(columns={
+                show[visible].rename(columns={
                     "player": "Jugador", "team": "Equipo", "league": "Liga",
                     "season": "Temp.", "pos": "Pos", "age": "Edad",
                     "affinity": "Afinidad coseno ×100",
                     "minutes": "Minutos",
+                    "reported_market_value_eur": "Valor de mercado reportado (€)",
+                    "reported_valuation_date": "Fecha del valor reportado",
+                    "price_identity_status": "Estado del cruce de jugador",
+                    "reported_value_source": "Fuente del valor",
+                    "reported_value_status": "Disponibilidad del valor",
                 }),
                 use_container_width=True,
                 hide_index=True,
             )
+            st.download_button("Descargar shortlist CSV", data=result.to_csv(index=False).encode('utf-8'),
+                               file_name='scouting_shortlist.csv', mime='text/csv')
 
             st.divider()
 
