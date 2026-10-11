@@ -246,3 +246,6 @@ data/events/
 data/raw/sources/*_worldfootballr/
 # User-supplied examples contain browser cookies; retain the original locally.
 data/raw/sources/uploaded_toolkit/
+# Retain this uploaded provider-derived dataset locally; no redistribution licence supplied.
+data/raw/sources/kaggle_transfer_values/
+data/processed/real/collected_kaggle_value_*.parquet
