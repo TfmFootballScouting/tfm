@@ -1,0 +1,198 @@
+{
+  "created_at": "2026-10-11T16:58:58.756134+00:00",
+  "git_commit": "5330ce85d90c958845ca8460a22e68eea31687fa",
+  "kind": "illustrative_retrospective_requirements_real_observations",
+  "cases": [
+    {
+      "case_id": "core:2022-2023:posesion",
+      "label": "Desarrollo en posesi\u00f3n",
+      "requirements": {
+        "club": "Valencia",
+        "season": "2022-2023",
+        "position": "MF",
+        "style": "posesion",
+        "max_age": 23,
+        "min_minutes": 900,
+        "budget_million": 5.0,
+        "top_n": 5
+      },
+      "valuation_cutoff": "2023-06-30",
+      "eligible": 8,
+      "returned": 5
+    },
+    {
+      "case_id": "core:2022-2023:solidez_defensiva",
+      "label": "Equilibrio defensivo",
+      "requirements": {
+        "club": "Valencia",
+        "season": "2022-2023",
+        "position": "DF",
+        "style": "solidez_defensiva",
+        "max_age": 27,
+        "min_minutes": 1800,
+        "budget_million": 8.0,
+        "top_n": 5
+      },
+      "valuation_cutoff": "2023-06-30",
+      "eligible": 10,
+      "returned": 5
+    },
+    {
+      "case_id": "core:2022-2023:vertical",
+      "label": "Ataque vertical",
+      "requirements": {
+        "club": "Valencia",
+        "season": "2022-2023",
+        "position": "FW",
+        "style": "vertical",
+        "max_age": 25,
+        "min_minutes": 900,
+        "budget_million": 10.0,
+        "top_n": 5
+      },
+      "valuation_cutoff": "2023-06-30",
+      "eligible": 9,
+      "returned": 5
+    },
+    {
+      "case_id": "core:2022-2023:desborde_banda",
+      "label": "Juego por banda (proxy)",
+      "requirements": {
+        "club": "Valencia",
+        "season": "2022-2023",
+        "position": "FW",
+        "style": "desborde_banda",
+        "max_age": 25,
+        "min_minutes": 900,
+        "budget_million": 10.0,
+        "top_n": 5
+      },
+      "valuation_cutoff": "2023-06-30",
+      "eligible": 9,
+      "returned": 5
+    },
+    {
+      "case_id": "core:2023-2024:posesion",
+      "label": "Desarrollo en posesi\u00f3n",
+      "requirements": {
+        "club": "Valencia",
+        "season": "2023-2024",
+        "position": "MF",
+        "style": "posesion",
+        "max_age": 23,
+        "min_minutes": 900,
+        "budget_million": 5.0,
+        "top_n": 5
+      },
+      "valuation_cutoff": "2024-06-30",
+      "eligible": 2,
+      "returned": 2
+    },
+    {
+      "case_id": "core:2023-2024:solidez_defensiva",
+      "label": "Equilibrio defensivo",
+      "requirements": {
+        "club": "Valencia",
+        "season": "2023-2024",
+        "position": "DF",
+        "style": "solidez_defensiva",
+        "max_age": 27,
+        "min_minutes": 1800,
+        "budget_million": 8.0,
+        "top_n": 5
+      },
+      "valuation_cutoff": "2024-06-30",
+      "eligible": 16,
+      "returned": 5
+    },
+    {
+      "case_id": "core:2023-2024:vertical",
+      "label": "Ataque vertical",
+      "requirements": {
+        "club": "Valencia",
+        "season": "2023-2024",
+        "position": "FW",
+        "style": "vertical",
+        "max_age": 25,
+        "min_minutes": 900,
+        "budget_million": 10.0,
+        "top_n": 5
+      },
+      "valuation_cutoff": "2024-06-30",
+      "eligible": 7,
+      "returned": 5
+    },
+    {
+      "case_id": "core:2023-2024:desborde_banda",
+      "label": "Juego por banda (proxy)",
+      "requirements": {
+        "club": "Valencia",
+        "season": "2023-2024",
+        "position": "FW",
+        "style": "desborde_banda",
+        "max_age": 25,
+        "min_minutes": 900,
+        "budget_million": 10.0,
+        "top_n": 5
+      },
+      "valuation_cutoff": "2024-06-30",
+      "eligible": 7,
+      "returned": 5
+    },
+    {
+      "case_id": "offensive:2023-2024:vertical",
+      "label": "Ataque vertical",
+      "requirements": {
+        "club": "Valencia",
+        "season": "2023-2024",
+        "position": "FW",
+        "style": "vertical",
+        "max_age": 25,
+        "min_minutes": 900,
+        "budget_million": 10.0,
+        "top_n": 5
+      },
+      "valuation_cutoff": "2024-06-30",
+      "eligible": 7,
+      "returned": 5
+    },
+    {
+      "case_id": "offensive:2024-2025:vertical",
+      "label": "Ataque vertical",
+      "requirements": {
+        "club": "Valencia",
+        "season": "2024-2025",
+        "position": "FW",
+        "style": "vertical",
+        "max_age": 25,
+        "min_minutes": 900,
+        "budget_million": 10.0,
+        "top_n": 5
+      },
+      "valuation_cutoff": "2025-06-30",
+      "eligible": 11,
+      "returned": 5
+    }
+  ],
+  "protected_artifacts_verified": 314,
+  "dataset_version": "0627515042a64840c7a63c2fef200a0cf9cf317d3105b2d7c0fdb7279f8e50c8",
+  "model_retrained": false,
+  "transfer_success_validated": false,
+  "identity_approval": false,
+  "limitations": [
+    "Market assessment is not a transfer fee or total acquisition cost",
+    "Price identities provisional; original publication time unknown",
+    "No verified official club requirements or transfer outcome relevance labels",
+    "Broad FW is not a validated winger role; no advanced Segunda gallery"
+  ],
+  "code_sha256": {
+    "src/app/scenarios.py": "52d35be2898ba44aca6e4f8f89ab007570f2b3352baace9eff59c52d7e504f28",
+    "scripts/scouting_scenarios.py": "c5e273f79bc750113d463582bda6682ce1b6397f39c605a7be2d957f584dd41d"
+  },
+  "output_sha256": {
+    "funnel.csv": "a66a368dd9bae6d14db0d234387830ab1f99f9cb97df770a67f054cb48d1b54f",
+    "baselines.csv": "f5c7203b36ae887c7c539c0f1b5ec5171953e4a169ffb3ec9a033b32d8b6e464",
+    "sensitivity.csv": "deb838e4fb65ed54ffd121f85ced9aa169224a2a409cf39f757043d93e47488f",
+    "shortlist.csv": "98eb5dc40547d0a35ebb28d5b0aaf1eb1473a54cca78d2a62cec0ec7918b4335"
+  }
+}
