@@ -17,7 +17,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.metrics import adjusted_rand_score, silhouette_score
 from sklearn.preprocessing import StandardScaler
 
-from src.config import PLAY_STYLES
 from src.features.styles import affinity_scores, measured_weight_fraction
 from src.models.collected import _transformed_scores
 
@@ -107,7 +106,14 @@ def resampling_validation(rec, trials=30, seed=42):
                 overlap_rows.append(dict(position=position, style_left=left, style_right=right,
                                          top5_jaccard=_jaccard(lists[left], lists[right])))
     rng = np.random.default_rng(seed)
-    clusters, loadings, subspaces, variances, ranking = [], [], [], [], []
+    clusters, loadings, subspaces, variances, ranking, spectra = [], [], [], [], [], []
+    def spectrum(X, trial):
+        eigenvalues = np.linalg.eigvalsh(np.cov(X, rowvar=False))[::-1]
+        for i, value in enumerate(eigenvalues):
+            spectra.append(dict(trial=trial, component=i+1, eigenvalue=float(value),
+                gap_to_next=float(value-eigenvalues[i+1]) if i+1 < len(eigenvalues) else np.nan,
+                scope='original_development' if trial == -1 else 'bootstrap_development'))
+    spectrum(rec.X, -1)
     original_labels = rec.artifacts.kmeans.predict(rec.X)
     for trial in range(trials):
         indexes, sampled_people = person_block_indices(players, rng)
@@ -117,6 +123,7 @@ def resampling_validation(rec, trials=30, seed=42):
         if X.shape[1] != len(cols) or len(np.unique(X, axis=0)) < rec.artifacts.kmeans.n_clusters:
             raise ValueError('Degenerate bootstrap: feature or cluster coverage lost; do not silently skip')
         pca = PCA(n_components=rec.artifacts.pca.n_components_, random_state=seed).fit(X)
+        spectrum(X, trial)
         kmeans = KMeans(n_clusters=rec.artifacts.kmeans.n_clusters, n_init=10,
                         random_state=seed+trial).fit(X)
         ref = scaler.transform(imputer.transform(players[cols]))
@@ -159,6 +166,7 @@ def resampling_validation(rec, trials=30, seed=42):
                                          _top_ids(gallery, scores, position)), gallery_season=gallery.season.iloc[0]))
     return dict(cluster_bootstrap=pd.DataFrame(clusters), pca_loading_bootstrap=pd.DataFrame(loadings),
         pca_subspace_bootstrap=pd.DataFrame(subspaces), pca_variance_bootstrap=pd.DataFrame(variances),
+        pca_eigenvalues=pd.DataFrame(spectra),
         ranking_bootstrap=pd.DataFrame(ranking), style_shortlists=pd.DataFrame(shortlist_rows),
         style_overlap=pd.DataFrame(overlap_rows), style_coverage=pd.DataFrame([
             dict(style=style, measured_weight_fraction=value, supported=value >= .6) for style, value in styles.items()]))

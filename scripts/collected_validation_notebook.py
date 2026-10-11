@@ -61,17 +61,23 @@ display(pd.DataFrame([result['parameters']]))
     display(frame(name,'pca_variance_bootstrap').groupby('component').cumulative_variance.agg(['mean','min','max']))
     angles=frame(name,'pca_subspace_bootstrap')
     display(Markdown(f"The largest top-four principal angle averaged {angles[angles.dimensions.eq(4)].maximum_angle_degrees.mean():.2f}°. Direction stability alone cannot establish that compressed features retain the information needed for recommendations; the temporal retrieval comparison remains the relevant proxy test."))
+core_loadings=frame('core','pca_loading_bootstrap')
+worst=core_loadings[core_loadings.component.eq(4)].sort_values('absolute_loading_cosine').iloc[0]
+eigenvalues=frame('core','pca_eigenvalues')
+display(eigenvalues[eigenvalues.trial.isin([-1,int(worst.trial)]) & eigenvalues.component.isin([4,5])])
+worst_angle=frame('core','pca_subspace_bootstrap').query('dimensions == 4').set_index('trial').loc[int(worst.trial)].maximum_angle_degrees
+display(Markdown(f"Core PC4 is particularly sensitive in trial {int(worst.trial)}: matched loading cosine {worst.absolute_loading_cosine:.3f}, largest four-dimensional angle {worst_angle:.2f}°. The fourth/fifth eigenvalues are relatively close, especially in this resample, consistent with sensitivity at the four-component truncation boundary. This is not only a harmless sign flip or a rotation inside an unchanged retained subspace. Avoid assigning a fixed tactical meaning to PC4."))
 '''),
         ('md', '## Independent replay of the first two real bootstrap draws\n\nThe following cell refits the core development bootstrap twice with the saved seed and verifies its numeric outputs against the first two recorded trials. It uses observed development data from the frozen model and does not produce new experiment runs.'),
         ('code', '''from src.models.recommend import PlayerRecommender
 from src.models.validation import resampling_validation
 rec=PlayerRecommender.load(ROOT/result['experiments']['core']['base_model_path'])
 replayed=resampling_validation(rec,trials=2,seed=result['parameters']['seed'])
-for suffix in ['cluster_bootstrap','pca_loading_bootstrap','pca_subspace_bootstrap','pca_variance_bootstrap','ranking_bootstrap']:
+for suffix in ['cluster_bootstrap','pca_loading_bootstrap','pca_subspace_bootstrap','pca_variance_bootstrap','ranking_bootstrap','pca_eigenvalues']:
     expected=frame('core',suffix); expected=expected[expected.trial.lt(2)].reset_index(drop=True)
     actual=replayed[suffix].reset_index(drop=True)
     pd.testing.assert_frame_equal(actual,expected,check_dtype=False,check_exact=False,rtol=1e-9,atol=1e-10)
-display(Markdown('Two whole-player real-data refits replayed successfully for all five diagnostic tables.'))
+display(Markdown('Two whole-player real-data refits replayed successfully for all six diagnostic tables.'))
 '''),
         ('md', '## Retrieval by position and evaluation season\n\nDF/MF/FW are the **previous-season query** positions; targets remain in the complete next-season candidate pool. Each method is compared with goals-and-assists on exactly the same identities, matched by source ID rather than row order. Five hundred paired query bootstraps give conditional subgroup intervals. They do not adjust for multiple exploratory slices or prove relevance for a club. A target disappearing under a hard cluster gate receives zero credit. Returning players above the minutes threshold exclude exits, injuries and other nonreturners.'),
         ('code', '''for name,info in result['experiments'].items():
