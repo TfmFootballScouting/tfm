@@ -1,3 +1,5 @@
+Latest pipeline: [cleaning, season-aware enrichment, EDA and eligible model reruns](ENRICHED_PIPELINE.md). New histories are integrated in a review dataset; three eligible FBref models were refitted. Transfermarkt fields remain excluded from fitting by the existing source and identity checks. Full dictionary: `reports/enrichment/dictionary.csv`.
+
 Latest upload audit: [player statistics and transfer histories](SALIMT_HISTORY_AUDIT.md). Segunda player records are now confirmed for all six target seasons; advanced features and model integration remain incomplete. See `reports/salimt_history_dictionary.csv` for the new source-separated tables.
 
 > Collected-data preprocessing update: real retained archives are now cleaned and audited across seasons without changing the original folder structure or fitted model. See [mandatory features, cohorts and executed EDA](COLLECTED_PREPROCESSING.md).

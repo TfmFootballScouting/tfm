@@ -1,0 +1,38 @@
+{
+  "selected_method": "euclidean_profile",
+  "holdout_mrr": 0.06590902250227869,
+  "holdout_recall_at_5": 0.08433734939759036,
+  "holdout_recall_at_10": 0.14859437751004015,
+  "pca_explained_variance": [
+    0.6634935264826122,
+    0.2133962036141985,
+    0.04911359204337217,
+    0.03787423252211766
+  ],
+  "selected_k": 2,
+  "cluster_diagnostics": {
+    "position_nmi": 0.32985332717764304,
+    "season_nmi": 0.00022044205716503765,
+    "seed_ari_mean": 0.9968921864742926
+  },
+  "robustness_top5_jaccard_mean": 0.9722222222222221,
+  "rows_by_split": {
+    "train": 795,
+    "validation": 388,
+    "holdout": 393
+  },
+  "model_path": "models/real/enrichment_attack_on_core_recommender.joblib",
+  "model_sha256": "29b8ac3ef5843ff08908094661427d9cdc10e48e86f09a39e30689ac17bf1d6a",
+  "learned_dataset_version": "42a86ea4014765ff4015fca36ab1bd3cb778501edd6e9e4eb4a37924591b3e57",
+  "learned_features_source": "FBref only; uploaded Transfermarkt data blocked",
+  "six_style_definitions_preserved": [
+    "posesion",
+    "presion_alta",
+    "vertical",
+    "contraataque",
+    "solidez_defensiva",
+    "desborde_banda",
+    "finisher",
+    "creator"
+  ]
+}
