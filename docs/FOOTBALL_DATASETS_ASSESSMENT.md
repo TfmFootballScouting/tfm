@@ -1,5 +1,7 @@
 # salimt/football-datasets: repository metadata inspection
 
+**Subsequent update:** Four user-supplied CSVs have now been transferred and audited, with actual Spain team-season coverage and a review-only profile join. See [the uploaded-data audit](SALIMT_UPLOADED_AUDIT.md). This document preserves the earlier metadata-only findings; no provider CSVs were acquired by its inventory script.
+
 Source: https://github.com/salimt/football-datasets, pinned HEAD `da9227e1f42baf74561324290dbf1ad2e3c00edd`, observed on 11 October 2026. The uploaded ZIP could not be transferred because it exceeds the executor's 32 MiB Sediment limit; its contents/hash are unverified. The GitHub repository is accessible with existing authentication/network settings. No additional secret or network change is needed for the metadata inspection.
 
 ## What was actually inspected

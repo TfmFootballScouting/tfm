@@ -250,3 +250,5 @@ data/raw/sources/uploaded_toolkit/
 data/raw/sources/kaggle_transfer_values/
 data/processed/real/collected_kaggle_value_*.parquet
 data/raw/sources/football_datasets_metadata/
+data/raw/sources/salimt_uploaded/
+data/processed/real/collected_salimt_*.parquet
