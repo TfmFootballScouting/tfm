@@ -51,7 +51,19 @@ def main():
     assert tests['tests']>=107 and not any(tests[key] for key in ['errors','failures','skipped'])
     with urlopen('http://127.0.0.1:8502/_stcore/health',timeout=10) as response:
         assert response.status==200 and response.read()==b'ok'
-    verification=dict(status='passed_released_outputs',checked_at=datetime.now(timezone.utc).isoformat(),
+    run=json.loads((destination/'mlflow_export/run.json').read_text())
+    assert run['status']=='FINISHED' and run['exported_artifacts']==7
+    assert run['tags']['dataset']==report['dataset_version']
+    for tag in ['owner','project','environment','git_commit']: assert run['tags'].get(tag)
+    assert run['tags']['mlflow.source.name']=='scripts/top_five_mlflow.py'
+    for filename in ['evaluation.csv','coverage.csv','availability.csv','manifest.json','external_profile_retrieval.png']:
+        assert sha256(destination/filename)==sha256(destination/'mlflow_export/evaluation'/filename)
+    old_models=previous['new_model_experiments']
+    for name in ['core','offensive']:
+        item=old_models[name]
+        assert sha256(destination/'mlflow_export/models'/__import__('pathlib').Path(item['model_path']).name)==item['model_sha256']
+    verification=dict(mlflow_run_id=run['run_id'],mlflow_status=run['status'],mlflow_exported_artifacts=run['exported_artifacts'],
+        status='passed_released_outputs',checked_at=datetime.now(timezone.utc).isoformat(),
         source_commit=report['git_commit'],dataset_version=report['dataset_version'],tests=tests,
         historical_protected_verified=protected_verified,historical_protected_missing=protected_missing,
         raw_archives_verified=raw_verified,raw_archives_missing=raw_missing,models=models,

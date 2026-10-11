@@ -1,0 +1,49 @@
+model,league,season,players,offered,advanced_variables_missing
+core,Bundesliga,2020-2021,338,True,0
+core,Bundesliga,2021-2022,322,True,0
+core,Bundesliga,2022-2023,328,True,0
+core,Bundesliga,2023-2024,324,True,0
+core,La Liga,2020-2021,393,True,0
+core,La Liga,2021-2022,396,True,0
+core,La Liga,2022-2023,385,True,0
+core,La Liga,2023-2024,391,True,0
+core,La Liga,2024-2025,1,False,0
+core,Ligue 1,2020-2021,377,True,0
+core,Ligue 1,2021-2022,382,True,0
+core,Ligue 1,2022-2023,377,True,0
+core,Ligue 1,2023-2024,334,True,0
+core,Ligue 1,2024-2025,1,False,0
+core,Premier League,2020-2021,369,True,0
+core,Premier League,2021-2022,368,True,0
+core,Premier League,2022-2023,377,True,0
+core,Premier League,2023-2024,371,True,0
+core,Serie A,2020-2021,383,True,0
+core,Serie A,2021-2022,395,True,0
+core,Serie A,2022-2023,394,True,0
+core,Serie A,2023-2024,390,True,0
+core,Serie A,2024-2025,2,False,0
+offensive,Bundesliga,2020-2021,338,True,0
+offensive,Bundesliga,2021-2022,322,True,0
+offensive,Bundesliga,2022-2023,328,True,2
+offensive,Bundesliga,2023-2024,324,True,0
+offensive,Bundesliga,2024-2025,320,True,0
+offensive,La Liga,2020-2021,393,True,0
+offensive,La Liga,2021-2022,396,True,0
+offensive,La Liga,2022-2023,385,True,4
+offensive,La Liga,2023-2024,391,True,0
+offensive,La Liga,2024-2025,397,True,0
+offensive,Ligue 1,2020-2021,377,True,0
+offensive,Ligue 1,2021-2022,382,True,0
+offensive,Ligue 1,2022-2023,377,True,4
+offensive,Ligue 1,2023-2024,334,True,0
+offensive,Ligue 1,2024-2025,334,True,0
+offensive,Premier League,2020-2021,369,True,0
+offensive,Premier League,2021-2022,368,True,0
+offensive,Premier League,2022-2023,377,True,0
+offensive,Premier League,2023-2024,371,True,0
+offensive,Premier League,2024-2025,361,True,0
+offensive,Serie A,2020-2021,383,True,0
+offensive,Serie A,2021-2022,395,True,2
+offensive,Serie A,2022-2023,394,True,4
+offensive,Serie A,2023-2024,390,True,0
+offensive,Serie A,2024-2025,392,True,0

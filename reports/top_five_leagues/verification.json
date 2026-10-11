@@ -1,0 +1,60 @@
+{
+  "mlflow_run_id": "f7c0af9ccb6b4b56bb21629988663d6f",
+  "mlflow_status": "FINISHED",
+  "mlflow_exported_artifacts": 7,
+  "status": "passed_released_outputs",
+  "checked_at": "2026-10-11T20:07:37.100318+00:00",
+  "source_commit": "dc5106c564c1753940a676d0a5c41b46a9d1fb97",
+  "dataset_version": "52337690992d5e186181ccbaa12554c52b1492adfbfd79effe184ceed818821f",
+  "tests": {
+    "tests": 107,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "historical_protected_verified": 316,
+  "historical_protected_missing": [],
+  "raw_archives_verified": 6,
+  "raw_archives_missing": [],
+  "models": {
+    "core": {
+      "season": "2023-2024",
+      "league_players": {
+        "Bundesliga": 324,
+        "La Liga": 391,
+        "Ligue 1": 334,
+        "Premier League": 371,
+        "Serie A": 390
+      },
+      "styles": [
+        "posesion",
+        "presion_alta",
+        "vertical",
+        "contraataque",
+        "solidez_defensiva",
+        "desborde_banda"
+      ]
+    },
+    "offensive": {
+      "season": "2024-2025",
+      "league_players": {
+        "Bundesliga": 320,
+        "La Liga": 397,
+        "Ligue 1": 334,
+        "Premier League": 361,
+        "Serie A": 392
+      },
+      "styles": [
+        "vertical",
+        "contraataque"
+      ]
+    }
+  },
+  "notebook_cells": 4,
+  "notebook_errors": 0,
+  "streamlit_health": 200,
+  "browser_note": "Chromium desktop 1440x1000 and mobile390x844: no page errors or document horizontal overflow; screenshots reviewed locally",
+  "native_windows_verified": false,
+  "model_retrained": false,
+  "transfer_success_validated": false
+}
