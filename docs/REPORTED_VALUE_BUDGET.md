@@ -1,3 +1,5 @@
+Current application update: [Core and offensive serving](COLLECTED_APPLICATION.md) supersedes the legacy-default coverage snapshot below. Reported-value screening remains enabled; current coverage is in `reports/collected_application_verification.json`.
+
 # Budget screening with reported market values
 
 The application now attaches uploaded, dated market values to recommendation results and optionally filters by a maximum amount. This is the user's requested local screening workflow: it does not estimate missing prices, retrain a model, verify player identities, or claim historical transfer-budget validation.

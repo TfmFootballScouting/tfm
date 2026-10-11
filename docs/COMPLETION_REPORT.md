@@ -1,3 +1,5 @@
+Latest application: [collected models, six styles, profiles and comparison](COLLECTED_APPLICATION.md). Core is now the default; offensive and legacy exploration are selectable. Reported-value budget screening remains enabled.
+
 Latest application change: [reported-value budget screening](REPORTED_VALUE_BUDGET.md) is enabled with dated source values and labelled provisional identities. Historical-budget validation and model-use restrictions remain unchanged.
 
 Latest pipeline: [cleaning, season-aware enrichment, EDA and eligible model reruns](ENRICHED_PIPELINE.md). New histories are integrated in a review dataset; three eligible FBref models were refitted. Transfermarkt fields remain excluded from fitting by the existing source and identity checks. Full dictionary: `reports/enrichment/dictionary.csv`.

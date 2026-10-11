@@ -1,0 +1,140 @@
+{
+  "status": "collected_models_served_application_verified",
+  "verified_at_utc": "2026-10-11T16:42:56.067498+00:00",
+  "default_mode": "core",
+  "source_git_commit": "c75a4695df9fa9d8da4430a0d9deac46c2d4301f",
+  "serving_modes": {
+    "core": {
+      "styles": [
+        "posesion",
+        "presion_alta",
+        "vertical",
+        "contraataque",
+        "solidez_defensiva",
+        "desborde_banda"
+      ],
+      "season_coverage": [
+        {
+          "season": "2023-2024",
+          "candidate_people": 393,
+          "provisional_price_links": 336,
+          "positive_reported_values": 326
+        },
+        {
+          "season": "2022-2023",
+          "candidate_people": 388,
+          "provisional_price_links": 338,
+          "positive_reported_values": 318
+        },
+        {
+          "season": "2021-2022",
+          "candidate_people": 399,
+          "provisional_price_links": 349,
+          "positive_reported_values": 308
+        },
+        {
+          "season": "2020-2021",
+          "candidate_people": 396,
+          "provisional_price_links": 346,
+          "positive_reported_values": 291
+        }
+      ],
+      "training_seasons": [
+        "2020-2021",
+        "2021-2022"
+      ],
+      "distance_method": "euclidean_profile",
+      "model_path": "models/real/enrichment_core_recommender.joblib",
+      "model_sha256": "81b945b6f5e30e15991dec32742d5b59f567337173fa5b020cb683b2925fcace"
+    },
+    "offensive": {
+      "styles": [
+        "vertical",
+        "contraataque"
+      ],
+      "season_coverage": [
+        {
+          "season": "2024-2025",
+          "candidate_people": 399,
+          "provisional_price_links": 338,
+          "positive_reported_values": 337
+        },
+        {
+          "season": "2023-2024",
+          "candidate_people": 393,
+          "provisional_price_links": 336,
+          "positive_reported_values": 326
+        },
+        {
+          "season": "2022-2023",
+          "candidate_people": 388,
+          "provisional_price_links": 338,
+          "positive_reported_values": 318
+        },
+        {
+          "season": "2021-2022",
+          "candidate_people": 399,
+          "provisional_price_links": 349,
+          "positive_reported_values": 308
+        },
+        {
+          "season": "2020-2021",
+          "candidate_people": 396,
+          "provisional_price_links": 346,
+          "positive_reported_values": 291
+        }
+      ],
+      "training_seasons": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023"
+      ],
+      "distance_method": "euclidean_profile",
+      "model_path": "models/real/enrichment_offensive_recommender.joblib",
+      "model_sha256": "27a9be9885da034c3cbaa356a7585409579caf975690a052e0b094897b1eb6a3"
+    }
+  },
+  "legacy_mode_explicitly_available_and_tested": true,
+  "training_transformations_frozen": true,
+  "neighbor_index_rebuilt_for_selected_gallery": true,
+  "new_model_training_performed": false,
+  "preserved_evidence_files": 316,
+  "provisional_reported_value_screening_preserved": true,
+  "price_fields_enter_model_transforms": false,
+  "historical_budget_validation_performed": false,
+  "transfer_success_validation_performed": false,
+  "app_workflows_executed": [
+    "core_default_six_styles",
+    "season_gallery",
+    "position_minute_age_club_filters",
+    "reported_value_budget",
+    "same_season_similarity",
+    "profiles_and_history",
+    "identical_player_comparison_charts",
+    "offensive_mode_supported_styles",
+    "legacy_workflow"
+  ],
+  "tests": {
+    "tests": 98,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "streamlit_health": "200 ok",
+  "code_and_execution_sha256": {
+    "src/app/collected.py": "04ce913088d04240cbbbf72757395074fcdd7fe33259aaa137ca515ea5dbd4f9",
+    "src/app/streamlit_app.py": "9c9b52cde7b0c920ca0417e6cbb80797ca8b2bf60e5e5b64b7b78b4987155752",
+    "src/app/budget.py": "c60fa0bfb07442676f8effcf13ca65b421934935c3d8e440dd3db41739af772f",
+    "tests/test_collected_app.py": "d8fd4c8ff588442cb9946d326cf6792de6c7fa449e6b09e3e07a15717f570558",
+    "tests/test_app.py": "af6a7c6880a74069c36e54ace725850bddede868f78bbd15978e04b9a84ad8b8",
+    "scripts/verify_collected_application.py": "c3937e2df30d771ab9e22728464e64684fdaa36f3324efcf4dfe56efb02510f4",
+    "reports/collected_application_tests.xml": "4052e7c2cb971427cd511cae48c0726f2d6712b49eb6ab392e9e45c7ece4bf3c"
+  },
+  "limitations": [
+    "Exploration uses observed full-season profiles, not historical decision simulation.",
+    "Core/offensive evaluation folds differ; metrics cannot be directly interpreted as a controlled comparison.",
+    "Styles and clusters are statistical proxies; tactic/transfer success is unvalidated.",
+    "Complete advanced Segunda profiles and final 2025/26 galleries unavailable.",
+    "Reported values retain provisional identities and unknown original publication dates."
+  ]
+}
