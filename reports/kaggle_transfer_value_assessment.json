@@ -1,0 +1,44 @@
+{
+  "dataset_url": "https://www.kaggle.com/datasets/kanchana1990/football-transfer-value-intelligence-2024",
+  "dataset_ref": "kanchana1990/football-transfer-value-intelligence-2024",
+  "status": "blocked_by_cloud_proxy_domain_policy",
+  "attempts": [
+    {
+      "url": "https://www.kaggle.com/datasets/kanchana1990/football-transfer-value-intelligence-2024",
+      "checked_at_utc": "2026-10-11T13:29:17.183462+00:00",
+      "error_type": "ProxyError",
+      "error": "HTTPSConnectionPool(host='www.kaggle.com', port=443): Max retries exceeded with url: /datasets/kanchana1990/football-transfer-value-intelligence-2024 (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",
+      "http_status": null
+    },
+    {
+      "url": "https://www.kaggle.com/api/v1/datasets/list/kanchana1990/football-transfer-value-intelligence-2024",
+      "checked_at_utc": "2026-10-11T13:29:17.190957+00:00",
+      "error_type": "ProxyError",
+      "error": "HTTPSConnectionPool(host='www.kaggle.com', port=443): Max retries exceeded with url: /api/v1/datasets/list/kanchana1990/football-transfer-value-intelligence-2024 (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",
+      "http_status": null
+    }
+  ],
+  "page_inspected": false,
+  "metadata_inspected": false,
+  "data_downloaded": false,
+  "rows_inspected": 0,
+  "columns_verified": [],
+  "licence_status": "unverified",
+  "original_provider": "unverified",
+  "valuation_dates": "unverified",
+  "league_season_coverage": "unverified",
+  "model_use_eligible": false,
+  "integration_performed": false,
+  "models_retrained": false,
+  "synthetic_fallback_used": false,
+  "network_draft_saved": true,
+  "draft_save_applies_runtime": false,
+  "git_source_commit": "6ac1980853a278a939a2c9c352cfd51561e4e657",
+  "preserved_input_sha256": {
+    "reports/valuation_audit.json": "48624b27c366f2eb5fa9f26f2d7f6901840046cd9095230b6e59f7dff4b7b938",
+    "reports/collected_model_results.json": "65a2793a7fab847dbac8de2514b548165bf4beb88660a6895953f33a440d5566",
+    "reports/collected_validation_results.json": "855637d29ea13dd48f8aa47293068d560eece1699d132608708ed677a57efe37",
+    "models/real/collected_core_recommender.joblib": "5237b98ebea0f37bb5a92be5ef329751d4a5a2a7f10c1e9c68768599d1b712c2",
+    "models/real/collected_offensive_recommender.joblib": "2852c15c8bbfa7522b23257beb4619d0fffc650cf8111d028735d85c1db4a3d9"
+  }
+}
