@@ -1,0 +1,91 @@
+style,position,rank,entity_id,player,season,team,measured_weight_fraction,affinity,interpretation
+posesion,DF,1,fbref:1265a93a,Reece James,2021-2022,Chelsea,0.8500000000000001,0.8699614260032167,Expert-weighted descriptive style; no relevance label or budget
+posesion,DF,2,fbref:d2424d1b,Ben Chilwell,2021-2022,Chelsea,0.8500000000000001,0.7372034917003214,Expert-weighted descriptive style; no relevance label or budget
+posesion,DF,3,fbref:7242b495,Niko Gießelmann,2021-2022,Union Berlin,0.8500000000000001,0.7241863235304301,Expert-weighted descriptive style; no relevance label or budget
+posesion,DF,4,fbref:63f04c6c,Alfonso Pedraza,2021-2022,Villarreal,0.8500000000000001,0.7132560908575074,Expert-weighted descriptive style; no relevance label or budget
+posesion,DF,5,fbref:f4290206,Marcos Alonso,2021-2022,Chelsea,0.8500000000000001,0.7002776477265431,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,DF,1,fbref:b0616e3d,Sergio Escudero,2021-2022,Granada,0.85,0.8954483807111382,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,DF,2,fbref:de40e38c,Giulian Biancone,2021-2022,Troyes,0.85,0.8334050250546561,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,DF,3,fbref:6a827d8e,Youcef Atal,2021-2022,Nice,0.85,0.8280651794931884,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,DF,4,fbref:861e0116,Kostas Stafylidis,2021-2022,Bochum,0.85,0.8164789659253741,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,DF,5,fbref:5cec2487,Martín Montoya,2021-2022,Betis,0.85,0.8002420834849383,Expert-weighted descriptive style; no relevance label or budget
+vertical,DF,1,fbref:d2424d1b,Ben Chilwell,2021-2022,Chelsea,0.85,0.7572027867908572,Expert-weighted descriptive style; no relevance label or budget
+vertical,DF,2,fbref:b7a5bc86,Mohamed Fares,2021-2022,Genoa,0.85,0.6700777728414831,Expert-weighted descriptive style; no relevance label or budget
+vertical,DF,3,fbref:8846a40f,Mathias Pereira Lage,2021-2022,Angers,0.85,0.5874130671200448,Expert-weighted descriptive style; no relevance label or budget
+vertical,DF,4,fbref:970b8574,Federico Dimarco,2021-2022,Inter,0.85,0.5672728690499755,Expert-weighted descriptive style; no relevance label or budget
+vertical,DF,5,fbref:1265a93a,Reece James,2021-2022,Chelsea,0.85,0.5525609730751715,Expert-weighted descriptive style; no relevance label or budget
+contraataque,DF,1,fbref:1265a93a,Reece James,2021-2022,Chelsea,0.8,0.7882765488792796,Expert-weighted descriptive style; no relevance label or budget
+contraataque,DF,2,fbref:d557d734,Matt Doherty,2021-2022,Tottenham,0.8,0.7449314405038819,Expert-weighted descriptive style; no relevance label or budget
+contraataque,DF,3,fbref:d2424d1b,Ben Chilwell,2021-2022,Chelsea,0.8,0.6685923881885032,Expert-weighted descriptive style; no relevance label or budget
+contraataque,DF,4,fbref:0a89e877,Benjamin Henrichs,2021-2022,RB Leipzig,0.8,0.6664799904364457,Expert-weighted descriptive style; no relevance label or budget
+contraataque,DF,5,fbref:8846a40f,Mathias Pereira Lage,2021-2022,Angers,0.8,0.6193140078827573,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,DF,1,fbref:b0616e3d,Sergio Escudero,2021-2022,Granada,0.95,0.9003319943839184,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,DF,2,fbref:de40e38c,Giulian Biancone,2021-2022,Troyes,0.95,0.8540295494099059,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,DF,3,fbref:6a827d8e,Youcef Atal,2021-2022,Nice,0.95,0.8354205801678637,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,DF,4,fbref:861e0116,Kostas Stafylidis,2021-2022,Bochum,0.95,0.8222348005606184,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,DF,5,fbref:5cec2487,Martín Montoya,2021-2022,Betis,0.95,0.8179377684938621,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,DF,1,fbref:970b8574,Federico Dimarco,2021-2022,Inter,0.85,0.8713080515127907,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,DF,2,fbref:b1cd37e6,Filip Kostić,2021-2022,Eint Frankfurt,0.85,0.8700572590141393,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,DF,3,fbref:1265a93a,Reece James,2021-2022,Chelsea,0.85,0.8550075349809821,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,DF,4,fbref:7242b495,Niko Gießelmann,2021-2022,Union Berlin,0.85,0.8484375692363373,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,DF,5,fbref:7d450ed3,David Raum,2021-2022,Hoffenheim,0.85,0.8217552427631821,Expert-weighted descriptive style; no relevance label or budget
+posesion,MF,1,fbref:19053e31,Sofiane Diop,2021-2022,Monaco,0.8500000000000001,0.9234900051209568,Expert-weighted descriptive style; no relevance label or budget
+posesion,MF,2,fbref:a3ddb1b9,Mark Uth,2021-2022,Köln,0.8500000000000001,0.8979064702147923,Expert-weighted descriptive style; no relevance label or budget
+posesion,MF,3,fbref:6bde367b,Téji Savanier,2021-2022,Montpellier,0.8500000000000001,0.8838731149814556,Expert-weighted descriptive style; no relevance label or budget
+posesion,MF,4,fbref:fc46aab1,Lovro Majer,2021-2022,Rennes,0.8500000000000001,0.8792750024435764,Expert-weighted descriptive style; no relevance label or budget
+posesion,MF,5,fbref:934e1968,Dominik Szoboszlai,2021-2022,RB Leipzig,0.8500000000000001,0.8625815285091147,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,MF,1,fbref:e82adcab,Exequiel Palacios,2021-2022,Leverkusen,0.85,0.8737671025551064,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,MF,2,fbref:c2211709,Ellyes Skhiri,2021-2022,Köln,0.85,0.8012349695800073,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,MF,3,fbref:6c203af0,Yves Bissouma,2021-2022,Brighton,0.85,0.740048398324721,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,MF,4,fbref:4f255115,Aurélien Tchouaméni,2021-2022,Monaco,0.85,0.7240221553197443,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,MF,5,fbref:542cc80f,Paul Lasne,2021-2022,Brest,0.85,0.7051083179346845,Expert-weighted descriptive style; no relevance label or budget
+vertical,MF,1,fbref:c76b7567,Adrien Thomasson,2021-2022,Strasbourg,0.85,0.9335771343372887,Expert-weighted descriptive style; no relevance label or budget
+vertical,MF,2,fbref:e46012d4,Kevin De Bruyne,2021-2022,Manchester City,0.85,0.8793080810233964,Expert-weighted descriptive style; no relevance label or budget
+vertical,MF,3,fbref:2903a856,Jonas Hofmann,2021-2022,M'Gladbach,0.85,0.87797578132984,Expert-weighted descriptive style; no relevance label or budget
+vertical,MF,4,fbref:34a88e3e,Edon Zhegrova,2021-2022,Lille,0.85,0.8317131620663546,Expert-weighted descriptive style; no relevance label or budget
+vertical,MF,5,fbref:92e7e919,Son Heung-min,2021-2022,Tottenham,0.85,0.8271687345685346,Expert-weighted descriptive style; no relevance label or budget
+contraataque,MF,1,fbref:c76b7567,Adrien Thomasson,2021-2022,Strasbourg,0.8,0.8966030434065678,Expert-weighted descriptive style; no relevance label or budget
+contraataque,MF,2,fbref:9674002f,Mason Mount,2021-2022,Chelsea,0.8,0.8540294041724165,Expert-weighted descriptive style; no relevance label or budget
+contraataque,MF,3,fbref:4e6dbac4,Sergej Milinković-Savić,2021-2022,Lazio,0.8,0.8440860241905181,Expert-weighted descriptive style; no relevance label or budget
+contraataque,MF,4,fbref:934e1968,Dominik Szoboszlai,2021-2022,RB Leipzig,0.8,0.8429939638393112,Expert-weighted descriptive style; no relevance label or budget
+contraataque,MF,5,fbref:e46012d4,Kevin De Bruyne,2021-2022,Manchester City,0.8,0.8380361631448855,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,MF,1,fbref:e82adcab,Exequiel Palacios,2021-2022,Leverkusen,0.95,0.8830541938751325,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,MF,2,fbref:c2211709,Ellyes Skhiri,2021-2022,Köln,0.95,0.817831397095641,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,MF,3,fbref:6c203af0,Yves Bissouma,2021-2022,Brighton,0.95,0.7738094233403273,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,MF,4,fbref:4f255115,Aurélien Tchouaméni,2021-2022,Monaco,0.95,0.7461282870587977,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,MF,5,fbref:b5bb8188,Jean Onana,2021-2022,Bordeaux,0.95,0.7251147913983217,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,MF,1,fbref:cd0fa27b,Hakan Çalhanoğlu,2021-2022,Inter,0.85,0.9296645567026847,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,MF,2,fbref:19053e31,Sofiane Diop,2021-2022,Monaco,0.85,0.9182898738745011,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,MF,3,fbref:356c9002,Antonio Candreva,2021-2022,Sampdoria,0.85,0.90284281879439,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,MF,4,fbref:a3ddb1b9,Mark Uth,2021-2022,Köln,0.85,0.8854516043034228,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,MF,5,fbref:745ca0a3,Romain Faivre,2021-2022,2 clubs,0.85,0.8847379858728931,Expert-weighted descriptive style; no relevance label or budget
+posesion,FW,1,fbref:53a0e358,Domenico Berardi,2021-2022,Sassuolo,0.8500000000000001,0.8745707262089708,Expert-weighted descriptive style; no relevance label or budget
+posesion,FW,2,fbref:48a5a5d6,Martinelli,2021-2022,Arsenal,0.8500000000000001,0.8558496117739218,Expert-weighted descriptive style; no relevance label or budget
+posesion,FW,3,fbref:c4486bac,Michael Olise,2021-2022,Crystal Palace,0.8500000000000001,0.8496200917867546,Expert-weighted descriptive style; no relevance label or budget
+posesion,FW,4,fbref:9d5dcc23,Lamine Gueye,2021-2022,Metz,0.8500000000000001,0.8319495479691427,Expert-weighted descriptive style; no relevance label or budget
+posesion,FW,5,fbref:a69e4806,Hirving Lozano,2021-2022,Napoli,0.8500000000000001,0.8154096371070176,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,FW,1,fbref:de112b84,Jacob Murphy,2021-2022,Newcastle Utd,0.85,0.762013798350746,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,FW,2,fbref:ee45fd85,Vanderson,2021-2022,Monaco,0.85,0.4725003669519368,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,FW,3,fbref:2fba6108,Anthony Elanga,2021-2022,Manchester Utd,0.85,0.4398799993813052,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,FW,4,fbref:b827d5b3,Marc Albrighton,2021-2022,Leicester City,0.85,0.43448671853432996,Expert-weighted descriptive style; no relevance label or budget
+presion_alta,FW,5,fbref:dd669209,Renato Steffen,2021-2022,Wolfsburg,0.85,0.38848212809335503,Expert-weighted descriptive style; no relevance label or budget
+vertical,FW,1,fbref:f49c4ae9,Junior Messias,2021-2022,Milan,0.85,0.9033079974398135,Expert-weighted descriptive style; no relevance label or budget
+vertical,FW,2,fbref:88e357ef,Serge Gnabry,2021-2022,Bayern Munich,0.85,0.8905503402735765,Expert-weighted descriptive style; no relevance label or budget
+vertical,FW,3,fbref:2f557579,Lorenzo Insigne,2021-2022,Napoli,0.85,0.870817826600353,Expert-weighted descriptive style; no relevance label or budget
+vertical,FW,4,fbref:892d5bb1,Riyad Mahrez,2021-2022,Manchester City,0.85,0.8617012206188092,Expert-weighted descriptive style; no relevance label or budget
+vertical,FW,5,fbref:42fd9c7f,Kylian Mbappé,2021-2022,Paris S-G,0.85,0.8601508656941518,Expert-weighted descriptive style; no relevance label or budget
+contraataque,FW,1,fbref:48a5a5d6,Martinelli,2021-2022,Arsenal,0.8,0.9081911030043803,Expert-weighted descriptive style; no relevance label or budget
+contraataque,FW,2,fbref:53a0e358,Domenico Berardi,2021-2022,Sassuolo,0.8,0.8397990593519454,Expert-weighted descriptive style; no relevance label or budget
+contraataque,FW,3,fbref:2f557579,Lorenzo Insigne,2021-2022,Napoli,0.8,0.8368898543761389,Expert-weighted descriptive style; no relevance label or budget
+contraataque,FW,4,fbref:79c84d1c,Jarrod Bowen,2021-2022,West Ham,0.8,0.8202030511997385,Expert-weighted descriptive style; no relevance label or budget
+contraataque,FW,5,fbref:7c56da38,Christopher Nkunku,2021-2022,RB Leipzig,0.8,0.8179941804497597,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,FW,1,fbref:de112b84,Jacob Murphy,2021-2022,Newcastle Utd,0.95,0.7615148916763266,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,FW,2,fbref:ee45fd85,Vanderson,2021-2022,Monaco,0.95,0.5003383865043598,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,FW,3,fbref:dd669209,Renato Steffen,2021-2022,Wolfsburg,0.95,0.4209314571397478,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,FW,4,fbref:b827d5b3,Marc Albrighton,2021-2022,Leicester City,0.95,0.41684505275598477,Expert-weighted descriptive style; no relevance label or budget
+solidez_defensiva,FW,5,fbref:2fba6108,Anthony Elanga,2021-2022,Manchester Utd,0.95,0.408075368731663,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,FW,1,fbref:c4486bac,Michael Olise,2021-2022,Crystal Palace,0.85,0.890070584701042,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,FW,2,fbref:9d5dcc23,Lamine Gueye,2021-2022,Metz,0.85,0.8878612948983488,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,FW,3,fbref:5e861944,Matteo Politano,2021-2022,Napoli,0.85,0.8857295545384352,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,FW,4,fbref:3708e9fa,Aleksandr Golovin,2021-2022,Monaco,0.85,0.8803351591055525,Expert-weighted descriptive style; no relevance label or budget
+desborde_banda,FW,5,fbref:58ae47b2,Dimitri Payet,2021-2022,Marseille,0.85,0.8676965299039623,Expert-weighted descriptive style; no relevance label or budget

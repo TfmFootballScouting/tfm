@@ -1,0 +1,37 @@
+{
+  "run_id": "77dc5b4e615245ae910aec3a75360136",
+  "status": "FINISHED",
+  "artifact_root": ".",
+  "tags": {
+    "mlflow.user": "agent",
+    "mlflow.source.name": "scripts/five_league_pipeline.py",
+    "mlflow.source.type": "LOCAL",
+    "mlflow.source.git.commit": "f5eb8225cb01c77ecb8795312e0f29f82d9166b1",
+    "owner": "tfm-team",
+    "project": "tfm-scouting",
+    "dataset": "d7a70a7349eb58b62cd18c540129203cd411aeb97706cdf074cbcbe74f8ad49a",
+    "dataset_kind": "real_fbref_five_leagues",
+    "environment": "Python 3.12.14 / Linux",
+    "git_commit": "f5eb8225cb01c77ecb8795312e0f29f82d9166b1",
+    "git_dirty": "False",
+    "evaluation": "next_season_same_player_proxy_not_transfer_success",
+    "price_features": "excluded",
+    "mlflow.runName": "five_league_offensive_real_refit"
+  },
+  "params": {
+    "selected_method": "euclidean_profile",
+    "selected_k": "2",
+    "features": "gls_p90,ast_p90,sh_p90,sot_p90,xg_p90,xag_p90",
+    "seed": "42",
+    "bootstrap_person_trials": "30",
+    "preprocessing_fit": "train_only",
+    "training_scope": "five_leagues"
+  },
+  "metrics": {
+    "holdout_mrr": 0.031223258958954857,
+    "holdout_recall_at_5": 0.03870967741935484,
+    "holdout_recall_at_10": 0.06129032258064516,
+    "robustness_top5_jaccard_mean": 0.9444444444444444,
+    "cluster_oob_ari_mean": 0.9821418357012877
+  }
+}

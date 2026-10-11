@@ -1,0 +1,151 @@
+category,league,season,stints,matched,compatible
+shooting,Bundesliga,2020-2021,505,505,505
+shooting,Bundesliga,2021-2022,523,523,523
+shooting,Bundesliga,2022-2023,515,515,515
+shooting,Bundesliga,2023-2024,507,507,507
+shooting,Bundesliga,2024-2025,492,492,492
+shooting,Bundesliga,2025-2026,356,356,356
+shooting,La Liga,2020-2021,582,582,582
+shooting,La Liga,2021-2022,617,617,617
+shooting,La Liga,2022-2023,596,596,596
+shooting,La Liga,2023-2024,609,609,609
+shooting,La Liga,2024-2025,601,601,601
+shooting,La Liga,2025-2026,438,438,438
+shooting,Ligue 1,2020-2021,584,584,584
+shooting,Ligue 1,2021-2022,603,603,603
+shooting,Ligue 1,2022-2023,606,606,606
+shooting,Ligue 1,2023-2024,541,541,541
+shooting,Ligue 1,2024-2025,553,553,553
+shooting,Ligue 1,2025-2026,389,389,388
+shooting,Premier League,2020-2021,532,532,532
+shooting,Premier League,2021-2022,546,546,546
+shooting,Premier League,2022-2023,569,569,569
+shooting,Premier League,2023-2024,580,580,580
+shooting,Premier League,2024-2025,574,574,574
+shooting,Premier League,2025-2026,404,404,404
+shooting,Serie A,2020-2021,619,619,619
+shooting,Serie A,2021-2022,632,632,632
+shooting,Serie A,2022-2023,603,603,603
+shooting,Serie A,2023-2024,615,615,615
+shooting,Serie A,2024-2025,634,634,634
+shooting,Serie A,2025-2026,409,409,409
+defense,Bundesliga,2020-2021,505,505,505
+defense,Bundesliga,2021-2022,523,523,523
+defense,Bundesliga,2022-2023,515,515,515
+defense,Bundesliga,2023-2024,507,507,507
+defense,Bundesliga,2024-2025,492,379,14
+defense,Bundesliga,2025-2026,356,0,0
+defense,La Liga,2020-2021,582,582,582
+defense,La Liga,2021-2022,617,617,617
+defense,La Liga,2022-2023,596,596,596
+defense,La Liga,2023-2024,609,609,609
+defense,La Liga,2024-2025,601,470,30
+defense,La Liga,2025-2026,438,0,0
+defense,Ligue 1,2020-2021,584,584,584
+defense,Ligue 1,2021-2022,603,603,603
+defense,Ligue 1,2022-2023,606,606,606
+defense,Ligue 1,2023-2024,541,541,541
+defense,Ligue 1,2024-2025,553,416,38
+defense,Ligue 1,2025-2026,389,0,0
+defense,Premier League,2020-2021,532,532,532
+defense,Premier League,2021-2022,546,546,546
+defense,Premier League,2022-2023,569,569,569
+defense,Premier League,2023-2024,580,580,580
+defense,Premier League,2024-2025,574,439,27
+defense,Premier League,2025-2026,404,0,0
+defense,Serie A,2020-2021,619,619,619
+defense,Serie A,2021-2022,632,632,632
+defense,Serie A,2022-2023,603,603,603
+defense,Serie A,2023-2024,615,615,615
+defense,Serie A,2024-2025,634,476,39
+defense,Serie A,2025-2026,409,0,0
+misc,Bundesliga,2020-2021,505,505,505
+misc,Bundesliga,2021-2022,523,523,523
+misc,Bundesliga,2022-2023,515,515,515
+misc,Bundesliga,2023-2024,507,507,507
+misc,Bundesliga,2024-2025,492,379,14
+misc,Bundesliga,2025-2026,356,0,0
+misc,La Liga,2020-2021,582,582,582
+misc,La Liga,2021-2022,617,617,617
+misc,La Liga,2022-2023,596,596,596
+misc,La Liga,2023-2024,609,609,609
+misc,La Liga,2024-2025,601,470,30
+misc,La Liga,2025-2026,438,0,0
+misc,Ligue 1,2020-2021,584,584,584
+misc,Ligue 1,2021-2022,603,603,603
+misc,Ligue 1,2022-2023,606,606,606
+misc,Ligue 1,2023-2024,541,541,541
+misc,Ligue 1,2024-2025,553,416,38
+misc,Ligue 1,2025-2026,389,0,0
+misc,Premier League,2020-2021,532,532,532
+misc,Premier League,2021-2022,546,546,546
+misc,Premier League,2022-2023,569,569,569
+misc,Premier League,2023-2024,580,580,580
+misc,Premier League,2024-2025,574,439,27
+misc,Premier League,2025-2026,404,0,0
+misc,Serie A,2020-2021,619,619,619
+misc,Serie A,2021-2022,632,632,632
+misc,Serie A,2022-2023,603,603,603
+misc,Serie A,2023-2024,615,615,615
+misc,Serie A,2024-2025,634,476,39
+misc,Serie A,2025-2026,409,0,0
+passing,Bundesliga,2020-2021,505,505,505
+passing,Bundesliga,2021-2022,523,523,523
+passing,Bundesliga,2022-2023,515,515,515
+passing,Bundesliga,2023-2024,507,507,507
+passing,Bundesliga,2024-2025,492,492,492
+passing,Bundesliga,2025-2026,356,356,356
+passing,La Liga,2020-2021,582,582,582
+passing,La Liga,2021-2022,617,617,608
+passing,La Liga,2022-2023,596,596,596
+passing,La Liga,2023-2024,609,609,609
+passing,La Liga,2024-2025,601,601,601
+passing,La Liga,2025-2026,438,438,438
+passing,Ligue 1,2020-2021,584,584,584
+passing,Ligue 1,2021-2022,603,603,603
+passing,Ligue 1,2022-2023,606,606,606
+passing,Ligue 1,2023-2024,541,541,541
+passing,Ligue 1,2024-2025,553,553,553
+passing,Ligue 1,2025-2026,389,389,388
+passing,Premier League,2020-2021,532,532,532
+passing,Premier League,2021-2022,546,546,546
+passing,Premier League,2022-2023,569,569,569
+passing,Premier League,2023-2024,580,580,580
+passing,Premier League,2024-2025,574,574,574
+passing,Premier League,2025-2026,404,404,404
+passing,Serie A,2020-2021,619,619,619
+passing,Serie A,2021-2022,632,632,632
+passing,Serie A,2022-2023,603,603,603
+passing,Serie A,2023-2024,615,615,615
+passing,Serie A,2024-2025,634,634,634
+passing,Serie A,2025-2026,409,409,409
+possession,Bundesliga,2020-2021,505,505,505
+possession,Bundesliga,2021-2022,523,523,523
+possession,Bundesliga,2022-2023,515,515,515
+possession,Bundesliga,2023-2024,507,507,507
+possession,Bundesliga,2024-2025,492,379,14
+possession,Bundesliga,2025-2026,356,0,0
+possession,La Liga,2020-2021,582,582,582
+possession,La Liga,2021-2022,617,617,617
+possession,La Liga,2022-2023,596,596,596
+possession,La Liga,2023-2024,609,609,609
+possession,La Liga,2024-2025,601,470,30
+possession,La Liga,2025-2026,438,0,0
+possession,Ligue 1,2020-2021,584,584,584
+possession,Ligue 1,2021-2022,603,603,603
+possession,Ligue 1,2022-2023,606,606,606
+possession,Ligue 1,2023-2024,541,541,541
+possession,Ligue 1,2024-2025,553,416,38
+possession,Ligue 1,2025-2026,389,0,0
+possession,Premier League,2020-2021,532,532,532
+possession,Premier League,2021-2022,546,546,546
+possession,Premier League,2022-2023,569,569,569
+possession,Premier League,2023-2024,580,580,580
+possession,Premier League,2024-2025,574,439,27
+possession,Premier League,2025-2026,404,0,0
+possession,Serie A,2020-2021,619,619,619
+possession,Serie A,2021-2022,632,632,632
+possession,Serie A,2022-2023,603,603,603
+possession,Serie A,2023-2024,615,615,615
+possession,Serie A,2024-2025,634,476,39
+possession,Serie A,2025-2026,409,0,0

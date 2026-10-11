@@ -1,0 +1,4 @@
+model,queries,candidates,original_method,trained_method,original_mrr,trained_mrr,trained_minus_original_mrr,paired_ci_low,paired_ci_high,interpretation
+offensive,1240,1804,euclidean_profile,euclidean_profile,0.030629375414625744,0.03122325895895482,0.0005938835443290729,0.0001909054294391075,0.0011513149467918856,same holdout people/pool; methods selected on their respective validation; no holdout tuning
+core,1266,1810,euclidean_profile,euclidean_profile,0.09209210080240565,0.09549844955925275,0.003406348756847105,0.0006252400020252955,0.006184973220839534,same holdout people/pool; methods selected on their respective validation; no holdout tuning
+attack_on_core,1266,1810,euclidean_profile,euclidean_profile,0.02404396772799454,0.02409995026737321,5.598253937867253e-05,-0.00025866328693790303,0.0004224697007858667,same holdout people/pool; methods selected on their respective validation; no holdout tuning

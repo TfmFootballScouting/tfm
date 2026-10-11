@@ -1,0 +1,401 @@
+stage,count,case_id,model
+gallery,1861,core:2022-2023:La Liga:posesion,core
+target_league,385,core:2022-2023:La Liga:posesion,core
+broad_position,132,core:2022-2023:La Liga:posesion,core
+known_age_within_ceiling,36,core:2022-2023:La Liga:posesion,core
+minimum_minutes,27,core:2022-2023:La Liga:posesion,core
+exclude_all_own_club_stints,23,core:2022-2023:La Liga:posesion,core
+known_positive_reported_value,18,core:2022-2023:La Liga:posesion,core
+reported_value_ceiling,8,core:2022-2023:La Liga:posesion,core
+gallery,1861,core:2022-2023:Premier League:posesion,core
+target_league,377,core:2022-2023:Premier League:posesion,core
+broad_position,117,core:2022-2023:Premier League:posesion,core
+known_age_within_ceiling,39,core:2022-2023:Premier League:posesion,core
+minimum_minutes,30,core:2022-2023:Premier League:posesion,core
+exclude_all_own_club_stints,30,core:2022-2023:Premier League:posesion,core
+known_positive_reported_value,29,core:2022-2023:Premier League:posesion,core
+reported_value_ceiling,0,core:2022-2023:Premier League:posesion,core
+gallery,1861,core:2022-2023:Bundesliga:posesion,core
+target_league,328,core:2022-2023:Bundesliga:posesion,core
+broad_position,105,core:2022-2023:Bundesliga:posesion,core
+known_age_within_ceiling,32,core:2022-2023:Bundesliga:posesion,core
+minimum_minutes,21,core:2022-2023:Bundesliga:posesion,core
+exclude_all_own_club_stints,21,core:2022-2023:Bundesliga:posesion,core
+known_positive_reported_value,20,core:2022-2023:Bundesliga:posesion,core
+reported_value_ceiling,4,core:2022-2023:Bundesliga:posesion,core
+gallery,1861,core:2022-2023:Serie A:posesion,core
+target_league,394,core:2022-2023:Serie A:posesion,core
+broad_position,138,core:2022-2023:Serie A:posesion,core
+known_age_within_ceiling,39,core:2022-2023:Serie A:posesion,core
+minimum_minutes,22,core:2022-2023:Serie A:posesion,core
+exclude_all_own_club_stints,22,core:2022-2023:Serie A:posesion,core
+known_positive_reported_value,21,core:2022-2023:Serie A:posesion,core
+reported_value_ceiling,3,core:2022-2023:Serie A:posesion,core
+gallery,1861,core:2022-2023:Ligue 1:posesion,core
+target_league,377,core:2022-2023:Ligue 1:posesion,core
+broad_position,131,core:2022-2023:Ligue 1:posesion,core
+known_age_within_ceiling,43,core:2022-2023:Ligue 1:posesion,core
+minimum_minutes,36,core:2022-2023:Ligue 1:posesion,core
+exclude_all_own_club_stints,36,core:2022-2023:Ligue 1:posesion,core
+known_positive_reported_value,34,core:2022-2023:Ligue 1:posesion,core
+reported_value_ceiling,8,core:2022-2023:Ligue 1:posesion,core
+gallery,1861,core:2022-2023:La Liga:solidez_defensiva,core
+target_league,385,core:2022-2023:La Liga:solidez_defensiva,core
+broad_position,157,core:2022-2023:La Liga:solidez_defensiva,core
+known_age_within_ceiling,86,core:2022-2023:La Liga:solidez_defensiva,core
+minimum_minutes,37,core:2022-2023:La Liga:solidez_defensiva,core
+exclude_all_own_club_stints,34,core:2022-2023:La Liga:solidez_defensiva,core
+known_positive_reported_value,27,core:2022-2023:La Liga:solidez_defensiva,core
+reported_value_ceiling,10,core:2022-2023:La Liga:solidez_defensiva,core
+gallery,1861,core:2022-2023:Premier League:solidez_defensiva,core
+target_league,377,core:2022-2023:Premier League:solidez_defensiva,core
+broad_position,154,core:2022-2023:Premier League:solidez_defensiva,core
+known_age_within_ceiling,100,core:2022-2023:Premier League:solidez_defensiva,core
+minimum_minutes,47,core:2022-2023:Premier League:solidez_defensiva,core
+exclude_all_own_club_stints,47,core:2022-2023:Premier League:solidez_defensiva,core
+known_positive_reported_value,45,core:2022-2023:Premier League:solidez_defensiva,core
+reported_value_ceiling,1,core:2022-2023:Premier League:solidez_defensiva,core
+gallery,1861,core:2022-2023:Bundesliga:solidez_defensiva,core
+target_league,328,core:2022-2023:Bundesliga:solidez_defensiva,core
+broad_position,140,core:2022-2023:Bundesliga:solidez_defensiva,core
+known_age_within_ceiling,100,core:2022-2023:Bundesliga:solidez_defensiva,core
+minimum_minutes,51,core:2022-2023:Bundesliga:solidez_defensiva,core
+exclude_all_own_club_stints,51,core:2022-2023:Bundesliga:solidez_defensiva,core
+known_positive_reported_value,47,core:2022-2023:Bundesliga:solidez_defensiva,core
+reported_value_ceiling,16,core:2022-2023:Bundesliga:solidez_defensiva,core
+gallery,1861,core:2022-2023:Serie A:solidez_defensiva,core
+target_league,394,core:2022-2023:Serie A:solidez_defensiva,core
+broad_position,166,core:2022-2023:Serie A:solidez_defensiva,core
+known_age_within_ceiling,111,core:2022-2023:Serie A:solidez_defensiva,core
+minimum_minutes,58,core:2022-2023:Serie A:solidez_defensiva,core
+exclude_all_own_club_stints,58,core:2022-2023:Serie A:solidez_defensiva,core
+known_positive_reported_value,51,core:2022-2023:Serie A:solidez_defensiva,core
+reported_value_ceiling,25,core:2022-2023:Serie A:solidez_defensiva,core
+gallery,1861,core:2022-2023:Ligue 1:solidez_defensiva,core
+target_league,377,core:2022-2023:Ligue 1:solidez_defensiva,core
+broad_position,167,core:2022-2023:Ligue 1:solidez_defensiva,core
+known_age_within_ceiling,115,core:2022-2023:Ligue 1:solidez_defensiva,core
+minimum_minutes,47,core:2022-2023:Ligue 1:solidez_defensiva,core
+exclude_all_own_club_stints,47,core:2022-2023:Ligue 1:solidez_defensiva,core
+known_positive_reported_value,43,core:2022-2023:Ligue 1:solidez_defensiva,core
+reported_value_ceiling,27,core:2022-2023:Ligue 1:solidez_defensiva,core
+gallery,1861,core:2022-2023:La Liga:vertical,core
+target_league,385,core:2022-2023:La Liga:vertical,core
+broad_position,96,core:2022-2023:La Liga:vertical,core
+known_age_within_ceiling,41,core:2022-2023:La Liga:vertical,core
+minimum_minutes,35,core:2022-2023:La Liga:vertical,core
+exclude_all_own_club_stints,32,core:2022-2023:La Liga:vertical,core
+known_positive_reported_value,27,core:2022-2023:La Liga:vertical,core
+reported_value_ceiling,9,core:2022-2023:La Liga:vertical,core
+gallery,1861,core:2022-2023:Premier League:vertical,core
+target_league,377,core:2022-2023:Premier League:vertical,core
+broad_position,106,core:2022-2023:Premier League:vertical,core
+known_age_within_ceiling,60,core:2022-2023:Premier League:vertical,core
+minimum_minutes,45,core:2022-2023:Premier League:vertical,core
+exclude_all_own_club_stints,45,core:2022-2023:Premier League:vertical,core
+known_positive_reported_value,45,core:2022-2023:Premier League:vertical,core
+reported_value_ceiling,2,core:2022-2023:Premier League:vertical,core
+gallery,1861,core:2022-2023:Bundesliga:vertical,core
+target_league,328,core:2022-2023:Bundesliga:vertical,core
+broad_position,83,core:2022-2023:Bundesliga:vertical,core
+known_age_within_ceiling,38,core:2022-2023:Bundesliga:vertical,core
+minimum_minutes,26,core:2022-2023:Bundesliga:vertical,core
+exclude_all_own_club_stints,26,core:2022-2023:Bundesliga:vertical,core
+known_positive_reported_value,22,core:2022-2023:Bundesliga:vertical,core
+reported_value_ceiling,6,core:2022-2023:Bundesliga:vertical,core
+gallery,1861,core:2022-2023:Serie A:vertical,core
+target_league,394,core:2022-2023:Serie A:vertical,core
+broad_position,90,core:2022-2023:Serie A:vertical,core
+known_age_within_ceiling,43,core:2022-2023:Serie A:vertical,core
+minimum_minutes,35,core:2022-2023:Serie A:vertical,core
+exclude_all_own_club_stints,35,core:2022-2023:Serie A:vertical,core
+known_positive_reported_value,31,core:2022-2023:Serie A:vertical,core
+reported_value_ceiling,12,core:2022-2023:Serie A:vertical,core
+gallery,1861,core:2022-2023:Ligue 1:vertical,core
+target_league,377,core:2022-2023:Ligue 1:vertical,core
+broad_position,79,core:2022-2023:Ligue 1:vertical,core
+known_age_within_ceiling,45,core:2022-2023:Ligue 1:vertical,core
+minimum_minutes,38,core:2022-2023:Ligue 1:vertical,core
+exclude_all_own_club_stints,38,core:2022-2023:Ligue 1:vertical,core
+known_positive_reported_value,37,core:2022-2023:Ligue 1:vertical,core
+reported_value_ceiling,22,core:2022-2023:Ligue 1:vertical,core
+gallery,1861,core:2022-2023:La Liga:desborde_banda,core
+target_league,385,core:2022-2023:La Liga:desborde_banda,core
+broad_position,96,core:2022-2023:La Liga:desborde_banda,core
+known_age_within_ceiling,41,core:2022-2023:La Liga:desborde_banda,core
+minimum_minutes,35,core:2022-2023:La Liga:desborde_banda,core
+exclude_all_own_club_stints,32,core:2022-2023:La Liga:desborde_banda,core
+known_positive_reported_value,27,core:2022-2023:La Liga:desborde_banda,core
+reported_value_ceiling,9,core:2022-2023:La Liga:desborde_banda,core
+gallery,1861,core:2022-2023:Premier League:desborde_banda,core
+target_league,377,core:2022-2023:Premier League:desborde_banda,core
+broad_position,106,core:2022-2023:Premier League:desborde_banda,core
+known_age_within_ceiling,60,core:2022-2023:Premier League:desborde_banda,core
+minimum_minutes,45,core:2022-2023:Premier League:desborde_banda,core
+exclude_all_own_club_stints,45,core:2022-2023:Premier League:desborde_banda,core
+known_positive_reported_value,45,core:2022-2023:Premier League:desborde_banda,core
+reported_value_ceiling,2,core:2022-2023:Premier League:desborde_banda,core
+gallery,1861,core:2022-2023:Bundesliga:desborde_banda,core
+target_league,328,core:2022-2023:Bundesliga:desborde_banda,core
+broad_position,83,core:2022-2023:Bundesliga:desborde_banda,core
+known_age_within_ceiling,38,core:2022-2023:Bundesliga:desborde_banda,core
+minimum_minutes,26,core:2022-2023:Bundesliga:desborde_banda,core
+exclude_all_own_club_stints,26,core:2022-2023:Bundesliga:desborde_banda,core
+known_positive_reported_value,22,core:2022-2023:Bundesliga:desborde_banda,core
+reported_value_ceiling,6,core:2022-2023:Bundesliga:desborde_banda,core
+gallery,1861,core:2022-2023:Serie A:desborde_banda,core
+target_league,394,core:2022-2023:Serie A:desborde_banda,core
+broad_position,90,core:2022-2023:Serie A:desborde_banda,core
+known_age_within_ceiling,43,core:2022-2023:Serie A:desborde_banda,core
+minimum_minutes,35,core:2022-2023:Serie A:desborde_banda,core
+exclude_all_own_club_stints,35,core:2022-2023:Serie A:desborde_banda,core
+known_positive_reported_value,31,core:2022-2023:Serie A:desborde_banda,core
+reported_value_ceiling,12,core:2022-2023:Serie A:desborde_banda,core
+gallery,1861,core:2022-2023:Ligue 1:desborde_banda,core
+target_league,377,core:2022-2023:Ligue 1:desborde_banda,core
+broad_position,79,core:2022-2023:Ligue 1:desborde_banda,core
+known_age_within_ceiling,45,core:2022-2023:Ligue 1:desborde_banda,core
+minimum_minutes,38,core:2022-2023:Ligue 1:desborde_banda,core
+exclude_all_own_club_stints,38,core:2022-2023:Ligue 1:desborde_banda,core
+known_positive_reported_value,37,core:2022-2023:Ligue 1:desborde_banda,core
+reported_value_ceiling,22,core:2022-2023:Ligue 1:desborde_banda,core
+gallery,1810,core:2023-2024:La Liga:posesion,core
+target_league,391,core:2023-2024:La Liga:posesion,core
+broad_position,137,core:2023-2024:La Liga:posesion,core
+known_age_within_ceiling,41,core:2023-2024:La Liga:posesion,core
+minimum_minutes,27,core:2023-2024:La Liga:posesion,core
+exclude_all_own_club_stints,24,core:2023-2024:La Liga:posesion,core
+known_positive_reported_value,22,core:2023-2024:La Liga:posesion,core
+reported_value_ceiling,2,core:2023-2024:La Liga:posesion,core
+gallery,1810,core:2023-2024:Premier League:posesion,core
+target_league,371,core:2023-2024:Premier League:posesion,core
+broad_position,119,core:2023-2024:Premier League:posesion,core
+known_age_within_ceiling,32,core:2023-2024:Premier League:posesion,core
+minimum_minutes,24,core:2023-2024:Premier League:posesion,core
+exclude_all_own_club_stints,24,core:2023-2024:Premier League:posesion,core
+known_positive_reported_value,23,core:2023-2024:Premier League:posesion,core
+reported_value_ceiling,2,core:2023-2024:Premier League:posesion,core
+gallery,1810,core:2023-2024:Bundesliga:posesion,core
+target_league,324,core:2023-2024:Bundesliga:posesion,core
+broad_position,103,core:2023-2024:Bundesliga:posesion,core
+known_age_within_ceiling,27,core:2023-2024:Bundesliga:posesion,core
+minimum_minutes,23,core:2023-2024:Bundesliga:posesion,core
+exclude_all_own_club_stints,23,core:2023-2024:Bundesliga:posesion,core
+known_positive_reported_value,23,core:2023-2024:Bundesliga:posesion,core
+reported_value_ceiling,3,core:2023-2024:Bundesliga:posesion,core
+gallery,1810,core:2023-2024:Serie A:posesion,core
+target_league,390,core:2023-2024:Serie A:posesion,core
+broad_position,121,core:2023-2024:Serie A:posesion,core
+known_age_within_ceiling,30,core:2023-2024:Serie A:posesion,core
+minimum_minutes,23,core:2023-2024:Serie A:posesion,core
+exclude_all_own_club_stints,23,core:2023-2024:Serie A:posesion,core
+known_positive_reported_value,21,core:2023-2024:Serie A:posesion,core
+reported_value_ceiling,4,core:2023-2024:Serie A:posesion,core
+gallery,1810,core:2023-2024:Ligue 1:posesion,core
+target_league,334,core:2023-2024:Ligue 1:posesion,core
+broad_position,110,core:2023-2024:Ligue 1:posesion,core
+known_age_within_ceiling,33,core:2023-2024:Ligue 1:posesion,core
+minimum_minutes,23,core:2023-2024:Ligue 1:posesion,core
+exclude_all_own_club_stints,23,core:2023-2024:Ligue 1:posesion,core
+known_positive_reported_value,21,core:2023-2024:Ligue 1:posesion,core
+reported_value_ceiling,6,core:2023-2024:Ligue 1:posesion,core
+gallery,1810,core:2023-2024:La Liga:solidez_defensiva,core
+target_league,391,core:2023-2024:La Liga:solidez_defensiva,core
+broad_position,161,core:2023-2024:La Liga:solidez_defensiva,core
+known_age_within_ceiling,82,core:2023-2024:La Liga:solidez_defensiva,core
+minimum_minutes,36,core:2023-2024:La Liga:solidez_defensiva,core
+exclude_all_own_club_stints,34,core:2023-2024:La Liga:solidez_defensiva,core
+known_positive_reported_value,29,core:2023-2024:La Liga:solidez_defensiva,core
+reported_value_ceiling,16,core:2023-2024:La Liga:solidez_defensiva,core
+gallery,1810,core:2023-2024:Premier League:solidez_defensiva,core
+target_league,371,core:2023-2024:Premier League:solidez_defensiva,core
+broad_position,159,core:2023-2024:Premier League:solidez_defensiva,core
+known_age_within_ceiling,97,core:2023-2024:Premier League:solidez_defensiva,core
+minimum_minutes,42,core:2023-2024:Premier League:solidez_defensiva,core
+exclude_all_own_club_stints,42,core:2023-2024:Premier League:solidez_defensiva,core
+known_positive_reported_value,38,core:2023-2024:Premier League:solidez_defensiva,core
+reported_value_ceiling,4,core:2023-2024:Premier League:solidez_defensiva,core
+gallery,1810,core:2023-2024:Bundesliga:solidez_defensiva,core
+target_league,324,core:2023-2024:Bundesliga:solidez_defensiva,core
+broad_position,147,core:2023-2024:Bundesliga:solidez_defensiva,core
+known_age_within_ceiling,90,core:2023-2024:Bundesliga:solidez_defensiva,core
+minimum_minutes,41,core:2023-2024:Bundesliga:solidez_defensiva,core
+exclude_all_own_club_stints,41,core:2023-2024:Bundesliga:solidez_defensiva,core
+known_positive_reported_value,37,core:2023-2024:Bundesliga:solidez_defensiva,core
+reported_value_ceiling,9,core:2023-2024:Bundesliga:solidez_defensiva,core
+gallery,1810,core:2023-2024:Serie A:solidez_defensiva,core
+target_league,390,core:2023-2024:Serie A:solidez_defensiva,core
+broad_position,171,core:2023-2024:Serie A:solidez_defensiva,core
+known_age_within_ceiling,100,core:2023-2024:Serie A:solidez_defensiva,core
+minimum_minutes,44,core:2023-2024:Serie A:solidez_defensiva,core
+exclude_all_own_club_stints,44,core:2023-2024:Serie A:solidez_defensiva,core
+known_positive_reported_value,39,core:2023-2024:Serie A:solidez_defensiva,core
+reported_value_ceiling,19,core:2023-2024:Serie A:solidez_defensiva,core
+gallery,1810,core:2023-2024:Ligue 1:solidez_defensiva,core
+target_league,334,core:2023-2024:Ligue 1:solidez_defensiva,core
+broad_position,136,core:2023-2024:Ligue 1:solidez_defensiva,core
+known_age_within_ceiling,91,core:2023-2024:Ligue 1:solidez_defensiva,core
+minimum_minutes,37,core:2023-2024:Ligue 1:solidez_defensiva,core
+exclude_all_own_club_stints,37,core:2023-2024:Ligue 1:solidez_defensiva,core
+known_positive_reported_value,32,core:2023-2024:Ligue 1:solidez_defensiva,core
+reported_value_ceiling,16,core:2023-2024:Ligue 1:solidez_defensiva,core
+gallery,1810,core:2023-2024:La Liga:vertical,core
+target_league,391,core:2023-2024:La Liga:vertical,core
+broad_position,93,core:2023-2024:La Liga:vertical,core
+known_age_within_ceiling,30,core:2023-2024:La Liga:vertical,core
+minimum_minutes,27,core:2023-2024:La Liga:vertical,core
+exclude_all_own_club_stints,25,core:2023-2024:La Liga:vertical,core
+known_positive_reported_value,20,core:2023-2024:La Liga:vertical,core
+reported_value_ceiling,7,core:2023-2024:La Liga:vertical,core
+gallery,1810,core:2023-2024:Premier League:vertical,core
+target_league,371,core:2023-2024:Premier League:vertical,core
+broad_position,93,core:2023-2024:Premier League:vertical,core
+known_age_within_ceiling,47,core:2023-2024:Premier League:vertical,core
+minimum_minutes,40,core:2023-2024:Premier League:vertical,core
+exclude_all_own_club_stints,40,core:2023-2024:Premier League:vertical,core
+known_positive_reported_value,37,core:2023-2024:Premier League:vertical,core
+reported_value_ceiling,1,core:2023-2024:Premier League:vertical,core
+gallery,1810,core:2023-2024:Bundesliga:vertical,core
+target_league,324,core:2023-2024:Bundesliga:vertical,core
+broad_position,74,core:2023-2024:Bundesliga:vertical,core
+known_age_within_ceiling,38,core:2023-2024:Bundesliga:vertical,core
+minimum_minutes,28,core:2023-2024:Bundesliga:vertical,core
+exclude_all_own_club_stints,28,core:2023-2024:Bundesliga:vertical,core
+known_positive_reported_value,25,core:2023-2024:Bundesliga:vertical,core
+reported_value_ceiling,13,core:2023-2024:Bundesliga:vertical,core
+gallery,1810,core:2023-2024:Serie A:vertical,core
+target_league,390,core:2023-2024:Serie A:vertical,core
+broad_position,98,core:2023-2024:Serie A:vertical,core
+known_age_within_ceiling,44,core:2023-2024:Serie A:vertical,core
+minimum_minutes,36,core:2023-2024:Serie A:vertical,core
+exclude_all_own_club_stints,36,core:2023-2024:Serie A:vertical,core
+known_positive_reported_value,33,core:2023-2024:Serie A:vertical,core
+reported_value_ceiling,13,core:2023-2024:Serie A:vertical,core
+gallery,1810,core:2023-2024:Ligue 1:vertical,core
+target_league,334,core:2023-2024:Ligue 1:vertical,core
+broad_position,88,core:2023-2024:Ligue 1:vertical,core
+known_age_within_ceiling,54,core:2023-2024:Ligue 1:vertical,core
+minimum_minutes,39,core:2023-2024:Ligue 1:vertical,core
+exclude_all_own_club_stints,39,core:2023-2024:Ligue 1:vertical,core
+known_positive_reported_value,32,core:2023-2024:Ligue 1:vertical,core
+reported_value_ceiling,17,core:2023-2024:Ligue 1:vertical,core
+gallery,1810,core:2023-2024:La Liga:desborde_banda,core
+target_league,391,core:2023-2024:La Liga:desborde_banda,core
+broad_position,93,core:2023-2024:La Liga:desborde_banda,core
+known_age_within_ceiling,30,core:2023-2024:La Liga:desborde_banda,core
+minimum_minutes,27,core:2023-2024:La Liga:desborde_banda,core
+exclude_all_own_club_stints,25,core:2023-2024:La Liga:desborde_banda,core
+known_positive_reported_value,20,core:2023-2024:La Liga:desborde_banda,core
+reported_value_ceiling,7,core:2023-2024:La Liga:desborde_banda,core
+gallery,1810,core:2023-2024:Premier League:desborde_banda,core
+target_league,371,core:2023-2024:Premier League:desborde_banda,core
+broad_position,93,core:2023-2024:Premier League:desborde_banda,core
+known_age_within_ceiling,47,core:2023-2024:Premier League:desborde_banda,core
+minimum_minutes,40,core:2023-2024:Premier League:desborde_banda,core
+exclude_all_own_club_stints,40,core:2023-2024:Premier League:desborde_banda,core
+known_positive_reported_value,37,core:2023-2024:Premier League:desborde_banda,core
+reported_value_ceiling,1,core:2023-2024:Premier League:desborde_banda,core
+gallery,1810,core:2023-2024:Bundesliga:desborde_banda,core
+target_league,324,core:2023-2024:Bundesliga:desborde_banda,core
+broad_position,74,core:2023-2024:Bundesliga:desborde_banda,core
+known_age_within_ceiling,38,core:2023-2024:Bundesliga:desborde_banda,core
+minimum_minutes,28,core:2023-2024:Bundesliga:desborde_banda,core
+exclude_all_own_club_stints,28,core:2023-2024:Bundesliga:desborde_banda,core
+known_positive_reported_value,25,core:2023-2024:Bundesliga:desborde_banda,core
+reported_value_ceiling,13,core:2023-2024:Bundesliga:desborde_banda,core
+gallery,1810,core:2023-2024:Serie A:desborde_banda,core
+target_league,390,core:2023-2024:Serie A:desborde_banda,core
+broad_position,98,core:2023-2024:Serie A:desborde_banda,core
+known_age_within_ceiling,44,core:2023-2024:Serie A:desborde_banda,core
+minimum_minutes,36,core:2023-2024:Serie A:desborde_banda,core
+exclude_all_own_club_stints,36,core:2023-2024:Serie A:desborde_banda,core
+known_positive_reported_value,33,core:2023-2024:Serie A:desborde_banda,core
+reported_value_ceiling,13,core:2023-2024:Serie A:desborde_banda,core
+gallery,1810,core:2023-2024:Ligue 1:desborde_banda,core
+target_league,334,core:2023-2024:Ligue 1:desborde_banda,core
+broad_position,88,core:2023-2024:Ligue 1:desborde_banda,core
+known_age_within_ceiling,54,core:2023-2024:Ligue 1:desborde_banda,core
+minimum_minutes,39,core:2023-2024:Ligue 1:desborde_banda,core
+exclude_all_own_club_stints,39,core:2023-2024:Ligue 1:desborde_banda,core
+known_positive_reported_value,32,core:2023-2024:Ligue 1:desborde_banda,core
+reported_value_ceiling,17,core:2023-2024:Ligue 1:desborde_banda,core
+gallery,1810,offensive:2023-2024:La Liga:vertical,offensive
+target_league,391,offensive:2023-2024:La Liga:vertical,offensive
+broad_position,93,offensive:2023-2024:La Liga:vertical,offensive
+known_age_within_ceiling,30,offensive:2023-2024:La Liga:vertical,offensive
+minimum_minutes,27,offensive:2023-2024:La Liga:vertical,offensive
+exclude_all_own_club_stints,25,offensive:2023-2024:La Liga:vertical,offensive
+known_positive_reported_value,20,offensive:2023-2024:La Liga:vertical,offensive
+reported_value_ceiling,7,offensive:2023-2024:La Liga:vertical,offensive
+gallery,1810,offensive:2023-2024:Premier League:vertical,offensive
+target_league,371,offensive:2023-2024:Premier League:vertical,offensive
+broad_position,93,offensive:2023-2024:Premier League:vertical,offensive
+known_age_within_ceiling,47,offensive:2023-2024:Premier League:vertical,offensive
+minimum_minutes,40,offensive:2023-2024:Premier League:vertical,offensive
+exclude_all_own_club_stints,40,offensive:2023-2024:Premier League:vertical,offensive
+known_positive_reported_value,37,offensive:2023-2024:Premier League:vertical,offensive
+reported_value_ceiling,1,offensive:2023-2024:Premier League:vertical,offensive
+gallery,1810,offensive:2023-2024:Bundesliga:vertical,offensive
+target_league,324,offensive:2023-2024:Bundesliga:vertical,offensive
+broad_position,74,offensive:2023-2024:Bundesliga:vertical,offensive
+known_age_within_ceiling,38,offensive:2023-2024:Bundesliga:vertical,offensive
+minimum_minutes,28,offensive:2023-2024:Bundesliga:vertical,offensive
+exclude_all_own_club_stints,28,offensive:2023-2024:Bundesliga:vertical,offensive
+known_positive_reported_value,25,offensive:2023-2024:Bundesliga:vertical,offensive
+reported_value_ceiling,13,offensive:2023-2024:Bundesliga:vertical,offensive
+gallery,1810,offensive:2023-2024:Serie A:vertical,offensive
+target_league,390,offensive:2023-2024:Serie A:vertical,offensive
+broad_position,98,offensive:2023-2024:Serie A:vertical,offensive
+known_age_within_ceiling,44,offensive:2023-2024:Serie A:vertical,offensive
+minimum_minutes,36,offensive:2023-2024:Serie A:vertical,offensive
+exclude_all_own_club_stints,36,offensive:2023-2024:Serie A:vertical,offensive
+known_positive_reported_value,33,offensive:2023-2024:Serie A:vertical,offensive
+reported_value_ceiling,13,offensive:2023-2024:Serie A:vertical,offensive
+gallery,1810,offensive:2023-2024:Ligue 1:vertical,offensive
+target_league,334,offensive:2023-2024:Ligue 1:vertical,offensive
+broad_position,88,offensive:2023-2024:Ligue 1:vertical,offensive
+known_age_within_ceiling,54,offensive:2023-2024:Ligue 1:vertical,offensive
+minimum_minutes,39,offensive:2023-2024:Ligue 1:vertical,offensive
+exclude_all_own_club_stints,39,offensive:2023-2024:Ligue 1:vertical,offensive
+known_positive_reported_value,32,offensive:2023-2024:Ligue 1:vertical,offensive
+reported_value_ceiling,17,offensive:2023-2024:Ligue 1:vertical,offensive
+gallery,1804,offensive:2024-2025:La Liga:vertical,offensive
+target_league,397,offensive:2024-2025:La Liga:vertical,offensive
+broad_position,102,offensive:2024-2025:La Liga:vertical,offensive
+known_age_within_ceiling,47,offensive:2024-2025:La Liga:vertical,offensive
+minimum_minutes,38,offensive:2024-2025:La Liga:vertical,offensive
+exclude_all_own_club_stints,37,offensive:2024-2025:La Liga:vertical,offensive
+known_positive_reported_value,29,offensive:2024-2025:La Liga:vertical,offensive
+reported_value_ceiling,11,offensive:2024-2025:La Liga:vertical,offensive
+gallery,1804,offensive:2024-2025:Premier League:vertical,offensive
+target_league,361,offensive:2024-2025:Premier League:vertical,offensive
+broad_position,98,offensive:2024-2025:Premier League:vertical,offensive
+known_age_within_ceiling,57,offensive:2024-2025:Premier League:vertical,offensive
+minimum_minutes,43,offensive:2024-2025:Premier League:vertical,offensive
+exclude_all_own_club_stints,43,offensive:2024-2025:Premier League:vertical,offensive
+known_positive_reported_value,40,offensive:2024-2025:Premier League:vertical,offensive
+reported_value_ceiling,0,offensive:2024-2025:Premier League:vertical,offensive
+gallery,1804,offensive:2024-2025:Bundesliga:vertical,offensive
+target_league,320,offensive:2024-2025:Bundesliga:vertical,offensive
+broad_position,75,offensive:2024-2025:Bundesliga:vertical,offensive
+known_age_within_ceiling,39,offensive:2024-2025:Bundesliga:vertical,offensive
+minimum_minutes,29,offensive:2024-2025:Bundesliga:vertical,offensive
+exclude_all_own_club_stints,29,offensive:2024-2025:Bundesliga:vertical,offensive
+known_positive_reported_value,27,offensive:2024-2025:Bundesliga:vertical,offensive
+reported_value_ceiling,10,offensive:2024-2025:Bundesliga:vertical,offensive
+gallery,1804,offensive:2024-2025:Serie A:vertical,offensive
+target_league,392,offensive:2024-2025:Serie A:vertical,offensive
+broad_position,97,offensive:2024-2025:Serie A:vertical,offensive
+known_age_within_ceiling,56,offensive:2024-2025:Serie A:vertical,offensive
+minimum_minutes,44,offensive:2024-2025:Serie A:vertical,offensive
+exclude_all_own_club_stints,44,offensive:2024-2025:Serie A:vertical,offensive
+known_positive_reported_value,40,offensive:2024-2025:Serie A:vertical,offensive
+reported_value_ceiling,19,offensive:2024-2025:Serie A:vertical,offensive
+gallery,1804,offensive:2024-2025:Ligue 1:vertical,offensive
+target_league,334,offensive:2024-2025:Ligue 1:vertical,offensive
+broad_position,82,offensive:2024-2025:Ligue 1:vertical,offensive
+known_age_within_ceiling,50,offensive:2024-2025:Ligue 1:vertical,offensive
+minimum_minutes,38,offensive:2024-2025:Ligue 1:vertical,offensive
+exclude_all_own_club_stints,38,offensive:2024-2025:Ligue 1:vertical,offensive
+known_positive_reported_value,35,offensive:2024-2025:Ligue 1:vertical,offensive
+reported_value_ceiling,16,offensive:2024-2025:Ligue 1:vertical,offensive
