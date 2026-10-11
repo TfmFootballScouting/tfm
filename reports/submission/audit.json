@@ -1,0 +1,135 @@
+{
+  "status": "passed_current_retained_workspace",
+  "checked_at": "2026-10-11T17:08:25.821048+00:00",
+  "git_commit": "8fb61ad4fa566814e0ff5fcd51a7b0fdd34f1e52",
+  "source_sha256": "076b57efedc7b101f6c66fd3a533b49228ad0aa56be954e1ab722df86e83d43d",
+  "tests_xml_sha256": "579979f93200a33f3eb4173fbedc2959c14e5a776b600cb86ea28eb0e9f40748",
+  "protected_artifacts_verified": 316,
+  "tests": {
+    "tests": 101,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "notebooks": [
+    {
+      "path": "notebooks/01_data_quality_eda.ipynb",
+      "code_cells": 6,
+      "executed": 6,
+      "errors": 0,
+      "sha256": "43eda41771117dba784bc6fd1189df1a4c59cf805b8b8193343a26b9d2de2b5b"
+    },
+    {
+      "path": "notebooks/02_model_analysis.ipynb",
+      "code_cells": 5,
+      "executed": 5,
+      "errors": 0,
+      "sha256": "d569432b1215ee0905c1a837f3d6dfbb429305b25e735877b3654b15766501fc"
+    },
+    {
+      "path": "notebooks/03_scouting_validation.ipynb",
+      "code_cells": 4,
+      "executed": 4,
+      "errors": 0,
+      "sha256": "116428172a6ace18976ac37597b43e8c5b6426fca98fe4ae63cf4a44bc309435"
+    },
+    {
+      "path": "notebooks/04_process_mining.ipynb",
+      "code_cells": 2,
+      "executed": 2,
+      "errors": 0,
+      "sha256": "7a10be4708e042807be444a3df2a6c087c969824226ff4a6e11d91aee24013f4"
+    },
+    {
+      "path": "notebooks/05_collected_data_preprocessing.ipynb",
+      "code_cells": 10,
+      "executed": 10,
+      "errors": 0,
+      "sha256": "ec6e64c0d89630d02cb702369711f2cd866ee380f5f61c12916d7838b8eb7078"
+    },
+    {
+      "path": "notebooks/06_collected_model_analysis.ipynb",
+      "code_cells": 10,
+      "executed": 10,
+      "errors": 0,
+      "sha256": "5610db954d314b39c938db3cf83b51a47b2e6e6500e34e480a772664cd1d49bb"
+    },
+    {
+      "path": "notebooks/07_collected_extended_validation.ipynb",
+      "code_cells": 9,
+      "executed": 9,
+      "errors": 0,
+      "sha256": "a794d6d4e8f11b011528be7cacff974100bb2c84c59217e46abe20157cda336f"
+    },
+    {
+      "path": "notebooks/08_enriched_data_pipeline.ipynb",
+      "code_cells": 9,
+      "executed": 9,
+      "errors": 0,
+      "sha256": "d79d3ae9e5ebbab6bddd11fa3541abbf4666e5ef23302a6d97358ba0425fe8c0"
+    },
+    {
+      "path": "notebooks/09_scouting_scenarios.ipynb",
+      "code_cells": 4,
+      "executed": 4,
+      "errors": 0,
+      "sha256": "8292239e52bd85730bdb72ff9ff29ebf5ea80d8515ff6460d6fd469f767e8640"
+    }
+  ],
+  "models": {
+    "offensive": {
+      "run_id": "4a7865822b254c8c8b6b606b491a4e65",
+      "status": "FINISHED",
+      "mrr": 0.08551595654590374,
+      "recall_at_5": 0.10699588477366255
+    },
+    "core": {
+      "run_id": "837dc6ff27654c6eb41ef5df720d28db",
+      "status": "FINISHED",
+      "mrr": 0.22335190005016758,
+      "recall_at_5": 0.3373493975903614
+    },
+    "attack_on_core": {
+      "run_id": "81c82c5ce15b41139eed6adb99dcd670",
+      "status": "FINISHED",
+      "mrr": 0.06590902250227869,
+      "recall_at_5": 0.08433734939759036
+    }
+  },
+  "dictionary_rows": 354,
+  "galleries": {
+    "core": {
+      "2023-2024": 393,
+      "2022-2023": 388,
+      "2021-2022": 399,
+      "2020-2021": 396
+    },
+    "offensive": {
+      "2024-2025": 399,
+      "2023-2024": 393,
+      "2022-2023": 388,
+      "2021-2022": 399,
+      "2020-2021": 396
+    }
+  },
+  "services": {
+    "streamlit": {
+      "status": 200,
+      "body": "ok"
+    },
+    "mlflow": {
+      "status": 200,
+      "body": "OK"
+    }
+  },
+  "scenarios": 10,
+  "fresh_checkout_verified": false,
+  "remote_ci_verified": false,
+  "actual_transfer_success_validated": false,
+  "limitations": [
+    "Private ignored datasets require retained workspace or authorized checksum-verified restoration",
+    "Price identities provisional and original publication time unknown",
+    "Advanced Segunda gallery unavailable; 2025/26 coverage incomplete",
+    "Genuine human process data insufficient for empirical scouting-process validation"
+  ]
+}
