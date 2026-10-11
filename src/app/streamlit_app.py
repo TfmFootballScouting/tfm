@@ -19,6 +19,7 @@ from src.features.styles import list_styles
 from src.models.recommend import PlayerRecommender
 from src.preprocessing.clean import load_players
 from src.app.budget import load_budget_inputs, candidate_links, attach_reported_values, screen_budget
+from src.app.collected import load_collected_service
 
 # ── Paleta verde fútbol ──────────────────────────────────────────────────────
 GREEN_PRIMARY   = "#1a7a3c"   # verde campo
@@ -205,13 +206,18 @@ def load_reported_budget_data():
     return load_budget_inputs()
 
 
+@st.cache_resource
+def collected_service(name):
+    return load_collected_service(name)
+
+
 def radar_figure(
     player_row: pd.Series,
     feature_cols: list[str],
     title: str,
     all_players: pd.DataFrame | None = None,
 ) -> go.Figure:
-    raw = np.array([float(player_row.get(c, 0) or 0) for c in feature_cols])
+    raw = pd.to_numeric(pd.Series([player_row.get(c, np.nan) for c in feature_cols]), errors='coerce').to_numpy(float)
 
     # Normalizar 0-1 respecto al máximo de la liga para comparación justa
     if all_players is not None:
@@ -219,11 +225,12 @@ def radar_figure(
             all_players[c].quantile(0.95) if c in all_players.columns else 1.0
             for c in feature_cols
         ])
-        maxvals[maxvals == 0] = 1.0
-        values = np.clip(raw / maxvals, 0, 1).tolist()
+        maxvals[~np.isfinite(maxvals) | (maxvals <= 0)] = np.nan
+        normalized = np.clip(raw / maxvals, 0, 1)
     else:
-        maxv = max(raw.max(), 1e-6)
-        values = (raw / maxv).tolist()
+        maxv = max(np.nanmax(raw), 1e-6) if np.isfinite(raw).any() else np.nan
+        normalized = raw / maxv
+    values = [float(value) if np.isfinite(value) else None for value in normalized]
 
     labels = [c.replace("_p90", "").upper() for c in feature_cols]
 
@@ -234,6 +241,7 @@ def radar_figure(
         fill="toself",
         fillcolor=f"rgba(46,204,113,0.2)",
         line=dict(color=GREEN_LIGHT, width=2),
+        connectgaps=False,
         name=str(player_row.get("player", "Jugador")),
     ))
     fig.update_layout(
@@ -341,10 +349,17 @@ def main() -> None:
     # ── Header ────────────────────────────────────────────────────────────────
     st.title("⚽ ScoutIQ — Scouting de Futbolistas")
     st.caption("Sistema de recomendación por afinidad táctica · TFM Data Science")
+    model_labels = {'Core · seis estilos': 'core', 'Ofensivo': 'offensive', 'Exploración heredada': 'legacy'}
+    selected_model = st.sidebar.selectbox('Modelo de scouting', list(model_labels))
+    model_kind = model_labels[selected_model]
 
     # ── Carga del modelo ──────────────────────────────────────────────────────
     try:
-        rec = load_model()
+        service = None if model_kind == 'legacy' else collected_service(model_kind)
+        base_model = load_model() if service is None else service.model
+        seasons = sorted(base_model.players.season.unique(), reverse=True) if service is None else service.available_seasons
+        season = st.sidebar.selectbox('Temporada observada', seasons)
+        rec = base_model if service is None else service.for_season(season)
     except Exception as exc:
         st.error(
             "No hay modelo/datos disponibles. Ejecuta primero:\n\n"
@@ -354,12 +369,17 @@ def main() -> None:
         return
 
     import json
-    meta = json.loads((MODELS_DIR / "metrics.json").read_text())
-    if "legacy" in meta["dataset"]["dataset_kind"]:
+    if service is None:
         st.warning("Exploración de datos FBref heredados 2023/24: procedencia original sin verificar. Solo goles y asistencias; no validación final ni costes de fichaje.")
+    else:
+        st.caption(f"Perfiles FBref observados en {season}, mínimo 450 minutos. Exploración retrospectiva; "
+                   "los estilos son aproximaciones estadísticas y no una simulación de decisiones históricas. "
+                   "Temporadas parciales o con menos de 10 candidatos no se ofrecen.")
     st.caption("Afinidad coseno: puntuación descriptiva de −1 a 1, no probabilidad de éxito. Features: " + ", ".join(rec.artifacts.feature_cols))
     from src.features.styles import measured_weight_fraction
     styles = {k:v for k,v in list_styles().items() if measured_weight_fraction(k, rec.artifacts.feature_cols) >= .6}
+    if service is not None:
+        styles = {key: value for key, value in styles.items() if key in service.supported_styles}
     style_labels = {k: v["label"] for k, v in styles.items()}
     try:
         reported_values, price_candidates, canonical_profiles = load_reported_budget_data()
@@ -383,14 +403,16 @@ def main() -> None:
 
         st.divider()
 
-        positions = ["Todas", "FW", "MF", "DF", "GK"]
+        positions = ['Todas'] + sorted(rec.players.pos_main.dropna().unique())
         position = st.selectbox("Posición", positions)
 
         leagues = ["Todas"] + sorted(rec.players["league"].dropna().unique().tolist())
         league = st.selectbox("Liga", leagues)
 
-        season = st.selectbox("Temporada observada", sorted(rec.players.season.unique(), reverse=True))
         max_age = st.slider("Edad máxima", 18, 40, 32) if rec.players.age.notna().any() else None
+        min_minutes = st.slider('Minutos mínimos', 450, 4500, 450, step=90)
+        clubs = sorted({club for item in rec.players.get('clubs', rec.players.team.map(lambda team: json.dumps([team]))) for club in json.loads(item)})
+        excluded_club = st.selectbox('Excluir club', ['Ninguno'] + clubs)
         budget_enabled = st.checkbox("Filtrar por valor de mercado", disabled=not budget_data_available)
         valuation_cutoff = None
         max_budget = None
@@ -414,19 +436,20 @@ def main() -> None:
             from src.process.events import record_event
             st.session_state['scouting_case'] = str(uuid.uuid4())
             attrs = dict(style=style_key, position=position, season=season, league=league, max_age=max_age,
+                         model=model_kind, min_minutes=min_minutes, exclude_club=excluded_club,
                          reported_value_budget_million=max_budget, reported_value_cutoff=str(valuation_cutoff),
                          price_match_status='provisional', historical_budget_validation=False)
             record_event(st.session_state.scouting_case, 'need_defined', 'app_user', attrs)
             record_event(st.session_state.scouting_case, 'search_executed', 'system', attrs)
 
     # ── KPIs globales ─────────────────────────────────────────────────────────
-    total = len(rec.players)
-    n_teams = rec.players["team"].nunique()
+    total = rec.players.entity_id.nunique()
+    n_teams = len(clubs)
     n_leagues = rec.players["league"].nunique()
     n_styles = len(styles)
 
     k1, k2, k3, k4 = st.columns(4)
-    k1.metric("Jugadores analizados", f"{total:,}")
+    k1.metric("Jugadores en la temporada", f"{total:,}")
     k2.metric("Equipos", f"{n_teams:,}")
     k3.metric("Ligas", f"{n_leagues:,}")
     k4.metric("Estilos de juego", f"{n_styles}")
@@ -434,16 +457,21 @@ def main() -> None:
     st.divider()
 
     # ── Tabs ──────────────────────────────────────────────────────────────────
-    tab1, tab2, tab3 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "📋 Recomendaciones",
         "🔗 Jugadores similares",
         "🗺️ Explorar clusters",
+        '👤 Perfiles y comparación',
+        '📊 Modelo y cobertura',
     ])
 
     # ── Tab 1: Recomendaciones ────────────────────────────────────────────────
     with tab1:
-        filters = (style_key, position, league, season, max_age, max_budget, str(valuation_cutoff), top_n)
+        filters = (style_key, position, league, season, max_age, max_budget, str(valuation_cutoff), top_n,
+                   model_kind, min_minutes, excluded_club)
         if run or "last_result" not in st.session_state or st.session_state.get('last_filters') != filters:
+            if not run and st.session_state.get('last_filters') != filters:
+                st.session_state.pop('scouting_case', None)
             result = rec.recommend(
                 style_key=style_key,
                 position=None if position == "Todas" else position,
@@ -453,6 +481,12 @@ def main() -> None:
                 top_n=len(rec.players),
                 season=season,
             )
+            result = result[result.minutes.ge(min_minutes)]
+            if excluded_club != 'Ninguno':
+                if 'clubs' in result:
+                    result = result[~result.clubs.map(lambda item: excluded_club in json.loads(item))]
+                else:
+                    result = result[result.team.ne(excluded_club)]
             if budget_data_available:
                 result = attach_reported_values(result, price_links, reported_values, valuation_cutoff)
                 if max_budget is not None:
@@ -518,6 +552,7 @@ def main() -> None:
             # Gráficos
             top = result.iloc[0]
             feats = rec.artifacts.feature_cols
+            st.caption('Radar relativo al percentil 95 de la temporada; valores desconocidos quedan sin trazar.')
             c1, c2 = st.columns(2)
 
             with c1:
@@ -545,10 +580,14 @@ def main() -> None:
 
     # ── Tab 2: Similares ──────────────────────────────────────────────────────
     with tab2:
-        st.subheader("🔗 Jugadores similares — KNN coseno")
-        st.caption("Encuentra jugadores con perfil estadístico similar al de referencia.")
+        st.subheader("🔗 Jugadores similares")
+        st.caption('Distancia de perfil estandarizado; menor distancia indica mayor cercanía. '
+                   'La puntuación de similitud no es una probabilidad de éxito.')
 
-        options = rec.players.sort_values("player")[["player_id", "player", "team"]]
+        references = rec.players
+        if position != 'Todas':
+            references = references[references.pos.astype(str).str.split(',').map(lambda parts: position in [part.strip() for part in parts])]
+        options = references.sort_values("player")[["player_id", "player", "team"]]
         label_map = {
             int(r.player_id): f"{r.player}  ·  {r.team}"
             for r in options.itertuples()
@@ -558,14 +597,32 @@ def main() -> None:
             options=list(label_map),
             format_func=lambda i: label_map[i],
         )
+        same_position = st.checkbox('Misma posición que la referencia', value=True)
 
         if st.button("🔍 Buscar similares"):
-            sim = rec.similar_players(selected, top_n=10)
-            sim["similarity"] = (sim["similarity"] * 100).round(1)
+            sim = rec.similar_players(selected, top_n=len(rec.players))
+            reference = rec.players[rec.players.player_id.eq(selected)].iloc[0]
+            if same_position: sim = sim[sim.pos_main.eq(reference.pos_main)]
+            if position != 'Todas':
+                sim = sim[sim.pos.astype(str).str.split(',').map(lambda parts: position in [part.strip() for part in parts])]
+            sim = sim[sim.minutes.ge(min_minutes)]
+            if max_age is not None: sim = sim[sim.age.notna() & sim.age.le(max_age)]
+            if excluded_club != 'Ninguno':
+                sim = sim[~sim.get('clubs', sim.team.map(lambda team: json.dumps([team]))).map(lambda item: excluded_club in json.loads(item))]
+            if budget_data_available:
+                sim = attach_reported_values(sim, price_links, reported_values, valuation_cutoff)
+                if max_budget is not None: sim = screen_budget(sim, max_budget)
+            sim = sim.head(top_n)
+            st.session_state['similar_result'] = sim
             st.dataframe(
-                sim[["player", "team", "pos", "age", "league", "similarity"]].rename(columns={
+                sim[[column for column in ['player', 'team', 'pos', 'age', 'league', 'season', 'distance', 'similarity',
+                     'reported_market_value_eur', 'reported_valuation_date', 'price_identity_status'] if column in sim]].rename(columns={
                     "player": "Jugador", "team": "Equipo", "pos": "Pos",
-                    "age": "Edad", "league": "Liga", "similarity": "Similitud %",
+                    "age": "Edad", "league": "Liga", "similarity": "Puntuación de similitud",
+                    'distance': 'Distancia de perfil', 'season': 'Temporada',
+                    'reported_market_value_eur': 'Valor de mercado reportado (€)',
+                    'reported_valuation_date': 'Fecha del valor reportado',
+                    'price_identity_status': 'Cruce de identidad provisional',
                 }),
                 use_container_width=True,
                 hide_index=True,
@@ -587,7 +644,7 @@ def main() -> None:
     # ── Tab 3: Clusters ───────────────────────────────────────────────────────
     with tab3:
         st.subheader("🗺️ Mapa PCA + K-Means")
-        st.caption("Cada punto es un jugador. Los colores representan clusters de perfil estadístico similar.")
+        st.caption('Cada punto es un perfil observado. Los clusters son grupos estadísticos; no representan los seis estilos de juego.')
 
         df = rec.players
         if "pc1" in df.columns and "pc2" in df.columns:
@@ -600,6 +657,50 @@ def main() -> None:
             st.dataframe(cluster_dist, use_container_width=True, hide_index=True)
         else:
             st.info("PCA no disponible en el modelo cargado. Ejecuta `python -m src.pipeline`.")
+
+    with tab4:
+        st.subheader('Perfiles, historial y comparación')
+        profiles = rec.players.sort_values(['player', 'player_id'])
+        labels = {int(row.player_id): f'{row.player} · {row.team} · {row.season}' for row in profiles.itertuples()}
+        first_id = st.selectbox('Primer jugador', list(labels), format_func=lambda value: labels[value])
+        second_id = st.selectbox('Segundo jugador', list(labels), index=min(1, len(labels)-1), format_func=lambda value: labels[value])
+        compared = profiles[profiles.player_id.isin([first_id, second_id])]
+        fields = ['player', 'team', 'season', 'pos_main', 'age', 'minutes'] + rec.artifacts.feature_cols
+        st.dataframe(compared[fields], hide_index=True, use_container_width=True)
+        columns = st.columns(2)
+        for index, (column, identifier) in enumerate(zip(columns, [first_id, second_id])):
+            row = profiles[profiles.player_id.eq(identifier)].iloc[0]
+            column.plotly_chart(radar_figure(row, rec.artifacts.feature_cols, str(row.player), rec.players),
+                                use_container_width=True, key=f'comparison_radar_{index}')
+        st.caption('Comparación de mediciones observadas en la misma temporada; desconocidos no equivalen a cero.')
+        if service is not None:
+            entity = profiles[profiles.player_id.eq(first_id)].entity_id.iloc[0]
+            history = service.history[service.history.entity_id.eq(entity)].sort_values('season')
+            st.markdown('**Historial FBref del primer jugador**')
+            st.dataframe(history[['season', 'team', 'minutes', 'gls', 'ast', 'partial_season']], hide_index=True, use_container_width=True)
+        else:
+            st.caption('El archivo heredado no permite unir un historial de identidad verificado.')
+
+    with tab5:
+        st.subheader('Modelo y cobertura')
+        if service is None:
+            st.caption('Modelo exploratorio heredado; su procedencia y evaluación final no están verificadas.')
+        else:
+            info = service.info
+            st.caption('Evaluación: recuperación del mismo jugador en la siguiente temporada según su perfil. '
+                       'No mide éxito de fichajes ni pertinencia táctica validada.')
+            st.dataframe(pd.DataFrame([{'Modelo': selected_model, 'Método de distancia': info['selected_method'],
+                'MRR holdout': info['holdout_mrr'], 'Recall@5': info['holdout_recall_at_5'],
+                'K clusters': info['selected_k'], 'Varianza PCA 2 componentes': sum(info['pca_explained_variance'][:2]),
+                'Jaccard top-5 bootstrap': info['robustness_top5_jaccard_mean']}]), hide_index=True)
+            st.caption('Core y ofensivo tienen periodos de evaluación diferentes; sus métricas no son una comparación controlada. '
+                       'La componente PC4 de Core mostró sensibilidad en la validación extendida.')
+            st.dataframe(service.gallery.groupby('season').agg(observaciones=('entity_id', 'size'),
+                jugadores=('entity_id', 'nunique'), temporada_parcial=('partial_season', 'any')).reset_index(), hide_index=True)
+            st.caption('Transformaciones ajustadas únicamente en las temporadas de entrenamiento: ' +
+                       ', '.join(sorted(service.model.players.season.unique())) + '. No se reajustan al cambiar de temporada.')
+            st.caption('Variables medidas: ' + ', '.join(rec.artifacts.feature_cols) + '. '
+                       'No hay galería avanzada de Segunda disponible; no se presentan sus estadísticas básicas como perfiles completos.')
 
 
 if __name__ == "__main__":

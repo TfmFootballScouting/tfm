@@ -9,6 +9,7 @@ def test_app_real_exploratory_workflow(monkeypatch,tmp_path):
     assert (MODELS_DIR/'metrics.json').exists(), 'Prepare the documented exploratory pipeline before application integration tests'
     monkeypatch.setenv('TFM_EVENT_LOG',str(tmp_path/'app_test_events.jsonl'))
     app=AppTest.from_file(str(ROOT/'src/app/streamlit_app.py'),default_timeout=30).run()
+    next(s for s in app.selectbox if s.label=='Modelo de scouting').select('Exploración heredada').run()
     assert not app.exception
     assert not app.error
     assert any('procedencia' in warning.value for warning in app.warning)
