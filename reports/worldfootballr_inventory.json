@@ -1,0 +1,96 @@
+{
+  "datasets": [
+    {
+      "source": "fbref",
+      "category": "standard",
+      "reader": "pyreadr",
+      "raw_rows": 46258,
+      "raw_columns": 38,
+      "sha256": "a299c971c5f1a1a58e57de123e7430c9d23d2eb472569244c0e5056a109faa91",
+      "archive_last_modified": "Thu, 18 Sep 2025 17:39:49 GMT"
+    },
+    {
+      "source": "understat",
+      "category": "shots",
+      "reader": "pyreadr",
+      "raw_rows": 100188,
+      "raw_columns": 22,
+      "sha256": "1a3a80f5e42c797ad056cb38fa10ca7c27b11f90987ee1921347eeba0728a803",
+      "archive_last_modified": "Thu, 18 Sep 2025 18:43:36 GMT"
+    },
+    {
+      "source": "fbref",
+      "category": "shooting",
+      "reader": "pyreadr",
+      "raw_rows": 46258,
+      "raw_columns": 27,
+      "sha256": "1bac446d04a7e9925b4d9ff09dfd1f63c468bc274d9ef438217ac64027bab449",
+      "archive_last_modified": "Thu, 18 Sep 2025 17:40:20 GMT"
+    },
+    {
+      "source": "fbref",
+      "category": "passing",
+      "reader": "pyreadr",
+      "raw_rows": 24413,
+      "raw_columns": 37,
+      "sha256": "886126b93b1c3b48e06d5c0848dfc5078e082afc94e389da583c2280ed74e00c",
+      "archive_last_modified": "Thu, 18 Sep 2025 17:40:30 GMT"
+    },
+    {
+      "source": "transfermarkt",
+      "category": "valuations",
+      "reader": "pyreadr",
+      "raw_rows": 46571,
+      "raw_columns": 19,
+      "sha256": "e444f17301583778e82e1f58c6e998304ee24b3d0709c23aa7b4a610fda7facc",
+      "archive_last_modified": null
+    },
+    {
+      "source": "transfermarkt",
+      "category": "transfers",
+      "reader": "rdata_latin1_default",
+      "raw_rows": 63051,
+      "raw_columns": 21,
+      "sha256": "eb9834db000763160d12a5acd12278762013b850d7b87f137c7a2e26077d8f04",
+      "archive_last_modified": null
+    },
+    {
+      "source": "fbref",
+      "category": "defense",
+      "reader": "pyreadr",
+      "raw_rows": 21743,
+      "raw_columns": 26,
+      "sha256": "8bc9fd8218c1dc0725f7d009940d90d64ad600a8e09ce6607917f962aeac4837",
+      "archive_last_modified": "Thu, 17 Oct 2024 17:41:09 GMT"
+    },
+    {
+      "source": "fbref",
+      "category": "possession",
+      "reader": "pyreadr",
+      "raw_rows": 21743,
+      "raw_columns": 32,
+      "sha256": "a41db96bcf4376dc4547829c9d61ea4e4d69a15dbc958a3fa4c89f84c4978efd",
+      "archive_last_modified": "Thu, 17 Oct 2024 17:41:19 GMT"
+    },
+    {
+      "source": "fbref",
+      "category": "misc",
+      "reader": "pyreadr",
+      "raw_rows": 43588,
+      "raw_columns": 26,
+      "sha256": "744708cd039a2154f5fd578679264b247a8a527584141bfd7c03d9a7f7cb6ded",
+      "archive_last_modified": "Thu, 17 Oct 2024 17:41:32 GMT"
+    }
+  ],
+  "mapping": [
+    {
+      "category": "player_mapping",
+      "rows": 15440,
+      "missing_fbref_ids": 1,
+      "missing_tm_ids": 10,
+      "duplicate_fbref_ids": 107,
+      "duplicate_tm_ids": 243
+    }
+  ],
+  "scope": "published secondary-source archive; no provider access bypass; no model retrained"
+}

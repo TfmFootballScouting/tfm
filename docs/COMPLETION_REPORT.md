@@ -1,3 +1,5 @@
+> Update, 11 October 2026: published worldfootballR archives now provide additional historical data without crawling provider sites. See [archive trial](WORLDFOOTBALLR_TRIAL.md) and `reports/worldfootballr_coverage.csv`. The original direct-access results and first-submission model below remain valid for their stated scope. No model retraining is claimed by the archive trial.
+
 # Completion report — first reproducible submission
 
 Checked at 2026-10-10T15:27:45.570417+00:00 (UTC). Work branch: `improve/reproducible-scouting` in `valen28030/tfm_futbol`. Existing architecture retained; main unchanged. No changes have been pushed. The originally selected `TfmFootballScouting/tfm` checkout is still empty and was not overwritten. Breakout is retained as an unchanged reference.

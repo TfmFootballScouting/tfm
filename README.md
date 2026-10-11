@@ -4,6 +4,15 @@ Improved existing football scouting project: source-separated ingestion, auditab
 
 **Submission status:** working **exploratory** application and executed notebooks. Six-season final validation is blocked by source access and historical data gaps. No synthetic data is substituted for downloads. See [completion report](docs/COMPLETION_REPORT.md), [source access](docs/SOURCE_ACCESS.md) and [data dictionary](docs/DATA_DICTIONARY.md).
 
+## New data route: worldfootballR archives
+
+The [11 October archive trial](docs/WORLDFOOTBALLR_TRIAL.md) successfully retrieved multi-season FBref tables, Understat shots and older Transfermarkt season-labelled records from publicly published GitHub assets. Provider pages were not crawled. See `reports/worldfootballr_coverage.csv` and the period-mismatch audit before using these records: 2025/26 is partial, some categories have incompatible 2024/25 exposure, and Segunda remains unavailable. The existing model has not been retrained on these archives.
+
+```bash
+.venv/bin/python -m pip install -r requirements-archives.txt
+.venv/bin/python -m scripts.worldfootballr_archive --download
+```
+
 ## Reproduce (Python 3.12, Linux/cloud)
 
 ```bash

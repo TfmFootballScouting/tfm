@@ -1,3 +1,5 @@
+> Update, 11 October 2026: published worldfootballR archives now provide additional historical data without crawling provider sites. See [archive trial](WORLDFOOTBALLR_TRIAL.md) and `reports/worldfootballr_coverage.csv`. The original direct-access results and first-submission model below remain valid for their stated scope. No model retraining is claimed by the archive trial.
+
 # Source access, coverage and provenance
 
 Observed 10 October 2026. Coverage is in `reports/source_coverage.csv`: source × league × season × statistical category. Target seasons are 2020–2021 through 2025–2026, not evidence that every source has these seasons.
