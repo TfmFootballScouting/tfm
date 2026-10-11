@@ -1,6 +1,8 @@
-# Kaggle transfer-value dataset: pending inspection
+# Kaggle transfer-value dataset: uploaded files now inspected
 
 Candidate: [Football Transfer Value Intelligence 2024](https://www.kaggle.com/datasets/kanchana1990/football-transfer-value-intelligence-2024), uploaded by `kanchana1990`.
+
+**Update:** The user subsequently uploaded `archive.zip`; local inspection is completed. See [the executed audit, exact coverage and remaining issues](KAGGLE_VALUE_AUDIT.md). The blocked-access account below describes the earlier online attempt, not the current local inspection status. Existing recommendation-model integration remains pending separately.
 
 ## Actual access result
 

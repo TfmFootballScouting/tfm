@@ -23,6 +23,11 @@ def run():
     p, h, checks, diagnostics = audit_tables(p, h, receipt['first_inspected_at_utc'])
     for name, frame in [('profiles', p), ('history', h), ('summary_consistency', checks)]:
         stored = pd.read_parquet(ROOT / f'data/processed/real/collected_kaggle_value_{name}.parquet')
+        # Parquet normalizes object-column NA sentinels to None; compare missing
+        # semantics consistently without loosening checks on observed values.
+        for column in frame.select_dtypes(include='object'):
+            frame[column] = frame[column].where(frame[column].notna(), None)
+            stored[column] = stored[column].where(stored[column].notna(), None)
         pd.testing.assert_frame_equal(frame, stored)
     for key, value in diagnostics.items():
         # JSON represents integer-valued dictionary keys as strings.
@@ -36,6 +41,10 @@ def run():
         assert packet.identity_match_status.eq('provisional_not_reviewed').all()
         assert not packet.historical_budget_eligible.any() and not packet.model_use_eligible.any()
         assert not packet.source_use_authorized.any()
+    definitions = pd.read_csv(ROOT / 'reports/kaggle_value_dictionary.csv')
+    for table in ['profiles', 'history', 'summary_consistency', 'identity_review', 'upstream_identity_candidates']:
+        frame = pd.read_parquet(ROOT / f'data/processed/real/collected_kaggle_value_{table}.parquet')
+        assert set(definitions.loc[definitions.table.eq(table), 'column']) == set(frame), table
     xml = ElementTree.parse(ROOT / 'reports/kaggle_value_tests.xml')
     suites = list(xml.getroot().iter('testsuite'))
     counts = {k: sum(int(s.get(k, 0)) for s in suites) for k in ['tests', 'failures', 'errors', 'skipped']}

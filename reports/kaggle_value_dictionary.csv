@@ -1,0 +1,169 @@
+table,column,dtype,description,source,historical_training_warning
+profiles,source_player_id,object,"Uploader-declared Transfermarkt person ID, not a cross-source canonical ID.",local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,name,object,Player full name,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,age,float64,Current age (at time of scrape),uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,nationality,object,Player nationality country,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,position,object,Specific position (e.g. Centre-Forward),uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,position_group,object,Grouped position: Forward / Midfielder / Defender / Goalkeeper,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,current_club,object,Club at time of scrape,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,league_name,object,"League the player was listed in (Premier League, La Liga, etc.)",uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,current_value_eur,float64,Current market value in EUR,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,current_value_tier,object,Bucketed tier: World Class / Elite / Top / Regular / Developing,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,peak_value_eur,int64,All-time highest recorded market value in EUR,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,peak_value_tier,object,Bucketed tier at peak value,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,peak_date,object,Date when player reached peak market value,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,peak_club,object,Club the player was at when reaching peak value,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,age_at_peak,int64,Player age when reaching peak market value,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,first_value_eur,int64,First recorded market value in EUR,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,first_date,object,Date of first market value record,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,last_value_eur,int64,Most recent recorded market value in EUR,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,last_date,object,Date of most recent value record,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,career_span_years,float64,Years between first and last valuation record,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,years_to_peak,float64,Years from first recorded value to peak value,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,value_cagr,float64,Compound Annual Growth Rate from first to last value,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,value_to_peak_cagr,float64,CAGR from first value to peak value,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,value_multiplier_x,float64,Peak value ÷ first value (how many times value grew),uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,post_peak_decline_pct,float64,% decline from peak to last value,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,value_volatility,float64,Std deviation / mean of all valuations (instability measure),uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,mean_yoy_growth_rate,float64,Average year-over-year growth rate across career,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,num_valuation_points,int64,Number of valuation data points in career history,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,num_clubs_career,int64,Count of unique clubs across full valuation history,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,trajectory,object,Career arc: rising_star / growing / stable / declining / falling_sharply,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,is_at_peak,int64,1 if player is currently at their career peak value,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,ever_100m,int64,1 if player ever reached €100M+ valuation,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,ever_50m,int64,1 if player ever reached €50M+ valuation,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,ever_10m,int64,1 if player ever reached €10M+ valuation,uploaded_dictionary,Career/current aggregates contain later observations; not historical predictors.
+profiles,data_source,object,Uploader-declared original provider; omitted from uploaded dictionary.,local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,dataset_built_at,object,"Uploader-declared build date, not independently verified publication.",local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,position_reported_invalid,bool,True when exported position contains a euro price.,local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,current_club_equals_nationality,bool,"Diagnostic equality, not club membership.",local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,position_clean,object,Null: price strings corrupt the exported position column.,local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,current_club_clean,object,Null: systemic extraction corruption; history club is retained separately.,local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,profile_quality_status,object,Exported position and current-club fields quarantined.,local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,source,object,"User-uploaded Kaggle candidate, with declared provider retained.",local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,original_source,object,Transfermarkt.com according to uploaded summary; not independently verified.,local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,first_observed_at_utc,"datetime64[us, UTC]",Earliest preserved local inspection receipt; not source publication time.,local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,provenance_status,object,"Uploader declaration, no upstream verification or Kaggle version supplied.",local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,ml_use_status,object,Existing provider restriction preserved pending explicit reviewed licence.,local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,identity_match_status,object,Unmatched in source tables; provisional_not_reviewed in review packet.,local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,source_use_authorized,bool,False; no reviewed provider use licence supplied.,local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,historical_budget_eligible,bool,"False; dates, identity approval and use authorization remain unresolved.",local_audit,Career/current aggregates contain later observations; not historical predictors.
+profiles,model_use_eligible,bool,False; quarantined provider-derived evidence.,local_audit,Career/current aggregates contain later observations; not historical predictors.
+history,source_player_id,object,"Uploader-declared Transfermarkt person ID, not a cross-source canonical ID.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,valuation_date_raw,object,Unmodified history CSV date string (DD/MM/YYYY).,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,value_eur,int64,History market assessment in EUR as reported by uploader.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,value_display,object,History formatted euro amount as reported by uploader.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,club,object,History club label; membership/source correctness not independently verified.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,age_at_date,int64,Uploader age at valuation date; not a confirmed date of birth.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,year,int64,Uploader redundant valuation year; disagrees with 24 reported date years.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,month,int64,Uploader redundant 1-based month; part of systematic date inconsistency.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,valuation_date_reported,datetime64[ns],Strictly parsed history date; systematically disagrees with summary by one day.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,valuation_date_one_day_earlier_hypothesis,datetime64[ns],"Reported date minus one day; audit hypothesis only, not a verified correction.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,reported_year_month_agree,bool,Whether parsed history date agrees with redundant year/month fields.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,earlier_hypothesis_year_month_agree,bool,Whether one-day-earlier hypothesis agrees with redundant year/month fields.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,market_value_eur,int64,"Uploader-reported market assessment in EUR, not verified fee or estimated price.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,amount_valid,bool,Finite nonnegative numeric amount; does not certify correctness.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,valuation_date,datetime64[ns],Unresolved effective date: null; never inferred from summary or title.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,valuation_known_at,"datetime64[us, UTC]",First local inspection UTC time; does not establish earlier public availability.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,date_quality_status,object,Unresolved systematic summary/history date disagreement.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,source_publication_known_at,datetime64[ns],Unknown original public availability time: null.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,currency,object,EUR as declared by file column names and value-display strings.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,source,object,"User-uploaded Kaggle candidate, with declared provider retained.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,original_source,object,Transfermarkt.com according to uploaded summary; not independently verified.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,first_observed_at_utc,"datetime64[us, UTC]",Earliest preserved local inspection receipt; not source publication time.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,provenance_status,object,"Uploader declaration, no upstream verification or Kaggle version supplied.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,ml_use_status,object,Existing provider restriction preserved pending explicit reviewed licence.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,identity_match_status,object,Unmatched in source tables; provisional_not_reviewed in review packet.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,source_use_authorized,bool,False; no reviewed provider use licence supplied.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,historical_budget_eligible,bool,"False; dates, identity approval and use authorization remain unresolved.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+history,model_use_eligible,bool,False; quarantined provider-derived evidence.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,player_id,object,"Uploader Transfermarkt source person ID; retained in summary consistency, not canonical.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,name,object,Player full name,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,age,float64,Current age (at time of scrape),uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,nationality,object,Player nationality country,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,position,object,Specific position (e.g. Centre-Forward),uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,position_group,object,Grouped position: Forward / Midfielder / Defender / Goalkeeper,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,current_club,object,Club at time of scrape,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,league_name,object,"League the player was listed in (Premier League, La Liga, etc.)",uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,current_value_eur,float64,Current market value in EUR,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,current_value_tier,object,Bucketed tier: World Class / Elite / Top / Regular / Developing,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,peak_value_eur,int64,All-time highest recorded market value in EUR,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,peak_value_tier,object,Bucketed tier at peak value,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,peak_date,object,Date when player reached peak market value,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,peak_club,object,Club the player was at when reaching peak value,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,age_at_peak,int64,Player age when reaching peak market value,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,first_value_eur,int64,First recorded market value in EUR,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,first_date,object,Date of first market value record,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,last_value_eur,int64,Most recent recorded market value in EUR,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,last_date,object,Date of most recent value record,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,career_span_years,float64,Years between first and last valuation record,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,years_to_peak,float64,Years from first recorded value to peak value,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,value_cagr,float64,Compound Annual Growth Rate from first to last value,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,value_to_peak_cagr,float64,CAGR from first value to peak value,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,value_multiplier_x,float64,Peak value ÷ first value (how many times value grew),uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,post_peak_decline_pct,float64,% decline from peak to last value,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,value_volatility,float64,Std deviation / mean of all valuations (instability measure),uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,mean_yoy_growth_rate,float64,Average year-over-year growth rate across career,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,num_valuation_points,int64,Number of valuation data points in career history,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,num_clubs_career,int64,Count of unique clubs across full valuation history,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,trajectory,object,Career arc: rising_star / growing / stable / declining / falling_sharply,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,is_at_peak,int64,1 if player is currently at their career peak value,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,ever_100m,int64,1 if player ever reached €100M+ valuation,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,ever_50m,int64,1 if player ever reached €50M+ valuation,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,ever_10m,int64,1 if player ever reached €10M+ valuation,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,data_source,object,Uploader-declared original provider; omitted from uploaded dictionary.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,dataset_built_at,object,"Uploader-declared build date, not independently verified publication.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,history_points,int64,Count of supplied history rows for this source person.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,first_history_date,datetime64[ns],"Minimum parsed reported history date, not a verified effective date.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,last_history_date,datetime64[ns],"Maximum parsed reported history date, not a verified effective date.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,history_peak_eur,int64,Maximum supplied history amount in EUR.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,first_summary_to_history_days,int64,"First reported history date minus first summary date, in days.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+summary_consistency,last_summary_to_history_days,int64,"Last reported history date minus last summary date, in days.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,left_source,object,FBref identity source in existing proposal.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,left_id,object,FBref source person ID in existing proposal.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,right_source,object,Transfermarkt identity source in existing proposal.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,right_id,object,Transfermarkt source person ID in existing proposal.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,season_cutoff,object,Latest retained proposal evidence-season cutoff; not public availability proof.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,left_name,object,FBref name aliases separated by | in existing proposal.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,right_name,object,Transfermarkt name aliases separated by | in existing proposal.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,exact_name,bool,Normalized alias name agreement in existing proposal.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,name_similarity,float64,"Heuristic string similarity in existing proposal, not probability.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,overlapping_club_seasons,int64,Existing proposal count of shared league/club/season contexts.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,birth_year_agreement,bool,Existing proposal comparable birth-year agreement; upload supplies no DOB.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,birth_year_conflict,bool,Existing proposal birth-year conflict flag.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,profile_conflict,bool,Existing proposal incompatible profile metadata flag.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,upstream_id_mapping,bool,Existing proposal supported by published but unreviewed ID mapping.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,evidence_score,int64,"Existing heuristic evidence points, not matching accuracy.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,left_margin,int64,Existing score gap over competing right-source candidates.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,right_margin,int64,Existing score gap over competing FBref candidates.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,proposal_status,object,"Existing supported/review/conflict proposal status, no identity approval.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,evidence,object,JSON of original proposal evidence; retained unchanged.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,canonical_player_id,object,"Existing proposed FBref-anchored person ID, unreviewed.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,identity_match_status,object,Unmatched in source tables; provisional_not_reviewed in review packet.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,unstable_across_cutoffs,bool,Existing proposal changes FBref partner across evidence cutoffs.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,source_player_id,object,"Uploader-declared Transfermarkt person ID, not a cross-source canonical ID.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,name,object,Player full name,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+identity_review,league_name,object,"League the player was listed in (Premier League, La Liga, etc.)",uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+identity_review,uploaded_name_agrees_with_existing_right_name,bool,Uploaded name agrees with at least one normalized existing name alias.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,model_use_eligible,bool,False; quarantined provider-derived evidence.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,historical_budget_eligible,bool,"False; dates, identity approval and use authorization remain unresolved.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,source_use_authorized,bool,False; no reviewed provider use licence supplied.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,original_source,object,Transfermarkt.com according to uploaded summary; not independently verified.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+identity_review,ml_use_status,object,Existing provider restriction preserved pending explicit reviewed licence.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,fbref_id,object,FBref source ID from retained published mapping.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,transfermarkt_id,object,Transfermarkt source ID from retained published mapping.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,source_player_id,object,"Uploader-declared Transfermarkt person ID, not a cross-source canonical ID.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,name,object,Player full name,uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,league_name,object,"League the player was listed in (Premier League, La Liga, etc.)",uploaded_dictionary,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,normalized_name_agreement,bool,Uploaded name agrees with at least one retained FBref name alias.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,any_retained_history_club_overlap,bool,Any normalized club shared across all retained dates; not historical as-of evidence.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,source_id_ambiguous,bool,One uploaded source ID maps to multiple FBref IDs in candidate packet.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,fbref_id_ambiguous,bool,One FBref ID maps to multiple uploaded source IDs in candidate packet.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,canonical_player_id_proposed,object,"FBref-anchored proposed person ID, never an approved join.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,identity_match_status,object,Unmatched in source tables; provisional_not_reviewed in review packet.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,club_evidence_period_status,object,Club overlap uses all retained dates; cannot establish decision-time evidence.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,source_use_authorized,bool,False; no reviewed provider use licence supplied.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,historical_budget_eligible,bool,"False; dates, identity approval and use authorization remain unresolved.",local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,model_use_eligible,bool,False; quarantined provider-derived evidence.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,original_source,object,Transfermarkt.com according to uploaded summary; not independently verified.,local_audit,"Unresolved dates, source use and identity; not model eligible."
+upstream_identity_candidates,ml_use_status,object,Existing provider restriction preserved pending explicit reviewed licence.,local_audit,"Unresolved dates, source use and identity; not model eligible."
