@@ -1,3 +1,5 @@
+> Scouting scenarios: ten real-observation cases and interactive requirements, baselines and sensitivity are documented in [SCOUTING_SCENARIOS.md](docs/SCOUTING_SCENARIOS.md). Reported values remain provisional; actual transfer-success validation is blocked.
+
 Latest application: [collected models, six styles, profiles and comparison](docs/COLLECTED_APPLICATION.md). Core is now the default; offensive and legacy exploration are selectable. Reported-value budget screening remains enabled.
 
 Latest application change: [reported-value budget screening](docs/REPORTED_VALUE_BUDGET.md) is enabled with dated source values and labelled provisional identities. Historical-budget validation and model-use restrictions remain unchanged.

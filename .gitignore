@@ -254,3 +254,5 @@ data/raw/sources/salimt_uploaded/
 data/processed/real/collected_salimt_*.parquet
 data/processed/real/collected_enrichment_*.parquet
 reports/enrichment/cross_source_agreement.csv
+# Private provisional provider prices in scenario shortlists
+reports/scouting_scenarios/shortlist.csv

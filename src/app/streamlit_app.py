@@ -457,12 +457,13 @@ def main() -> None:
     st.divider()
 
     # ── Tabs ──────────────────────────────────────────────────────────────────
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
         "📋 Recomendaciones",
         "🔗 Jugadores similares",
         "🗺️ Explorar clusters",
         '👤 Perfiles y comparación',
         '📊 Modelo y cobertura',
+        '🎯 Escenarios de scouting',
     ])
 
     # ── Tab 1: Recomendaciones ────────────────────────────────────────────────
@@ -701,6 +702,10 @@ def main() -> None:
                        ', '.join(sorted(service.model.players.season.unique())) + '. No se reajustan al cambiar de temporada.')
             st.caption('Variables medidas: ' + ', '.join(rec.artifacts.feature_cols) + '. '
                        'No hay galería avanzada de Segunda disponible; no se presentan sus estadísticas básicas como perfiles completos.')
+
+    with tab6:
+        from src.app.scenario_ui import render_scenarios
+        render_scenarios(rec, service, price_links, reported_values)
 
 
 if __name__ == "__main__":
