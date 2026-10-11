@@ -22,6 +22,8 @@ from src.app.budget import load_budget_inputs, candidate_links, attach_reported_
 from src.app.collected import load_collected_service
 from src.app.leagues import load_top_five_service, coverage_table, league_evaluation
 from src.app.presentation import CSS as MODERN_CSS, shortlist_cards
+from src.app.trained import load_trained_service, trained_league_evaluation
+from src.app.europe_budget import load_europe_budget_inputs
 
 # ── Paleta verde fútbol ──────────────────────────────────────────────────────
 GREEN_PRIMARY   = "#239b83"   # verde campo
@@ -62,11 +64,13 @@ def load_model() -> PlayerRecommender:
 
 @st.cache_data
 def load_reported_budget_data():
-    return load_budget_inputs()
+    return load_europe_budget_inputs()
 
 
 @st.cache_resource
-def collected_service(name, scope='La Liga'):
+def collected_service(name, scope='La Liga', training='La Liga · original'):
+    if scope == 'Cinco grandes ligas' and training == 'Cinco ligas · reentrenado':
+        return load_trained_service(name)
     return load_top_five_service(name) if scope == 'Cinco grandes ligas' else load_collected_service(name)
 
 
@@ -214,10 +218,11 @@ def main() -> None:
     selected_model = st.sidebar.selectbox('Modelo de scouting', list(model_labels))
     model_kind = model_labels[selected_model]
     scope = 'La Liga' if model_kind == 'legacy' else st.sidebar.selectbox('Mercado de scouting', ['Cinco grandes ligas', 'La Liga'])
+    training = st.sidebar.selectbox('Entrenamiento', ['Cinco ligas · reentrenado', 'La Liga · original']) if scope == 'Cinco grandes ligas' else 'La Liga · original'
 
     # ── Carga del modelo ──────────────────────────────────────────────────────
     try:
-        service = None if model_kind == 'legacy' else collected_service(model_kind, scope)
+        service = None if model_kind == 'legacy' else collected_service(model_kind, scope, training)
         base_model = load_model() if service is None else service.model
         seasons = sorted(base_model.players.season.unique(), reverse=True) if service is None else service.available_seasons
         season = st.sidebar.selectbox('Temporada observada', seasons)
@@ -240,7 +245,7 @@ def main() -> None:
         st.write('La afinidad va de −1 a 1 y compara el perfil medido con un estilo definido por expertos. No es una probabilidad de éxito. Los clusters son grupos estadísticos, no estilos descubiertos.')
         st.caption('Variables medidas: ' + ', '.join(rec.artifacts.feature_cols))
         if scope == 'Cinco grandes ligas':
-            st.write('El modelo conserva su entrenamiento en La Liga. Las cuatro ligas añadidas tienen evaluación de recuperación de perfiles; la afinidad táctica entre ligas no está calibrada por fuerza de competición. En cambios de liga se muestra la de mayor exposición por temporada, sin sumar competiciones.')
+            st.write(('Modelo entrenado con las cinco ligas y evaluado cronológicamente.' if training == 'Cinco ligas · reentrenado' else 'Modelo original entrenado en La Liga, aplicado a cinco ligas.') + ' La evaluación mide recuperación de perfiles; la afinidad táctica no está calibrada por fuerza de competición. En cambios de liga se conserva la de mayor exposición por temporada, sin sumar competiciones.')
     from src.features.styles import measured_weight_fraction
     styles = {k:v for k,v in list_styles().items() if measured_weight_fraction(k, rec.artifacts.feature_cols) >= .6}
     if service is not None:
@@ -307,7 +312,7 @@ def main() -> None:
             import uuid
             from src.process.events import record_event
             st.session_state['scouting_case'] = str(uuid.uuid4())
-            attrs = dict(gallery_scope=scope, style=style_key, position=position, season=season, league=league, max_age=max_age,
+            attrs = dict(training_scope=training, gallery_scope=scope, style=style_key, position=position, season=season, league=league, max_age=max_age,
                          model=model_kind, min_minutes=min_minutes, exclude_club=excluded_club,
                          reported_value_budget_million=max_budget, reported_value_cutoff=str(valuation_cutoff),
                          price_match_status='provisional', historical_budget_validation=False)
@@ -343,7 +348,7 @@ def main() -> None:
     # ── Tab 1: Recomendaciones ────────────────────────────────────────────────
     with tab1:
         filters = (style_key, position, league, season, max_age, max_budget, str(valuation_cutoff), top_n,
-                   model_kind, min_minutes, excluded_club, scope)
+                   model_kind, min_minutes, excluded_club, scope, training)
         if run or "last_result" not in st.session_state or st.session_state.get('last_filters') != filters:
             if not run and st.session_state.get('last_filters') != filters:
                 st.session_state.pop('scouting_case', None)
@@ -566,15 +571,15 @@ def main() -> None:
             st.caption('Modelo exploratorio heredado; su procedencia y evaluación final no están verificadas.')
         else:
             info = service.info
-            st.caption('Métricas originales de La Liga; consulta la evaluación por liga más abajo para el mercado europeo.' if scope == 'Cinco grandes ligas' else 'Métricas del modelo evaluado en La Liga.')
+            st.caption('Evaluación agrupada en cinco ligas del modelo reentrenado.' if training == 'Cinco ligas · reentrenado' else 'Métricas originales del modelo entrenado en La Liga.')
             st.caption('Evaluación: recuperación del mismo jugador en la siguiente temporada según su perfil. '
                        'No mide éxito de fichajes ni pertinencia táctica validada.')
             st.dataframe(pd.DataFrame([{'Modelo': selected_model, 'Método de distancia': info['selected_method'],
                 'MRR holdout': info['holdout_mrr'], 'Recall@5': info['holdout_recall_at_5'],
                 'K clusters': info['selected_k'], 'Varianza PCA 2 componentes': sum(info['pca_explained_variance'][:2]),
                 'Jaccard top-5 bootstrap': info['robustness_top5_jaccard_mean']}]), hide_index=True)
-            st.caption('Core y ofensivo tienen periodos de evaluación diferentes; sus métricas no son una comparación controlada. '
-                       'La componente PC4 de Core mostró sensibilidad en la validación extendida.')
+            st.caption('Core y ofensivo tienen periodos de evaluación diferentes; sus métricas no son una comparación controlada. ' +
+                       ('Las componentes PCA del modelo nuevo tienen validación por bootstrap; consulta el notebook11.' if training == 'Cinco ligas · reentrenado' else 'La componente PC4 del modelo original Core mostró sensibilidad en la validación extendida.'))
             st.dataframe(service.gallery.groupby('season').agg(observaciones=('entity_id', 'size'),
                 jugadores=('entity_id', 'nunique'), temporada_parcial=('partial_season', 'any')).reset_index(), hide_index=True)
             st.caption('Transformaciones ajustadas únicamente en las temporadas de entrenamiento: ' +
@@ -588,7 +593,7 @@ def main() -> None:
                 st.dataframe(coverage[coverage.model.eq(model_kind)], hide_index=True)
                 st.markdown('**Evaluación del modelo congelado por liga**')
                 st.caption('Recuperación del mismo jugador en la temporada siguiente. No mide éxito de fichajes; las temporadas de Core y ofensivo difieren.')
-                evaluation = league_evaluation(model_kind)
+                evaluation = trained_league_evaluation(model_kind) if training == 'Cinco ligas · reentrenado' else league_evaluation(model_kind)
                 st.dataframe(evaluation[['league','query_season','evaluation_season','queries','candidate_count','mrr','recall_at_5','mrr_ci_low','mrr_ci_high']], hide_index=True)
 
     with tab6:

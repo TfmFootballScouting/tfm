@@ -1,3 +1,5 @@
+> Latest full run: [five-league preprocessing, EDA, model refits and validation](FIVE_LEAGUE_FULL_PIPELINE.md). Three new trained models and50 real-observation scenarios are complete; price identities remain provisional. Earlier reports describe earlier versions.
+
 > Latest application: [five-league scouting and UI update](TOP_FIVE_LEAGUES.md). Real Premier League, Bundesliga, Serie A and Ligue 1 galleries are now included; models remain frozen La Liga-trained. Earlier counts below describe earlier stages.
 
 # First-submission execution and review
