@@ -1,5 +1,6 @@
 """Verify released five-league data, source fingerprints and actual app checks."""
 import json
+from pathlib import Path
 from datetime import datetime, timezone
 import xml.etree.ElementTree as ET
 from urllib.request import urlopen
@@ -61,8 +62,11 @@ def main():
     old_models=previous['new_model_experiments']
     for name in ['core','offensive']:
         item=old_models[name]
-        assert sha256(destination/'mlflow_export/models'/__import__('pathlib').Path(item['model_path']).name)==item['model_sha256']
-    verification=dict(mlflow_run_id=run['run_id'],mlflow_status=run['status'],mlflow_exported_artifacts=run['exported_artifacts'],
+        assert sha256(destination/'mlflow_export/models'/Path(item['model_path']).name)==item['model_sha256']
+    clean=json.loads((destination/'clean_checkout.json').read_text())
+    assert clean['status']=='passed' and not clean['private_uploads_present']
+    assert set(clean['league_returned'])==set(LEAGUES) and min(clean['league_returned'].values())>0
+    verification=dict(clean_committed_checkout=clean,mlflow_run_id=run['run_id'],mlflow_status=run['status'],mlflow_exported_artifacts=run['exported_artifacts'],
         status='passed_released_outputs',checked_at=datetime.now(timezone.utc).isoformat(),
         source_commit=report['git_commit'],dataset_version=report['dataset_version'],tests=tests,
         historical_protected_verified=protected_verified,historical_protected_missing=protected_missing,

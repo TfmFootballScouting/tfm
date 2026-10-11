@@ -55,3 +55,9 @@ If pinned FBref archives are missing, `python -m scripts.top_five_leagues --down
 This update supersedes the earlier single-league application and submission counts without rewriting immutable historical experiment artifacts. Actual transfer-success validation, genuine process data, private valuation restoration and advanced Segunda completeness remain separate limitations.
 
 The external retrieval diagnostic also has a separate real-data MLflow run (`tfm-scouting-five-league-frozen-evaluation`) with dataset/Git/owner/environment/project tags, actual per-league metrics, an evaluation plot and copies of the existing frozen model artifacts. This is an evaluation run, not model retraining. Portable downloaded artifacts and run metadata are retained under `reports/top_five_leagues/mlflow_export/`. Execute `python -m scripts.top_five_mlflow` only when intentionally creating a new diagnostic run; it does not change model training.
+
+## Verified release
+
+107 tests passed with zero failures/errors/skips. Notebook10 executed four code cells with zero errors. Six raw archive checksums and 316 historical protected artifacts were verified. Chromium checks at 1440×1000 and 390×844 showed no page errors or document horizontal overflow, and the final screenshots were reviewed locally. Dependency checks found no broken requirements.
+
+A separate clean committed checkout on Linux with `core.autocrlf=true`, without private uploads, launched the app and returned ten default alternatives for each of the five leagues; switching to the offensive 2024/25 gallery also passed. This verifies the ordinary app workflow from committed files, not native Windows or the full private-data pipeline. Evidence: `reports/top_five_leagues/clean_checkout.json`.
