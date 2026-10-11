@@ -1,0 +1,131 @@
+{
+  "dataset_version": "28dc55e8885f1db9cef608567ca2626231f3bab94d1bb3ad13d73b7273dfa87a",
+  "git_commit": "d1fcbf03d48d8f2607daa0d30b69c30305217b39",
+  "git_source_dirty": false,
+  "base_dataset_version": "42a86ea4014765ff4015fca36ab1bd3cb778501edd6e9e4eb4a37924591b3e57",
+  "identity_method_accepted_but_links_unverified": true,
+  "model_inputs_source": "fbref_worldfootballr",
+  "parameters": {
+    "table": "collected_tactical_candidates",
+    "split": "core_proxy_split",
+    "features": [
+      "gls_p90",
+      "ast_p90",
+      "sh_p90",
+      "sot_p90",
+      "crs_p90",
+      "int_p90",
+      "tklw_p90",
+      "fls_p90",
+      "fld_p90"
+    ]
+  },
+  "result": {
+    "feature_cols": [
+      "gls_p90",
+      "ast_p90",
+      "sh_p90",
+      "sot_p90",
+      "crs_p90",
+      "int_p90",
+      "tklw_p90",
+      "fls_p90",
+      "fld_p90"
+    ],
+    "selected_method": "euclidean_profile",
+    "selection_rule": "Highest validation MRR among profile methods; holdout never selects parameters",
+    "cohort_rows": {
+      "train": 795,
+      "validation": 388,
+      "holdout": 393
+    },
+    "cohort_seasons": {
+      "train": [
+        "2020-2021",
+        "2021-2022"
+      ],
+      "validation": [
+        "2022-2023"
+      ],
+      "holdout": [
+        "2023-2024"
+      ]
+    },
+    "selected_k": 2,
+    "pca_explained_variance": [
+      0.4124190320125364,
+      0.16842048875625618,
+      0.1425819114908669,
+      0.07455250156861361
+    ],
+    "cluster_analysis": {
+      "position_nmi": 0.3939326304008657,
+      "season_nmi": 0.001310740665351154,
+      "seed_ari_mean": 1.0
+    },
+    "bootstrap_top5_jaccard_mean": 0.9333333333333333,
+    "holdout_metrics": {
+      "mrr": 0.22335190005016758,
+      "recall_at_5": 0.3373493975903614,
+      "recall_at_10": 0.42971887550200805,
+      "ndcg_at_10": 0.25692269174543264
+    },
+    "model_path": "models/real/collected_core_recommender.joblib",
+    "model_sha256": "5237b98ebea0f37bb5a92be5ef329751d4a5a2a7f10c1e9c68768599d1b712c2",
+    "imputer_statistics": [
+      0.061749571183533455,
+      0.05531653349723417,
+      0.8968609865470851,
+      0.25009924573243353,
+      1.158176943699732,
+      0.9523809523809524,
+      0.8002735978112175,
+      1.2800875273522976,
+      1.1629576453697057
+    ],
+    "scaler_mean": [
+      0.11936381497206865,
+      0.08399987288881056,
+      1.1316640815709589,
+      0.36714337167721406,
+      1.883791669856147,
+      0.9665670330255898,
+      0.8663166524358861,
+      1.356584265648058,
+      1.263317208902148
+    ],
+    "scaler_scale": [
+      0.1574077178150301,
+      0.10050824423441573,
+      0.8480068158179281,
+      0.3542477934050224,
+      1.9774520077060036,
+      0.5457533425929313,
+      0.4465623557999459,
+      0.6015945973830813,
+      0.7014607238393392
+    ],
+    "validation_queries": 248,
+    "holdout_queries": 249,
+    "output_files": {
+      "reports/experiments/collected_core_retrieval.csv": "bf65cf406f606cadda995aabcb4ac6192f66861d43e649e60eb2ec4e2ef832f5",
+      "reports/experiments/collected_core_retrieval_queries.csv": "b1da18495d9eb3290f72715e731f065fa46b0ed7cb4f1dfaedaaac458ce45b2b",
+      "reports/experiments/collected_core_cluster_search.csv": "c2a9f7d7507d4e01164096ee95aefd81d9742947d6996d052caf3ba3a020bc6e",
+      "reports/experiments/collected_core_cluster_stability.csv": "c2af27fc76f2508c76f4be227ffe0fb94e0c20d4a51aee32f15485babed2d44b",
+      "reports/experiments/collected_core_cluster_centroids.csv": "0fa5a966065f4527becc195251e8665081285577d26bd5f06404c7d54d9182a8",
+      "reports/experiments/collected_core_cluster_profiles.csv": "3dd2e1994b2d3ec86ca92b9dec87a6a121b87741164d8eb30d4f3dc422eff985",
+      "reports/experiments/collected_core_cluster_sizes.csv": "e3efd3f8aeabd8a4e0ad674434cab3954f5cc56581a47da11d5c302b66e1f514",
+      "reports/experiments/collected_core_cluster_positions.csv": "2fc2770f909f166801285e23406e285c383192c023e78c2160fb47745f4f1742",
+      "reports/experiments/collected_core_cluster_seasons.csv": "bdc6f4c03a55c8e5c3bb5e63a906c96661f13104cb75a126adbc13ff940e4e5a",
+      "reports/experiments/collected_core_pca_loadings.csv": "ecd9cf345bffb8dac8cf0cad4f8c4c4139b61c2f33d5b60d38c6e3a1b6310d07",
+      "reports/experiments/collected_core_robustness.csv": "fa108f033071f894ad6e6a0ead6d586ea6948386e10c0b0097329c84fe97aba7",
+      "reports/experiments/collected_core_shortlists.csv": "b2bb63d7c006da10fcae6b1f3374ffaa585fcc516e86adb3a6ec556849a155f7",
+      "reports/experiments/collected_core_retrieval.png": "a9c5664f5d7ad22999c5b7e3fd06386c4068d424a9b165c34f9e41779e039904",
+      "reports/experiments/collected_core_pca_variance.png": "f2e8cc1e9d8bdbc4faa69c34944fc0072696b7213f9fae57f310ea625fcd6127",
+      "reports/experiments/collected_core_pca_loadings.png": "766b2e6f377652b73b0e1893387d405717bf4530f1e13d47da6b6a1d907bf3bd",
+      "reports/experiments/collected_core_cluster_profiles.png": "55a85d5369481b5147f95935da97e785f2e0c6f50971a47ee9983ec07cb554a1",
+      "reports/experiments/collected_core_cluster_selection.png": "27f328f0286e1b9e7ada700f663b2348a54a6cc69ffaa108ff4e0e11185d28d6",
+      "reports/experiments/collected_core_robustness.png": "e76d9797af7b89d9b1c3b7f88e8e04aa3b70f11cd79414aaa254a359cb93967d"
+    }
+  }
+}

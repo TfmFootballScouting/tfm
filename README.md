@@ -90,3 +90,8 @@ The additional toolkit was tested: it contains no data; new provider access is n
 ### Collected-data preprocessing and mandatory features
 
 The existing layout is preserved. Run `.venv/bin/python -m src.preprocessing.collected`, then `.venv/bin/python -m scripts.collected_eda`. New `collected_*` tables in `data/processed/real/` preserve 3,378 FBref player seasons and prepare 1,975 historical outfield baseline candidates. All ten core per-90 feature columns remain; unknown values and unavailable dated budgets remain missing. The current legacy model dataset is unchanged. Execute `notebooks/05_collected_data_preprocessing.ipynb` for multi-season EDA. See [the feature contract and preprocessing decisions](docs/COLLECTED_PREPROCESSING.md).
+
+
+### Collected-data modelling and tracked experiments
+
+Run `.venv/bin/python -m scripts.collected_models`, then `.venv/bin/python -m scripts.collected_model_notebook`. The new [model-analysis notebook](notebooks/06_collected_model_analysis.ipynb) compares chronological real-data profile retrieval, PCA, clusters, baselines and robustness. New models and reports use `collected_` prefixes in the existing folders. Matching proposals are retained for source-agreement exploration; trained features remain FBref-only. See [experiment scope, results and limitations](docs/COLLECTED_MODELS.md). These models do not overwrite the Streamlit application's previous model/data.

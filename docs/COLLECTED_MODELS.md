@@ -50,3 +50,15 @@ MLflow uses `tfm-scouting-collected-real-proxies`, separate from legacy/syntheti
 ## Remaining requirements
 
 Individual cross-source identities are unverified; agreement of source goals/xG is a diagnostic, not a labelled matching-accuracy test. Complete Segunda coverage, detailed goalkeeper/pressing roles, dated budgets, actual historical transfer relevance and genuine process event validation remain unavailable. The Streamlit application still serves its previous exploratory model pending a separate integration and validation step. These experiments improve the measured-profile recommendation study; they do not complete final real-world scouting validation.
+
+## Executed results
+
+| Track | Holdout | Returning queries | Selected method | MRR | Recall@5 |
+|---|---|---:|---|---:|---:|
+| offensive | 2024-2025 | 243 | euclidean_profile | 0.0855 | 10.7% |
+| core | 2023-2024 | 249 | euclidean_profile | 0.2234 | 33.7% |
+| attack_on_core | 2023-2024 | 249 | euclidean_profile | 0.0659 | 8.4% |
+
+The offensive holdout goals-and-assists baseline has MRR 0.0556 and Recall@5 6.4%; the core holdout baseline has MRR 0.0391 and Recall@5 4.7%. These baseline figures use the same returning players and candidates as their corresponding track. On the same core holdout cohort, nine-feature Euclidean MRR exceeds six-feature Euclidean MRR by 0.1574 (paired bootstrap interval 0.1246–0.1925). The feature comparison is post hoc and measures identity/profile retrieval only.
+
+All 57 automated tests passed, and the new model-analysis notebook executed ten code cells without errors. The old application/model files and original data remain unchanged. Detailed lineage and checks are recorded in `reports/collected_model_verification.json`.

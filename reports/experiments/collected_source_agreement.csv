@@ -1,0 +1,7 @@
+season,proposed_understat_club_links,comparable_rows,goals_exact_agreement,goals_absolute_difference_mean,xg_spearman,interpretation
+2020-2021,410,410,406,0.00975609756097561,0.9899438939761858,Provisional join diagnostic; provider/exposure differences are not identity labels
+2021-2022,431,431,419,0.027842227378190254,0.9853051054334885,Provisional join diagnostic; provider/exposure differences are not identity labels
+2022-2023,406,405,403,0.0049382716049382715,0.9808227222679442,Provisional join diagnostic; provider/exposure differences are not identity labels
+2023-2024,416,416,416,0.0,0.9819707849232926,Provisional join diagnostic; provider/exposure differences are not identity labels
+2024-2025,405,405,404,0.0024691358024691358,0.9846362958313198,Provisional join diagnostic; provider/exposure differences are not identity labels
+2025-2026,249,249,249,0.0,0.9187282017141157,Provisional join diagnostic; provider/exposure differences are not identity labels
