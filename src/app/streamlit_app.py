@@ -153,6 +153,33 @@ def bar_figure(df: pd.DataFrame) -> go.Figure:
     return fig
 
 
+def group_map_figure(players: pd.DataFrame, selected_group: int) -> go.Figure:
+    """Display all observed players using frozen profile coordinates and UI groups."""
+    plotted = players[['player', 'team', 'league', 'pos_main', 'group', 'pc1', 'pc2']].copy()
+    plotted['group'] = plotted.group.map(lambda value: f'Grupo {value}')
+    plotted = display_frame(plotted)
+    figure = px.scatter(
+        plotted, x='Pc1', y='Pc2', color='Grupo',
+        hover_name='Jugador', hover_data={'Equipo': True, 'Liga': True, 'Posición': True, 'Pc1': False, 'Pc2': False},
+        category_orders={'Grupo': [f'Grupo {g}' for g in sorted(players.group.unique())]},
+        color_discrete_sequence=px.colors.qualitative.Alphabet,
+        title='Mapa de perfiles de jugadores',
+    )
+    for trace in figure.data:
+        selected = trace.name == f'Grupo {selected_group}'
+        trace.update(marker=dict(size=9 if selected else 6, opacity=1 if selected else .4,
+                                 line=dict(width=1 if selected else 0, color='#eaf2f8')))
+    figure.update_layout(
+        template=PLOTLY_TEMPLATE, paper_bgcolor=BG_CARD, plot_bgcolor=BG_DARK,
+        font=dict(color=TEXT_LIGHT), height=500,
+        xaxis=dict(title='Perfil de juego · eje horizontal', showticklabels=False),
+        yaxis=dict(title='Perfil de juego · eje vertical', showticklabels=False),
+        legend=dict(title='Grupos de jugadores', orientation='h', y=-.15),
+        margin=dict(l=35, r=20, t=50, b=70),
+    )
+    return figure
+
+
 def main() -> None:
     st.set_page_config(
         page_title="ScoutIQ · Scouting de Futbolistas",
@@ -490,6 +517,8 @@ def main() -> None:
             summary = summary.rename(columns={'group': 'Grupo', 'Edad_media': 'Edad media', 'Minutos_medios': 'Minutos medios'})
             st.dataframe(summary, hide_index=True, use_container_width=True)
             chosen = st.selectbox('Grupo a explorar', sorted(grouped.group.unique()), format_func=lambda g: f'Grupo {g}', key='explore_group')
+            st.plotly_chart(group_map_figure(grouped, chosen), use_container_width=True, key='explore_group_map')
+            st.caption('Cada punto es un jugador. El color indica su grupo y el grupo elegido aparece resaltado. Pasa el cursor para ver el nombre, club, liga y posición; usa la leyenda para mostrar u ocultar grupos. Esta vista resume las estadísticas, no representa posiciones en el campo.')
             members = grouped[grouped.group.eq(chosen)].sort_values(['pos_main', 'player'])
             st.caption(f'Grupo {chosen} · {len(members)} jugadores. Los números de grupo pueden cambiar al modificar el mercado o el número de grupos.')
             st.markdown('**Estadísticas medias del grupo**')
