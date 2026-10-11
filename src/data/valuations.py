@@ -178,7 +178,9 @@ def select_recorded_values(records, cutoff):
     t = pd.to_datetime(cutoff, utc=True, errors='raise')
     if pd.isna(t):
         raise ValueError('A decision cutoff is required')
-    frame = records.copy()
+    # Imported/concatenated tables can legitimately repeat pandas index labels;
+    # identity and record columns, rather than that index, determine cardinality.
+    frame = records.reset_index(drop=True).copy()
     for field in ['valuation_date', 'valuation_known_at', 'identity_reviewed_at']:
         frame[field] = pd.to_datetime(frame[field], utc=True, errors='coerce')
     amount = pd.to_numeric(frame.market_value_eur, errors='coerce')
