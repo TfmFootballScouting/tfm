@@ -1,3 +1,5 @@
+> Latest application: [five-league scouting and UI update](docs/TOP_FIVE_LEAGUES.md). Real Premier League, Bundesliga, Serie A and Ligue 1 galleries are now included; models remain frozen La Liga-trained. Earlier counts below describe earlier stages.
+
 > Current first submission: [completion report](docs/COMPLETION_REPORT.md) and [execution/review instructions](docs/FIRST_SUBMISSION.md). Earlier status notices below are historical and may describe resolved limitations.
 
 > Scouting scenarios: ten real-observation cases and interactive requirements, baselines and sensitivity are documented in [SCOUTING_SCENARIOS.md](docs/SCOUTING_SCENARIOS.md). Reported values remain provisional; actual transfer-success validation is blocked.

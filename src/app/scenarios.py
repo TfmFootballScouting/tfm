@@ -24,6 +24,7 @@ class Requirements:
     min_minutes: int
     budget_million: float
     top_n: int = 5
+    league: str | None = None
 
     def validate(self, rec):
         if self.position not in {'DF', 'MF', 'FW'}: raise ValueError('Use a broad outfield position')
@@ -37,6 +38,8 @@ class Requirements:
         if rec.players.partial_season.any(): raise ValueError('Partial seasons cannot support this scenario')
         clubs = {club for item in rec.players.clubs for club in json.loads(item)}
         if self.club not in clubs: raise ValueError('Select an observed club')
+        if self.league is not None and (self.league not in set(rec.players.league) or rec.players.league.eq(self.league).sum() < 10):
+            raise ValueError('Select a league with sufficient gallery coverage')
 
     @property
     def valuation_cutoff(self):
@@ -52,6 +55,7 @@ def run_scenario(rec, requirements, links, values):
         nonlocal ranked
         ranked = ranked.loc[mask].copy()
         funnel.append(dict(stage=stage, count=len(ranked)))
+    if requirements.league is not None: keep(ranked.league.eq(requirements.league), 'target_league')
     keep(ranked.pos_main.eq(requirements.position), 'broad_position')
     keep(ranked.age.notna() & ranked.age.le(requirements.max_age), 'known_age_within_ceiling')
     keep(ranked.minutes.ge(requirements.min_minutes), 'minimum_minutes')

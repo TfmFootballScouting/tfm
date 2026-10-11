@@ -1,3 +1,5 @@
+> Latest application: [five-league scouting and UI update](TOP_FIVE_LEAGUES.md). Real Premier League, Bundesliga, Serie A and Ligue 1 galleries are now included; models remain frozen La Liga-trained. Earlier counts below describe earlier stages.
+
 # Current completion report
 
 Reviewed 11 October 2026. Branch: `improve/reproducible-scouting`. The existing folder structure, raw data and provenance are retained. Nothing has been pushed to main. Earlier statements are preserved in [completion history](COMPLETION_HISTORY.md).

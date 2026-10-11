@@ -20,160 +20,19 @@ from src.models.recommend import PlayerRecommender
 from src.preprocessing.clean import load_players
 from src.app.budget import load_budget_inputs, candidate_links, attach_reported_values, screen_budget
 from src.app.collected import load_collected_service
+from src.app.leagues import load_top_five_service, coverage_table, league_evaluation
+from src.app.presentation import CSS as MODERN_CSS, shortlist_cards
 
 # ── Paleta verde fútbol ──────────────────────────────────────────────────────
-GREEN_PRIMARY   = "#1a7a3c"   # verde campo
-GREEN_LIGHT     = "#2ecc71"   # acento claro
+GREEN_PRIMARY   = "#239b83"   # verde campo
+GREEN_LIGHT     = "#51deb2"   # acento claro
 GREEN_DARK      = "#0f4d25"   # verde oscuro
-BG_DARK         = "#0d1f14"   # fondo muy oscuro
-BG_CARD         = "#142b1c"   # fondo tarjetas
+BG_DARK         = "#101b28"   # fondo muy oscuro
+BG_CARD         = "#172536"   # fondo tarjetas
 GOLD            = "#f0c040"   # acento dorado para destacados
 TEXT_LIGHT      = "#e8f5ec"   # texto principal
-TEXT_MUTED      = "#7dab8a"   # texto secundario
+TEXT_MUTED      = "#b8c7d8"   # texto secundario
 PLOTLY_TEMPLATE = "plotly_dark"
-
-CSS = f"""
-<style>
-/* Fondo general */
-[data-testid="stAppViewContainer"] {{
-    background-color: {BG_DARK};
-}}
-[data-testid="stSidebar"] {{
-    background-color: {BG_CARD};
-    border-right: 1px solid {GREEN_PRIMARY};
-}}
-
-/* Texto base */
-html, body, [data-testid="stMarkdownContainer"] p,
-[data-testid="stText"] {{
-    color: {TEXT_LIGHT};
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-}}
-
-/* Título principal */
-h1 {{
-    color: {GREEN_LIGHT} !important;
-    font-size: 2.2rem !important;
-    font-weight: 800 !important;
-    letter-spacing: -0.5px;
-    border-bottom: 2px solid {GREEN_PRIMARY};
-    padding-bottom: 0.4rem;
-    margin-bottom: 0.2rem;
-}}
-
-/* Subtítulos */
-h2, h3 {{
-    color: {TEXT_LIGHT} !important;
-    font-weight: 700 !important;
-}}
-
-/* Caption */
-[data-testid="stCaptionContainer"] {{
-    color: {TEXT_MUTED} !important;
-    font-size: 0.85rem;
-}}
-
-/* Sidebar header */
-[data-testid="stSidebar"] h1,
-[data-testid="stSidebar"] h2,
-[data-testid="stSidebar"] h3 {{
-    color: {GREEN_LIGHT} !important;
-    font-size: 1rem !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0.8rem;
-}}
-
-/* Botón primario */
-[data-testid="stButton"] button[kind="primary"] {{
-    background-color: {GREEN_PRIMARY} !important;
-    border: none !important;
-    color: white !important;
-    font-weight: 700 !important;
-    border-radius: 6px !important;
-    width: 100%;
-    padding: 0.6rem !important;
-    transition: background 0.2s;
-}}
-[data-testid="stButton"] button[kind="primary"]:hover {{
-    background-color: {GREEN_LIGHT} !important;
-    color: {BG_DARK} !important;
-}}
-
-/* Botón secundario */
-[data-testid="stButton"] button {{
-    background-color: {BG_CARD} !important;
-    border: 1px solid {GREEN_PRIMARY} !important;
-    color: {TEXT_LIGHT} !important;
-    border-radius: 6px !important;
-    width: 100%;
-}}
-
-/* Tabs */
-[data-testid="stTabs"] [data-baseweb="tab-list"] {{
-    background-color: {BG_CARD};
-    border-radius: 8px;
-    padding: 4px;
-    gap: 4px;
-}}
-[data-testid="stTabs"] [data-baseweb="tab"] {{
-    color: {TEXT_MUTED} !important;
-    font-weight: 600;
-    border-radius: 6px;
-}}
-[data-testid="stTabs"] [aria-selected="true"] {{
-    background-color: {GREEN_PRIMARY} !important;
-    color: white !important;
-}}
-
-/* Dataframe */
-[data-testid="stDataFrame"] {{
-    border: 1px solid {GREEN_PRIMARY};
-    border-radius: 8px;
-    overflow: hidden;
-}}
-
-/* Info box */
-[data-testid="stInfo"] {{
-    background-color: {BG_CARD} !important;
-    border-left: 3px solid {GREEN_LIGHT} !important;
-    color: {TEXT_LIGHT} !important;
-    border-radius: 0 6px 6px 0;
-}}
-
-/* Sliders */
-[data-testid="stSlider"] [data-baseweb="slider"] [data-testid="stThumbValue"] {{
-    color: {GREEN_LIGHT};
-}}
-
-/* Métricas KPI */
-[data-testid="stMetric"] {{
-    background-color: {BG_CARD};
-    border: 1px solid {GREEN_PRIMARY};
-    border-radius: 10px;
-    padding: 1rem 1.2rem;
-}}
-[data-testid="stMetricLabel"] {{
-    color: {TEXT_MUTED} !important;
-    font-size: 0.78rem !important;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-}}
-[data-testid="stMetricValue"] {{
-    color: {GREEN_LIGHT} !important;
-    font-size: 1.8rem !important;
-    font-weight: 800 !important;
-}}
-[data-testid="stMetricDelta"] {{
-    color: {GOLD} !important;
-}}
-
-/* Warning */
-[data-testid="stAlert"] {{
-    border-radius: 8px;
-}}
-</style>
-"""
 
 # Emojis por estilo de juego
 STYLE_ICONS = {
@@ -207,8 +66,8 @@ def load_reported_budget_data():
 
 
 @st.cache_resource
-def collected_service(name):
-    return load_collected_service(name)
+def collected_service(name, scope='La Liga'):
+    return load_top_five_service(name) if scope == 'Cinco grandes ligas' else load_collected_service(name)
 
 
 def radar_figure(
@@ -273,14 +132,14 @@ def radar_figure(
 
 def bar_figure(df: pd.DataFrame) -> go.Figure:
     df = df.head(10).copy()
-    df["affinity_pct"] = (df["affinity"] * 100).round(1)
+    df["affinity_display"] = df["affinity"].round(3)
     colors = [GOLD if i == 0 else GREEN_PRIMARY for i in range(len(df))]
     fig = go.Figure(go.Bar(
-        x=df["affinity_pct"],
+        x=df["affinity_display"],
         y=df["player"],
         orientation="h",
         marker_color=colors,
-        text=df["affinity_pct"].astype(str),
+        text=df["affinity_display"].astype(str),
         textposition="outside",
         textfont=dict(color=TEXT_LIGHT, size=11),
     ))
@@ -289,10 +148,10 @@ def bar_figure(df: pd.DataFrame) -> go.Figure:
         plot_bgcolor=BG_CARD,
         font=dict(color=TEXT_LIGHT),
         xaxis=dict(
-            title="Coseno ×100",
+            title="Afinidad de estilo (−1 a 1)",
             gridcolor="#1f3d2a",
             tickfont=dict(color=TEXT_MUTED),
-            range=[-100, 115],
+            range=[-1, 1.15],
         ),
         yaxis=dict(
             categoryorder="total ascending",
@@ -344,18 +203,21 @@ def main() -> None:
         layout="wide",
         initial_sidebar_state="expanded",
     )
-    st.markdown(CSS, unsafe_allow_html=True)
+    st.markdown(MODERN_CSS, unsafe_allow_html=True)
 
     # ── Header ────────────────────────────────────────────────────────────────
-    st.title("⚽ ScoutIQ — Scouting de Futbolistas")
-    st.caption("Sistema de recomendación por afinidad táctica · TFM Data Science")
+    st.title("ScoutIQ · Tu próxima shortlist")
+    st.caption("Encuentra perfiles, compara alternativas y define tus necesidades de scouting.")
+    st.sidebar.markdown("## ScoutIQ")
+    st.sidebar.caption("Define el mercado y el perfil que necesitas.")
     model_labels = {'Core · seis estilos': 'core', 'Ofensivo': 'offensive', 'Exploración heredada': 'legacy'}
     selected_model = st.sidebar.selectbox('Modelo de scouting', list(model_labels))
     model_kind = model_labels[selected_model]
+    scope = 'La Liga' if model_kind == 'legacy' else st.sidebar.selectbox('Mercado de scouting', ['Cinco grandes ligas', 'La Liga'])
 
     # ── Carga del modelo ──────────────────────────────────────────────────────
     try:
-        service = None if model_kind == 'legacy' else collected_service(model_kind)
+        service = None if model_kind == 'legacy' else collected_service(model_kind, scope)
         base_model = load_model() if service is None else service.model
         seasons = sorted(base_model.players.season.unique(), reverse=True) if service is None else service.available_seasons
         season = st.sidebar.selectbox('Temporada observada', seasons)
@@ -372,10 +234,13 @@ def main() -> None:
     if service is None:
         st.warning("Exploración de datos FBref heredados 2023/24: procedencia original sin verificar. Solo goles y asistencias; no validación final ni costes de fichaje.")
     else:
-        st.caption(f"Perfiles FBref observados en {season}, mínimo 450 minutos. Exploración retrospectiva; "
-                   "los estilos son aproximaciones estadísticas y no una simulación de decisiones históricas. "
-                   "Temporadas parciales o con menos de 10 candidatos no se ofrecen.")
-    st.caption("Afinidad coseno: puntuación descriptiva de −1 a 1, no probabilidad de éxito. Features: " + ", ".join(rec.artifacts.feature_cols))
+        st.caption(f"{scope} · temporada {season} · perfiles con 450+ minutos observados")
+    with st.expander('Cómo interpretar las recomendaciones'):
+        st.write('Exploración retrospectiva: los estilos son aproximaciones estadísticas, no decisiones históricas validadas. Temporadas parciales o con menos de 10 candidatos no se ofrecen.')
+        st.write('La afinidad va de −1 a 1 y compara el perfil medido con un estilo definido por expertos. No es una probabilidad de éxito. Los clusters son grupos estadísticos, no estilos descubiertos.')
+        st.caption('Variables medidas: ' + ', '.join(rec.artifacts.feature_cols))
+        if scope == 'Cinco grandes ligas':
+            st.write('El modelo conserva su entrenamiento en La Liga. Las cuatro ligas añadidas tienen evaluación de recuperación de perfiles; la afinidad táctica entre ligas no está calibrada por fuerza de competición. En cambios de liga se muestra la de mayor exposición por temporada, sin sumar competiciones.')
     from src.features.styles import measured_weight_fraction
     styles = {k:v for k,v in list_styles().items() if measured_weight_fraction(k, rec.artifacts.feature_cols) >= .6}
     if service is not None:
@@ -391,29 +256,36 @@ def main() -> None:
 
     # ── Sidebar ───────────────────────────────────────────────────────────────
     with st.sidebar:
-        st.markdown("### 🎛️ Filtros de búsqueda")
+        st.markdown("### Perfil objetivo")
+        from src.app.presentation import reset_search_filters
+        st.button("Restablecer filtros", on_click=reset_search_filters, use_container_width=True)
         st.divider()
 
         style_key = st.selectbox(
             "Estilo de juego",
             options=list(style_labels),
             format_func=lambda k: f"{STYLE_ICONS.get(k, '⚽')} {style_labels[k]}",
+            key='scout_filter_style',
         )
         st.info(f"_{PLAY_STYLES[style_key]['description']}_")
 
         st.divider()
 
         positions = ['Todas'] + sorted(rec.players.pos_main.dropna().unique())
-        position = st.selectbox("Posición", positions)
+        position = st.selectbox("Posición", positions, key="scout_filter_position")
 
-        leagues = ["Todas"] + sorted(rec.players["league"].dropna().unique().tolist())
-        league = st.selectbox("Liga", leagues)
+        league_counts = rec.players.groupby('league').size()
+        leagues = ["Todas"] + sorted(league_counts[league_counts.ge(10)].index.tolist())
+        if st.session_state.get('scout_filter_league', 'Todas') not in leagues:
+            st.session_state.pop('scout_filter_league', None)
+        league = st.selectbox("Liga", leagues, key='scout_filter_league')
+        st.caption("Las ligas ofrecidas tienen al menos 10 perfiles elegibles en esta temporada.")
 
-        max_age = st.slider("Edad máxima", 18, 40, 32) if rec.players.age.notna().any() else None
-        min_minutes = st.slider('Minutos mínimos', 450, 4500, 450, step=90)
+        max_age = st.slider("Edad máxima", 18, 40, 32, key="scout_filter_age") if rec.players.age.notna().any() else None
+        min_minutes = st.slider('Minutos mínimos', 450, 4500, 450, step=90, key='scout_filter_minutes')
         clubs = sorted({club for item in rec.players.get('clubs', rec.players.team.map(lambda team: json.dumps([team]))) for club in json.loads(item)})
-        excluded_club = st.selectbox('Excluir club', ['Ninguno'] + clubs)
-        budget_enabled = st.checkbox("Filtrar por valor de mercado", disabled=not budget_data_available)
+        excluded_club = st.selectbox('Excluir club', ['Ninguno'] + clubs, key='scout_filter_club')
+        budget_enabled = st.checkbox("Filtrar por valor de mercado", disabled=not budget_data_available, key="scout_filter_budget_enabled")
         valuation_cutoff = None
         max_budget = None
         if budget_data_available:
@@ -427,15 +299,15 @@ def main() -> None:
                 st.caption("Se excluyen valores desconocidos y ceros ambiguos. No se estiman precios faltantes.")
         else:
             st.caption("Valoraciones no disponibles: conserva los archivos de datos subidos y sus manifiestos.")
-        top_n = st.slider("Nº de resultados", 5, 30, 10)
+        top_n = st.slider("Nº de resultados", 5, 30, 10, key="scout_filter_top_n")
 
         st.divider()
-        run = st.button("🔍 Buscar jugadores", type="primary")
+        run = st.button("🔍 Buscar jugadores", type="primary", use_container_width=True)
         if run:
             import uuid
             from src.process.events import record_event
             st.session_state['scouting_case'] = str(uuid.uuid4())
-            attrs = dict(style=style_key, position=position, season=season, league=league, max_age=max_age,
+            attrs = dict(gallery_scope=scope, style=style_key, position=position, season=season, league=league, max_age=max_age,
                          model=model_kind, min_minutes=min_minutes, exclude_club=excluded_club,
                          reported_value_budget_million=max_budget, reported_value_cutoff=str(valuation_cutoff),
                          price_match_status='provisional', historical_budget_validation=False)
@@ -443,16 +315,18 @@ def main() -> None:
             record_event(st.session_state.scouting_case, 'search_executed', 'system', attrs)
 
     # ── KPIs globales ─────────────────────────────────────────────────────────
-    total = rec.players.entity_id.nunique()
-    n_teams = len(clubs)
-    n_leagues = rec.players["league"].nunique()
+    market_players = rec.players if league == 'Todas' else rec.players[rec.players.league.eq(league)]
+    total = market_players.entity_id.nunique()
+    n_teams = len({club for item in market_players.get('clubs', market_players.team.map(lambda team: json.dumps([team]))) for club in json.loads(item)})
+    n_leagues = market_players["league"].nunique()
     n_styles = len(styles)
 
-    k1, k2, k3, k4 = st.columns(4)
-    k1.metric("Jugadores en la temporada", f"{total:,}")
-    k2.metric("Equipos", f"{n_teams:,}")
-    k3.metric("Ligas", f"{n_leagues:,}")
-    k4.metric("Estilos de juego", f"{n_styles}")
+    with st.container(key='market_metrics'):
+        k1, k2, k3, k4 = st.columns(4)
+        k1.metric("Jugadores en la temporada", f"{total:,}")
+        k2.metric("Equipos", f"{n_teams:,}")
+        k3.metric("Ligas", f"{n_leagues:,}")
+        k4.metric("Estilos de juego", f"{n_styles}")
 
     st.divider()
 
@@ -469,7 +343,7 @@ def main() -> None:
     # ── Tab 1: Recomendaciones ────────────────────────────────────────────────
     with tab1:
         filters = (style_key, position, league, season, max_age, max_budget, str(valuation_cutoff), top_n,
-                   model_kind, min_minutes, excluded_club)
+                   model_kind, min_minutes, excluded_club, scope)
         if run or "last_result" not in st.session_state or st.session_state.get('last_filters') != filters:
             if not run and st.session_state.get('last_filters') != filters:
                 st.session_state.pop('scouting_case', None)
@@ -508,13 +382,16 @@ def main() -> None:
             record_event(st.session_state.scouting_case, 'shortlist_reviewed', 'app_user', {'count': len(result)})
         icon = STYLE_ICONS.get(style_key, "⚽")
         st.subheader(f"{icon} Ranking · {style_labels[style_key]}")
+        st.caption(f"{league} · {season} · {position} · mínimo {min_minutes:,} minutos · {len(result)} alternativas")
 
         if result.empty:
             st.warning("Sin resultados con esos filtros. Prueba a ampliar los rangos.")
         else:
             # Tabla
             show = result.copy()
-            show["affinity"] = (show["affinity"] * 100).round(1)
+            shortlist_cards(result)
+            show["affinity"] = show["affinity"].round(3)
+            details = st.checkbox('Ver estadísticas y trazabilidad', value=False)
             if 'reported_value_status' in show:
                 show['reported_value_status'] = show.reported_value_status.map({
                     'reported_positive': 'Valor reportado disponible',
@@ -526,15 +403,15 @@ def main() -> None:
                 show['price_identity_status'] = show.price_identity_status.map({
                     'provisional_not_reviewed': 'Provisional, sin revisión individual', 'unmatched': 'Sin cruce'})
             visible = ['player', 'team', 'league', 'season', 'pos', 'age', 'minutes', 'affinity']
-            visible += rec.artifacts.feature_cols
-            visible += ['reported_market_value_eur', 'reported_valuation_date',
-                        'reported_value_source', 'price_identity_status', 'reported_value_status']
+            if details: visible += rec.artifacts.feature_cols
+            visible += ['reported_market_value_eur', 'reported_value_status']
+            if details: visible += ['reported_valuation_date', 'reported_value_source', 'price_identity_status']
             visible = list(dict.fromkeys(column for column in visible if column in show))
             st.dataframe(
                 show[visible].rename(columns={
                     "player": "Jugador", "team": "Equipo", "league": "Liga",
                     "season": "Temp.", "pos": "Pos", "age": "Edad",
-                    "affinity": "Afinidad coseno ×100",
+                    "affinity": "Afinidad de estilo",
                     "minutes": "Minutos",
                     "reported_market_value_eur": "Valor de mercado reportado (€)",
                     "reported_valuation_date": "Fecha del valor reportado",
@@ -585,7 +462,7 @@ def main() -> None:
         st.caption('Distancia de perfil estandarizado; menor distancia indica mayor cercanía. '
                    'La puntuación de similitud no es una probabilidad de éxito.')
 
-        references = rec.players
+        references = rec.players if league == 'Todas' else rec.players[rec.players.league.eq(league)]
         if position != 'Todas':
             references = references[references.pos.astype(str).str.split(',').map(lambda parts: position in [part.strip() for part in parts])]
         options = references.sort_values("player")[["player_id", "player", "team"]]
@@ -604,6 +481,7 @@ def main() -> None:
             sim = rec.similar_players(selected, top_n=len(rec.players))
             reference = rec.players[rec.players.player_id.eq(selected)].iloc[0]
             if same_position: sim = sim[sim.pos_main.eq(reference.pos_main)]
+            if league != 'Todas': sim = sim[sim.league.eq(league)]
             if position != 'Todas':
                 sim = sim[sim.pos.astype(str).str.split(',').map(lambda parts: position in [part.strip() for part in parts])]
             sim = sim[sim.minutes.ge(min_minutes)]
@@ -647,7 +525,7 @@ def main() -> None:
         st.subheader("🗺️ Mapa PCA + K-Means")
         st.caption('Cada punto es un perfil observado. Los clusters son grupos estadísticos; no representan los seis estilos de juego.')
 
-        df = rec.players
+        df = market_players
         if "pc1" in df.columns and "pc2" in df.columns:
             sample = df.sample(min(800, len(df)), random_state=42)
             st.plotly_chart(scatter_figure(sample), use_container_width=True)
@@ -661,7 +539,7 @@ def main() -> None:
 
     with tab4:
         st.subheader('Perfiles, historial y comparación')
-        profiles = rec.players.sort_values(['player', 'player_id'])
+        profiles = market_players.sort_values(['player', 'player_id'])
         labels = {int(row.player_id): f'{row.player} · {row.team} · {row.season}' for row in profiles.itertuples()}
         first_id = st.selectbox('Primer jugador', list(labels), format_func=lambda value: labels[value])
         second_id = st.selectbox('Segundo jugador', list(labels), index=min(1, len(labels)-1), format_func=lambda value: labels[value])
@@ -678,7 +556,7 @@ def main() -> None:
             entity = profiles[profiles.player_id.eq(first_id)].entity_id.iloc[0]
             history = service.history[service.history.entity_id.eq(entity)].sort_values('season')
             st.markdown('**Historial FBref del primer jugador**')
-            st.dataframe(history[['season', 'team', 'minutes', 'gls', 'ast', 'partial_season']], hide_index=True, use_container_width=True)
+            st.dataframe(history[['season', 'league', 'team', 'minutes', 'gls', 'ast', 'partial_season']], hide_index=True, use_container_width=True)
         else:
             st.caption('El archivo heredado no permite unir un historial de identidad verificado.')
 
@@ -688,6 +566,7 @@ def main() -> None:
             st.caption('Modelo exploratorio heredado; su procedencia y evaluación final no están verificadas.')
         else:
             info = service.info
+            st.caption('Métricas originales de La Liga; consulta la evaluación por liga más abajo para el mercado europeo.' if scope == 'Cinco grandes ligas' else 'Métricas del modelo evaluado en La Liga.')
             st.caption('Evaluación: recuperación del mismo jugador en la siguiente temporada según su perfil. '
                        'No mide éxito de fichajes ni pertinencia táctica validada.')
             st.dataframe(pd.DataFrame([{'Modelo': selected_model, 'Método de distancia': info['selected_method'],
@@ -703,9 +582,18 @@ def main() -> None:
             st.caption('Variables medidas: ' + ', '.join(rec.artifacts.feature_cols) + '. '
                        'No hay galería avanzada de Segunda disponible; no se presentan sus estadísticas básicas como perfiles completos.')
 
+            if scope == 'Cinco grandes ligas':
+                st.markdown('**Cobertura por liga y temporada**')
+                coverage = coverage_table()
+                st.dataframe(coverage[coverage.model.eq(model_kind)], hide_index=True)
+                st.markdown('**Evaluación del modelo congelado por liga**')
+                st.caption('Recuperación del mismo jugador en la temporada siguiente. No mide éxito de fichajes; las temporadas de Core y ofensivo difieren.')
+                evaluation = league_evaluation(model_kind)
+                st.dataframe(evaluation[['league','query_season','evaluation_season','queries','candidate_count','mrr','recall_at_5','mrr_ci_low','mrr_ci_high']], hide_index=True)
+
     with tab6:
         from src.app.scenario_ui import render_scenarios
-        render_scenarios(rec, service, price_links, reported_values)
+        render_scenarios(rec, service, price_links, reported_values, league)
 
 
 if __name__ == "__main__":

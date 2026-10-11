@@ -7,7 +7,7 @@ from src.app.scenarios import Requirements, TEMPLATES, analyze_scenario
 from src.process.events import record_event
 
 
-def render_scenarios(rec, service, links, values):
+def render_scenarios(rec, service, links, values, selected_league="Todas"):
     st.subheader('Escenarios de scouting')
     st.caption('Supuestos ilustrativos y ajustables, no requisitos oficiales del club. Una vacante: cada jugador es una alternativa. '
                'Valores reportados a 30 de junio de la temporada observada; no son costes de fichaje. '
@@ -19,6 +19,8 @@ def render_scenarios(rec, service, links, values):
     label = st.selectbox('Plantilla de requisitos', options)
     template = TEMPLATES[label]
     clubs = sorted({club for item in rec.players.clubs for club in json.loads(item)})
+    league_options = ['Todas'] + sorted(rec.players.groupby('league').size().loc[lambda counts: counts >= 10].index)
+    scenario_league = st.selectbox('Liga del escenario', league_options, index=league_options.index(selected_league))
     club = st.selectbox('Club del escenario', clubs, index=clubs.index('Valencia') if 'Valencia' in clubs else 0)
     # Template-specific keys prevent old widget values from overriding a new template.
     position = st.selectbox('Posición del escenario', ['DF', 'MF', 'FW'],
@@ -29,8 +31,8 @@ def render_scenarios(rec, service, links, values):
     minutes = st.number_input('Minutos mínimos del escenario', min_value=450, max_value=10000, value=template['min_minutes'], key=f'scenario_minutes_{label}')
     budget = st.number_input('Techo de valor reportado del escenario (M€)', min_value=.01, value=template['budget_million'], key=f'scenario_budget_{label}')
     size = st.number_input('Alternativas del escenario', min_value=1, max_value=50, value=5)
-    req = Requirements(club, str(rec.players.season.iloc[0]), position, style, int(age), int(minutes), float(budget), int(size))
-    signature = (service.name, tuple(asdict(req).items()))
+    req = Requirements(club, str(rec.players.season.iloc[0]), position, style, int(age), int(minutes), float(budget), int(size), None if scenario_league == "Todas" else scenario_league)
+    signature = (service.name, service.info.get('gallery_scope', 'La Liga'), service.info.get('gallery_dataset_version'), tuple(asdict(req).items()))
     if st.session_state.get('scenario_signature') != signature:
         st.session_state.pop('scenario_result', None)
         st.session_state.pop('scenario_case', None)

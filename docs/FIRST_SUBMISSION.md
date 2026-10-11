@@ -1,3 +1,5 @@
+> Latest application: [five-league scouting and UI update](TOP_FIVE_LEAGUES.md). Real Premier League, Bundesliga, Serie A and Ligue 1 galleries are now included; models remain frozen La Liga-trained. Earlier counts below describe earlier stages.
+
 # First-submission execution and review
 
 The current submission works in the retained cloud workspace, with its verified raw datasets and existing model artifacts. A clean Git clone alone does not contain every private/ignored provider-derived file. Do not replace absent real data with generated samples or silently skip data-dependent tests.
