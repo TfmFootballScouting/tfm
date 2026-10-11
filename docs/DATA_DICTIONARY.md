@@ -1,3 +1,5 @@
+Latest upload audit: [player statistics and transfer histories](SALIMT_HISTORY_AUDIT.md). Segunda player records are now confirmed for all six target seasons; advanced features and model integration remain incomplete. See `reports/salimt_history_dictionary.csv` for the new source-separated tables.
+
 # Data dictionary and grain
 
 ## Uploaded salimt profiles, values and team history

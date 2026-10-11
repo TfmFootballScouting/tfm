@@ -1,3 +1,5 @@
+Latest upload audit: [player statistics and transfer histories](docs/SALIMT_HISTORY_AUDIT.md). Segunda player records are now confirmed for all six target seasons; advanced features and model integration remain incomplete. See `reports/salimt_history_dictionary.csv` for the new source-separated tables.
+
 # TFM — Análisis y scouting de futbolistas
 
 Improved existing football scouting project: source-separated ingestion, auditable preprocessing, the original cosine/KNN/K-means/PCA engine, MLflow and Streamlit. Authors: Iván Galán López, Basma Marso, Carlos Valencia Sánchez.
