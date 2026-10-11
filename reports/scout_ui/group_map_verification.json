@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "verified_at": "2026-10-11T22:02:06.107364+00:00",
+  "tests": {
+    "tests": 14,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "map_checks": {
+    "observed_players": 1810,
+    "current_groups": 6,
+    "selected_group_highlighted": true,
+    "no_sampling": true,
+    "hover_names_readable": true
+  },
+  "browser_checks": {
+    "desktop_size": [
+      1440,
+      1000
+    ],
+    "mobile_size": [
+      390,
+      844
+    ],
+    "rendered_plot_points": 1810,
+    "javascript_errors": 0,
+    "mobile_horizontal_overflow": false
+  },
+  "sidebar_sections": [
+    "Mercado",
+    "Perfil objetivo",
+    "Requisitos de la shortlist"
+  ],
+  "optional_conditions_collapsed": true,
+  "app_sha256": "bbdbf21cc595bea2b1a76d80095b3eed26095d836d95acb7454fc4b764cfe559"
+}

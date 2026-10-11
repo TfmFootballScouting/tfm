@@ -153,6 +153,33 @@ def bar_figure(df: pd.DataFrame) -> go.Figure:
     return fig
 
 
+def group_map_figure(players: pd.DataFrame, selected_group: int) -> go.Figure:
+    """Display all observed players using frozen profile coordinates and UI groups."""
+    plotted = players[['player', 'team', 'league', 'pos_main', 'group', 'pc1', 'pc2']].copy()
+    plotted['group'] = plotted.group.map(lambda value: f'Grupo {value}')
+    plotted = display_frame(plotted)
+    figure = px.scatter(
+        plotted, x='Pc1', y='Pc2', color='Grupo',
+        hover_name='Jugador', hover_data={'Equipo': True, 'Liga': True, 'Posición': True, 'Pc1': False, 'Pc2': False},
+        category_orders={'Grupo': [f'Grupo {g}' for g in sorted(players.group.unique())]},
+        color_discrete_sequence=px.colors.qualitative.Alphabet,
+        title='Mapa de perfiles de jugadores',
+    )
+    for trace in figure.data:
+        selected = trace.name == f'Grupo {selected_group}'
+        trace.update(marker=dict(size=9 if selected else 6, opacity=1 if selected else .4,
+                                 line=dict(width=1 if selected else 0, color='#eaf2f8')))
+    figure.update_layout(
+        template=PLOTLY_TEMPLATE, paper_bgcolor=BG_CARD, plot_bgcolor=BG_DARK,
+        font=dict(color=TEXT_LIGHT), height=500,
+        xaxis=dict(title='Perfil de juego · eje horizontal', showticklabels=False),
+        yaxis=dict(title='Perfil de juego · eje vertical', showticklabels=False),
+        legend=dict(title='Grupos de jugadores', orientation='h', y=-.15),
+        margin=dict(l=35, r=20, t=50, b=70),
+    )
+    return figure
+
+
 def main() -> None:
     st.set_page_config(
         page_title="ScoutIQ · Scouting de Futbolistas",
@@ -176,6 +203,7 @@ def main() -> None:
         service = scouting_service()
         base_model = service.model
         seasons = service.available_seasons
+        st.sidebar.markdown('### 1 · Mercado')
         season = st.sidebar.selectbox('Temporada observada', seasons)
         rec = service.for_season(season)
     except Exception as exc:
@@ -185,6 +213,16 @@ def main() -> None:
         )
         st.exception(exc)
         return
+
+    with st.sidebar:
+        league_counts = rec.players.groupby('league').size()
+        leagues = sorted(league_counts[league_counts.ge(10)].index.tolist())
+        selected_leagues = st.multiselect('Ligas', leagues, default=leagues, key='scout_filter_leagues')
+        league = ', '.join(selected_leagues)
+        if not selected_leagues:
+            st.info('Selecciona al menos una liga para explorar jugadores.')
+            st.stop()
+        st.divider()
 
     import json
     st.caption(f"Temporada {season} · estadísticas disponibles de las cinco grandes ligas · 450+ minutos")
@@ -208,10 +246,7 @@ def main() -> None:
 
     # ── Sidebar ───────────────────────────────────────────────────────────────
     with st.sidebar:
-        st.markdown("### Perfil objetivo")
-        from src.app.presentation import reset_search_filters
-        st.button("Restablecer filtros", on_click=reset_search_filters, use_container_width=True)
-        st.divider()
+        st.markdown("### 2 · Perfil objetivo")
 
         style_key = st.selectbox(
             "Estilo de juego",
@@ -219,42 +254,37 @@ def main() -> None:
             format_func=lambda k: f"{STYLE_ICONS.get(k, '⚽')} {style_labels[k]}",
             key='scout_filter_style',
         )
-        st.info(f"_{PLAY_STYLES[style_key]['description']}_")
-
-        st.divider()
+        st.caption(PLAY_STYLES[style_key]['description'])
 
         positions = ['Todas'] + sorted(rec.players.pos_main.dropna().unique())
         position = st.selectbox("Posición", positions, format_func=lambda p: POSITIONS.get(p, p), key="scout_filter_position")
 
-        league_counts = rec.players.groupby('league').size()
-        leagues = sorted(league_counts[league_counts.ge(10)].index.tolist())
-        selected_leagues = st.multiselect('Ligas', leagues, default=leagues, key='scout_filter_leagues')
-        league = ', '.join(selected_leagues)
-        if not selected_leagues:
-            st.info('Selecciona al menos una liga para explorar jugadores.')
-            st.stop()
-
         max_age = st.slider("Edad máxima", 18, 40, 32, key="scout_filter_age") if rec.players.age.notna().any() else None
-        min_minutes = st.slider('Minutos mínimos', 450, 4500, 450, step=90, key='scout_filter_minutes')
-        clubs = sorted({club for item in rec.players.get('clubs', rec.players.team.map(lambda team: json.dumps([team]))) for club in json.loads(item)})
-        excluded_club = st.selectbox('Excluir club', ['Ninguno'] + clubs, key='scout_filter_club')
-        budget_enabled = False
-        valuation_cutoff = None
-        max_budget = None
-        if budget_data_available:
-            budget_enabled = st.checkbox("Filtrar por valor de mercado", key="scout_filter_budget_enabled")
-            valuation_cutoff = st.date_input("Fecha límite del valor reportado",
-                value=reported_values.valuation_date.max().date())
-            st.caption(f"Valoraciones registradas hasta {reported_values.valuation_date.max().date()}. "
-                       "Cruces de identidad provisionales. Precio de mercado reportado, no coste de fichaje. "
-                       "La fecha original de publicación es desconocida; este filtro no valida presupuestos históricos.")
-            if budget_enabled:
-                max_budget = st.number_input("Presupuesto máximo (M€)", min_value=0.01, value=10.0, step=1.0)
-                st.caption("Se excluyen valores desconocidos y ceros ambiguos. No se estiman precios faltantes.")
+        st.divider()
+        st.markdown('### 3 · Requisitos de la shortlist')
+        with st.expander('Condiciones y presupuesto', expanded=False):
+            min_minutes = st.slider('Minutos mínimos', 450, 4500, 450, step=90, key='scout_filter_minutes')
+            clubs = sorted({club for item in rec.players.get('clubs', rec.players.team.map(lambda team: json.dumps([team]))) for club in json.loads(item)})
+            excluded_club = st.selectbox('Excluir club', ['Ninguno'] + clubs, key='scout_filter_club')
+            budget_enabled = False
+            valuation_cutoff = None
+            max_budget = None
+            if budget_data_available:
+                budget_enabled = st.checkbox("Filtrar por valor de mercado", key="scout_filter_budget_enabled")
+                valuation_cutoff = st.date_input("Fecha límite del valor reportado",
+                    value=reported_values.valuation_date.max().date())
+                st.caption(f"Valoraciones registradas hasta {reported_values.valuation_date.max().date()}. "
+                           "Cruces de identidad provisionales. Precio de mercado reportado, no coste de fichaje. "
+                           "La fecha original de publicación es desconocida; este filtro no valida presupuestos históricos.")
+                if budget_enabled:
+                    max_budget = st.number_input("Presupuesto máximo (M€)", min_value=0.01, value=10.0, step=1.0)
+                    st.caption("Se excluyen valores desconocidos y ceros ambiguos. No se estiman precios faltantes.")
         top_n = st.slider("Nº de resultados", 5, 30, 10, key="scout_filter_top_n")
 
         st.divider()
         run = st.button("🔍 Buscar jugadores", type="primary", use_container_width=True)
+        from src.app.presentation import reset_search_filters
+        st.button("Restablecer filtros", on_click=reset_search_filters, use_container_width=True)
         if run:
             import uuid
             from src.process.events import record_event
@@ -485,11 +515,13 @@ def main() -> None:
             count = st.slider('Número de grupos', 2, maximum, min(6, maximum), key='explore_group_count')
             grouped = grouped_gallery(matrix, market_players, count)
             st.session_state['explore_group_members'] = grouped[['player_id', 'group', 'league']]
+            chosen = st.selectbox('Grupo a explorar', sorted(grouped.group.unique()), format_func=lambda g: f'Grupo {g}', key='explore_group')
+            st.plotly_chart(group_map_figure(grouped, chosen), use_container_width=True, key='explore_group_map')
+            st.caption('Cada punto es un jugador. Pasa el cursor para ver su nombre, club y liga. El grupo elegido aparece resaltado; usa la leyenda para mostrar u ocultar grupos. La vista resume las estadísticas y no representa posiciones en el campo ni garantiza similitud en todas ellas.')
             summary = grouped.groupby('group').agg(Jugadores=('player_id', 'size'),
                 Edad_media=('age', 'mean'), Minutos_medios=('minutes', 'mean')).round(1).reset_index()
             summary = summary.rename(columns={'group': 'Grupo', 'Edad_media': 'Edad media', 'Minutos_medios': 'Minutos medios'})
             st.dataframe(summary, hide_index=True, use_container_width=True)
-            chosen = st.selectbox('Grupo a explorar', sorted(grouped.group.unique()), format_func=lambda g: f'Grupo {g}', key='explore_group')
             members = grouped[grouped.group.eq(chosen)].sort_values(['pos_main', 'player'])
             st.caption(f'Grupo {chosen} · {len(members)} jugadores. Los números de grupo pueden cambiar al modificar el mercado o el número de grupos.')
             st.markdown('**Estadísticas medias del grupo**')
