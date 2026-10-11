@@ -47,7 +47,7 @@ def test_core_app_budget_club_filters_and_similarities(monkeypatch, tmp_path):
     monkeypatch.setenv('TFM_EVENT_LOG', str(tmp_path / 'core_events.jsonl'))
     app = AppTest.from_file(str(ROOT / 'src/app/streamlit_app.py'), default_timeout=45).run()
     assert not app.exception and not app.error
-    assert next(s for s in app.selectbox if s.label == 'Modelo de scouting').value == 'Core · seis estilos'
+    assert not any(s.label in {'Modelo de scouting', 'Entrenamiento', 'Mercado de scouting'} for s in app.selectbox)
     assert len(next(s for s in app.selectbox if s.label == 'Estilo de juego').options) == 6
     season = next(s for s in app.selectbox if s.label == 'Temporada observada')
     assert season.value == '2023-2024' and '2024-2025' not in season.options
@@ -68,14 +68,12 @@ def test_core_app_budget_club_filters_and_similarities(monkeypatch, tmp_path):
     assert similarities.entity_id.is_unique
     assert similarities.season.eq('2023-2024').all()
     assert similarities.reported_market_value_eur.between(1, 10_000_000).all()
-    first = next(s for s in app.selectbox if s.label == 'Primer jugador')
-    next(s for s in app.selectbox if s.label == 'Segundo jugador').set_value(first.value).run()
+    picker = next(s for s in app.multiselect if s.label == 'Jugadores a comparar')
+    choices = list(app.session_state['comparison_players'])
+    picker.set_value(choices[:1]).run()
     assert not app.exception
-    next(s for s in app.selectbox if s.label == 'Modelo de scouting').select('Ofensivo').run()
-    assert not app.exception
-    assert next(s for s in app.selectbox if s.label == 'Temporada observada').value == '2024-2025'
-    assert len(next(s for s in app.selectbox if s.label == 'Estilo de juego').options) == 2
-    assert 'scouting_case' not in app.session_state.filtered_state
+    assert len(app.session_state['comparison_players']) == 1
+    assert len(next(s for s in app.selectbox if s.label == 'Estilo de juego').options) == 6
 
 
 def test_radar_preserves_unknown_measurement():

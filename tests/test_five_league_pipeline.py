@@ -50,23 +50,20 @@ def test_private_review_is_not_training_and_scenarios_are_actual():
     assert all(len(group)==group.entity_id.nunique() for _,group in rows.groupby('case_id'))
 
 
-def test_retrained_app_serves_prices_and_switches_models(monkeypatch,tmp_path):
+def test_retrained_app_serves_prices_and_multiple_leagues(monkeypatch,tmp_path):
     monkeypatch.setenv('TFM_EVENT_LOG',str(tmp_path/'eu_pipeline_events.jsonl'))
     app=AppTest.from_file(str(ROOT/'src/app/streamlit_app.py'),default_timeout=60).run()
     assert not app.exception and not app.error
-    assert next(s for s in app.selectbox if s.label=='Entrenamiento').value=='Cinco ligas · reentrenado'
-    next(s for s in app.selectbox if s.label=='Liga').select('Premier League').run()
+    assert not any(s.label in {'Entrenamiento','Modelo de scouting'} for s in app.selectbox)
+    next(s for s in app.multiselect if s.label=='Ligas').set_value(['Premier League','La Liga']).run()
     next(c for c in app.checkbox if c.label=='Filtrar por valor de mercado').check().run()
     rows=app.session_state['last_result']
-    assert len(rows)>0 and rows.league.eq('Premier League').all()
+    assert len(rows)>0 and rows.league.isin(['Premier League','La Liga']).all()
     assert rows.reported_value_screenable.all() and rows.price_identity_status.eq('provisional_not_reviewed').all()
-    next(s for s in app.selectbox if s.label=='Entrenamiento').select('La Liga · original').run()
+    assert len(next(s for s in app.selectbox if s.label=='Estilo de juego').options)==6
+    next(s for s in app.multiselect if s.label=='Ligas').set_value([]).run()
     assert not app.exception
-    assert app.session_state['last_filters'][-1]=='La Liga · original'
-    next(s for s in app.selectbox if s.label=='Entrenamiento').select('Cinco ligas · reentrenado').run()
-    next(s for s in app.selectbox if s.label=='Modelo de scouting').select('Ofensivo').run()
-    assert not app.exception
-    assert next(s for s in app.selectbox if s.label=='Temporada observada').value=='2024-2025'
+    assert any('al menos una liga' in i.value for i in app.info)
 
 
 def test_trained_serving_preserves_parameters_and_six_core_styles():

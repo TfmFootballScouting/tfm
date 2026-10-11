@@ -58,12 +58,13 @@ def test_app_all_leagues_filters_similarity_reset_and_plain_clone(monkeypatch,tm
     try:
         app=AppTest.from_file(str(ROOT/'src/app/streamlit_app.py'),default_timeout=60).run()
         assert not app.exception and not app.error
-        assert next(s for s in app.selectbox if s.label=='Mercado de scouting').value=='Cinco grandes ligas'
-        league=next(s for s in app.selectbox if s.label=='Liga')
-        assert set(league.options)=={'Todas',*LEAGUES}
-        assert next(c for c in app.checkbox if c.label=='Filtrar por valor de mercado').disabled
+        assert not any(s.label in {'Mercado de scouting','Entrenamiento','Modelo de scouting'} for s in app.selectbox)
+        league=next(s for s in app.multiselect if s.label=='Ligas')
+        assert set(league.options)==set(LEAGUES)
+        assert not any(c.label=='Filtrar por valor de mercado' for c in app.checkbox)
+        assert not any('Valor de mercado' in str(c) for d in app.dataframe for c in d.value.columns)
         for name in LEAGUES:
-            next(s for s in app.selectbox if s.label=='Liga').select(name).run()
+            next(s for s in app.multiselect if s.label=='Ligas').set_value([name]).run()
             ranking=app.session_state['last_result']
             assert not app.exception and len(ranking)>0
             assert ranking.league.eq(name).all()
@@ -74,18 +75,16 @@ def test_app_all_leagues_filters_similarity_reset_and_plain_clone(monkeypatch,tm
         next(s for s in app.slider if s.label=='Edad máxima').set_value(20).run()
         next(b for b in app.button if b.label=='Restablecer filtros').click().run()
         assert not app.exception
-        assert next(s for s in app.selectbox if s.label=='Liga').value=='Todas'
+        assert set(next(s for s in app.multiselect if s.label=='Ligas').value)==set(LEAGUES)
         assert next(s for s in app.slider if s.label=='Edad máxima').value==32
-        next(s for s in app.selectbox if s.label=='Modelo de scouting').select('Ofensivo').run()
-        assert not app.exception
-        assert next(s for s in app.selectbox if s.label=='Temporada observada').value=='2024-2025'
+        assert len(next(s for s in app.selectbox if s.label=='Estilo de juego').options)==6
     finally: st.cache_data.clear()
 
 
 def test_scenario_league_constraint_and_scope_invalidation(monkeypatch,tmp_path):
     monkeypatch.setenv('TFM_EVENT_LOG',str(tmp_path/'scenario.jsonl'))
     app=AppTest.from_file(str(ROOT/'src/app/streamlit_app.py'),default_timeout=60).run()
-    next(s for s in app.selectbox if s.label=='Liga').select('Premier League').run()
+    next(s for s in app.multiselect if s.label=='Ligas').set_value(['Premier League']).run()
     next(s for s in app.selectbox if s.label=='Plantilla de requisitos').select('Ataque vertical').run()
     next(b for b in app.button if b.label=='Ejecutar escenario').click().run()
     assert not app.exception
@@ -93,6 +92,6 @@ def test_scenario_league_constraint_and_scope_invalidation(monkeypatch,tmp_path)
     # Existing links may supply no eligible prices here; never invent a fallback.
     assert result['shortlist'].league.eq('Premier League').all()
     assert 'target_league' in result['funnel'].stage.tolist()
-    next(s for s in app.selectbox if s.label=='Mercado de scouting').select('La Liga').run()
+    next(s for s in app.multiselect if s.label=='Ligas').set_value(['La Liga']).run()
     assert not app.exception
     assert 'scenario_case' not in app.session_state.filtered_state

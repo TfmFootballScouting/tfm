@@ -1,3 +1,5 @@
+> Historical application snapshot. The current scout-focused interface is documented in [SCOUTING_INTERFACE.md](SCOUTING_INTERFACE.md).
+
 # Collected-model application integration
 
 Streamlit now defaults to the evaluated **Core** model with all **six original playing styles**. An **Offensive** model and an explicit **Legacy exploration** option are also available. The existing folder structure, provider datasets, trained model artifacts and previous experiment results are preserved. The two limited goal/assist profiles remain available only in legacy exploration; no original style definition or coefficient was changed.

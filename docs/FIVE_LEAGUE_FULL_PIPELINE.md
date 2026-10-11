@@ -46,7 +46,7 @@ Three actual real-data model-refit runs in `tfm-scouting-five-league-trained-rea
 - Core: `85b7e82117814713b9094a5385308f6f`.
 - Attack-on-Core: `8c9b96e63c57430f9662f917908e571b`.
 
-The app's five-league market offers `Entrenamiento`: new European-trained models or original La Liga-trained models. Both retain their own frozen training transforms when a serving season changes. All six Core styles remain available. The original La Liga-only and legacy galleries are preserved.
+The app now serves the European-trained Core model with all six playing styles. Scouts select one or multiple leagues; training/model controls are removed. All experimental models and galleries remain preserved for notebook analysis. See [current scouting interface](SCOUTING_INTERFACE.md).
 
 ## Reproduce
 

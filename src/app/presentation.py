@@ -45,8 +45,6 @@ def shortlist_cards(result):
             st.caption(f'Edad: {age} · {int(row.minutes):,} minutos')
             if 'reported_value_screenable' in row and row.reported_value_screenable:
                 st.caption(f'Valor reportado: €{row.reported_market_value_eur:,.0f} · identidad provisional')
-            else:
-                st.caption('Valor de mercado: desconocido')
 
 
 def reset_search_filters():

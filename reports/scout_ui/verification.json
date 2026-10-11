@@ -1,0 +1,55 @@
+{
+  "verified_at": "2026-10-11T21:49:32.833667+00:00",
+  "status": "passed",
+  "tests": {
+    "tests": 113,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "scouting_styles": 6,
+  "removed_controls": [
+    "Modelo de scouting",
+    "Mercado de scouting",
+    "Entrenamiento"
+  ],
+  "multiple_league_filter": true,
+  "multiple_player_histories": true,
+  "exploratory_group_count_range": [
+    2,
+    12
+  ],
+  "trained_model_sha256_unchanged": {
+    "offensive": "c60f7375f4ae81131e976eb53ec82a95b4aee726786303c57b090f02d462ba25",
+    "core": "3cd87ab619555f57d66b12ec2a4066ea72b37aaa312811c0b0ff53379ce4c7d3",
+    "attack_on_core": "50942f08437b081092cdcb2d4b27bc659d0330c050387da80ba1cb400bf18a85"
+  },
+  "dataset_version": "d7a70a7349eb58b62cd18c540129203cd411aeb97706cdf074cbcbe74f8ad49a",
+  "notebook": {
+    "path": "notebooks/12_scouting_group_exploration.ipynb",
+    "executed_code_cells": 3,
+    "errors": 0,
+    "sha256": "df20d4a76c5108e5ccd8a9547ca6847b1e10cd202c06c9a2f07553f434de9532"
+  },
+  "browser_checks": {
+    "port": 8503,
+    "desktop_size": [
+      1440,
+      1000
+    ],
+    "mobile_size": [
+      390,
+      844
+    ],
+    "javascript_errors": 0,
+    "mobile_horizontal_overflow": false,
+    "groups_and_comparison_tabs_loaded": true
+  },
+  "valuation_limits": "Reported uploaded values only; identities provisional; unknown/zero excluded from budget; no estimation. Valuation UI hidden without available linked values.",
+  "app_source_sha256": {
+    "src/app/streamlit_app.py": "6b73f42129b5ab4479b0a58c1c2364a231901bbbcf69276388d9e2cb795d6077",
+    "src/app/scouting_views.py": "75f77b97b651955dd5ee017826726acdf00aa2c5076ad2dd6d1fa0ecf6b08614",
+    "src/app/scenario_ui.py": "53675d0d2fec646db3b51dac3c52b791bffb88362075e41dada2926d37056323",
+    "src/app/presentation.py": "f7a60c589d2062cb48dcc13749c51a5aadd69eef1cefd3819ebb56fbd2b2adca"
+  }
+}
