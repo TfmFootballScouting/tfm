@@ -147,7 +147,7 @@ def models(frames,dataset_version,commit):
             holdout_recall_at_5=float(holdout.recall_at_5),holdout_recall_at_10=float(holdout.recall_at_10),
             pca_explained_variance=rec.artifacts.pca.explained_variance_ratio_.tolist(),cluster_diagnostics=diagnostics,
             robustness_top5_jaccard_mean=float(extra['ranking_bootstrap'].query('kind == "neighbor"').top5_jaccard.mean()),
-            cluster_oob_ari_mean=float(extra['cluster_bootstrap'].oob_ari.mean()),
+            cluster_oob_ari_mean=float(extra['cluster_bootstrap'].adjusted_rand_out_of_bag.mean()),
             rows_by_split={key:len(value) for key,value in parts.items()},train_seasons=sorted(parts['train'].season.unique()),
             validation_season=parts['validation'].season.iloc[0],holdout_season=parts['holdout'].season.iloc[0],
             model_path=str(path.relative_to(ROOT)),model_sha256=sha256(path),training_scope='five_leagues',dataset_version=dataset_version)
