@@ -17,7 +17,7 @@ from mlflow.tracking import MlflowClient
 
 from src.config import ROOT, FEATURE_COLS, PLAY_STYLES
 from src.data.source_rights import require_model_data_use, SourceUseRestricted
-from src.preprocessing.enrichment import clean_performances, aggregate_seasons, clean_transfers, merge_review_only
+from src.preprocessing.enrichment import clean_performances, aggregate_seasons, clean_transfers, merge_review_only, field_description
 from src.models.collected import EXPERIMENTS, fit_experiment, cluster_analysis, qualitative_shortlists, shortlist_robustness
 from scripts.collected_models import verified_inputs
 from scripts.salimt_history_audit import sha
@@ -138,11 +138,20 @@ def run():
                                 pd.read_parquet(OUT / 'collected_salimt_profiles.parquet'))
     seasons = aggregate_seasons(stints)
     transfers = clean_transfers(pd.read_parquet(OUT / 'collected_salimt_transfer_history.parquet'))
+    club_seasons = pd.read_parquet(OUT / 'collected_salimt_spain_team_seasons.parquet')
+    contexts = []
+    for direction in ['from', 'to']:
+        membership = club_seasons[['club_id', 'season', 'competition_id']].rename(columns={'club_id': direction + '_team_id'})
+        context = transfers.merge(membership, on=[direction + '_team_id', 'season'], how='inner', validate='many_to_many')
+        context['club_context_direction'] = direction
+        contexts.append(context)
+    spanish_transfers = pd.concat(contexts, ignore_index=True)
     base = pd.read_parquet(OUT / 'collected_player_seasons.parquet')
     preview = merge_review_only(base, seasons, pd.read_parquet(OUT / 'collected_salimt_identity_candidates.parquet'))
     prices = recorded_prices(seasons, pd.read_parquet(OUT / 'collected_salimt_values.parquet'))
     frames = {'player_club_seasons': stints, 'player_seasons': seasons,
-              'transfers': transfers, 'integration_review': preview, 'reported_price_context': prices}
+              'transfers': transfers, 'spain_transfer_context': spanish_transfers,
+              'integration_review': preview, 'reported_price_context': prices}
     outputs = {}
     for name, frame in frames.items():
         path = OUT / f'collected_enrichment_{name}.parquet'
@@ -160,10 +169,11 @@ def run():
     dictionary = []
     for name, frame in frames.items():
         for column in frame:
+            description, unit = field_description(column)
             dictionary.append({'table': name, 'column': column, 'dtype': str(frame[column].dtype),
-                'missing': int(frame[column].isna().sum()), 'definition': column.replace('_', ' '),
+                'missing': int(frame[column].isna().sum()), 'definition': description,
                 'policy': 'Source-prefixed fields are review-only; raw values retained; missing is unknown; current profiles are not historical evidence.',
-                'unit': 'events per 90' if column.endswith('_p90') else 'minutes' if column == 'minutes_played' else 'field-specific; see source dictionary'})
+                'unit': unit})
     pd.DataFrame(dictionary).to_csv(REPORT / 'dictionary.csv', index=False)
     agreement = preview[['season', 'league', 'entity_id', 'minutes', 'gls', 'ast',
                           'salimt_minutes_played', 'salimt_goals', 'salimt_assists']].copy()
@@ -175,6 +185,21 @@ def run():
     for feature in FEATURE_COLS:
         if feature not in coverage: coverage[feature] = 0
     coverage.reset_index().to_csv(REPORT / 'mandatory_feature_coverage.csv', index=False)
+    # Descriptive IQR flags use development years only and never remove rows or
+    # participate in model fitting; small-minute per-90 artefacts are excluded.
+    tails = []
+    for league, group in seasons.groupby('league'):
+        development = group[group.season_start_year.le(2022) & group.minutes_eligible]
+        for column in ['minutes_played', 'gls_p90', 'ast_p90']:
+            q1, q3 = development[column].quantile([.25, .75])
+            lo, hi = q1 - 1.5 * (q3 - q1), q3 + 1.5 * (q3 - q1)
+            for season, rows in group[group.minutes_eligible].groupby('season'):
+                tails.append({'league': league, 'season': season, 'field': column,
+                    'development_IQR_low': lo, 'development_IQR_high': hi,
+                    'observed': int(rows[column].notna().sum()),
+                    'outside_development_IQR': int((rows[column].lt(lo) | rows[column].gt(hi)).sum()),
+                    'policy': 'descriptive flag only; no deletion or winsorization'})
+    pd.DataFrame(tails).to_csv(REPORT / 'distribution_tail_flags.csv', index=False)
     fig, axes = plt.subplots(1, 3, figsize=(15, 4))
     sns.heatmap(seasons[['minutes_played', 'goals', 'assists', 'gls_p90', 'ast_p90']].isna().mean().to_frame('missing fraction'), annot=True, ax=axes[0], vmin=0, vmax=1)
     sns.histplot(data=seasons, x='minutes_played', hue='league', element='step', ax=axes[1])
