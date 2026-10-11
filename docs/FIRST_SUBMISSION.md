@@ -46,3 +46,9 @@ A reported value ceiling is a screening constraint. It does not establish the re
 ## Portability boundary
 
 Current-instance tests and checksum verification are completed. Remote CI, clean-checkout restoration and cloud publication/restoration are unverified. Keep private uploaded data and local-only commits in the prepared workspace/snapshot; do not publish provider rows simply to make CI pass. The saved GitHub Actions workflow has not been validated with these private assets in a remote runner. Live processes must restart after environment restoration.
+
+## Windows source fingerprint correction
+
+Git on Windows can convert Python source from LF to CRLF. The original source-byte fingerprints then reported `Style definition fingerprint changed` despite identical code. The collected-model loader now normalizes CRLF to LF only when checking Python source; model/dataset checksums remain byte-exact, and actual source edits are still rejected. `.gitattributes` also requests LF Python files for subsequent checkouts. This was tested with CRLF copies of all five verified source files for both real models; native Windows execution remains unverified here.
+
+Stop Streamlit, run `git pull --ff-only` on `improve/reproducible-scouting`, then restart `python -m streamlit run src/app/streamlit_app.py`. No retraining or dependency change is required. If the message persists, inspect `git diff -- src/config.py src/features/styles.py src/models/collected.py src/models/recommend.py src/data/source_rights.py` for real local changes rather than bypassing checks or regenerating artifacts.

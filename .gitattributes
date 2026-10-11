@@ -1,0 +1,2 @@
+# Preserve source fingerprints across Git checkouts on Windows and Unix.
+*.py text eol=lf

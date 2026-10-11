@@ -8,6 +8,7 @@ import pandas as pd
 
 from src.config import ROOT
 from src.data.provenance import sha256
+from src.app.fingerprints import source_sha256
 from src.data.source_rights import require_model_data_use
 from src.models.collected import EXPERIMENTS
 from src.models.recommend import PlayerRecommender
@@ -64,10 +65,10 @@ def load_collected_service(name):
     info = manifest['new_model_experiments'][name]
     original = json.loads((ROOT / 'reports/collected_model_results.json').read_text())
     for code in ['src/features/styles.py', 'src/config.py']:
-        if sha256(ROOT / code) != original['code_hashes'][code]:
+        if source_sha256(ROOT / code) != original['code_hashes'][code]:
             raise ValueError('Style definition fingerprint changed')
     for code in ['src/models/collected.py', 'src/models/recommend.py', 'src/data/source_rights.py']:
-        if sha256(ROOT / code) != manifest['code_sha256'][code]:
+        if source_sha256(ROOT / code) != manifest['code_sha256'][code]:
             raise ValueError('Collected model source fingerprint changed')
     model_path = ROOT / info['model_path']
     if sha256(model_path) != info['model_sha256']: raise ValueError('Model artifact fingerprint changed')

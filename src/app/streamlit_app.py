@@ -362,8 +362,8 @@ def main() -> None:
         rec = base_model if service is None else service.for_season(season)
     except Exception as exc:
         st.error(
-            "No hay modelo/datos disponibles. Ejecuta primero:\n\n"
-            "`python -m src.pipeline`"
+            "No se puede cargar el modelo seleccionado. Revisa el detalle del error. "
+            "Si cambió una huella de código, actualiza la rama; no regeneres el pipeline para ocultar el error."
         )
         st.exception(exc)
         return
