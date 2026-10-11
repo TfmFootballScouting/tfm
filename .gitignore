@@ -256,3 +256,6 @@ data/processed/real/collected_enrichment_*.parquet
 reports/enrichment/cross_source_agreement.csv
 # Private provisional provider prices in scenario shortlists
 reports/scouting_scenarios/shortlist.csv
+# Private, restricted cross-source review and reported-price rows
+data/processed/real/europe_review_*.parquet
+reports/five_league_pipeline/scenario_shortlists.csv
