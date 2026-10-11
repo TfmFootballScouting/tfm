@@ -1,0 +1,19 @@
+{
+  "status": "passed_metadata_only",
+  "checked_at_utc": "2026-10-11T14:03:24.874443+00:00",
+  "pinned_repository_commit": "da9227e1f42baf74561324290dbf1ad2e3c00edd",
+  "metadata_responses_verified": 11,
+  "actual_category_paths_confirmed": 6,
+  "preserved_inputs_verified": 194,
+  "offline_replay_byte_identical": true,
+  "replay_network_calls_allowed": false,
+  "provider_csv_files_downloaded": 0,
+  "csv_league_season_coverage_verified": false,
+  "model_training_performed": false,
+  "verified_report_sha256": {
+    "reports/football_datasets_assessment.json": "6b17d4d346019ad600cd732aa9427fde72b677dd27b0e057938225dc7ecaf1ca",
+    "reports/football_datasets_file_inventory.csv": "814ad4122f965ecd46aefbbcb3c2b6b59315c8527d07fd21edb059f237db6921",
+    "reports/football_datasets_feature_assessment.csv": "9bab9ba458d0dfef739927efaaac11f7a24f239d79e41a20ea228677134a38e8"
+  },
+  "script_sha256": "7f746a2dbf2c3b6a22d1e9fa283e396489f50f02c2e159698200337291b62221"
+}

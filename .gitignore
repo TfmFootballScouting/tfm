@@ -249,3 +249,4 @@ data/raw/sources/uploaded_toolkit/
 # Retain this uploaded provider-derived dataset locally; no redistribution licence supplied.
 data/raw/sources/kaggle_transfer_values/
 data/processed/real/collected_kaggle_value_*.parquet
+data/raw/sources/football_datasets_metadata/
