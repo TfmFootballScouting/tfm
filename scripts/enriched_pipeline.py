@@ -45,7 +45,7 @@ def recorded_prices(seasons, values):
 
 def run_models(dataset_version, code_commit):
     """Refit only the eligible unchanged FBref cohorts, to new artifact paths."""
-    _, _, tables = verified_inputs()
+    base_manifest, _, tables = verified_inputs()
     experiment = 'tfm-scouting-enrichment-eligible-real-rerun'
     mlflow.set_tracking_uri('sqlite:///mlflow.db')
     if mlflow.get_experiment_by_name(experiment) is None:
@@ -88,6 +88,7 @@ def run_models(dataset_version, code_commit):
                 'robustness_top5_jaccard_mean': float(robustness.top5_jaccard.mean()),
                 'rows_by_split': {key: len(frame) for key, frame in parts.items()},
                 'model_path': str(model.relative_to(ROOT)), 'model_sha256': sha(model),
+                'learned_dataset_version': base_manifest['dataset_version'],
                 'learned_features_source': 'FBref only; uploaded Transfermarkt data blocked',
                 'six_style_definitions_preserved': list(PLAY_STYLES)}
         lineage = REPORT / f'{name}_lineage.json'
@@ -96,6 +97,8 @@ def run_models(dataset_version, code_commit):
         with mlflow.start_run(run_name=f'{name}_real_eligible_rerun') as active:
             mlflow.set_tags({'owner': os.getenv('TFM_OWNER', 'tfm-team'), 'project': 'tfm-scouting',
                 'dataset': dataset_version, 'dataset_kind': 'real_fbref_only_enrichment_excluded',
+                'learned_dataset': base_manifest['dataset_version'],
+                'mlflow.source.name': 'scripts/enriched_pipeline.py',
                 'environment': f'Python {platform.python_version()} / {platform.system()}',
                 'git_commit': code_commit,
                 'git_dirty': str(bool(subprocess.check_output(['git', 'status', '--porcelain', '--', 'src', 'scripts', 'tests'], cwd=ROOT, text=True).strip())),
@@ -134,6 +137,7 @@ def run():
         preserved[name] = sha(ROOT / name)
     for name, digest in preserved.items():
         if sha(ROOT / name) != digest: raise ValueError(f'Previous evidence changed: {name}')
+    print('Verified prior inputs; cleaning source histories.', flush=True)
     stints = clean_performances(pd.read_parquet(OUT / 'collected_salimt_performance_history.parquet'),
                                 pd.read_parquet(OUT / 'collected_salimt_profiles.parquet'))
     seasons = aggregate_seasons(stints)
@@ -152,6 +156,7 @@ def run():
     frames = {'player_club_seasons': stints, 'player_seasons': seasons,
               'transfers': transfers, 'spain_transfer_context': spanish_transfers,
               'integration_review': preview, 'reported_price_context': prices}
+    print('Cleaned and integrated review tables:', {name: len(frame) for name, frame in frames.items()}, flush=True)
     outputs = {}
     for name, frame in frames.items():
         path = OUT / f'collected_enrichment_{name}.parquet'

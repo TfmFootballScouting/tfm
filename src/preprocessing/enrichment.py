@@ -87,8 +87,9 @@ def clean_transfers(raw):
     out = raw.copy()
     fields = ['player_id', 'season_name', 'transfer_date', 'from_team_id', 'from_team_name',
               'to_team_id', 'to_team_name', 'transfer_type', 'value_at_transfer', 'transfer_fee']
-    out['source_event_id'] = out[fields].apply(lambda row: hashlib.sha256(
-        json.dumps(row.where(row.notna(), None).tolist(), ensure_ascii=False).encode()).hexdigest()[:24], axis=1)
+    records = out[fields].where(out[fields].notna(), None).itertuples(index=False, name=None)
+    out['source_event_id'] = [hashlib.sha256(json.dumps(list(row), ensure_ascii=False).encode()).hexdigest()[:24]
+                             for row in records]
     lineage = out.groupby('source_event_id').source_row_number.agg(list).map(json.dumps)
     out = out.drop_duplicates(fields).copy()
     out['source_row_numbers'] = out.source_event_id.map(lineage)
