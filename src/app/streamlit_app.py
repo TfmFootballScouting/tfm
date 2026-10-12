@@ -224,14 +224,20 @@ def main() -> None:
     if service is not None:
         styles = {key: value for key, value in styles.items() if key in service.supported_styles}
     style_labels = {k: v["label"] for k, v in styles.items()}
+    price_data_status = "available"
     try:
         reported_values, price_candidates, canonical_profiles = load_reported_budget_data()
         price_links = candidate_links(rec.players, price_candidates, canonical_profiles)
         season_prices = attach_reported_values(rec.players, price_links, reported_values, reported_values.valuation_date.max().date())
         budget_data_available = bool(season_prices.reported_value_screenable.any())
-    except (FileNotFoundError, ValueError, KeyError):
+    except FileNotFoundError:
         reported_values = price_links = None
         budget_data_available = False
+        price_data_status = "missing"
+    except (ValueError, KeyError):
+        reported_values = price_links = None
+        budget_data_available = False
+        price_data_status = "invalid"
 
     # ── Sidebar ───────────────────────────────────────────────────────────────
     with st.sidebar:
@@ -272,6 +278,10 @@ def main() -> None:
             budget_enabled = st.checkbox("Filtrar por valor de mercado", key="scout_filter_budget_enabled")
             valuation_cutoff = st.date_input("Fecha límite del valor reportado",
                 value=reported_values.valuation_date.max().date())
+            priced_market = attach_reported_values(rec.players[rec.players.league.isin(selected_leagues)],
+                price_links, reported_values, valuation_cutoff)
+            st.caption(f"{int(priced_market.reported_value_screenable.sum())} de {len(priced_market)} perfiles "
+                       f"con valor reportado disponible hasta {valuation_cutoff} en las ligas seleccionadas.")
             st.caption('Importes mostrados como EUR por la normalización previa; el archivo de valores no indica la moneda explícitamente. Moneda pendiente de verificación.')
             st.caption(f"Valoraciones registradas hasta {reported_values.valuation_date.max().date()}. "
                        "Cruces de identidad provisionales. Precio de mercado reportado, no coste de fichaje. "
@@ -279,6 +289,14 @@ def main() -> None:
             if budget_enabled:
                 max_budget = st.number_input("Presupuesto máximo (M€)", min_value=0.01, value=10.0, step=1.0)
                 st.caption("Se excluyen valores desconocidos y ceros ambiguos. No se estiman precios faltantes.")
+        elif price_data_status == "missing":
+            st.info("Filtro por valor de mercado no disponible: faltan los datos locales de valoraciones. "
+                    "Consulta la instalación de datos opcionales en el README.")
+        elif price_data_status == "invalid":
+            st.error("No se pueden cargar las valoraciones: los archivos no superan las comprobaciones de integridad. "
+                     "Las recomendaciones siguen disponibles sin filtro de valor.")
+        else:
+            st.info("No hay valores reportados utilizables para los perfiles de esta temporada.")
         top_n = st.slider("Nº de resultados", 5, 30, 10, key="scout_filter_top_n")
 
         st.divider()
