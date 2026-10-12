@@ -13,3 +13,7 @@ Start at the root README. It retains the original sections and authors while des
 9. Read the original Module 9 documents and `TEACHER_FEEDBACK.md` for the 19-comment matrix, approval proposals and manual evidence instructions.
 
 Original DOCX proposal remains byte-for-byte unchanged. Historical-stage notebooks/reports/raw demo files are retained for traceability and identified as historical; they are not the current source inputs or proof of transfer outcomes. There are no fabricated expert ratings, human process sessions, AWS quotations or MLflow screenshots.
+
+## Executed checks on this branch
+
+135 tests passed with retained original inputs (14 dependency deprecation warnings); 56 portable tests passed in a fresh clone. The fresh clone rebuilt all eight CSV/Parquet outputs with exactly matching hashes. Runtime-only app startup and reported-value budget filtering passed. Desktop/mobile development and shot charts rendered without JavaScript errors or horizontal mobile overflow. Native Windows, genuine expert sessions, AWS quotes and MLflow screenshots remain unverified/pending. Reports: `reports/teacher_review/verification.json`, `tests.xml`, `clean_clone_tests.xml`.
