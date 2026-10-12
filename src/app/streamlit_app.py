@@ -317,9 +317,11 @@ def main() -> None:
         "🗺️ Grupos de jugadores",
         '👤 Perfiles y comparación',
         '📊 Datos disponibles',
+        '📈 Evolución del jugador',
+        '🎯 Análisis de tiros',
     ] + (['🎯 Escenarios de scouting'] if budget_data_available else []))
     tab1, tab2, tab3, tab4, tab5 = tabs[:5]
-    tab6 = tabs[5] if budget_data_available else None
+    tab6 = tabs[7] if budget_data_available else None
 
     # ── Tab 1: Recomendaciones ────────────────────────────────────────────────
     with tab1:
@@ -579,6 +581,12 @@ def main() -> None:
         available = service.gallery.groupby(['season', 'league']).agg(Jugadores=('entity_id', 'nunique')).reset_index()
         st.dataframe(display_frame(available), hide_index=True, use_container_width=True)
         st.caption('Solo se ofrecen jugadores con al menos 450 minutos y suficientes estadísticas. Un valor desconocido no equivale a cero. La evaluación técnica está documentada en los notebooks del proyecto.')
+
+    from src.app.player_analysis import render_development, render_shots
+    with tabs[5]:
+        render_development(service, selected_leagues)
+    with tabs[6]:
+        render_shots(selected_leagues)
 
     if budget_data_available:
         with tab6:

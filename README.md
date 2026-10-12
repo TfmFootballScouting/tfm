@@ -2,7 +2,7 @@
 
 Football scouting project by Iván Galán López, Basma Marso and Carlos Valencia Sánchez. The existing architecture has been improved with source-separated data, reproducible preprocessing, chronological model evaluation, MLflow and the ScoutIQ Streamlit application.
 
-ScoutIQ currently serves the **five-league trained Core model and six original playing styles**. Scouts can select multiple leagues, find similar players, compare several players and their histories, and explore adjustable player groups on a PCA profile map. See the [current interface](docs/SCOUTING_INTERFACE.md).
+ScoutIQ currently serves the **five-league trained Core model and six original playing styles**. Scouts can select multiple leagues, find similar players, compare several players and their histories, and explore adjustable player groups on a PCA profile map. See the [current interface](docs/SCOUTING_INTERFACE.md) and [new player development/shot-analysis views](docs/PLAYER_ANALYSIS_APP.md).
 
 The latest complete real-data run is documented in [FIVE_LEAGUE_FULL_PIPELINE.md](docs/FIVE_LEAGUE_FULL_PIPELINE.md): 15,948 player-season observations, three trained experiments, 50 retrospective scouting scenarios and portable MLflow artifacts. The six-style app uses completed advanced-statistic galleries through **2023/24**. Additional offensive observations extend to 2024/25 but do not support all six styles; incomplete 2025/26 data is not served.
 
