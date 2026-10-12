@@ -29,3 +29,7 @@ MLflow guarda experimentos y artefactos ML. JSONL guarda actualmente acciones op
 
 ## 7. Próximos pasos
 Aprobar enriquecimiento de eventos/base operativa, recoger sesiones reales con participantes y analizar secuencias/repeticiones/esperas. Las instrucciones y responsabilidades manuales figuran en `TEACHER_FEEDBACK.md`.
+
+## Implementación operativa aprobada
+
+Se añadió una base SQLite independiente para solicitudes/eventos/decisiones/feedback. Las búsquedas iterativas conservan el UUID hasta iniciar una nueva solicitud. El alias es declarado, no autenticado. Véase `OPERATIONAL_TRACKING.md` para schema, exportación y limitaciones. No existen todavía sesiones humanas verificadas para conclusiones organizativas.

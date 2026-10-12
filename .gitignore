@@ -267,3 +267,7 @@ reports/five_league_pipeline/scenario_shortlists.csv
 
 # Teacher review: the retained source CSVs and prepared four-league shots are included.
 !/data/processed/real/four_league_clean_shots.parquet
+
+# Operational participant decisions and blinded evaluation keys are local.
+data/operational/
+data/expert_review/private/

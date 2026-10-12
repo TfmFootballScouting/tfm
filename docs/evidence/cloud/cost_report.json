@@ -1,0 +1,103 @@
+{
+  "lines": [
+    {
+      "component": "compute",
+      "unit": "instance-hour",
+      "quantity": 730,
+      "usd_per_unit": "",
+      "source_url": "",
+      "price_date": "",
+      "region": "eu-west-1",
+      "assumption": "t3.medium proposed continuous prototype",
+      "status": "pending_price_evidence",
+      "monthly_usd": null
+    },
+    {
+      "component": "primary_storage",
+      "unit": "GB-month",
+      "quantity": 50,
+      "usd_per_unit": "",
+      "source_url": "",
+      "price_date": "",
+      "region": "eu-west-1",
+      "assumption": "gp3 size assumption",
+      "status": "pending_price_evidence",
+      "monthly_usd": null
+    },
+    {
+      "component": "outbound_transfer",
+      "unit": "billable-GB",
+      "quantity": 10,
+      "usd_per_unit": "",
+      "source_url": "",
+      "price_date": "",
+      "region": "eu-west-1",
+      "assumption": "assumed volume after documented allowances",
+      "status": "pending_price_evidence",
+      "monthly_usd": null
+    },
+    {
+      "component": "backup",
+      "unit": "stored-GB-month",
+      "quantity": 50,
+      "usd_per_unit": "",
+      "source_url": "",
+      "price_date": "",
+      "region": "eu-west-1",
+      "assumption": "assumed retained incremental snapshots",
+      "status": "pending_price_evidence",
+      "monthly_usd": null
+    },
+    {
+      "component": "object_storage",
+      "unit": "GB-month",
+      "quantity": 10,
+      "usd_per_unit": "",
+      "source_url": "",
+      "price_date": "",
+      "region": "eu-west-1",
+      "assumption": "optional model artifacts assumption",
+      "status": "pending_price_evidence",
+      "monthly_usd": null
+    },
+    {
+      "component": "put_requests",
+      "unit": "1000 requests",
+      "quantity": 1,
+      "usd_per_unit": "",
+      "source_url": "",
+      "price_date": "",
+      "region": "eu-west-1",
+      "assumption": "1000 requests assumed",
+      "status": "pending_price_evidence",
+      "monthly_usd": null
+    },
+    {
+      "component": "get_requests",
+      "unit": "1000 requests",
+      "quantity": 10,
+      "usd_per_unit": "",
+      "source_url": "",
+      "price_date": "",
+      "region": "eu-west-1",
+      "assumption": "10000 requests assumed",
+      "status": "pending_price_evidence",
+      "monthly_usd": null
+    },
+    {
+      "component": "monitoring",
+      "unit": "billable metric-month",
+      "quantity": 5,
+      "usd_per_unit": "",
+      "source_url": "",
+      "price_date": "",
+      "region": "eu-west-1",
+      "assumption": "optional monitoring assumption",
+      "status": "pending_price_evidence",
+      "monthly_usd": null
+    }
+  ],
+  "complete": false,
+  "monthly_usd": null,
+  "monthly_eur": null
+}

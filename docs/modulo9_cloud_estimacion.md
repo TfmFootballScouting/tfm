@@ -83,3 +83,7 @@ Para el volumen y algoritmos del TFM **no hace falta un cluster**. El desarrollo
 ## Mejoras futuras de producción (no desplegadas)
 
 Autenticación y roles, HTTPS mediante proxy/TLS, gestión de secretos, monitorización de errores/latencias, backups probados con restauración, base operativa distinta de MLflow, retención de eventos, artefactos versionados en almacenamiento de objetos y escalado según concurrencia. No se presentan como capacidades ya desplegadas. El prototipo sirve 1.810 perfiles completos en su temporada más reciente, con histórico y tiros adicionales; la memoria requerida debe medirse para el escenario elegido, no asumirse a partir de filas antiguas.
+
+## Hoja detallada de costes
+
+`evidence/cloud/cost_inputs.csv` separa cómputo, almacenamiento, transferencia, backups, peticiones y monitorización. `python -m scripts.cloud_cost_report` no genera un total hasta disponer de precios fechados y URLs oficiales. El acceso al calculador AWS y al XML del BCE devolvió HTTP 403 el 2026-10-12; captura/export y tipo de cambio verificado siguen pendientes.

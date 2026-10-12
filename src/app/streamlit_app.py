@@ -309,16 +309,23 @@ def main() -> None:
         top_n = st.slider("Nº de resultados", 5, 30, 10, key="scout_filter_top_n")
 
         st.divider()
+        participant = st.text_input("Alias del participante", value="scout", key="participant_alias")
+        st.caption("Alias declarado, sin autenticación. Las decisiones se guardan localmente.")
+        if st.button("Nueva solicitud de scouting"):
+            st.session_state.pop('scouting_case', None)
         run = st.button("🔍 Buscar jugadores", type="primary", use_container_width=True)
         if run:
             import uuid
             from src.process.events import record_event
-            st.session_state['scouting_case'] = str(uuid.uuid4())
-            attrs = dict(training_scope=training, gallery_scope=scope, style=style_key, position=position, season=season, league=league, max_age=max_age,
-                         model=model_kind, min_minutes=min_minutes, exclude_club=excluded_club,
+            new_case = not st.session_state.get('scouting_case')
+            if new_case:
+                st.session_state['scouting_case'] = str(uuid.uuid4())
+            attrs = dict(participant_alias=participant.strip() or 'scout', training_scope=training, gallery_scope=scope, style=style_key, position=position, season=season, league=league, max_age=max_age,
+                         model=model_kind, dataset_version=service.info.get('gallery_dataset_version'), model_sha256=service.info.get('model_sha256'), min_minutes=min_minutes, exclude_club=excluded_club,
                          reported_value_budget_million=max_budget, reported_value_cutoff=str(valuation_cutoff),
                          price_match_status='provisional', historical_budget_validation=False)
-            record_event(st.session_state.scouting_case, 'need_defined', 'app_user', attrs)
+            if new_case:
+                record_event(st.session_state.scouting_case, 'need_defined', participant.strip() or 'scout', attrs)
             record_event(st.session_state.scouting_case, 'search_executed', 'system', attrs)
 
     # ── KPIs globales ─────────────────────────────────────────────────────────
@@ -354,8 +361,6 @@ def main() -> None:
         filters = (style_key, position, tuple(selected_leagues), season, max_age, max_budget, str(valuation_cutoff), top_n,
                    model_kind, min_minutes, excluded_club, scope, training, price_signature)
         if run or "last_result" not in st.session_state or st.session_state.get('last_filters') != filters:
-            if not run and st.session_state.get('last_filters') != filters:
-                st.session_state.pop('scouting_case', None)
             result = rec.recommend(
                 style_key=style_key,
                 position=None if position == "Todas" else position,
@@ -378,7 +383,7 @@ def main() -> None:
             result = result.head(top_n)
             if run:
                 from src.process.events import record_event
-                record_event(st.session_state.scouting_case, 'ranking_generated', 'system', {'candidates': len(result)})
+                record_event(st.session_state.scouting_case, 'ranking_generated', 'system', {'candidates': len(result), 'player_ids': result.entity_id.astype(str).tolist(), 'season': season, 'model': model_kind})
             st.session_state["last_result"] = result
             st.session_state["last_style"] = style_key
             st.session_state['last_filters'] = filters
@@ -388,7 +393,28 @@ def main() -> None:
 
         if st.session_state.get('scouting_case') and st.button("Registrar revisión de shortlist"):
             from src.process.events import record_event
-            record_event(st.session_state.scouting_case, 'shortlist_reviewed', 'app_user', {'count': len(result)})
+            record_event(st.session_state.scouting_case, 'shortlist_reviewed', participant.strip() or 'scout', {'count': len(result), 'player_ids': result.entity_id.astype(str).tolist()})
+        if st.session_state.get('scouting_case') and not result.empty:
+            with st.expander("Registrar decisión y valoración"):
+                with st.form("scouting_feedback"):
+                    chosen = st.selectbox("Jugador evaluado", result.entity_id.astype(str).tolist(),
+                                          format_func=lambda x: str(result.loc[result.entity_id.astype(str).eq(x), 'player'].iloc[0]))
+                    decision_label = st.selectbox("Decisión", ["Revisar", "Preseleccionar", "Descartar"])
+                    rating = st.slider("Utilidad de la recomendación", 1, 5, 3)
+                    rationale = st.text_area("Motivo de la decisión")
+                    submitted = st.form_submit_button("Guardar decisión")
+                if submitted:
+                    if not rationale.strip():
+                        st.warning("Escribe el motivo antes de guardar.")
+                    else:
+                        from src.process.store import save_feedback
+                        from src.process.events import record_event
+                        details = save_feedback(st.session_state.scouting_case, participant.strip() or 'scout', chosen,
+                                                {"Revisar":"needs_review", "Preseleccionar":"shortlist", "Descartar":"reject"}[decision_label], rating, rationale)
+                        selected_row = result.loc[result.entity_id.astype(str).eq(chosen)].iloc[0]
+                        details.update(season=season, observation_id=str(selected_row.get('observation_id', '')), style=style_key)
+                        record_event(st.session_state.scouting_case, 'decision_recorded', participant.strip() or 'scout', details)
+                        st.success("Decisión guardada en la base de datos operativa local.")
         icon = STYLE_ICONS.get(style_key, "⚽")
         st.subheader(f"{icon} Ranking · {style_labels[style_key]}")
         st.caption(f"{league} · {season} · {POSITIONS.get(position, position)} · mínimo {min_minutes:,} minutos · {len(result)} alternativas")

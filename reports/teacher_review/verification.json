@@ -24,8 +24,8 @@
   "native_windows_verified": false,
   "expert_validation_performed": false,
   "aws_calculator_evidence_captured": false,
-  "mlflow_screenshots_captured": false,
-  "operational_sqlite_implemented": false,
+  "mlflow_screenshots_captured": true,
+  "operational_sqlite_implemented": true,
   "clean_clone_verification": {
     "portable_tests": {
       "name": "pytest",
@@ -48,5 +48,38 @@
     "javascript_errors": [],
     "mobile_horizontal_overflow": false
   },
-  "current_model_artifacts_unchanged": true
+  "current_model_artifacts_unchanged": true,
+  "approved_improvements": {
+    "implemented_at_utc": "2026-10-12T23:29:55.777290+00:00",
+    "tests": {
+      "passed": 140,
+      "warnings": 14,
+      "report": "reports/teacher_review/approved_improvements_tests.xml"
+    },
+    "prepared_dictionary_complete": true,
+    "raw_dictionary_unverified_unused_fields": [
+      "season_points_for",
+      "season_points_against"
+    ],
+    "expert_packets_real_data": true,
+    "expert_notebook_executed_status": "pending_human_ratings",
+    "cost_worksheet_executed_status": "pending_price_evidence",
+    "metadata_portability_audit_findings": 0,
+    "portable_tests": {
+      "passed": 61,
+      "report": "reports/teacher_review/approved_portable_tests.xml"
+    },
+    "browser_feedback_verification": {
+      "feedback_saved_confirmation": true,
+      "javascript_errors": [],
+      "iterative_search_same_request": true,
+      "event_counts": {
+        "decision_recorded": 1,
+        "need_defined": 1,
+        "ranking_generated": 2,
+        "search_executed": 2
+      },
+      "kind": "automated_test_not_human_validation"
+    }
+  }
 }

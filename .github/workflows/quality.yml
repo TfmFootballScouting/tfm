@@ -25,6 +25,9 @@ jobs:
           src/tests/test_source_rights.py
           src/tests/test_scouting_views.py
           src/tests/test_events.py
+          src/tests/test_operational_store.py
+          src/tests/test_cloud_costs.py
+          src/tests/test_expert_review.py
           src/tests/test_valuation_data.py
           src/tests/test_player_analysis.py
         env:

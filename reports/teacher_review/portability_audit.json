@@ -1,0 +1,6 @@
+{
+  "scope": "Tracked-style model/report JSON metadata, excluding review outputs; original records unchanged",
+  "findings": [],
+  "count": 0,
+  "not_claimed": "Binary archives, arbitrary source logs and native Windows execution are not audited by this metadata sweep"
+}

@@ -1,0 +1,8 @@
+{
+  "season": "2023-2024",
+  "seed": 20261012,
+  "ratings_collected": false,
+  "comparison": "Expert-weighted affinity versus eligible random baseline; no transfer prediction",
+  "dataset": "d7a70a7349eb58b62cd18c540129203cd411aeb97706cdf074cbcbe74f8ad49a",
+  "packet_sha256": "b6dd8f7cc7f26e7db16b48c2b941cfad91a10cb54289fc1ca36a5d2858fd3f2a"
+}

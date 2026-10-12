@@ -1,0 +1,61 @@
+brief_id,style,season,packet,rank,player_id,player,position,club,minutes,age
+brief-01,posesion,2023-2024,A,1,fbref:3708e9fa,Aleksandr Golovin,MF,Monaco,2147.0,28.0
+brief-01,posesion,2023-2024,A,2,fbref:c4486bac,Michael Olise,FW,Crystal Palace,1275.0,22.0
+brief-01,posesion,2023-2024,A,3,fbref:3423f250,Raphinha,FW,Barcelona,1368.0,27.0
+brief-01,posesion,2023-2024,A,4,fbref:bc7dc64d,Bukayo Saka,FW,Arsenal,2919.0,22.0
+brief-01,posesion,2023-2024,A,5,fbref:ff98492b,Robert Skov,DF,Hoffenheim,1260.0,28.0
+brief-01,posesion,2023-2024,B,1,fbref:aa8e289e,Nikola Vlašić,MF,Torino,2608.0,26.0
+brief-01,posesion,2023-2024,B,2,fbref:2389cdc2,Matty Cash,DF,Aston Villa,2142.0,26.0
+brief-01,posesion,2023-2024,B,3,fbref:5762be5c,Atakan Karazor,MF,Stuttgart,2623.0,27.0
+brief-01,posesion,2023-2024,B,4,fbref:6af30900,Tyronne Ebuehi,DF,Empoli,1099.0,28.0
+brief-01,posesion,2023-2024,B,5,fbref:5efc5389,Charalambos Lykogiannis,DF,Bologna,904.0,30.0
+brief-02,presion_alta,2023-2024,A,1,fbref:0f59a7bf,Anton Stach,MF,2 clubs,2491.0,25.0
+brief-02,presion_alta,2023-2024,A,2,fbref:88d4144a,Maximilian Mittelstädt,DF,Stuttgart,2103.0,27.0
+brief-02,presion_alta,2023-2024,A,3,fbref:2f9e4435,Dango Ouattara,FW,Bournemouth,1229.0,22.0
+brief-02,presion_alta,2023-2024,A,4,fbref:2d970560,Robin Gosens,DF,Union Berlin,2283.0,29.0
+brief-02,presion_alta,2023-2024,A,5,fbref:cc971106,Rocco Reitz,MF,Gladbach,2136.0,22.0
+brief-02,presion_alta,2023-2024,B,1,fbref:5148dcc5,Martin Terrier,FW,Rennes,1527.0,27.0
+brief-02,presion_alta,2023-2024,B,2,fbref:365113c0,Pubill,DF,Almería,1883.0,20.0
+brief-02,presion_alta,2023-2024,B,3,fbref:d38fdf53,Pervis Estupiñán,DF,Brighton,1243.0,26.0
+brief-02,presion_alta,2023-2024,B,4,fbref:481f76cf,Josué Casimir,FW,Le Havre,2016.0,22.0
+brief-02,presion_alta,2023-2024,B,5,fbref:1d8e9add,Kevin Vogt,DF,2 clubs,2642.0,32.0
+brief-03,vertical,2023-2024,A,1,fbref:b682dcf6,Sokratis Papastathopoulos,DF,Betis,1136.0,35.0
+brief-03,vertical,2023-2024,A,2,fbref:dd9caa07,Patrick Mainka,DF,Heidenheim,3060.0,29.0
+brief-03,vertical,2023-2024,A,3,fbref:8104e41e,Krépin Diatta,DF,Monaco,1206.0,25.0
+brief-03,vertical,2023-2024,A,4,fbref:37e103f8,Hugo Duro,FW,Valencia,2976.0,24.0
+brief-03,vertical,2023-2024,A,5,fbref:056269d7,Óscar Mingueza,DF,Celta Vigo,2998.0,25.0
+brief-03,vertical,2023-2024,B,1,fbref:4a5a45c7,Lorenzo Pellegrini,MF,Roma,1859.0,27.0
+brief-03,vertical,2023-2024,B,2,fbref:cad3fd4d,Ibrahim Salah,FW,Rennes,524.0,22.0
+brief-03,vertical,2023-2024,B,3,fbref:0174ba21,Robin Hack,FW,Gladbach,1348.0,25.0
+brief-03,vertical,2023-2024,B,4,fbref:dc7f8a28,Cole Palmer,FW,2 clubs,2618.0,22.0
+brief-03,vertical,2023-2024,B,5,fbref:53a0e358,Domenico Berardi,FW,Sassuolo,1431.0,29.0
+brief-04,contraataque,2023-2024,A,1,fbref:72f87f25,Cristian Volpato,MF,Sassuolo,645.0,20.0
+brief-04,contraataque,2023-2024,A,2,fbref:38ceb24a,Leandro Trossard,FW,Arsenal,1649.0,29.0
+brief-04,contraataque,2023-2024,A,3,fbref:6be41a31,Yann Gboho,MF,Toulouse,1193.0,23.0
+brief-04,contraataque,2023-2024,A,4,fbref:08391d76,Leonidas Stergiou,DF,Stuttgart,594.0,22.0
+brief-04,contraataque,2023-2024,A,5,fbref:57ec75bf,Tim Oermann,DF,Bochum,714.0,20.0
+brief-04,contraataque,2023-2024,B,1,fbref:9226aa22,Kamory Doumbia,MF,Brest,879.0,21.0
+brief-04,contraataque,2023-2024,B,2,fbref:dc7f8a28,Cole Palmer,FW,2 clubs,2618.0,22.0
+brief-04,contraataque,2023-2024,B,3,fbref:3423f250,Raphinha,FW,Barcelona,1368.0,27.0
+brief-04,contraataque,2023-2024,B,4,fbref:a53b661f,Ihlas Bebou,FW,Hoffenheim,1636.0,30.0
+brief-04,contraataque,2023-2024,B,5,fbref:c4486bac,Michael Olise,FW,Crystal Palace,1275.0,22.0
+brief-05,solidez_defensiva,2023-2024,A,1,fbref:ee644761,Moritz Jenz,DF,Wolfsburg,1742.0,25.0
+brief-05,solidez_defensiva,2023-2024,A,2,fbref:528492ea,Alfred Duncan,MF,Fiorentina,1812.0,31.0
+brief-05,solidez_defensiva,2023-2024,A,3,fbref:b116c6e3,Denis Huseinbasic,MF,Köln,1627.0,22.0
+brief-05,solidez_defensiva,2023-2024,A,4,fbref:bb376bed,Ivan Ilić,MF,Torino,2098.0,23.0
+brief-05,solidez_defensiva,2023-2024,A,5,fbref:a572e291,Orel Mangala,MF,Nott'ham Forest,1563.0,26.0
+brief-05,solidez_defensiva,2023-2024,B,1,fbref:0f59a7bf,Anton Stach,MF,2 clubs,2491.0,25.0
+brief-05,solidez_defensiva,2023-2024,B,2,fbref:88d4144a,Maximilian Mittelstädt,DF,Stuttgart,2103.0,27.0
+brief-05,solidez_defensiva,2023-2024,B,3,fbref:2f9e4435,Dango Ouattara,FW,Bournemouth,1229.0,22.0
+brief-05,solidez_defensiva,2023-2024,B,4,fbref:2d970560,Robin Gosens,DF,Union Berlin,2283.0,29.0
+brief-05,solidez_defensiva,2023-2024,B,5,fbref:cc971106,Rocco Reitz,MF,Gladbach,2136.0,22.0
+brief-06,desborde_banda,2023-2024,A,1,fbref:9e525177,Aaron Wan-Bissaka,DF,Manchester Utd,1780.0,26.0
+brief-06,desborde_banda,2023-2024,A,2,fbref:72c812f3,Idrissa Gana Gueye,MF,Everton,1884.0,34.0
+brief-06,desborde_banda,2023-2024,A,3,fbref:ce4246f5,Kurt Zouma,DF,West Ham,2838.0,29.0
+brief-06,desborde_banda,2023-2024,A,4,fbref:048a1cbc,Raphaël Guerreiro,DF,Bayern Munich,1191.0,30.0
+brief-06,desborde_banda,2023-2024,A,5,fbref:517cfb19,Mohamed Kaba,MF,Lecce,1378.0,22.0
+brief-06,desborde_banda,2023-2024,B,1,fbref:e5649a78,Kevin Stöger,MF,Bochum,2668.0,30.0
+brief-06,desborde_banda,2023-2024,B,2,fbref:9744ff80,Pablo Sarabia,MF,Wolves,1745.0,32.0
+brief-06,desborde_banda,2023-2024,B,3,fbref:3708e9fa,Aleksandr Golovin,MF,Monaco,2147.0,28.0
+brief-06,desborde_banda,2023-2024,B,4,fbref:57382429,Jan-Niklas Beste,FW,Heidenheim,2603.0,25.0
+brief-06,desborde_banda,2023-2024,B,5,fbref:ff98492b,Robert Skov,DF,Hoffenheim,1260.0,28.0

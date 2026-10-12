@@ -13,10 +13,14 @@ ACTIVITIES = ['need_defined','search_executed','ranking_generated','shortlist_re
 def record_event(case_id, activity, actor, attributes=None, path=None):
     if not case_id or activity not in ACTIVITIES or not actor:
         raise ValueError('Valid case ID, activity and actor required')
+    explicit_path = path is not None
     path = Path(path or os.getenv('TFM_EVENT_LOG', str(ROOT / 'data/events/scouting.jsonl')))
     path.parent.mkdir(parents=True,exist_ok=True)
     event = dict(case_id=str(case_id), activity=activity, timestamp=datetime.now(timezone.utc).isoformat(),
                  actor=actor, event_kind='observed_application', attributes=attributes or {})
+    from src.process.store import persist_event
+    # Explicit isolated event paths also isolate operational state.
+    persist_event(event, path.with_suffix('.sqlite') if explicit_path else None)
     with path.open('a',encoding='utf8') as f:
         f.write(json.dumps(event,ensure_ascii=False)+'\n')
     return event

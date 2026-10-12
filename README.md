@@ -146,3 +146,11 @@ El workflow CI ejecuta un conjunto portable de contratos/modelo/UI/datos actuale
 ## Stack
 
 Python 3.12, pandas, NumPy/SciPy, scikit-learn, Parquet/CSV, Plotly, Streamlit. MLflow, Matplotlib/Seaborn, Jupyter y pytest en entorno research. SQLite de MLflow no sustituye una base operativa de decisiones; esa mejora espera aprobación.
+
+### Teacher-review additions
+
+The review branch includes complete prepared-field and raw-source catalogs, a real-data blind expert-review packet and an executed analysis notebook that reports human ratings as pending. See [expert review](docs/expert_review/README.md) and [actual MLflow screenshot evidence](docs/evidence/mlflow/README.md).
+
+The app records iterative scouting requests and player decisions in a separate local SQLite database. See [operational tracking](docs/OPERATIONAL_TRACKING.md). Participant records stay local and are not pushed to GitHub.
+
+The [cloud cost worksheet](docs/evidence/cloud/README.md) separates compute/storage/transfer/backups/requests. Official AWS rates and a dated exchange quote remain pending after network access returned 403. Run `python -m scripts.cloud_cost_report`; unknown prices do not produce a fabricated total.

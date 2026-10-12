@@ -17,3 +17,7 @@ Original DOCX proposal remains byte-for-byte unchanged. Historical-stage noteboo
 ## Executed checks on this branch
 
 135 tests passed with retained original inputs (14 dependency deprecation warnings); 56 portable tests passed in a fresh clone. The fresh clone rebuilt all eight CSV/Parquet outputs with exactly matching hashes. Runtime-only app startup and reported-value budget filtering passed. Desktop/mobile development and shot charts rendered without JavaScript errors or horizontal mobile overflow. Native Windows, genuine expert sessions, AWS quotes and MLflow screenshots remain unverified/pending. Reports: `reports/teacher_review/verification.json`, `tests.xml`, `clean_clone_tests.xml`.
+
+## Approved A/B/C additions
+
+Read `reports/teacher_review/APPROVED_IMPROVEMENTS.md` for the current completion/limitations report. The extended suite passed 140 tests. Actual MLflow screenshots are in `docs/evidence/mlflow/`; the expert notebook is executed with pending ratings. Operational SQLite and decision feedback are implemented. The detailed cloud worksheet is executable, but official price/FX evidence is blocked by HTTP 403 and requires the documented manual capture.
