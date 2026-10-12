@@ -6,7 +6,7 @@ ScoutIQ currently serves the **five-league trained Core model and six original p
 
 The latest complete real-data run is documented in [FIVE_LEAGUE_FULL_PIPELINE.md](docs/FIVE_LEAGUE_FULL_PIPELINE.md): 15,948 player-season observations, three trained experiments, 50 retrospective scouting scenarios and portable MLflow artifacts. The six-style app uses completed advanced-statistic galleries through **2023/24**. Additional offensive observations extend to 2024/25 but do not support all six styles; incomplete 2025/26 data is not served.
 
-Reported player values are optional, dated market assessments from retained private uploads. Identity associations remain provisional. Missing values are not estimated; budget controls are hidden when valuation inputs are unavailable. These experiments evaluate statistical profile retrieval, **not actual transfer success**.
+Reported player values are optional, dated market assessments from retained private uploads. Identity associations remain provisional; [valuation verification](docs/VALUATION_VERIFICATION.md) also found that EUR is assumed rather than explicitly stated in the raw upload. Missing values are not estimated; budget controls are hidden when valuation inputs are unavailable. These experiments evaluate statistical profile retrieval, **not actual transfer success**.
 
 ## Run the app
 

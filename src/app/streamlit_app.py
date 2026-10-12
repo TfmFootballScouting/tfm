@@ -272,6 +272,7 @@ def main() -> None:
             budget_enabled = st.checkbox("Filtrar por valor de mercado", key="scout_filter_budget_enabled")
             valuation_cutoff = st.date_input("Fecha límite del valor reportado",
                 value=reported_values.valuation_date.max().date())
+            st.caption('Importes mostrados como EUR por la normalización previa; el archivo de valores no indica la moneda explícitamente. Moneda pendiente de verificación.')
             st.caption(f"Valoraciones registradas hasta {reported_values.valuation_date.max().date()}. "
                        "Cruces de identidad provisionales. Precio de mercado reportado, no coste de fichaje. "
                        "La fecha original de publicación es desconocida; este filtro no valida presupuestos históricos.")
@@ -549,7 +550,7 @@ def main() -> None:
             if budget_data_available:
                 compared = attach_reported_values(compared, price_links, reported_values, valuation_cutoff)
                 fields += ['reported_market_value_eur', 'reported_valuation_date']
-                st.caption('Valoraciones reportadas; las asociaciones de identidad están pendientes de revisión individual. No son costes de fichaje.')
+                st.caption('Valoraciones reportadas; identidades y moneda pendientes de verificación. Los importes se muestran como EUR supuesto; no son costes de fichaje.')
             st.dataframe(display_frame(compared[fields]), hide_index=True, use_container_width=True)
             st.download_button('Descargar comparación', display_frame(compared[fields]).to_csv(index=False).encode(),
                                file_name='scouting_comparison.csv', mime='text/csv')

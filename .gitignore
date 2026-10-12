@@ -248,3 +248,6 @@ reports/scouting_scenarios/shortlist.csv
 # Private, restricted cross-source review and reported-price rows
 data/processed/real/europe_review_*.parquet
 reports/five_league_pipeline/scenario_shortlists.csv
+# Private valuation verification rows and identity review evidence
+/data/processed/real/valuation_verification_*.parquet
+/reports/valuation_verification/identity_review_queue.csv

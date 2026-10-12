@@ -13,7 +13,7 @@ def render_scenarios(rec, service, links, values, selected_league="Todas"):
     st.subheader('Escenarios de scouting')
     st.caption('Supuestos ilustrativos y ajustables, no requisitos oficiales del club. Una vacante: cada jugador es una alternativa. '
                'Valores reportados a 30 de junio de la temporada observada; no son costes de fichaje. '
-               'Identidades provisionales y fecha de publicación desconocida: análisis retrospectivo, no validación histórica.')
+               'Identidades provisionales, moneda EUR supuesta y fecha de publicación desconocida: análisis retrospectivo, no validación histórica.')
     if service is None or values is None:
         st.info('Se necesitan un modelo evaluado y datos de valoración reportada.')
         return
