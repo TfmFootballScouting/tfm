@@ -3,3 +3,11 @@
 # Generated report fingerprints must survive Windows checkout conversion too.
 reports/**/*.csv text eol=lf
 reports/**/*.json text eol=lf
+# Preserve exact dataset bytes/hashes across Windows and Linux checkouts.
+data/raw/**/*.csv -text whitespace=cr-at-eol
+data/processed/review/*.csv -text
+*.gz binary
+*.parquet binary
+*.joblib binary
+*.json text eol=lf
+*.md text eol=lf
