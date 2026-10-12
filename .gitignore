@@ -251,3 +251,5 @@ reports/five_league_pipeline/scenario_shortlists.csv
 # Private valuation verification rows and identity review evidence
 /data/processed/real/valuation_verification_*.parquet
 /reports/valuation_verification/identity_review_queue.csv
+# Newly prepared source-only four-league tables: retained locally with manifests
+/data/external/four_league_expansion/

@@ -1,0 +1,182 @@
+{
+  "created_at": "2026-10-12T13:54:55.005767+00:00",
+  "git_commit": "8d2e686f2b3e3bc4647e8e662f787a6a1f222449",
+  "script_sha256": "c0f5abbb641a970e8dcd23cd2d41d336a13ef6d07bb04d0df3ca1c15bcbfc6d5",
+  "inputs_sha256": {
+    "data/raw/sources/understat_worldfootballr/c51e6661029a2b0f2b770bd9fc0a54da1913b303d6c6c908d11008f5c526ab60.rds": "c51e6661029a2b0f2b770bd9fc0a54da1913b303d6c6c908d11008f5c526ab60",
+    "data/raw/sources/understat_worldfootballr/7481d4eea7a32c261ae45711e735a074c23aa4530a181c7f3c490150e8639bee.rds": "7481d4eea7a32c261ae45711e735a074c23aa4530a181c7f3c490150e8639bee",
+    "data/raw/sources/understat_worldfootballr/fb024cc8fc8aa72edf6b826629ffe1f36dc3f2e20645f3aade85a4f2ec36b559.rds": "fb024cc8fc8aa72edf6b826629ffe1f36dc3f2e20645f3aade85a4f2ec36b559",
+    "data/raw/sources/understat_worldfootballr/bbc5bc4e6f0ffc94f01ec016e4df45dc6d53264f92c917e113c0c5b9ecdbc49a.rds": "bbc5bc4e6f0ffc94f01ec016e4df45dc6d53264f92c917e113c0c5b9ecdbc49a",
+    "data/raw/sources/fbref_worldfootballr/a299c971c5f1a1a58e57de123e7430c9d23d2eb472569244c0e5056a109faa91.rds": "a299c971c5f1a1a58e57de123e7430c9d23d2eb472569244c0e5056a109faa91",
+    "data/raw/sources/fbref_worldfootballr/1bac446d04a7e9925b4d9ff09dfd1f63c468bc274d9ef438217ac64027bab449.rds": "1bac446d04a7e9925b4d9ff09dfd1f63c468bc274d9ef438217ac64027bab449",
+    "data/raw/sources/fbref_worldfootballr/886126b93b1c3b48e06d5c0848dfc5078e082afc94e389da583c2280ed74e00c.rds": "886126b93b1c3b48e06d5c0848dfc5078e082afc94e389da583c2280ed74e00c",
+    "data/raw/sources/fbref_worldfootballr/8bc9fd8218c1dc0725f7d009940d90d64ad600a8e09ce6607917f962aeac4837.rds": "8bc9fd8218c1dc0725f7d009940d90d64ad600a8e09ce6607917f962aeac4837",
+    "data/raw/sources/fbref_worldfootballr/a41db96bcf4376dc4547829c9d61ea4e4d69a15dbc958a3fa4c89f84c4978efd.rds": "a41db96bcf4376dc4547829c9d61ea4e4d69a15dbc958a3fa4c89f84c4978efd",
+    "data/raw/sources/fbref_worldfootballr/744708cd039a2154f5fd578679264b247a8a527584141bfd7c03d9a7f7cb6ded.rds": "744708cd039a2154f5fd578679264b247a8a527584141bfd7c03d9a7f7cb6ded",
+    "data/raw/sources/salimt_uploaded/team_competitions_seasons.csv": "83f06c8108e87d74ebccd7d02df9b7a5fe5769bbc7004771af64230b1eff6319",
+    "data/raw/sources/salimt_uploaded/player_profiles.csv": "7ef9afbacf97577d099f21a0ef0ea0d46381bd4806a119f095b9562762a20096",
+    "data/raw/sources/salimt_uploaded/histories/player_performances.txt": "21eda6556654478fe986de8972d3b94aea6551ebcd74d5eb153b65edb53d132b",
+    "data/processed/real/collected_salimt_transfer_history.parquet": "be95a127a390303f5020638a212bbeb87f66b354a96d6bfd51acfb9bac527cbe"
+  },
+  "outputs": {
+    "data/external/four_league_expansion/understat_premier_league_shots.parquet": {
+      "rows": 49970,
+      "sha256": "45259caf1fd24813b5e4643fe11121bf73344bffbdda4fd3c00bc95967d5b612",
+      "private": false
+    },
+    "data/external/four_league_expansion/understat_bundesliga_shots.parquet": {
+      "rows": 40518,
+      "sha256": "2ad3cd6f5deb73d7f07913befa76879f5e5fb301458d8c4e07a65c879f5444c1",
+      "private": false
+    },
+    "data/external/four_league_expansion/understat_serie_a_shots.parquet": {
+      "rows": 48673,
+      "sha256": "bd124fda391a5b6e78e434674591d9154490df3c7ffa0f35d9cd581cba6797f1",
+      "private": false
+    },
+    "data/external/four_league_expansion/understat_ligue_1_shots.parquet": {
+      "rows": 43777,
+      "sha256": "6e2ffb28c5b3d55b956cff5fe0d8c5d4ed4bb351c98c57ae4dd5f35f297f292b",
+      "private": false
+    },
+    "data/external/four_league_expansion/fbref_standard.parquet": {
+      "rows": 12891,
+      "sha256": "3d539b673e5487170d3d7cf026594810b5bb0839aefa1ca37964d0e569410d78",
+      "private": false
+    },
+    "data/external/four_league_expansion/fbref_shooting.parquet": {
+      "rows": 12891,
+      "sha256": "39e08c224ea0d514eba6703d06507e0a70d09af9076b85587db18ad360e11a73",
+      "private": false
+    },
+    "data/external/four_league_expansion/fbref_passing.parquet": {
+      "rows": 12891,
+      "sha256": "469a0c1321898b13895763f082b05f22954846e328da46b84724b1295f506af7",
+      "private": false
+    },
+    "data/external/four_league_expansion/fbref_defense.parquet": {
+      "rows": 10790,
+      "sha256": "6b35a12ca831a4bc7490784a0cfca34c88bd91ec18e2984cc0fe604100f92d01",
+      "private": false
+    },
+    "data/external/four_league_expansion/fbref_possession.parquet": {
+      "rows": 10790,
+      "sha256": "3dbfcc05b9e63b6a27f266e77e47923a1e46ec32f4dd71116e74e5a81c5fb7b9",
+      "private": false
+    },
+    "data/external/four_league_expansion/fbref_misc.parquet": {
+      "rows": 10790,
+      "sha256": "22f54100b78a259ff13b7e1acb7c6251402d8682061fc581db3d6d71bc1b2cb2",
+      "private": false
+    },
+    "data/external/four_league_expansion/transfermarkt_team_seasons_review.parquet": {
+      "rows": 462,
+      "sha256": "98cfc6d1430d0ee871281c31993ff43850b104996c279b23eb1c0d9e5f31bf47",
+      "private": true
+    },
+    "data/external/four_league_expansion/transfermarkt_performances_review.parquet": {
+      "rows": 15208,
+      "sha256": "f86a31cbc8e54b92a2c7f1d34881d7f527c19c63a5621e8759a873f99274e489",
+      "private": true
+    },
+    "data/external/four_league_expansion/transfermarkt_transfer_context_review.parquet": {
+      "rows": 20316,
+      "sha256": "fa459075bc6128c4312350a4c890d63ab0a78f428c5afbaba679331fcae9c290",
+      "private": true
+    }
+  },
+  "understat_sources": [
+    {
+      "source": "understat_worldfootballr",
+      "original_source": "understat",
+      "league": "Premier League",
+      "category": "shots",
+      "url": "https://github.com/JaseZiv/worldfootballR_data/releases/download/understat_shots/epl_shot_data.rds",
+      "retrieved_at": "2026-10-12T13:44:59.212038+00:00",
+      "sha256": "c51e6661029a2b0f2b770bd9fc0a54da1913b303d6c6c908d11008f5c526ab60",
+      "path": "data/raw/sources/understat_worldfootballr/c51e6661029a2b0f2b770bd9fc0a54da1913b303d6c6c908d11008f5c526ab60.rds",
+      "bytes": 29646577,
+      "archive_repository": "JaseZiv/worldfootballR_data",
+      "archive_code_commit": "2df143967509ff45584e261a2a033687346d654b",
+      "last_modified": "Thu, 18 Sep 2025 18:43:31 GMT",
+      "etag": "\"0x8DDF6E3441B033F\"",
+      "acquisition": "published_GitHub_release_not_provider_crawl",
+      "rights_status": "Published secondary research archive; provider rights not established by software license; local analysis only",
+      "reader": "rdata_encoding_aware_latin1_default"
+    },
+    {
+      "source": "understat_worldfootballr",
+      "original_source": "understat",
+      "league": "Bundesliga",
+      "category": "shots",
+      "url": "https://github.com/JaseZiv/worldfootballR_data/releases/download/understat_shots/bundesliga_shot_data.rds",
+      "retrieved_at": "2026-10-12T13:45:07.026123+00:00",
+      "sha256": "7481d4eea7a32c261ae45711e735a074c23aa4530a181c7f3c490150e8639bee",
+      "path": "data/raw/sources/understat_worldfootballr/7481d4eea7a32c261ae45711e735a074c23aa4530a181c7f3c490150e8639bee.rds",
+      "bytes": 25319943,
+      "archive_repository": "JaseZiv/worldfootballR_data",
+      "archive_code_commit": "2df143967509ff45584e261a2a033687346d654b",
+      "last_modified": "Thu, 18 Sep 2025 18:43:39 GMT",
+      "etag": "\"0x8DDF6E348E4B444\"",
+      "acquisition": "published_GitHub_release_not_provider_crawl",
+      "rights_status": "Published secondary research archive; provider rights not established by software license; local analysis only",
+      "reader": "pyreadr"
+    },
+    {
+      "source": "understat_worldfootballr",
+      "original_source": "understat",
+      "league": "Serie A",
+      "category": "shots",
+      "url": "https://github.com/JaseZiv/worldfootballR_data/releases/download/understat_shots/serie_a_shot_data.rds",
+      "retrieved_at": "2026-10-12T13:45:17.177961+00:00",
+      "sha256": "fb024cc8fc8aa72edf6b826629ffe1f36dc3f2e20645f3aade85a4f2ec36b559",
+      "path": "data/raw/sources/understat_worldfootballr/fb024cc8fc8aa72edf6b826629ffe1f36dc3f2e20645f3aade85a4f2ec36b559.rds",
+      "bytes": 30103636,
+      "archive_repository": "JaseZiv/worldfootballR_data",
+      "archive_code_commit": "2df143967509ff45584e261a2a033687346d654b",
+      "last_modified": "Thu, 18 Sep 2025 18:43:43 GMT",
+      "etag": "\"0x8DDF6E34B5235A3\"",
+      "acquisition": "published_GitHub_release_not_provider_crawl",
+      "rights_status": "Published secondary research archive; provider rights not established by software license; local analysis only",
+      "reader": "pyreadr"
+    },
+    {
+      "source": "understat_worldfootballr",
+      "original_source": "understat",
+      "league": "Ligue 1",
+      "category": "shots",
+      "url": "https://github.com/JaseZiv/worldfootballR_data/releases/download/understat_shots/ligue_1_shot_data.rds",
+      "retrieved_at": "2026-10-12T13:45:25.524477+00:00",
+      "sha256": "bbc5bc4e6f0ffc94f01ec016e4df45dc6d53264f92c917e113c0c5b9ecdbc49a",
+      "path": "data/raw/sources/understat_worldfootballr/bbc5bc4e6f0ffc94f01ec016e4df45dc6d53264f92c917e113c0c5b9ecdbc49a.rds",
+      "bytes": 26342221,
+      "archive_repository": "JaseZiv/worldfootballR_data",
+      "archive_code_commit": "2df143967509ff45584e261a2a033687346d654b",
+      "last_modified": "Thu, 18 Sep 2025 18:43:47 GMT",
+      "etag": "\"0x8DDF6E34DB34201\"",
+      "acquisition": "published_GitHub_release_not_provider_crawl",
+      "rights_status": "Published secondary research archive; provider rights not established by software license; local analysis only",
+      "reader": "pyreadr"
+    }
+  ],
+  "leagues": [
+    "Premier League",
+    "Bundesliga",
+    "Serie A",
+    "Ligue 1"
+  ],
+  "current_app_or_models_changed": false,
+  "limits": [
+    "FBref/Understat release snapshots are dated September 2025; 2025/26 is partial. Uploaded Transfermarkt context completeness is unverified.",
+    "Understat IDs are source-specific; cross-source joins are not approved by this collection.",
+    "FBref exposure-mismatched category rows are flagged and must not be used as aligned full-season features.",
+    "Transfermarkt context is retained review-only, private and blocked from model fitting; fees and publication times are not independently verified.",
+    "New Understat archives were fetched from published GitHub assets, not provider pages; secondary publication is not a provider redistribution license."
+  ],
+  "network_observations": {
+    "github_api": "Proxy CONNECT 403; no retry",
+    "github_release_assets": "Successful public release listing and four asset downloads"
+  },
+  "problems": [],
+  "missing_expected_fixture_pairs": 7
+}

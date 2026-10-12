@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-10-12T13:54:09.518143+00:00",
+  "attempts": [
+    {
+      "url": "https://api.github.com/repos/JaseZiv/worldfootballR_data/releases/tags/understat_shots",
+      "status": "proxy_CONNECT_403",
+      "action": "No retry; public GitHub release listing used instead"
+    },
+    {
+      "url": "https://github.com/JaseZiv/worldfootballR_data/releases/expanded_assets/understat_shots",
+      "status": "HTTP_200",
+      "action": "Listed published assets"
+    },
+    {
+      "url": "https://www.football-data.co.uk/robots.txt",
+      "status": "proxy_access_blocked",
+      "action": "No match CSV downloaded; crawl policy could not be established"
+    }
+  ]
+}

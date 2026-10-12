@@ -62,6 +62,10 @@ python -m pytest -q
 
 Several integration tests require retained source/private inputs and optional archive readers. The hosted CI configuration runs the full suite; a clean hosted run is not verified by local success. Historical test XML files record earlier executions rather than current readiness.
 
+## Additional data for the four added leagues
+
+[Four-league acquisition](docs/FOUR_LEAGUE_DATA_EXPANSION.md) provides 182,938 Understat shots, full retained FBref category fields and separate review-only recruitment context. New tables are retained locally with pinned provenance and coverage reports; current app models remain unchanged. Bundesliga/Serie A 2024/25 shot coverage has gaps, and 2025/26 is partial.
+
 ## Analysis notebooks
 
 - [11: Full five-league pipeline](notebooks/11_five_league_full_pipeline.ipynb): quality, EDA, chronology, baselines, PCA/K-means interpretation, bootstrap robustness, scenarios and MLflow.
