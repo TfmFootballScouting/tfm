@@ -1,7 +1,0 @@
-source_player_id,league,category,status,reason,snapshot_sha256
-937958,La Liga,profiles,sample_parsed,Current profile; not historical season state,4c1b9c6f7d5107770fe4aba396250565380d6e0c9fa17dd83aa17e06fc457600
-937958,La Liga,historical_valuations,raw_collected_unparsed,HTML contains a client-rendered component but no dated history records; no values or fees inferred,cb9bc82a2f6aec1bb022a35c780777ce947ba8b07d512d09c9e740124285ab98
-937958,La Liga,transfer_history,raw_collected_unparsed,HTML contains a client-rendered component but no dated history records; no values or fees inferred,c7572cb3c57eeb6120c906b895c1407db3b99462a58874d6c1b7537cbc2b9f90
-527966,Segunda,profiles,sample_parsed,Current profile; not historical season state,73843bdd914776d45a1ba4056d81f85d325389f5c497465b9d856a0d7d4bcfad
-527966,Segunda,historical_valuations,raw_collected_unparsed,HTML contains a client-rendered component but no dated history records; no values or fees inferred,8776262c7e7eb20f2ea694a8a9dafedb1aa6d415e6f06fe0d307946bce8ad234
-527966,Segunda,transfer_history,raw_collected_unparsed,HTML contains a client-rendered component but no dated history records; no values or fees inferred,4bdae8f3fb10854158889dfcd78eedcb03a96d00aef6162681fa43485c4e6051

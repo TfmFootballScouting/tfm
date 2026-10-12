@@ -12,18 +12,15 @@ from src.data.source_rights import RESTRICTED
 
 
 def load_budget_inputs():
-    manifest = json.loads((ROOT / 'reports/salimt_uploaded_audit.json').read_text())
+    manifest = json.loads((ROOT / 'models/real/runtime_manifest.json').read_text())
     frames = []
-    for name in ['values', 'identity_candidates']:
-        path = ROOT / f'data/processed/real/collected_salimt_{name}.parquet'
-        if sha256(path) != manifest['outputs_sha256'][str(path.relative_to(ROOT))]:
-            raise ValueError('Uploaded valuation or identity checksum changed')
+    for item in [manifest['optional_budget']['values'], manifest['optional_budget']['candidates'],
+                 manifest['outputs']['player_seasons']]:
+        path = ROOT / item['path']
+        if sha256(path) != item['sha256']:
+            raise ValueError('Optional valuation, identity or history checksum changed')
         frames.append(pd.read_parquet(path))
-    path = ROOT / 'data/processed/real/collected_player_seasons.parquet'
-    preprocessing = json.loads((ROOT / 'reports/collected_preprocessing.json').read_text())
-    if sha256(path) != preprocessing['outputs']['collected_player_seasons']['sha256']:
-        raise ValueError('Canonical FBref dataset checksum changed')
-    return frames[0], frames[1], pd.read_parquet(path)
+    return tuple(frames)
 
 
 def candidate_links(players, candidates, fbref):

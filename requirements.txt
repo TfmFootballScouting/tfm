@@ -1,21 +1,9 @@
-# Direct dependencies; Python 3.12. Resolved environment: requirements.lock.txt.
+# Runtime only; Python 3.12. Exact resolved environment: requirements.lock.txt.
 numpy==2.2.6
 pandas==2.2.3
 scipy==1.15.3
 scikit-learn==1.6.1
 pyarrow==19.0.1
 joblib==1.4.2
-requests==2.32.4
-beautifulsoup4==4.13.4
-lxml==5.4.0
-matplotlib==3.10.3
-seaborn==0.13.2
 plotly==6.1.2
 streamlit==1.45.1
-mlflow==2.22.0
-pytest==8.3.5
-nbformat==5.10.4
-nbclient==0.10.2
-ipykernel==6.29.5
-# MLflow 2.22 needs the SQLAlchemy 2.0 pool API.
-SQLAlchemy==2.0.41

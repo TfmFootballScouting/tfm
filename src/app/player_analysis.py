@@ -15,18 +15,18 @@ SHOT_FIELDS={'player':'Jugador','team':'Equipo','season':'Temporada','shot_date'
 @st.cache_data
 def load_analysis_shots():
     frames=[]
-    preprocessing=ROOT/'reports/four_league_preprocessing/preprocessing.json'
+    preprocessing=ROOT/'models/real/runtime_manifest.json'
     path=ROOT/'data/processed/real/four_league_clean_shots.parquet'
     if preprocessing.exists() and path.exists():
         report=json.loads(preprocessing.read_text())
-        info=report['outputs'][str(path.relative_to(ROOT))]
+        info=report['shots']['four_leagues']
         if sha256(path)!=info['sha256']:raise ValueError('Shot dataset fingerprint changed')
         frames.append(pd.read_parquet(path))
     # Retained La Liga source is independent of the optional four-league local tables.
     path=ROOT/'data/processed/real/collected_understat_shots.parquet'
     if path.exists():
-        report=json.loads((ROOT/'reports/collected_preprocessing.json').read_text())
-        info=report['outputs']['collected_understat_shots']
+        report=json.loads((ROOT/'models/real/runtime_manifest.json').read_text())
+        info=report['shots']['la_liga']
         if sha256(path)!=info['sha256']:raise ValueError('La Liga shot fingerprint changed')
         frame=pd.read_parquet(path).copy()
         side=frame.h_a.where(frame.h_a.isin(['h','a']))
@@ -138,7 +138,7 @@ def render_shots(selected_leagues):
     available=[] if shots.empty else sorted(set(shots.league)&set(selected_leagues))
     if not available:
         st.info('No hay archivos de tiros preparados para las ligas seleccionadas.')
-        st.code('python -m scripts.four_league_acquisition --download --public-only\npython -m scripts.four_league_preprocessing')
+        st.caption('Para añadir datos locales de tiros, sigue la adquisición y preparación documentadas en la rama improve/reproducible-scouting. Esta rama sirve datos ya preparados.')
         st.caption('Instala requirements-archives.txt para reproducir la preparación, luego reinicia Streamlit.');return
     missing=set(selected_leagues)-set(available)
     if missing:st.caption('Sin archivos locales preparados: '+', '.join(sorted(missing)))

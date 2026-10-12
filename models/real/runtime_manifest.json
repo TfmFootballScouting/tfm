@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "research_branch": "improve/reproducible-scouting",
+  "research_commit": "a29e192933e70218de53d658e1b72b59844f751e",
+  "dataset_version": "d7a70a7349eb58b62cd18c540129203cd411aeb97706cdf074cbcbe74f8ad49a",
+  "code_sha256": {
+    "src/preprocessing/collected.py": "92cabb8336851a02adb0550fbd688536122d075c7f49b6007e9c06ddafa4bf54",
+    "src/models/collected.py": "b1f6c8922fcb2026ec53b538a833eafc56c4a3680c7ec34e6e2ecba63e89b66f",
+    "src/models/validation.py": "fca8f68d6a38ef1ca36eba726725933e2f5d0ee15d380970c1ce6cd6d27fa530",
+    "src/models/recommend.py": "fc92931cd24f54ecfb232b4c3d4bff1ff0f2302f978a652404cafef80e449f1b",
+    "src/features/styles.py": "d033f056cee418b9fcf97811dd271a734adf9d34ded2107008f654bb0dc46a57",
+    "src/data/source_rights.py": "b781fbcf71490d47178dcaba45bf83e3810660afdaa6c37e2c2cbf5f0df0a81f"
+  },
+  "experiments": {
+    "core": {
+      "selected_method": "euclidean_profile",
+      "selected_k": 2,
+      "holdout_mrr": 0.09549844955925278,
+      "holdout_recall_at_5": 0.12954186413902052,
+      "holdout_recall_at_10": 0.19510268562401265,
+      "pca_explained_variance": [
+        0.4254997317534587,
+        0.15418642616632044,
+        0.14432679137223203,
+        0.07687988833121528
+      ],
+      "cluster_diagnostics": {
+        "position_nmi": 0.3752879391427972,
+        "season_nmi": 6.0465276022529e-05,
+        "seed_ari_mean": 1.0,
+        "league_nmi": 0.00016963272978491535
+      },
+      "robustness_top5_jaccard_mean": 0.9740740740740741,
+      "cluster_oob_ari_mean": 0.9819258990337122,
+      "rows_by_split": {
+        "train": 3723,
+        "validation": 1861,
+        "holdout": 1810
+      },
+      "train_seasons": [
+        "2020-2021",
+        "2021-2022"
+      ],
+      "validation_season": "2022-2023",
+      "holdout_season": "2023-2024",
+      "model_path": "models/real/five_league_core_recommender.joblib",
+      "model_sha256": "3cd87ab619555f57d66b12ec2a4066ea72b37aaa312811c0b0ff53379ce4c7d3",
+      "training_scope": "five_leagues",
+      "dataset_version": "d7a70a7349eb58b62cd18c540129203cd411aeb97706cdf074cbcbe74f8ad49a",
+      "mlflow_run_id": "85b7e82117814713b9094a5385308f6f",
+      "exported_artifacts": 26
+    }
+  },
+  "outputs": {
+    "core_gallery": {
+      "path": "data/processed/real/five_league_pipeline_core_gallery.parquet",
+      "sha256": "18b9ebb4ca78fde9f5330e329894823d83ec249c59e2df52a7f184d139606192",
+      "rows": 7398
+    },
+    "player_seasons": {
+      "path": "data/processed/real/five_league_pipeline_player_seasons.parquet",
+      "sha256": "52337690992d5e186181ccbaa12554c52b1492adfbfd79effe184ceed818821f",
+      "rows": 15948
+    }
+  },
+  "shots": {
+    "la_liga": {
+      "rows": 45847,
+      "path": "data/processed/real/collected_understat_shots.parquet",
+      "sha256": "577c79f6e56e4748c75193ec0d204be960f34b288d2c4ab2dba29c9ae8f0ee5d"
+    },
+    "four_leagues": {
+      "path": "data/processed/real/four_league_clean_shots.parquet",
+      "rows": 182938,
+      "sha256": "86e72a341c7082f76aae9aaa99cace4a24c7d694988b39381f238039845cf0ae"
+    }
+  },
+  "optional_budget": {
+    "values": {
+      "path": "data/processed/real/collected_salimt_values.parquet",
+      "sha256": "c05d1b1e2b424fb3a19d5281f11640668c099cfbd9e098d0408bb3588b5f0dd7"
+    },
+    "candidates": {
+      "path": "data/processed/real/europe_review_candidates.parquet",
+      "sha256": "1693a587b9dc6c23b3743d07ca750f42d7cc548be604340b9726c34182d6229c",
+      "rows": 5405
+    }
+  }
+}

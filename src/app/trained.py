@@ -9,8 +9,8 @@ from src.models.recommend import PlayerRecommender
 
 
 def load_trained_service(name):
-    if name not in ['core','offensive']: raise ValueError('Unsupported serving model')
-    report=json.loads((ROOT/'reports/five_league_pipeline/pipeline.json').read_text())
+    if name not in ['core']: raise ValueError('Unsupported serving model')
+    report=json.loads((ROOT/'models/real/runtime_manifest.json').read_text())
     for path,digest in report['code_sha256'].items():
         if path.startswith('src/') and source_sha256(ROOT/path)!=digest:
             raise ValueError('Five-league training source fingerprint changed')
@@ -25,9 +25,3 @@ def load_trained_service(name):
     if model.neighbor_method!=info['selected_method']: raise ValueError('Distance method differs from evaluation')
     return CollectedService(model,frames[f'{name}_gallery'],frames['player_seasons'],
         {**info,'gallery_scope':'five_leagues_trained','gallery_dataset_version':report['dataset_version']},name)
-
-
-def trained_league_evaluation(name):
-    report=json.loads((ROOT/'reports/five_league_pipeline/pipeline.json').read_text())
-    frame=pd.read_csv(ROOT/f'reports/five_league_pipeline/{name}_league_retrieval.csv')
-    return frame[frame.method.eq(report['experiments'][name]['selected_method'])].copy()

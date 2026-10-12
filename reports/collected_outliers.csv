@@ -1,6 +1,0 @@
-source_player_id,player,season,minutes,gls_p90,sh_p90,quality_outlier,quality_inconsistent_counts,historical_candidate
-375ed9d7,Milutin Osmajić,2023-2024,5.0,0.0,36.0,True,False,False
-37f1cf47,Ander Capa,2021-2022,4.0,0.0,22.5,True,False,False
-50cbc806,Iker Benito,2025-2026,27.0,3.3333333333333335,3.3333333333333335,True,False,False
-8d78e732,Robert Lewandowski,2025-2026,51.0,3.5294117647058822,3.5294117647058822,True,False,False
-a2d9cf74,Pascu,2022-2023,10.0,9.0,9.0,True,False,False

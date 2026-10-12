@@ -1,4 +1,0 @@
-# Optional RDS archive readers, tested alongside requirements.lock.txt (Python 3.12).
-pyreadr==0.5.7
-rdata==1.1.0
-xarray==2026.9.0

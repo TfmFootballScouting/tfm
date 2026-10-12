@@ -1,5 +1,6 @@
-# Preserve source fingerprints across Git checkouts on Windows and Unix.
 *.py text eol=lf
-# Generated report fingerprints must survive Windows checkout conversion too.
-reports/**/*.csv text eol=lf
-reports/**/*.json text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.parquet binary
+*.joblib binary
