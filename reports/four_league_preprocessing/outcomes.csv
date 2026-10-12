@@ -1,0 +1,144 @@
+league,season,result,events
+Bundesliga,2020-2021,BlockedShot,1854
+Bundesliga,2020-2021,Goal,901
+Bundesliga,2020-2021,MissedShots,2837
+Bundesliga,2020-2021,OwnGoal,27
+Bundesliga,2020-2021,SavedShot,1817
+Bundesliga,2020-2021,ShotOnPost,154
+Bundesliga,2021-2022,BlockedShot,1918
+Bundesliga,2021-2022,Goal,923
+Bundesliga,2021-2022,MissedShots,3061
+Bundesliga,2021-2022,OwnGoal,31
+Bundesliga,2021-2022,SavedShot,1855
+Bundesliga,2021-2022,ShotOnPost,161
+Bundesliga,2022-2023,BlockedShot,1981
+Bundesliga,2022-2023,Goal,948
+Bundesliga,2022-2023,MissedShots,2860
+Bundesliga,2022-2023,OwnGoal,23
+Bundesliga,2022-2023,SavedShot,1856
+Bundesliga,2022-2023,ShotOnPost,147
+Bundesliga,2023-2024,BlockedShot,2330
+Bundesliga,2023-2024,Goal,960
+Bundesliga,2023-2024,MissedShots,3096
+Bundesliga,2023-2024,OwnGoal,25
+Bundesliga,2023-2024,SavedShot,1936
+Bundesliga,2023-2024,ShotOnPost,159
+Bundesliga,2024-2025,BlockedShot,2240
+Bundesliga,2024-2025,Goal,930
+Bundesliga,2024-2025,MissedShots,2777
+Bundesliga,2024-2025,OwnGoal,25
+Bundesliga,2024-2025,SavedShot,1806
+Bundesliga,2024-2025,ShotOnPost,167
+Bundesliga,2025-2026,BlockedShot,174
+Bundesliga,2025-2026,Goal,97
+Bundesliga,2025-2026,MissedShots,276
+Bundesliga,2025-2026,SavedShot,155
+Bundesliga,2025-2026,ShotOnPost,11
+Ligue 1,2020-2021,BlockedShot,2150
+Ligue 1,2020-2021,Goal,1022
+Ligue 1,2020-2021,MissedShots,3509
+Ligue 1,2020-2021,OwnGoal,27
+Ligue 1,2020-2021,SavedShot,2039
+Ligue 1,2020-2021,ShotOnPost,174
+Ligue 1,2021-2022,BlockedShot,2262
+Ligue 1,2021-2022,Goal,1033
+Ligue 1,2021-2022,MissedShots,3528
+Ligue 1,2021-2022,OwnGoal,34
+Ligue 1,2021-2022,SavedShot,2101
+Ligue 1,2021-2022,ShotOnPost,174
+Ligue 1,2022-2023,BlockedShot,2345
+Ligue 1,2022-2023,Goal,1030
+Ligue 1,2022-2023,MissedShots,3391
+Ligue 1,2022-2023,OwnGoal,37
+Ligue 1,2022-2023,SavedShot,2347
+Ligue 1,2022-2023,ShotOnPost,195
+Ligue 1,2023-2024,BlockedShot,2160
+Ligue 1,2023-2024,Goal,806
+Ligue 1,2023-2024,MissedShots,2759
+Ligue 1,2023-2024,OwnGoal,20
+Ligue 1,2023-2024,SavedShot,1936
+Ligue 1,2023-2024,ShotOnPost,146
+Ligue 1,2024-2025,BlockedShot,2068
+Ligue 1,2024-2025,Goal,888
+Ligue 1,2024-2025,MissedShots,2613
+Ligue 1,2024-2025,OwnGoal,23
+Ligue 1,2024-2025,SavedShot,1897
+Ligue 1,2024-2025,ShotOnPost,158
+Ligue 1,2025-2026,BlockedShot,256
+Ligue 1,2025-2026,Goal,100
+Ligue 1,2025-2026,MissedShots,325
+Ligue 1,2025-2026,OwnGoal,5
+Ligue 1,2025-2026,SavedShot,202
+Ligue 1,2025-2026,ShotOnPost,17
+Premier League,2020-2021,BlockedShot,2549
+Premier League,2020-2021,Goal,986
+Premier League,2020-2021,MissedShots,3225
+Premier League,2020-2021,OwnGoal,38
+Premier League,2020-2021,SavedShot,2228
+Premier League,2020-2021,ShotOnPost,209
+Premier League,2021-2022,BlockedShot,2861
+Premier League,2021-2022,Goal,1037
+Premier League,2021-2022,MissedShots,3465
+Premier League,2021-2022,OwnGoal,34
+Premier League,2021-2022,SavedShot,2223
+Premier League,2021-2022,ShotOnPost,155
+Premier League,2022-2023,BlockedShot,2803
+Premier League,2022-2023,Goal,1038
+Premier League,2022-2023,MissedShots,3362
+Premier League,2022-2023,OwnGoal,46
+Premier League,2022-2023,SavedShot,2206
+Premier League,2022-2023,ShotOnPost,189
+Premier League,2023-2024,BlockedShot,3067
+Premier League,2023-2024,Goal,1196
+Premier League,2023-2024,MissedShots,3560
+Premier League,2023-2024,OwnGoal,50
+Premier League,2023-2024,SavedShot,2450
+Premier League,2023-2024,ShotOnPost,201
+Premier League,2024-2025,BlockedShot,2929
+Premier League,2024-2025,Goal,1081
+Premier League,2024-2025,MissedShots,3346
+Premier League,2024-2025,OwnGoal,34
+Premier League,2024-2025,SavedShot,2284
+Premier League,2024-2025,ShotOnPost,204
+Premier League,2025-2026,BlockedShot,272
+Premier League,2025-2026,Goal,94
+Premier League,2025-2026,MissedShots,346
+Premier League,2025-2026,OwnGoal,3
+Premier League,2025-2026,SavedShot,186
+Premier League,2025-2026,ShotOnPost,13
+Serie A,2020-2021,BlockedShot,2513
+Serie A,2020-2021,Goal,1129
+Serie A,2020-2021,MissedShots,3519
+Serie A,2020-2021,OwnGoal,31
+Serie A,2020-2021,SavedShot,2123
+Serie A,2020-2021,ShotOnPost,202
+Serie A,2021-2022,BlockedShot,2688
+Serie A,2021-2022,Goal,1053
+Serie A,2021-2022,MissedShots,3712
+Serie A,2021-2022,OwnGoal,36
+Serie A,2021-2022,SavedShot,2249
+Serie A,2021-2022,ShotOnPost,194
+Serie A,2022-2023,BlockedShot,2664
+Serie A,2022-2023,Goal,944
+Serie A,2022-2023,MissedShots,3734
+Serie A,2022-2023,OwnGoal,30
+Serie A,2022-2023,SavedShot,2129
+Serie A,2022-2023,ShotOnPost,174
+Serie A,2023-2024,BlockedShot,2670
+Serie A,2023-2024,Goal,971
+Serie A,2023-2024,MissedShots,3733
+Serie A,2023-2024,OwnGoal,21
+Serie A,2023-2024,SavedShot,2135
+Serie A,2023-2024,ShotOnPost,198
+Serie A,2024-2025,BlockedShot,2518
+Serie A,2024-2025,Goal,915
+Serie A,2024-2025,MissedShots,3403
+Serie A,2024-2025,OwnGoal,37
+Serie A,2024-2025,SavedShot,2013
+Serie A,2024-2025,ShotOnPost,180
+Serie A,2025-2026,BlockedShot,213
+Serie A,2025-2026,Goal,64
+Serie A,2025-2026,MissedShots,296
+Serie A,2025-2026,OwnGoal,1
+Serie A,2025-2026,SavedShot,164
+Serie A,2025-2026,ShotOnPost,17

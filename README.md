@@ -66,10 +66,13 @@ Several integration tests require retained source/private inputs and optional ar
 
 [Four-league acquisition](docs/FOUR_LEAGUE_DATA_EXPANSION.md) provides 182,938 Understat shots, full retained FBref category fields and separate review-only recruitment context. New tables are retained locally with pinned provenance and coverage reports; current app models remain unchanged. Bundesliga/Serie A 2024/25 shot coverage has gaps, and 2025/26 is partial.
 
+The [four-league preprocessing and EDA](docs/FOUR_LEAGUE_PREPROCESSING.md) now includes cleaned shots, player-season summaries, season-specific identity proposals and executed notebook 13. These proposals remain provisional; the current recommender is unchanged.
+
 ## Analysis notebooks
 
 - [11: Full five-league pipeline](notebooks/11_five_league_full_pipeline.ipynb): quality, EDA, chronology, baselines, PCA/K-means interpretation, bootstrap robustness, scenarios and MLflow.
 - [12: Adjustable scouting groups](notebooks/12_scouting_group_exploration.ipynb): descriptive grouping diagnostics; saved recommendation artifacts remain unchanged.
+- [13: Four-league shot EDA](notebooks/13_four_league_shot_eda.ipynb): shot quality, attacking profiles, coverage exclusions, conservative identity proposals and advanced-feature readiness.
 - Notebooks 01–10 retain earlier stages and their actual outputs. Their counts and limitations describe those earlier datasets/models. Each has corresponding documentation in `docs/`.
 
 ## MLflow and observed scouting events

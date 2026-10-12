@@ -253,3 +253,6 @@ reports/five_league_pipeline/scenario_shortlists.csv
 /reports/valuation_verification/identity_review_queue.csv
 # Newly prepared source-only four-league tables: retained locally with manifests
 /data/external/four_league_expansion/
+# Source-specific shot preprocessing and provisional identity rows, retained locally
+/data/processed/real/four_league_*.parquet
+/reports/four_league_preprocessing/identity_review_queue.csv

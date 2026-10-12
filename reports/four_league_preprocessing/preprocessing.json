@@ -1,0 +1,57 @@
+{
+  "created_at": "2026-10-12T14:06:29.597739+00:00",
+  "git_commit": "3fd6988981850f3cc3343473f796b2de53f5019b",
+  "script_sha256": "6c07e6dce316995c78fd5a9c262ffe89e40dd886e052778ec4424c337d45635d",
+  "inputs_sha256": {
+    "data/external/four_league_expansion/understat_premier_league_shots.parquet": "45259caf1fd24813b5e4643fe11121bf73344bffbdda4fd3c00bc95967d5b612",
+    "data/external/four_league_expansion/understat_bundesliga_shots.parquet": "2ad3cd6f5deb73d7f07913befa76879f5e5fb301458d8c4e07a65c879f5444c1",
+    "data/external/four_league_expansion/understat_serie_a_shots.parquet": "bd124fda391a5b6e78e434674591d9154490df3c7ffa0f35d9cd581cba6797f1",
+    "data/external/four_league_expansion/understat_ligue_1_shots.parquet": "6e2ffb28c5b3d55b956cff5fe0d8c5d4ed4bb351c98c57ae4dd5f35f297f292b",
+    "data/external/four_league_expansion/fbref_standard.parquet": "3d539b673e5487170d3d7cf026594810b5bb0839aefa1ca37964d0e569410d78",
+    "data/external/four_league_expansion/fbref_shooting.parquet": "39e08c224ea0d514eba6703d06507e0a70d09af9076b85587db18ad360e11a73",
+    "data/external/four_league_expansion/fbref_passing.parquet": "469a0c1321898b13895763f082b05f22954846e328da46b84724b1295f506af7",
+    "data/external/four_league_expansion/fbref_defense.parquet": "6b35a12ca831a4bc7490784a0cfca34c88bd91ec18e2984cc0fe604100f92d01",
+    "data/external/four_league_expansion/fbref_possession.parquet": "3dbfcc05b9e63b6a27f266e77e47923a1e46ec32f4dd71116e74e5a81c5fb7b9",
+    "data/external/four_league_expansion/fbref_misc.parquet": "22f54100b78a259ff13b7e1acb7c6251402d8682061fc581db3d6d71bc1b2cb2",
+    "data/external/four_league_expansion/transfermarkt_team_seasons_review.parquet": "98cfc6d1430d0ee871281c31993ff43850b104996c279b23eb1c0d9e5f31bf47",
+    "data/external/four_league_expansion/transfermarkt_performances_review.parquet": "f86a31cbc8e54b92a2c7f1d34881d7f527c19c63a5621e8759a873f99274e489",
+    "data/external/four_league_expansion/transfermarkt_transfer_context_review.parquet": "fa459075bc6128c4312350a4c890d63ab0a78f428c5afbaba679331fcae9c290",
+    "data/processed/real/five_league_pipeline_player_club_seasons.parquet": "cfaf8bb5ef1ebfc902483e58fa43590ae59a80464e23e567f5609e269220d52c"
+  },
+  "outputs": {
+    "data/processed/real/four_league_clean_shots.parquet": {
+      "rows": 182938,
+      "sha256": "86e72a341c7082f76aae9aaa99cace4a24c7d694988b39381f238039845cf0ae"
+    },
+    "data/processed/real/four_league_player_seasons.parquet": {
+      "rows": 10087,
+      "sha256": "91f4fdcfc5ba1011bff5a76e5dbe8e8acdae4014615bf35e1fabc27a83f5768f"
+    },
+    "data/processed/real/four_league_player_club_seasons.parquet": {
+      "rows": 10314,
+      "sha256": "86fbe46cb515cca88cca79ff4a54e69b7ca8451c1e250c31066e15927219fca7"
+    },
+    "data/processed/real/four_league_identity_candidates.parquet": {
+      "rows": 9425,
+      "sha256": "832a81786630e457f8841ca96912eb1f2ff53b5081fb95721873fa0c257cdb58"
+    }
+  },
+  "shot_events": 182938,
+  "attempts_excluding_own_goals": 182300,
+  "own_goal_events": 638,
+  "player_seasons": 10087,
+  "player_club_seasons": 10314,
+  "completed_full_schedule_20_shot_eda_rows": 2906,
+  "supported_player_season_identity_candidates": 9223,
+  "proposed_stint_pairs": 9425,
+  "approved_cross_source_identities": 0,
+  "current_model_refitted": false,
+  "limits": [
+    "Shot-taking players are not a complete player/appearance universe. No per-90 statistics inferred without verified minutes.",
+    "OwnGoal events remain in cleaned source data but are excluded from attempts/goals/xG aggregates.",
+    "2025/26 and incomplete 2024/25 match cohorts remain source tables but are excluded from completed full-schedule EDA comparisons.",
+    "Exact name+club+league+season links remain provisional without independent DOB or approved crosswalk.",
+    "No source ID is silently merged into a FBref canonical identity. No Transfermarkt values or fees enter this preprocessing.",
+    "Goals-minus-xG is noisy and not a validated skill or transfer-success measure."
+  ]
+}

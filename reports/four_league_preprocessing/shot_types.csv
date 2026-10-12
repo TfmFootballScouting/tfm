@@ -1,0 +1,97 @@
+league,season,shotType,events
+Bundesliga,2020-2021,Head,1424
+Bundesliga,2020-2021,LeftFoot,2330
+Bundesliga,2020-2021,OtherBodyPart,27
+Bundesliga,2020-2021,RightFoot,3809
+Bundesliga,2021-2022,Head,1473
+Bundesliga,2021-2022,LeftFoot,2469
+Bundesliga,2021-2022,OtherBodyPart,32
+Bundesliga,2021-2022,RightFoot,3975
+Bundesliga,2022-2023,Head,1426
+Bundesliga,2022-2023,LeftFoot,2353
+Bundesliga,2022-2023,OtherBodyPart,26
+Bundesliga,2022-2023,RightFoot,4010
+Bundesliga,2023-2024,Head,1577
+Bundesliga,2023-2024,LeftFoot,2574
+Bundesliga,2023-2024,OtherBodyPart,36
+Bundesliga,2023-2024,RightFoot,4319
+Bundesliga,2024-2025,Head,1476
+Bundesliga,2024-2025,LeftFoot,2326
+Bundesliga,2024-2025,OtherBodyPart,33
+Bundesliga,2024-2025,RightFoot,4110
+Bundesliga,2025-2026,Head,133
+Bundesliga,2025-2026,LeftFoot,208
+Bundesliga,2025-2026,OtherBodyPart,3
+Bundesliga,2025-2026,RightFoot,369
+Ligue 1,2020-2021,Head,1552
+Ligue 1,2020-2021,LeftFoot,2703
+Ligue 1,2020-2021,OtherBodyPart,44
+Ligue 1,2020-2021,RightFoot,4622
+Ligue 1,2021-2022,Head,1530
+Ligue 1,2021-2022,LeftFoot,2772
+Ligue 1,2021-2022,OtherBodyPart,54
+Ligue 1,2021-2022,RightFoot,4776
+Ligue 1,2022-2023,Head,1530
+Ligue 1,2022-2023,LeftFoot,2932
+Ligue 1,2022-2023,OtherBodyPart,38
+Ligue 1,2022-2023,RightFoot,4845
+Ligue 1,2023-2024,Head,1259
+Ligue 1,2023-2024,LeftFoot,2499
+Ligue 1,2023-2024,OtherBodyPart,32
+Ligue 1,2023-2024,RightFoot,4037
+Ligue 1,2024-2025,Head,1264
+Ligue 1,2024-2025,LeftFoot,2442
+Ligue 1,2024-2025,OtherBodyPart,21
+Ligue 1,2024-2025,RightFoot,3920
+Ligue 1,2025-2026,Head,162
+Ligue 1,2025-2026,LeftFoot,286
+Ligue 1,2025-2026,OtherBodyPart,2
+Ligue 1,2025-2026,RightFoot,455
+Premier League,2020-2021,Head,1624
+Premier League,2020-2021,LeftFoot,2857
+Premier League,2020-2021,OtherBodyPart,49
+Premier League,2020-2021,RightFoot,4705
+Premier League,2021-2022,Head,1610
+Premier League,2021-2022,LeftFoot,3078
+Premier League,2021-2022,OtherBodyPart,51
+Premier League,2021-2022,RightFoot,5036
+Premier League,2022-2023,Head,1720
+Premier League,2022-2023,LeftFoot,3153
+Premier League,2022-2023,OtherBodyPart,56
+Premier League,2022-2023,RightFoot,4715
+Premier League,2023-2024,Head,1719
+Premier League,2023-2024,LeftFoot,3487
+Premier League,2023-2024,OtherBodyPart,49
+Premier League,2023-2024,RightFoot,5269
+Premier League,2024-2025,Head,1729
+Premier League,2024-2025,LeftFoot,3288
+Premier League,2024-2025,OtherBodyPart,42
+Premier League,2024-2025,RightFoot,4819
+Premier League,2025-2026,Head,182
+Premier League,2025-2026,LeftFoot,274
+Premier League,2025-2026,OtherBodyPart,7
+Premier League,2025-2026,RightFoot,451
+Serie A,2020-2021,Head,1612
+Serie A,2020-2021,LeftFoot,3104
+Serie A,2020-2021,OtherBodyPart,44
+Serie A,2020-2021,RightFoot,4757
+Serie A,2021-2022,Head,1729
+Serie A,2021-2022,LeftFoot,3228
+Serie A,2021-2022,OtherBodyPart,43
+Serie A,2021-2022,RightFoot,4932
+Serie A,2022-2023,Head,1754
+Serie A,2022-2023,LeftFoot,3263
+Serie A,2022-2023,OtherBodyPart,63
+Serie A,2022-2023,RightFoot,4595
+Serie A,2023-2024,Head,1851
+Serie A,2023-2024,LeftFoot,3346
+Serie A,2023-2024,OtherBodyPart,53
+Serie A,2023-2024,RightFoot,4478
+Serie A,2024-2025,Head,1649
+Serie A,2024-2025,LeftFoot,3029
+Serie A,2024-2025,OtherBodyPart,45
+Serie A,2024-2025,RightFoot,4343
+Serie A,2025-2026,Head,144
+Serie A,2025-2026,LeftFoot,267
+Serie A,2025-2026,OtherBodyPart,2
+Serie A,2025-2026,RightFoot,342

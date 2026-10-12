@@ -1,0 +1,101 @@
+table,field,dtype,definition,missing
+clean_shots,league,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,id,float64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,minute,float64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,result,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,X,float64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,Y,float64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,xG,float64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,player,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,h_a,object,Inherited source field or directly observed aggregate; see acquisition dictionary,110887
+clean_shots,player_id,float64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,situation,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,season,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,shotType,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,match_id,Int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,home_team,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,away_team,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,home_goals,float64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,away_goals,float64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,date,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,player_assisted,object,Inherited source field or directly observed aggregate; see acquisition dictionary,47863
+clean_shots,lastAction,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,home_away,object,Inherited source field or directly observed aggregate; see acquisition dictionary,72051
+clean_shots,source_season,float64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,source,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,source_player_id,string,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,shot_id,Int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,shot_date,datetime64[ns],Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,side_field_conflict,boolean,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,team,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,team_side_resolved,bool,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,partial_season,bool,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,archive_sha256,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,source_publication_known_at,datetime64[ns],Inherited source field or directly observed aggregate; see acquisition dictionary,182938
+clean_shots,first_observed_at_utc,"datetime64[us, UTC]",Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,quality_valid,bool,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,observation_id,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+clean_shots,observed_schedule_fraction,float64,Observed distinct match IDs divided by expected league schedule; not independent event completeness,0
+clean_shots,season_coverage_status,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,league,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,season,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,source_player_id,string,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,player,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,source_shot_events,Int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,shots,int64,Attempts excluding OwnGoal source events; no unseen minutes denominator,0
+player_seasons,goals,int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,own_goal_events,int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,shots_on_target,int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,xg,float64,"Sum of xG for observed attempts, excluding own-goal events",0
+player_seasons,non_penalty_shots,int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,non_penalty_goals,int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,non_penalty_xg,float64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,matches_with_shots,int64,Matches where this player has a shot event; not appearances,0
+player_seasons,first_shot_date,datetime64[ns],Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,last_shot_date,datetime64[ns],Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,partial_season,bool,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,xg_per_shot,float64,"Mean expected goals per observed attempt, not per 90",74
+player_seasons,conversion_rate,float64,Inherited source field or directly observed aggregate; see acquisition dictionary,74
+player_seasons,goals_minus_xg,float64,"Observed goals minus observed xG; descriptive, not a validated skill estimate",0
+player_seasons,source,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_seasons,observed_schedule_fraction,float64,Observed distinct match IDs divided by expected league schedule; not independent event completeness,0
+player_seasons,season_coverage_status,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,league,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,season,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,source_player_id,string,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,team,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,player,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,source_shot_events,Int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,shots,int64,Attempts excluding OwnGoal source events; no unseen minutes denominator,0
+player_club_seasons,goals,int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,own_goal_events,int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,shots_on_target,int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,xg,float64,"Sum of xG for observed attempts, excluding own-goal events",0
+player_club_seasons,non_penalty_shots,int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,non_penalty_goals,int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,non_penalty_xg,float64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,matches_with_shots,int64,Matches where this player has a shot event; not appearances,0
+player_club_seasons,first_shot_date,datetime64[ns],Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,last_shot_date,datetime64[ns],Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,partial_season,bool,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+player_club_seasons,xg_per_shot,float64,"Mean expected goals per observed attempt, not per 90",75
+player_club_seasons,conversion_rate,float64,Inherited source field or directly observed aggregate; see acquisition dictionary,75
+player_club_seasons,goals_minus_xg,float64,"Observed goals minus observed xG; descriptive, not a validated skill estimate",0
+player_club_seasons,source,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,league,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,season,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,source_player_id_understat,string,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,player_understat,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,team_understat,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,name_key,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,club_key,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,left_identity_count,int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,source_player_id_fbref,string,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,player_fbref,string,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,team_fbref,string,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,right_identity_count,int64,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,one_to_one_name_club_season,bool,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,supported_review_candidate,bool,Unique exact normalized name+club+league+season proposal; not reviewed identity approval,0
+identity_candidates,identity_match_status,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,evidence,object,Inherited source field or directly observed aggregate; see acquisition dictionary,0
+identity_candidates,model_use_eligible,bool,False for cross-source proposals; not integrated into model training,0
