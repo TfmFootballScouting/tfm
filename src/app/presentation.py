@@ -44,7 +44,7 @@ def shortlist_cards(result):
             age=str(int(row.age)) if pd.notna(row.age) else 'desconocida'
             st.caption(f'Edad: {age} · {int(row.minutes):,} minutos')
             if 'reported_value_screenable' in row and row.reported_value_screenable:
-                st.caption(f'Valor reportado: €{row.reported_market_value_eur:,.0f} · identidad provisional')
+                st.caption(f'Valor reportado: €{row.reported_market_value_eur:,.0f} · {row.reported_valuation_date:%d/%m/%Y} · identidad provisional')
 
 
 def reset_search_filters():
