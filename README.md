@@ -104,4 +104,6 @@ python -m src.scraping.raw_inputs --verify
 python -m src.scraping.raw_inputs --download
 ```
 
-The minimal serving branch is `minimal/scoutiq-runtime`; the full preparation, training, notebooks and research reports remain on this branch. Private valuations and provider-derived raw archives remain local.
+The minimal serving branch is `minimal/scoutiq-runtime`; the full preparation, training, notebooks and research reports remain on this branch. Prepared valuation files and identity proposals are included for budget screening after cloning; provider-derived raw archives remain local.
+
+The included prepared valuation files make the reported-value budget filter available after cloning. Source identity links remain provisional, values retain their dates, and currency remains assumed EUR. Valuations do not enter recommendation model fitting.
