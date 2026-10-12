@@ -1,0 +1,15 @@
+{
+  "status": "not_trained",
+  "dataset_kind": "real_transfer_label_audit",
+  "cases": 7394,
+  "status_counts": {
+    "no_recorded_permanent_transfer_followup_unknown": 5036,
+    "reported_permanent_transfer_pending_review": 1726,
+    "identity_unmapped": 632
+  },
+  "verified_negative_targets": 0,
+  "training_eligible_cases": 0,
+  "source_audit_sha256": "3a694ef3b7cefe53c09ee905d53c7befb3adf7c8a67df735d1a5e7b6b00d5720",
+  "source_audit_path": "reports/transfer_likelihood/label_audit.json",
+  "research_branch": "improve/reproducible-scouting"
+}
