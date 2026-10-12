@@ -346,9 +346,8 @@ def main() -> None:
         '📊 Datos disponibles',
         '📈 Evolución del jugador',
         '🎯 Análisis de tiros',
-    ] + (['🎯 Escenarios de scouting'] if budget_data_available else []))
+    ])
     tab1, tab2, tab3, tab4, tab5 = tabs[:5]
-    tab6 = tabs[7] if budget_data_available else None
 
     # ── Tab 1: Recomendaciones ────────────────────────────────────────────────
     with tab1:
@@ -615,17 +614,6 @@ def main() -> None:
     with tabs[6]:
         render_shots(selected_leagues)
 
-    if budget_data_available:
-        with tab6:
-            from copy import deepcopy
-            from src.app.scenario_ui import render_scenarios
-            scenario_rec = deepcopy(rec)
-            scenario_rec.players = market_players.copy().reset_index(drop=True)
-            scenario_rec.X = matrix.copy()
-            scenario_rec.artifacts.player_ids = scenario_rec.players.player_id.to_numpy()
-            scenario_rec.configure_neighbors(scenario_rec.neighbor_method)
-            render_scenarios(scenario_rec, service, price_links, reported_values,
-                             selected_leagues[0] if len(selected_leagues) == 1 else 'Todas')
 
 
 if __name__ == "__main__":
