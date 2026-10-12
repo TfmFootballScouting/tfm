@@ -1,0 +1,30 @@
+{
+  "branch": "review/teacher-submission",
+  "full_retained_workspace_tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "135",
+    "time": "141.426",
+    "timestamp": "2026-10-12T22:55:25.459445+00:00",
+    "hostname": "8d2f6ae5d0e4"
+  },
+  "csv_source_files": 15,
+  "csv_preprocessing_executed": true,
+  "frozen_gallery_numeric_parity_verified": true,
+  "eda_notebooks_executed": [
+    "notebooks/fbref_eda.ipynb",
+    "notebooks/understat_eda.ipynb",
+    "notebooks/transfermarkt_eda.ipynb"
+  ],
+  "models_retrained_during_packaging": false,
+  "source_dictionary_definition_gaps_explicit": true,
+  "original_docx_preserved": true,
+  "native_windows_verified": false,
+  "expert_validation_performed": false,
+  "aws_calculator_evidence_captured": false,
+  "mlflow_screenshots_captured": false,
+  "operational_sqlite_implemented": false,
+  "clean_clone_verification": "pending separate check"
+}

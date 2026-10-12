@@ -11,10 +11,22 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
-          cache-dependency-path: requirements.lock.txt
-      - run: pip install -r requirements.lock.txt
+          cache-dependency-path: requirements-research.lock.txt
+      - run: pip install -r requirements-research.lock.txt
       - run: python -m pip check
-      - run: python -m pytest -q
+      # Portable/current checks; retained-archive integrations remain in the full local suite.
+      - run: >-
+          python -m pytest -q
+          src/tests/test_review_package.py
+          src/tests/test_collected_models.py
+          src/tests/test_data.py
+          src/tests/test_recommend.py
+          src/tests/test_identity_resolution.py
+          src/tests/test_source_rights.py
+          src/tests/test_scouting_views.py
+          src/tests/test_events.py
+          src/tests/test_valuation_data.py
+          src/tests/test_player_analysis.py
         env:
           MPLCONFIGDIR: /tmp/tfm-matplotlib
           XDG_CACHE_HOME: /tmp/tfm-cache

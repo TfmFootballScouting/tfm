@@ -264,3 +264,6 @@ reports/five_league_pipeline/scenario_shortlists.csv
 
 # Per-player transfer label review remains separate from released app inputs.
 /data/processed/real/transfer_likelihood_label_candidates.parquet
+
+# Teacher review: the retained source CSVs and prepared four-league shots are included.
+!/data/processed/real/four_league_clean_shots.parquet

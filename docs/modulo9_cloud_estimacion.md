@@ -1,4 +1,6 @@
-﻿# Módulo 9 — Estimación de recursos cloud
+> Revisión actual: los precios y el tipo de cambio de este documento se conservan como hipótesis históricas, no como cotización AWS verificada a la fecha de entrega. Falta captura/export de AWS Calculator, fecha y referencia de cambio. Compute, disco y transferencia están desglosados; backup/snapshots y request charges necesitan evidencia. Instrucciones en `TEACHER_FEEDBACK.md`.
+
+# Módulo 9 — Estimación de recursos cloud
 
 ## 1. Premisas de carga
 - Dataset pequeño: ~1.500–2.500 jugadores, >40 métricas
@@ -77,3 +79,7 @@ Si la VM se enciende ~40 h/mes (demos y pruebas):
 
 ## 6. Conclusión
 Para el volumen y algoritmos del TFM **no hace falta un cluster**. El desarrollo se hace en local (escenario A). Si se publica una demo, una VM tipo **t3.medium** (~35 €/mes 24/7, o ~6 €/mes a demanda) cubre entrenamiento, MLflow y Streamlit sin GPU ni servicios gestionados de BD.
+
+## Mejoras futuras de producción (no desplegadas)
+
+Autenticación y roles, HTTPS mediante proxy/TLS, gestión de secretos, monitorización de errores/latencias, backups probados con restauración, base operativa distinta de MLflow, retención de eventos, artefactos versionados en almacenamiento de objetos y escalado según concurrencia. No se presentan como capacidades ya desplegadas. El prototipo sirve 1.810 perfiles completos en su temporada más reciente, con histórico y tiros adicionales; la memoria requerida debe medirse para el escenario elegido, no asumirse a partir de filas antiguas.

@@ -1,115 +1,148 @@
 # TFM — Análisis y scouting de futbolistas
 
-Football scouting project by Iván Galán López, Basma Marso and Carlos Valencia Sánchez. The existing architecture has been improved with source-separated data, reproducible preprocessing, chronological model evaluation, MLflow and the ScoutIQ Streamlit application.
+Sistema de recomendación por **afinidad con seis estilos de juego**, con datos reales FBref, modelos scikit-learn, MLflow y app Streamlit. Understat aporta análisis de tiros separado; las valoraciones reportadas se aplican después del ranking.
 
-ScoutIQ currently serves the **five-league trained Core model and six original playing styles**. Scouts can select multiple leagues, find similar players, compare several players and their histories, and explore adjustable player groups on a PCA profile map. See the [current interface](docs/SCOUTING_INTERFACE.md) and [new player development/shot-analysis views](docs/PLAYER_ANALYSIS_APP.md).
+**Autores:** Iván Galán López, Basma Marso, Carlos Valencia Sánchez.
 
-The latest complete real-data run is documented in [FIVE_LEAGUE_FULL_PIPELINE.md](docs/FIVE_LEAGUE_FULL_PIPELINE.md): 15,948 player-season observations, three trained experiments, 50 retrospective scouting scenarios and portable MLflow artifacts. The six-style app uses completed advanced-statistic galleries through **2023/24**. Additional offensive observations extend to 2024/25 but do not support all six styles; incomplete 2025/26 data is not served.
+Rama para revisión: **`review/teacher-submission`**. Conserva la arquitectura y documentos originales, con las modificaciones actuales. La memoria original DOCX no se modifica. Estado de los 19 comentarios del profesor y propuestas pendientes: [TEACHER_FEEDBACK.md](docs/TEACHER_FEEDBACK.md).
 
-Reported player values are optional, dated market assessments from retained private uploads. Identity associations remain provisional; [valuation verification](docs/VALUATION_VERIFICATION.md) also found that EUR is assumed rather than explicitly stated in the raw upload. Missing values are not estimated; budget controls are hidden when valuation inputs are unavailable. These experiments evaluate statistical profile retrieval, **not actual transfer success**.
+## Qué incluye
 
-## Run the app
+- Raw CSV separados por FBref, Understat y Transfermarkt, con origen/hashes y exportación documentada.
+- Limpieza, tasas por 90 y tablas CSV/Parquet reproducibles; ninguna sustitución sintética.
+- Seis estilos expertos; recomendador Core de cinco ligas, KNN/distancia, K-means y PCA.
+- Tres experimentos FBref reales conservados (Core, Offensive y Attack-on-Core); Core sirve la app.
+- MLflow real con dataset/Git/tags, métricas y artefactos originales portables.
+- Streamlit: ranking, similares, comparación multijugador e historial, grupos ajustables/PCA, evolución y tiros.
+- Valores reportados con fecha, identidades provisionales y moneda EUR asumida; no estimador de precios.
+- Tests bajo `src/tests/`; log operativo separado de MLflow.
 
-Use the `improve/reproducible-scouting` branch. The committed model and gallery files allow ordinary scouting without retraining or downloading new data.
+## Quick start
 
-```bash
+Python **3.12**. Desde la raíz:
+
+```powershell
+git clone --branch review/teacher-submission --single-branch https://github.com/TfmFootballScouting/tfm.git
+cd tfm
 python -m venv .venv
-# Activate .venv using your operating system's command.
+.\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.lock.txt
+python -m pip check
+```
+
+Linux/macOS: activar con `source .venv/bin/activate`.
+
+### Opción A — Usar datos/modelo ya generados
+
+```powershell
 python -m streamlit run src/app/streamlit_app.py
 ```
 
-Use **Python 3.12**. On Linux/cloud, `bash scripts/setup.sh` prepares dependencies, a local notebook kernel and runs the tests in the retained development workspace. Native Windows execution is not fully verified; source fingerprints are normalized for Windows/Unix checkouts.
+Modelo, galerías, históricos, tiros de cinco ligas y valoraciones preparadas están incluidos. No hay que entrenar ni copiar un ZIP de valoraciones para usar el filtro. No se ofrecen datos completos actuales: la última galería de seis estilos es 2023/24.
 
-`requirements.txt` lists pinned direct dependencies. `requirements.lock.txt` records the tested dependency closure; these two files have different purposes. `requirements-archives.txt` supplies optional RDS archive readers for ingestion and reproduction.
+### Opción B — Reproducir limpieza desde los CSV incluidos
 
-## Understand the repository
-
-Start with the [folder-by-folder review](docs/REPOSITORY_REVIEW.md) and [file inventory](reports/repository_review/file_inventory.csv). The inventory describes every tracked file at the review snapshot; it distinguishes indexing from completed semantic review.
-
-| Folder | Purpose |
-|---|---|
-| `src/app/` | Current scouting interface, verified model serving, optional valuation display and scenarios. |
-| `src/data/`, `src/scraping/` | Source access, provenance, parsing, identity matching and valuation-date handling. |
-| `src/preprocessing/`, `src/features/`, `src/models/` | Cleaning, football features, styles, recommendation and evaluation. |
-| `src/process/` | Genuine search/review event instrumentation; private logs are ignored. |
-| `scripts/` | Separate ingestion, experiment, notebook and verification commands. |
-| `data/raw/` | Preserved original datasets and source responses. |
-| `data/external/`, `data/processed/` | Source-separated tables and versioned prepared datasets. |
-| `models/` | Current trained models and retained earlier artifacts. |
-| `notebooks/` | Executed EDA, model analysis and scouting/process exploration. |
-| `reports/` | Coverage, dictionaries, dataset hashes, evaluation tables, figures and portable MLflow exports. |
-| `docs/` | Project account, source limitations, decisions and historical stage reports. |
-| `tests/` | Automated checks for data contracts, identities, chronology, source guards, models and application behavior. |
-
-## Reproduce the latest pipeline
-
-Follow the commands and retained-input requirements in [FIVE_LEAGUE_FULL_PIPELINE.md](docs/FIVE_LEAGUE_FULL_PIPELINE.md). Its ordered entry points are:
-
-1. `python -m scripts.five_league_pipeline` — cleaning, preprocessing, EDA, chronological model fits and MLflow.
-2. `python -m scripts.five_league_comparison` — matched-candidate-pool comparisons against earlier models.
-3. `python -m scripts.five_league_review` — provisional source links and retrospective budget scenarios using retained uploads.
-4. `python -m scripts.five_league_pipeline_notebook` — executable analysis notebook generation and execution.
-
-Raw RDS archives and private uploaded valuation inputs are retained locally and excluded from Git. A fresh clone may therefore run the app but cannot reproduce every ingestion/valuation experiment without those inputs. Never replace a missing download with synthetic football data. Source access restrictions and model-use guards remain enforced.
-
-For the retained development workspace:
-
-```bash
-python -m pip check
-python -m pytest -q
+```powershell
+python -m pip install -r requirements-research.lock.txt
+python -m src.pipeline
 ```
 
-Several integration tests require retained source/private inputs and optional archive readers. The hosted CI configuration runs the full suite; a clean hosted run is not verified by local success. Historical test XML files record earlier executions rather than current readiness.
+La entrada reconstruye `data/processed/review/` y verifica paridad numérica/identidades con la galería servida. **No reentrena ni sobrescribe modelos congelados.** Código: `src/preprocessing/review_dataset.py`, `collected.py` y helpers en `scripts/top_five_leagues.py`. CSV grandes se guardan como `.csv.gz`, además de Parquet.
 
-## Additional data for the four added leagues
+Los entrenamientos completos originales están en `scripts/five_league_pipeline.py` (orquestación/MLflow), `src/models/collected.py` (cohortes/baselines/selección) y `src/models/recommend.py` (imputación/escalado/KNN/PCA/K-means). Para repetir esa ruta de archivos RDS instalar también `requirements-archives.txt` y restaurar los archives mediante `python -m src.scraping.raw_inputs --download`; véase [FIVE_LEAGUE_FULL_PIPELINE.md](docs/FIVE_LEAGUE_FULL_PIPELINE.md). No se afirma haber generado un nuevo entrenamiento por reorganizar esta entrega.
 
-[Four-league acquisition](docs/FOUR_LEAGUE_DATA_EXPANSION.md) provides 182,938 Understat shots, full retained FBref category fields and separate review-only recruitment context. New tables are retained locally with pinned provenance and coverage reports; current app models remain unchanged. Bundesliga/Serie A 2024/25 shot coverage has gaps, and 2025/26 is partial.
+### MLflow UI
 
-The [four-league preprocessing and EDA](docs/FOUR_LEAGUE_PREPROCESSING.md) now includes cleaned shots, player-season summaries, season-specific identity proposals and executed notebook 13. These proposals remain provisional; the current recommender is unchanged.
-
-## Analysis notebooks
-
-- [11: Full five-league pipeline](notebooks/11_five_league_full_pipeline.ipynb): quality, EDA, chronology, baselines, PCA/K-means interpretation, bootstrap robustness, scenarios and MLflow.
-- [12: Adjustable scouting groups](notebooks/12_scouting_group_exploration.ipynb): descriptive grouping diagnostics; saved recommendation artifacts remain unchanged.
-- [13: Four-league shot EDA](notebooks/13_four_league_shot_eda.ipynb): shot quality, attacking profiles, coverage exclusions, conservative identity proposals and advanced-feature readiness.
-- Notebooks 01–10 retain earlier stages and their actual outputs. Their counts and limitations describe those earlier datasets/models. Each has corresponding documentation in `docs/`.
-
-## MLflow and observed scouting events
-
-From the repository root:
-
-```bash
+```powershell
+python -m pip install -r requirements-research.lock.txt
 python -m mlflow ui --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlartifacts --host 127.0.0.1 --port 5000
 ```
 
-The local SQLite database and runtime artifact directories are ignored. Portable exports of actual run metadata and artifacts are committed under `reports/`, including `reports/five_league_pipeline/mlflow_export/`. Real experiments and synthetic demonstrations are separated; no synthetic demonstration was used for final experiments.
+La DB local no se incluye en Git. La evidencia original del run principal está en `reports/five_league_pipeline/mlflow_export/core/`, con `run.json`, evaluación y modelo. Una DB vacía de un clon no muestra automáticamente los runs históricos. Capturas reales/reproducción se detallan en la matriz del profesor; no se presentan screenshots inexistentes.
 
-Explicit app searches and review actions produce events with case IDs, activities and timestamps. `TFM_EVENT_LOG` selects the private destination. Automated test events verify instrumentation, but are not genuine scout sessions or evidence of a transfer decision. Process discovery requires genuine event data.
+## Estructura
 
-## Documentation and retained stages
-
-Current entry points: [completion report](docs/COMPLETION_REPORT.md), [first-submission instructions](docs/FIRST_SUBMISSION.md), [data dictionary](docs/DATA_DICTIONARY.md) and [source access](docs/SOURCE_ACCESS.md).
-
-Earlier stage evidence remains available: [archive acquisition](docs/WORLDFOOTBALLR_TRIAL.md), [collected preprocessing](docs/COLLECTED_PREPROCESSING.md), [collected models](docs/COLLECTED_MODELS.md), [extended validation](docs/COLLECTED_VALIDATION.md), [enrichment](docs/ENRICHED_PIPELINE.md), [uploaded values](docs/SALIMT_UPLOADED_AUDIT.md), [uploaded histories](docs/SALIMT_HISTORY_AUDIT.md), [budget interpretation](docs/REPORTED_VALUE_BUDGET.md) and [scouting scenarios](docs/SCOUTING_SCENARIOS.md). Original author documents and preliminary legacy artifacts are retained for traceability; they are not the app's current training dataset.
-
-Work stays on `improve/reproducible-scouting`; main is not modified. Preserve the existing folder structure, raw provenance, source restrictions and historical experiment evidence. Cloud tasks already have isolated checkouts; use the existing repository rather than creating an unsolicited worktree.
-
-## Source lineage and raw archive restoration
-
-See [data sources and pipeline paths](docs/DATA_SOURCES.md), [player-season coverage](docs/DATA_COVERAGE.csv), [category coverage](docs/DATA_CATEGORY_COVERAGE.csv) and [raw archive restoration](data/raw/README.md). The raw source manifest records original providers, secondary download URLs, checksums and optional private uploads.
-
-```bash
-python -m src.scraping.raw_inputs --verify
-python -m src.scraping.raw_inputs --download
+```text
+tfm/
+├── data/
+│   ├── raw/{fbref,understat,transfermarkt}/  # CSV fuente y manifiesto de procedencia
+│   └── processed/{review,real}/             # CSV/Parquet limpios y artefactos servidos
+├── docs/                  # documentos originales, diccionario y revisión del profesor
+├── models/                # recommender.joblib/metrics.json actuales; comparativas en real/
+├── notebooks/             # EDA por fuente, análisis de modelos y etapas históricas
+├── src/
+│   ├── scraping/          # código original/archivos publicados; no crawling nuevo implícito
+│   ├── preprocessing/     # limpieza y reconstrucción de CSV
+│   ├── features/          # seis estilos y contrato de features
+│   ├── models/            # recomendación, ajuste y evaluación
+│   ├── app/               # Streamlit
+│   ├── data/              # identidad, procedencia, restricciones
+│   ├── process/           # event log operativo
+│   ├── tests/             # pruebas de componentes implementados
+│   └── pipeline.py
+├── scripts/               # reproducción, ingesta y MLflow
+└── reports/               # evidencia/diccionarios/plots/runs originales y revisión
 ```
 
-The minimal serving branch is `minimal/scoutiq-runtime`; the full preparation, training, notebooks and research reports remain on this branch. Prepared valuation files and identity proposals are included for budget screening after cloning; provider-derived raw archives remain local.
+Se usa la grafía original `scraping` y `preprocessing` para conservar imports. `requirements.txt` contiene solo 8 dependencias directas de app; `requirements-research*` separa notebooks/MLflow/tests; `requirements-archives.txt` es opcional para RDS.
 
-The included prepared valuation files make the reported-value budget filter available after cloning. Source identity links remain provisional, values retain their dates, and currency remains assumed EUR. Valuations do not enter recommendation model fitting.
+## Estilos de juego
 
-Scouting scenario evaluation remains in `notebooks/09_scouting_scenarios.ipynb` and `src/app/scenarios.py`. The separate Streamlit scenarios tab has been removed; everyday recruitment requirements are handled by the main recommendation filters.
+| Clave | Nombre |
+|---|---|
+| posesion | Posesión / construcción |
+| presion_alta | Presión alta |
+| vertical | Juego vertical / directo |
+| contraataque | Contraataque |
+| solidez_defensiva | Solidez defensiva |
+| desborde_banda | Desborde / banda |
 
-## Transfer-likelihood feasibility
+Son pesos expertos sobre estadísticas estandarizadas, no seis modelos supervisados. Core usa nueve tasas por 90; Euclidean profile es el método elegido con validación. La PCA guardada tiene cuatro componentes y K-means dos grupos; la exploración permite otros números de grupos sin reentrenar el recomendador.
 
-The real-data label audit and executed notebook are documented in [TRANSFER_LIKELIHOOD.md](docs/TRANSFER_LIKELIHOOD.md). It finds reported positive candidates but no verified negative labels; no transfer model has been trained.
+## Datos
+
+- **FBref:** seis categorías, cinco ligas, 15.948 registros jugador/liga/temporada y 7.398 filas de galería; 1.810 candidatos en 2023/24. Joins por ID de fuente + club + liga + temporada y compatibilidad de exposición.
+- **Understat:** 228.785 tiros de cinco ligas; no se inventan minutos/posiciones ni se unen identidades sin revisión.
+- **Transfermarkt:** cuatro CSV del usuario con origen `salimt/football-datasets` declarado, no commit verificado. 901.429 valores fechados; moneda asumida EUR, no fees, no features de entrenamiento. En 2023/24, 1.601 perfiles tienen valor positivo utilizable al último cutoff disponible; no son necesariamente precios de 2023/24.
+
+FBref/Understat fueron descargados como **RDS desde GitHub**, después exportados a CSV con el subconjunto objetivo sin limpiar campos. No se llaman falsamente CSV descargados directamente. Los uploads de Transfermarkt se copian byte a byte. `data/raw/review_manifest.json` documenta esa diferencia. Originales RDS/receipts se preservan localmente; el scraping original no es la ruta de datos de los experimentos actuales.
+
+Los datasets originales mixtos/demo y los reportes antiguos se conservan como evidencia de etapas anteriores; **no entran en `src.pipeline` ni en los experimentos finales**. El periodo 2025/26 es parcial; Segunda no es una galería táctica actual. No se añade transfer likelihood ni predicción futura.
+
+## Notebooks y validación
+
+Orden recomendado para el profesor:
+
+1. [FBref EDA](notebooks/fbref_eda.ipynb): calidad, nulos, distribuciones/outliers, correlación y posiciones/ligas/temporadas.
+2. [Understat EDA](notebooks/understat_eda.ipynb): tiros, xG, cobertura, nulos, perfiles ofensivos y límites.
+3. [Transfermarkt EDA](notebooks/transfermarkt_eda.ipynb): perfiles, valores fechados, ceros/nulos/outliers y uso restringido.
+4. [Modelos y validación](notebooks/11_five_league_full_pipeline.ipynb): splits temporales, baselines, PCA/K-means, bootstrap y MLflow.
+
+Los notebooks numerados anteriores conservan resultados de sus etapas, no métricas del dataset actual. El análisis de escenarios permanece académico, sin pestaña adicional en la app.
+
+Core holdout: MRR 0,095498; Recall@5 12,95%; Recall@10 19,51%. La tarea recupera la identidad estadística futura del mismo jugador; **no demuestra éxito de fichajes**. Validación experta y transferencia real permanecen pendientes.
+
+## Tests
+
+```powershell
+python -m pip install -r requirements-research.lock.txt
+python -m pytest -q
+```
+
+El workflow CI ejecuta un conjunto portable de contratos/modelo/UI/datos actuales; las pruebas completas incluyen integraciones históricas que requieren archivos originales locales y lectores opcionales. El informe de revisión distingue tests completos en el workspace de smoke tests de un clon limpio; no afirma que un hosted CI con entradas ausentes haya pasado. Fixtures artificiales son solo pruebas unitarias.
+
+## Documentación
+
+| Documento | Contenido |
+|---|---|
+| [modulo2_caso_uso.md](docs/modulo2_caso_uso.md) | Problema, alcance actual y validación experta propuesta |
+| [modulo9_process_mining.md](docs/modulo9_process_mining.md) | AS-IS/TO-BE, UUID, eventos existentes y límites |
+| [modulo9_cloud_estimacion.md](docs/modulo9_cloud_estimacion.md) | Estimación histórica, evidencia pendiente y producción futura |
+| [modulo9_evidencias.md](docs/modulo9_evidencias.md) | Evidencia real y pendientes |
+| [memoria_resumen.md](docs/memoria_resumen.md) | Resumen técnico actualizado |
+| [DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md) | Variables, cálculos, unidades y gaps explícitos |
+| [TEACHER_FEEDBACK.md](docs/TEACHER_FEEDBACK.md) | Los 19 comentarios: arreglado/parcial/propuesto/manual |
+
+## Stack
+
+Python 3.12, pandas, NumPy/SciPy, scikit-learn, Parquet/CSV, Plotly, Streamlit. MLflow, Matplotlib/Seaborn, Jupyter y pytest en entorno research. SQLite de MLflow no sustituye una base operativa de decisiones; esa mejora espera aprobación.

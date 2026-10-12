@@ -8,9 +8,9 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-/tmp/tfm-cache}"
 export IPYTHONDIR="${IPYTHONDIR:-/tmp/tfm-ipython}"
 export JUPYTER_RUNTIME_DIR="${JUPYTER_RUNTIME_DIR:-/tmp/tfm-jupyter}"
 python -m venv .venv
-.venv/bin/python -m pip install -r requirements.lock.txt
+.venv/bin/python -m pip install -r requirements-research.lock.txt
 .venv/bin/python -m pip check
 .venv/bin/python -m ipykernel install --prefix .jupyter --name tfm-python --display-name 'TFM Python 3.12'
-# Uses the committed, explicitly labelled exploratory model for the app test.
+# Uses the committed, evaluated five-league real-data model for the app test.
 # No download, training, synthetic fallback or source-data overwrite is implicit.
 .venv/bin/python -m pytest -q

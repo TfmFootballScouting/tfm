@@ -1,55 +1,31 @@
-> Estado de entrega: el proceso siguiente es un diseño TO-BE, no un proceso observado de un club. La aplicación registra necesidad/búsqueda/ranking y revisión explícita; no infiere fichajes. `src/process/events.py` implementa log formal y descubrimiento directly-follows. No hay sesiones humanas genuinas en la entrega, por lo que descubrimiento organizativo y KPIs quedan bloqueados. Véase `notebooks/04_process_mining.ipynb` y `COMPLETION_REPORT.md`.
+# Módulo 9 — Process Mining del scouting
 
-# Módulo 9 — Problema de negocio con visión Process Mining
+## 1. Proceso y AS-IS
+Proceso propuesto: definir una necesidad, buscar perfiles, compararlos, elaborar shortlist, revisar y decidir. El AS-IS depende de observación manual y criterios difíciles de reproducir. No se afirma haber observado el proceso interno de un club.
 
-## 1. Proceso analizado
-Proceso de scouting y recomendación de futbolistas para la toma de decisión de fichaje.
+## 2. TO-BE y unidad de caso
+La aplicación convierte la necesidad en filtros y estilo; genera candidatos y permite revisión humana. Un UUID `case_id` identifica actualmente una búsqueda explícita (`scouting_case` en sesión), equivalente al identificador de solicitud de scouting para esa ejecución. Una solicitud que agrupe varias búsquedas iterativas requiere ampliar el ciclo de vida; no se simula como ya implementada.
 
-## 2. AS-IS (situación actual)
-1. Definir necesidad del club (posición / perfil táctico)
-2. Buscar candidatos de forma manual (vídeos, informes, intuición)
-3. Comparar perfiles de forma subjetiva entre analistas
-4. Elaborar shortlist
-5. Decisión de fichaje
-6. Seguimiento posterior (poco sistematizado)
+## 3. Event log implementado
+`src/process/events.py` escribe JSONL append-only con `case_id`, `activity`, timestamp UTC, `actor`, `event_kind` y `attributes`.
 
-### Problemas del AS-IS
-- Alta subjetividad y poca reproducibilidad
-- Tiempo elevado hasta disponer de una shortlist comparable
-- Difícil cuantificar el "encaje" con el estilo de juego
-- Escasa trazabilidad de por qué se eligió a un jugador
+| Acción real en Streamlit | Actividades registradas |
+|---|---|
+| Buscar jugadores | need_defined, search_executed, ranking_generated |
+| Registrar revisión de shortlist | shortlist_reviewed |
 
-## 3. TO-BE (con el sistema del TFM)
-1. Definir necesidad del club
-2. Traducir la necesidad a un estilo de juego (vector de métricas ponderadas)
-3. Aplicar filtros (posición, edad, presupuesto)
-4. Ejecutar motor de similitud / recomendación
-5. Revisar ranking + visualizaciones (radar)
-6. Shortlist basada en evidencia cuantitativa
-7. Decisión de fichaje
-8. Registrar resultado para mejora continua (feedback)
+Atributos iniciales: estilo, filtros, temporada, alcance de datos/modelo y presupuesto/fecha de valor cuando aplica. Ranking/revisión registran cantidad de candidatos. `actor` es un rol genérico, no usuario autenticado. Los IDs de jugadores recomendados y feedback individual no se almacenan aún. Previsualizaciones automáticas al cambiar filtros no equivalen a búsqueda explícita registrada.
 
-## 4. Eventos del proceso (visión process mining)
-| Evento | Actor | Sistema |
-|--------|-------|---------|
-| necesidad_definida | Dirección deportiva | Manual / app |
-| estilo_configurado | Scouting / analista | Streamlit |
-| busqueda_ejecutada | Sistema | Pipeline ML |
-| ranking_generado | Sistema | Modelo similitud |
-| shortlist_validada | Scouting | App + humano |
-| decision_fichaje | Dirección | Manual |
-| feedback_registrado | Analista | Futuro (MLflow/logs) |
+Destino: `data/events/scouting.jsonl`, ignorado por Git; `TFM_EVENT_LOG` selecciona otro archivo. Los tests usan rutas aisladas y no cuentan como sesiones humanas. No se publican decisiones privadas.
 
-## 5. Cuellos de botella que ataca el TFM
-- Búsqueda y comparación de candidatos (pasos 2–3 del AS-IS)
-- Falta de criterio cuantitativo de afinidad táctica
+## 4. Análisis implementado y límites
+`discover()` valida esquema, eventos observados y orden temporal; obtiene grafo directly-follows, tiempos entre actividades y duración/completitud de casos. No hay una muestra genuina de usuarios/clubes para presentar variantes o cuellos de botella organizativos. El notebook original 04 conserva el diseño y distingue demostraciones/pruebas de evidencias reales.
 
-## 6. KPIs de proceso
-- Tiempo medio hasta shortlist
-- Nº de candidatos evaluados por búsqueda
-- % de shortlist alineada con el estilo definido
-- Tasa de aceptación de recomendaciones por scouting
-- Reproducibilidad: misma configuración → mismo ranking
+## 5. KPIs propuestos
+Tiempo hasta shortlist, revisiones, repeticiones de búsqueda, aceptación experta y duración de caso. No se muestran valores inventados. Medirlos requiere sesiones humanas con casos y atributos adecuados.
 
-## 7. Pregunta de negocio (process + datos)
-¿Cómo reducir el tiempo y la subjetividad del scouting cuantificando el encaje jugador–estilo de juego y dejando trazabilidad del proceso de decisión?
+## 6. Separación de sistemas
+MLflow guarda experimentos y artefactos ML. JSONL guarda actualmente acciones operativas. Una base SQLite distinta para solicitudes, decisiones y feedback es **propuesta pendiente de aprobación**, con exportación de event log; no está implementada. Autenticación y aliases también son mejoras futuras.
+
+## 7. Próximos pasos
+Aprobar enriquecimiento de eventos/base operativa, recoger sesiones reales con participantes y analizar secuencias/repeticiones/esperas. Las instrucciones y responsabilidades manuales figuran en `TEACHER_FEEDBACK.md`.

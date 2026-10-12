@@ -1,0 +1,177 @@
+{
+  "raw_manifest_sha256": "23adf080a56e300e89f4b9da866cdad875ffd5565e6406bec57ea961040a793f",
+  "outputs": {
+    "fbref_player_club_seasons": {
+      "rows": 16334,
+      "csv_path": "data/processed/review/fbref_player_club_seasons.csv",
+      "csv_sha256": "48bc18f86fe226b91228c295205abf03cb8d5ec52d1d3af38222d3d46f1d7e2b",
+      "parquet_path": "data/processed/review/fbref_player_club_seasons.parquet",
+      "parquet_sha256": "cfaf8bb5ef1ebfc902483e58fa43590ae59a80464e23e567f5609e269220d52c"
+    },
+    "fbref_player_seasons": {
+      "rows": 15948,
+      "csv_path": "data/processed/review/fbref_player_seasons.csv",
+      "csv_sha256": "346d8f2af082def8a48c30663a1982ab1d319f960346ec805df7fb8513c73340",
+      "parquet_path": "data/processed/review/fbref_player_seasons.parquet",
+      "parquet_sha256": "52337690992d5e186181ccbaa12554c52b1492adfbfd79effe184ceed818821f"
+    },
+    "fbref_core_gallery": {
+      "rows": 7398,
+      "csv_path": "data/processed/review/fbref_core_gallery.csv",
+      "csv_sha256": "222dc0e2a163f218d4353f0544cb07408134e926987b51a988a24d549a1fdd4e",
+      "parquet_path": "data/processed/review/fbref_core_gallery.parquet",
+      "parquet_sha256": "18b9ebb4ca78fde9f5330e329894823d83ec249c59e2df52a7f184d139606192"
+    },
+    "understat_shots": {
+      "rows": 228785,
+      "csv_path": "data/processed/review/understat_shots.csv.gz",
+      "csv_sha256": "5d507824b0e48447673181096efd51304626832489ee0aa9088afb7b276de98b",
+      "parquet_path": "data/processed/review/understat_shots.parquet",
+      "parquet_sha256": "10aa3f494530a3237737efdbda1825ae8c23a4905a70bfeb895e49ec26dfac65"
+    },
+    "understat_player_seasons": {
+      "rows": 12809,
+      "csv_path": "data/processed/review/understat_player_seasons.csv",
+      "csv_sha256": "fed3bed995658e0dec8c8c0c5902ff98418d29eb483bd9c177c00208affbc0f3",
+      "parquet_path": "data/processed/review/understat_player_seasons.parquet",
+      "parquet_sha256": "e8ea02255178f241295b6a1b838276a078a8efb8d9ea760bb2a9fb0e4b27b36c"
+    },
+    "understat_quarantine": {
+      "rows": 0,
+      "csv_path": "data/processed/review/understat_quarantine.csv",
+      "csv_sha256": "333b0ae02b9739234b284125e00962275be819adda66c949700ecfe3824ba509",
+      "parquet_path": "data/processed/review/understat_quarantine.parquet",
+      "parquet_sha256": "feb91fd8a0d6f6c32105ca05f5c0df829384c0602dd41c2135e1e24000d674e4"
+    },
+    "transfermarkt_profiles": {
+      "rows": 92671,
+      "csv_path": "data/processed/review/transfermarkt_profiles.csv",
+      "csv_sha256": "aa75de3790043fd35e4708f69a57301680194d29653372759a7a09831dbcb1c8",
+      "parquet_path": "data/processed/review/transfermarkt_profiles.parquet",
+      "parquet_sha256": "d4ae75869bbefe76cc86e0479d054dcc5171b72f0a7ff1ec7a2575ae1af73a78"
+    },
+    "transfermarkt_values": {
+      "rows": 901429,
+      "csv_path": "data/processed/review/transfermarkt_values.csv.gz",
+      "csv_sha256": "0fd1de8046ab8e1fca2d844ae807b64edf9a38840dc23c79602d69fc8fce39a1",
+      "parquet_path": "data/processed/review/transfermarkt_values.parquet",
+      "parquet_sha256": "5c4898b401a42ced34966335dafc0a2b6ee56df1d7c269d070d525824b198e9b"
+    }
+  },
+  "exact_fbref_duplicates_removed": 0,
+  "frozen_gallery_numeric_parity_verified": true,
+  "cleaning_issues": [
+    {
+      "table": "fbref_club_seasons",
+      "field": "age",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "minutes",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "mp",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "birth_year",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "gls",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "ast",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "ga",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "sh",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "sot",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "crs",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "int",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "tklw",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "fls",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "fld",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "xg",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "xag",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "xa",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "passes_completed",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "passes_attempted",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "key_passes",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "touches",
+      "invalid_values_nulled": 0
+    },
+    {
+      "table": "fbref_club_seasons",
+      "field": "successful_take_ons",
+      "invalid_values_nulled": 0
+    }
+  ],
+  "model_fitting_performed": false,
+  "cross_source_joins": "Existing provisional FBref/Transfermarkt identity proposals retained separately; Understat not merged into model"
+}

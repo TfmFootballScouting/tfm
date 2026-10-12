@@ -1,20 +1,10 @@
-"""Real-data pipeline. Collection is explicit; no synthetic fallback."""
-import argparse
-from src.data.prepare import prepare
-from src.models.train import train_and_log
+"""Teacher-review pipeline: clean bundled real CSVs and verify frozen-gallery parity.
 
-
-def run_all(legacy=False, collect=False):
-    if collect:
-        from src.scraping.collect import collect as collect_sources
-        collect_sources()
-    prepare(legacy=legacy)
-    train_and_log(allow_legacy=legacy)
-
+This entry point does not recollect sources, create synthetic observations or
+silently overwrite the model served by Streamlit. Historical full training
+entry points remain under scripts/ and are documented in the review guide.
+"""
+from src.preprocessing.review_dataset import main
 
 if __name__ == '__main__':
-    p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--collect', action='store_true')
-    p.add_argument('--legacy-exploratory', action='store_true', help='Use only pre-existing FBref-labelled standard rows, with explicit unverified provenance tags')
-    args = p.parse_args()
-    run_all(legacy=args.legacy_exploratory, collect=args.collect)
+    main()

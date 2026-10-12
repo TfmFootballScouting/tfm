@@ -1,22 +1,13 @@
-# Raw source inputs
+# Raw data for teacher review
 
-The actual untouched inputs are stored locally in `sources/`, with content-addressed filenames. They are not the synthetic `players_raw.csv` from the original demonstration, and are not copies of cleaned output renamed as raw data.
+Current review inputs are the CSVs in `fbref/`, `understat/` and `transfermarkt/`. `review_manifest.json` lists every file, source/provider, exact hash, row count, source columns and extraction rule.
 
-`sources_manifest.json` identifies six FBref category archives and the La Liga Understat shot archive used by the application, plus four optional Understat archives and four private uploaded valuation/identity files. It records original providers, secondary repositories, exact URLs where available, original acquisition timestamps, SHA-256 checksums and file sizes. Original retrieval timestamps refer to the preserved snapshot, not a future download.
+- FBref: six source-preserving target-season CSV exports from the retained `JaseZiv/worldfootballR_data` RDS release assets.
+- Understat: five source-preserving shot CSV exports from the same secondary GitHub repository.
+- Transfermarkt: four unchanged CSV uploads with claimed origin `salimt/football-datasets`; exact upstream repository commit was not verified.
 
-```bash
-# From the repository root; uses Python's standard library
-python -m src.scraping.raw_inputs --verify
-# Restore the seven primary raw archives from their recorded secondary release URLs
-python -m src.scraping.raw_inputs --download
-# Include the four optional shot archives
-python -m src.scraping.raw_inputs --download --include-optional
-```
+FBref/Understat files were downloaded as **RDS, not CSV**. CSV export preserves source columns/values while selecting the declared five-league/2020–2025 target range; it does not clean, merge or impute them. Archive URLs/checksums and original acquisition timestamps remain in the manifest; original RDS bytes are locally preserved under `sources/` and can be restored using `src/scraping/raw_inputs.py`. No new provider crawl or synthetic replacement occurs during packaging.
 
-Missing files make verification fail. A changed release asset, download failure or checksum mismatch never causes an alternative or synthetic dataset to be substituted. Existing corrupt files are not overwritten. Optional private uploads have no verified download URL and must come from the original user-supplied files.
+Older `players_raw.*` and HTML samples are historical original-stage evidence, including mixed/demo content. They are not listed in the review-input manifest and are never inputs to `python -m src.pipeline` or final model experiments. Original receipts and source-use restrictions are retained; GitHub hosting does not establish provider training permission.
 
-The seven primary archives currently occupy approximately 92 MiB. Raw provider-derived archives remain ignored by Git because their original recorded rights status permits local research but does not establish redistribution rights. A clone contains this provenance manifest and restoration utility, rather than republishing those archives. Existing local raw inputs were verified and preserved in this workspace.
-
-Raw restoration alone does not rerun preprocessing or retrain the model. This branch serves existing verified artifacts; the complete preparation and training workflow remains on `improve/reproducible-scouting`.
-
-See [data sources and lineage](../../docs/DATA_SOURCES.md) for dataset usage, joins, coverage and limitations.
+Preprocessing: `src/preprocessing/review_dataset.py` and `collected.py`. Prepared outputs and their hashes: `data/processed/review/manifest.json`. Code to recreate these exports from retained archives/uploads: `scripts/build_review_csvs.py` (requires optional archive readers).
