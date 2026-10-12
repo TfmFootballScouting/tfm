@@ -260,3 +260,6 @@ reports/five_league_pipeline/scenario_shortlists.csv
 # Prepared valuation inputs explicitly included for reproducible app budget screening.
 !/data/processed/real/collected_salimt_values.parquet
 !/data/processed/real/europe_review_candidates.parquet
+
+# Local transfer-label review output belongs to the research workflow.
+/data/processed/real/transfer_likelihood_label_candidates.parquet
