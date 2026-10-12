@@ -74,3 +74,5 @@ Observed scouting sessions write locally to ignored `data/events/scouting.jsonl`
 See [data sources and lineage](docs/DATA_SOURCES.md), [coverage](docs/DATA_COVERAGE.csv) and [raw input restoration](data/raw/README.md). Raw archives are retained locally with verified original checksums; metadata and restoration commands are included in this branch.
 
 Recruitment scenario analysis is retained in the research branch (`notebooks/09_scouting_scenarios.ipynb` and `src/app/scenarios.py`). It is not exposed as a separate Streamlit page; the main recommendation filters cover everyday scouting searches.
+
+Transfer-likelihood feasibility is documented in [TRANSFER_LIKELIHOOD.md](docs/TRANSFER_LIKELIHOOD.md). The audit code, executed notebook and aggregate results are on the full research branch. No transfer predictor is trained or exposed in this application.
