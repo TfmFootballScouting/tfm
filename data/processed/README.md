@@ -1,7 +1,9 @@
-# Prepared data
+# Current prepared data
 
-`review/` contains source-separated CSV (large tables use `.csv.gz`) and Parquet outputs reproducible from bundled raw CSVs with `python -m src.pipeline`. Its manifest records rows/checksums and verifies that rebuilt FBref gallery keys and numerical model features match the actual frozen gallery. Rebuilding does not overwrite the served model or real dataset files.
+`review/` contains the eight source-specific cleaned tables, their CSV (large tables compressed as `.csv.gz`) and Parquet files, and `manifest.json` with hashes/counts/quality decisions. Reproduce from included raw CSVs with `python -m src.pipeline`.
 
-`real/` retains the evaluated model's actual Parquet galleries/history, source-specific shots and dated valuation inputs. Streamlit verifies their original fingerprints. Earlier files under other names belong to historical stages, not the current final dataset; consult the review README before using them.
+`real/` contains only the four original frozen FBref training/gallery/history tables and two checksum-verified valuation/identity tables (the value loader reuses the same frozen player-season history) required by the app. The frozen tables preserve the actual experiment's byte hashes; the review outputs independently reproduce their numerical features. Understat shot analysis reads `review/understat_shots.parquet` directly, avoiding older duplicate shot datasets.
 
-Unknown counts remain unknown. Cross-source identity proposals are separate and provisional; Understat is not merged into recommendation fitting. Transfermarkt values are applied only after ranking, with dates/currency caveats. No synthetic row enters the review pipeline.
+FBref club stints join by provider ID + league + season + club and compatible minutes. Season aggregation preserves identity across clubs and seasons; rates use observed exposure only. Understat remains source-separated; reported values use provisional identity links after ranking and do not enter model training. Missing/zero values are not silently estimated.
+
+No demo/synthetic or obsolete processed datasets are included.

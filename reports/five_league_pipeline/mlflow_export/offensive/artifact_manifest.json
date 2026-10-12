@@ -1,0 +1,131 @@
+{
+  "run_id": "77dc5b4e615245ae910aec3a75360136",
+  "layout": "Single-copy portable original artifacts; evaluation and models shared with the app/notebooks",
+  "artifacts": [
+    {
+      "original_artifact": "evaluation/offensive_cluster_bootstrap.csv",
+      "project_path": "reports/five_league_pipeline/offensive_cluster_bootstrap.csv",
+      "sha256": "8692b42d4786e29ba44f7af41211c0e25d24c2927fb742ae8d27a64d9c8e52c0"
+    },
+    {
+      "original_artifact": "evaluation/offensive_cluster_centroids.csv",
+      "project_path": "reports/five_league_pipeline/offensive_cluster_centroids.csv",
+      "sha256": "658687d1d7d35af3c6a0e918ca92597cbfdd4742c5bc96141993e28c3c28329d"
+    },
+    {
+      "original_artifact": "evaluation/offensive_cluster_distribution.csv",
+      "project_path": "reports/five_league_pipeline/offensive_cluster_distribution.csv",
+      "sha256": "c7ca07983dc2e42f71539d1bb8981fffc4d0fae54bd56c40f71070c2761347bd"
+    },
+    {
+      "original_artifact": "evaluation/offensive_cluster_profiles.csv",
+      "project_path": "reports/five_league_pipeline/offensive_cluster_profiles.csv",
+      "sha256": "bb124186ecd21ddfa795e6c7d459b5a8d2981b9d535653e1ef21e2100f947564"
+    },
+    {
+      "original_artifact": "evaluation/offensive_cluster_search.csv",
+      "project_path": "reports/five_league_pipeline/offensive_cluster_search.csv",
+      "sha256": "68e37da877ac2f11c959bfa085a236b649858d46c12cc49703368055fe3c3ead"
+    },
+    {
+      "original_artifact": "evaluation/offensive_cluster_sizes.csv",
+      "project_path": "reports/five_league_pipeline/offensive_cluster_sizes.csv",
+      "sha256": "7c97ee696071695adef7eada5216ef6a05632c0a15a6d9379efa4e1c3d19888e"
+    },
+    {
+      "original_artifact": "evaluation/offensive_cluster_stability.csv",
+      "project_path": "reports/five_league_pipeline/offensive_cluster_stability.csv",
+      "sha256": "f741758ab103a428b7a843f26eef3641ed3adc36599324c1adf1218ad66559d1"
+    },
+    {
+      "original_artifact": "evaluation/offensive_cluster_transitions.csv",
+      "project_path": "reports/five_league_pipeline/offensive_cluster_transitions.csv",
+      "sha256": "a052439c33bd74f3dd29bacc6093c25a5c3a27af28d1ff02717573168beb5ab8"
+    },
+    {
+      "original_artifact": "evaluation/offensive_evaluation.png",
+      "project_path": "reports/five_league_pipeline/offensive_evaluation.png",
+      "sha256": "35948ab5e2f50a8cd7d68b26c66f481fa66dce0886330d34c6551887cf2c73fc"
+    },
+    {
+      "original_artifact": "evaluation/offensive_feature_drift.csv",
+      "project_path": "reports/five_league_pipeline/offensive_feature_drift.csv",
+      "sha256": "9841c513c98d22715ed2c5e5c066223050fd3326fce64be8a1020f7482f3b196"
+    },
+    {
+      "original_artifact": "evaluation/offensive_league_retrieval.csv",
+      "project_path": "reports/five_league_pipeline/offensive_league_retrieval.csv",
+      "sha256": "f2c6ba5d16f9071fc176744aee4cc733f1cdc90c966532eaa498d846b92e50f8"
+    },
+    {
+      "original_artifact": "evaluation/offensive_pca_eigenvalues.csv",
+      "project_path": "reports/five_league_pipeline/offensive_pca_eigenvalues.csv",
+      "sha256": "99a11508609d9934cf8a97b2aec9e70415968a655694caa09856f07ddfb108ed"
+    },
+    {
+      "original_artifact": "evaluation/offensive_pca_loading_bootstrap.csv",
+      "project_path": "reports/five_league_pipeline/offensive_pca_loading_bootstrap.csv",
+      "sha256": "07ed5f1d93969cbe84cfdaa1a5836884cc62c062097652db9925483f73a1df3e"
+    },
+    {
+      "original_artifact": "evaluation/offensive_pca_loadings.csv",
+      "project_path": "reports/five_league_pipeline/offensive_pca_loadings.csv",
+      "sha256": "653772e2b0f5d184cd8f6031578cab376d11769d7c3cc5790a24ced923f19bfa"
+    },
+    {
+      "original_artifact": "evaluation/offensive_pca_subspace_bootstrap.csv",
+      "project_path": "reports/five_league_pipeline/offensive_pca_subspace_bootstrap.csv",
+      "sha256": "921c9dffb2235b6deb71f02e1d1234d7b1392a1ad09fa1f55e06719165248f8f"
+    },
+    {
+      "original_artifact": "evaluation/offensive_pca_variance_bootstrap.csv",
+      "project_path": "reports/five_league_pipeline/offensive_pca_variance_bootstrap.csv",
+      "sha256": "abccc1cec26554a699484ce6ed8a38cc559432a42ca19cdd7f84c106251313e3"
+    },
+    {
+      "original_artifact": "evaluation/offensive_position_retrieval.csv",
+      "project_path": "reports/five_league_pipeline/offensive_position_retrieval.csv",
+      "sha256": "fcd441211806b1f684f6c4a72ee23a7ac67c12a0830735a73b680be4832511a9"
+    },
+    {
+      "original_artifact": "evaluation/offensive_qualitative.csv",
+      "project_path": "reports/five_league_pipeline/offensive_qualitative.csv",
+      "sha256": "8613d796d8169553ec2ef4e7ff314548c3031067c8b29cb79efc830619198a44"
+    },
+    {
+      "original_artifact": "evaluation/offensive_queries.csv",
+      "project_path": "reports/five_league_pipeline/offensive_queries.csv",
+      "sha256": "51ff322cc97515582b3567fd9eac20e280879dfceddd1e618e80273bee589290"
+    },
+    {
+      "original_artifact": "evaluation/offensive_ranking_bootstrap.csv",
+      "project_path": "reports/five_league_pipeline/offensive_ranking_bootstrap.csv",
+      "sha256": "851c2ea29ce0d18e730a3f9cd51cd57e61e1b33170ec45dc44c691ed9225e170"
+    },
+    {
+      "original_artifact": "evaluation/offensive_retrieval.csv",
+      "project_path": "reports/five_league_pipeline/offensive_retrieval.csv",
+      "sha256": "bd297291017df13fad1e6fd300483013fb3ef51363289a23f65a70f88456cbfc"
+    },
+    {
+      "original_artifact": "evaluation/offensive_style_coverage.csv",
+      "project_path": "reports/five_league_pipeline/offensive_style_coverage.csv",
+      "sha256": "7c862a104fdd1d11c4bc1de27380888cf3b625c53d779e54ba5bf41ee4f7149b"
+    },
+    {
+      "original_artifact": "evaluation/offensive_style_overlap.csv",
+      "project_path": "reports/five_league_pipeline/offensive_style_overlap.csv",
+      "sha256": "f15c0c76aa0822a7a774f8005d621f2e5703c39971a2752cc407d34a6a414d9e"
+    },
+    {
+      "original_artifact": "evaluation/offensive_style_shortlists.csv",
+      "project_path": "reports/five_league_pipeline/offensive_style_shortlists.csv",
+      "sha256": "8791473fb131effa7e3117964c030341bd9883aa426d7a36492ab422faf5369c"
+    },
+    {
+      "original_artifact": "evaluation/offensive_temporal_cluster_quality.csv",
+      "project_path": "reports/five_league_pipeline/offensive_temporal_cluster_quality.csv",
+      "sha256": "c5968cf481b6ec7f6a5800c61923f7f9f06e43d448512720396cc5716fab7deb"
+    }
+  ]
+}

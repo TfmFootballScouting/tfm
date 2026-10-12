@@ -1,5 +1,0 @@
-raw_field,raw_dtype,nonmissing_raw_rows,role,establishes_valuation_effective_date,establishes_valuation_known_at
-season_start_year,int32,46571,Season label,False,False
-player_dob,object,46564,Birth date,False,False
-date_joined,object,41564,Club joining date,False,False
-contract_expiry,object,29407,Contract end date,False,False

@@ -1,0 +1,131 @@
+{
+  "run_id": "85b7e82117814713b9094a5385308f6f",
+  "layout": "Single-copy portable original artifacts; evaluation and models shared with the app/notebooks",
+  "artifacts": [
+    {
+      "original_artifact": "evaluation/core_cluster_bootstrap.csv",
+      "project_path": "reports/five_league_pipeline/core_cluster_bootstrap.csv",
+      "sha256": "f879829ac89c12d645f74be52a31c48ac66622c3b6e198b840f7c2fba9b1e523"
+    },
+    {
+      "original_artifact": "evaluation/core_cluster_centroids.csv",
+      "project_path": "reports/five_league_pipeline/core_cluster_centroids.csv",
+      "sha256": "65e5417aa21694af3259f086248c18640bf7c3bcbc04bbf6462712897e8dc1e2"
+    },
+    {
+      "original_artifact": "evaluation/core_cluster_distribution.csv",
+      "project_path": "reports/five_league_pipeline/core_cluster_distribution.csv",
+      "sha256": "41c46f7747fd4299866e6e4c971fda18e5c7603052d5aebba53aec33d02a0285"
+    },
+    {
+      "original_artifact": "evaluation/core_cluster_profiles.csv",
+      "project_path": "reports/five_league_pipeline/core_cluster_profiles.csv",
+      "sha256": "1415d6d5b6e47c9403106e85940667a32f9a41de68b2325e33d2607b2921fcc4"
+    },
+    {
+      "original_artifact": "evaluation/core_cluster_search.csv",
+      "project_path": "reports/five_league_pipeline/core_cluster_search.csv",
+      "sha256": "3ff399017c81bfc72e9b9c63d6713e10446bd8d172d32451459aad5682047667"
+    },
+    {
+      "original_artifact": "evaluation/core_cluster_sizes.csv",
+      "project_path": "reports/five_league_pipeline/core_cluster_sizes.csv",
+      "sha256": "536c0f266d24cb28134fd2eca493163ef18a8ba28f09f09e57de7cfb8b3c3b2b"
+    },
+    {
+      "original_artifact": "evaluation/core_cluster_stability.csv",
+      "project_path": "reports/five_league_pipeline/core_cluster_stability.csv",
+      "sha256": "c2af27fc76f2508c76f4be227ffe0fb94e0c20d4a51aee32f15485babed2d44b"
+    },
+    {
+      "original_artifact": "evaluation/core_cluster_transitions.csv",
+      "project_path": "reports/five_league_pipeline/core_cluster_transitions.csv",
+      "sha256": "02febae616cd5290bff5b522c9d96da918a816dca50f5d172dafcd3d3f8ec3d3"
+    },
+    {
+      "original_artifact": "evaluation/core_evaluation.png",
+      "project_path": "reports/five_league_pipeline/core_evaluation.png",
+      "sha256": "8568110e746b9bd46d663e11ca1f13cb690cec431f5b24d42e08d9997c278fd3"
+    },
+    {
+      "original_artifact": "evaluation/core_feature_drift.csv",
+      "project_path": "reports/five_league_pipeline/core_feature_drift.csv",
+      "sha256": "73e5de330156b02584b8094c72b4fdb7bc1fe9f4346b0bd0bceff6e7018f7c5e"
+    },
+    {
+      "original_artifact": "evaluation/core_league_retrieval.csv",
+      "project_path": "reports/five_league_pipeline/core_league_retrieval.csv",
+      "sha256": "20ba88fe0ddd8e05a3af1c9cb8ee8809bc1fb5dcb985507abac499ae552e526a"
+    },
+    {
+      "original_artifact": "evaluation/core_pca_eigenvalues.csv",
+      "project_path": "reports/five_league_pipeline/core_pca_eigenvalues.csv",
+      "sha256": "aeb8fec8847ac3d92f1844cbd69089f7ead8e91e332ec292e301376ba2a65dc1"
+    },
+    {
+      "original_artifact": "evaluation/core_pca_loading_bootstrap.csv",
+      "project_path": "reports/five_league_pipeline/core_pca_loading_bootstrap.csv",
+      "sha256": "c21f03249b9c7835c8771f37fdf5ccf0e6c78bcba543a233a728dad4428567a1"
+    },
+    {
+      "original_artifact": "evaluation/core_pca_loadings.csv",
+      "project_path": "reports/five_league_pipeline/core_pca_loadings.csv",
+      "sha256": "dba8aef19580218131f28854bbf251783e399e3575b9a3dbe6cb3f626aab7b28"
+    },
+    {
+      "original_artifact": "evaluation/core_pca_subspace_bootstrap.csv",
+      "project_path": "reports/five_league_pipeline/core_pca_subspace_bootstrap.csv",
+      "sha256": "fc688eaa0aed4bc59dcdadddddaf767578fbed95ed6b29b6144125d805dbf294"
+    },
+    {
+      "original_artifact": "evaluation/core_pca_variance_bootstrap.csv",
+      "project_path": "reports/five_league_pipeline/core_pca_variance_bootstrap.csv",
+      "sha256": "d4cdc6b50bd19749c98b1e67e2022d04273427d8e2d22545708449a147f7decf"
+    },
+    {
+      "original_artifact": "evaluation/core_position_retrieval.csv",
+      "project_path": "reports/five_league_pipeline/core_position_retrieval.csv",
+      "sha256": "a0de5a4bfa0d969ab6df1d6943dda9e3a643c85ca60e0fe48a13ee0c326d8bdd"
+    },
+    {
+      "original_artifact": "evaluation/core_qualitative.csv",
+      "project_path": "reports/five_league_pipeline/core_qualitative.csv",
+      "sha256": "e89ba4061d8aebcb40c7f3be28f8c4b82c44d2da3778dfac35fdf287c38c1980"
+    },
+    {
+      "original_artifact": "evaluation/core_queries.csv",
+      "project_path": "reports/five_league_pipeline/core_queries.csv",
+      "sha256": "a9671e60ca7d5d81be329e9e2e4d78376d139b8b402c6cb43e81c92611d0b16e"
+    },
+    {
+      "original_artifact": "evaluation/core_ranking_bootstrap.csv",
+      "project_path": "reports/five_league_pipeline/core_ranking_bootstrap.csv",
+      "sha256": "1a990cd95168cfe52564a24905dbd84c605658d209dbdc36747d3fa4654080df"
+    },
+    {
+      "original_artifact": "evaluation/core_retrieval.csv",
+      "project_path": "reports/five_league_pipeline/core_retrieval.csv",
+      "sha256": "bb69981c679bd756fdbfcd91072063302d9751acac5d0219ee0546bdb7b02057"
+    },
+    {
+      "original_artifact": "evaluation/core_style_coverage.csv",
+      "project_path": "reports/five_league_pipeline/core_style_coverage.csv",
+      "sha256": "dcf71a9d6f7c8f7db6dd8a72c580f6210f6636df3e7f2efdbbeb2432cb34a27d"
+    },
+    {
+      "original_artifact": "evaluation/core_style_overlap.csv",
+      "project_path": "reports/five_league_pipeline/core_style_overlap.csv",
+      "sha256": "ffba2a352862073a73a3f6b6cbeab344235fd24bc388d4e183245f85a675de23"
+    },
+    {
+      "original_artifact": "evaluation/core_style_shortlists.csv",
+      "project_path": "reports/five_league_pipeline/core_style_shortlists.csv",
+      "sha256": "7b10e6de61dbbd2664b115503c43a31063379c524345e2a0290a67ec584ffd53"
+    },
+    {
+      "original_artifact": "evaluation/core_temporal_cluster_quality.csv",
+      "project_path": "reports/five_league_pipeline/core_temporal_cluster_quality.csv",
+      "sha256": "22238ba6a41afe5746d2186740a188c0f8e965ad635ea52ddee9a9ee9e506e3f"
+    }
+  ]
+}

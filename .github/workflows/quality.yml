@@ -14,22 +14,8 @@ jobs:
           cache-dependency-path: requirements-research.lock.txt
       - run: pip install -r requirements-research.lock.txt
       - run: python -m pip check
-      # Portable/current checks; retained-archive integrations remain in the full local suite.
-      - run: >-
-          python -m pytest -q
-          src/tests/test_review_package.py
-          src/tests/test_collected_models.py
-          src/tests/test_data.py
-          src/tests/test_recommend.py
-          src/tests/test_identity_resolution.py
-          src/tests/test_source_rights.py
-          src/tests/test_scouting_views.py
-          src/tests/test_events.py
-          src/tests/test_operational_store.py
-          src/tests/test_cloud_costs.py
-          src/tests/test_expert_review.py
-          src/tests/test_valuation_data.py
-          src/tests/test_player_analysis.py
+      # The complete clean-submission suite uses only bundled inputs.
+      - run: python -m pytest -q
         env:
           MPLCONFIGDIR: /tmp/tfm-matplotlib
           XDG_CACHE_HOME: /tmp/tfm-cache

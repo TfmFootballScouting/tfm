@@ -7,10 +7,7 @@ import numpy as np
 import pandas as pd
 
 from src.config import ROOT
-from src.data.provenance import sha256
-from src.app.fingerprints import source_sha256
 from src.data.source_rights import require_model_data_use
-from src.models.collected import EXPERIMENTS
 from src.models.recommend import PlayerRecommender
 from src.features.styles import measured_weight_fraction
 
@@ -57,27 +54,3 @@ class CollectedService:
         np.testing.assert_equal(rec.artifacts.scaler.mean_, scaler_before)
         np.testing.assert_equal(rec.artifacts.imputer.statistics_, imputer_before)
         return rec
-
-
-def load_collected_service(name):
-    if name not in ['core', 'offensive']: raise ValueError('Unsupported serving model')
-    manifest = json.loads((ROOT / 'reports/enrichment/pipeline.json').read_text())
-    info = manifest['new_model_experiments'][name]
-    original = json.loads((ROOT / 'reports/collected_model_results.json').read_text())
-    for code in ['src/features/styles.py', 'src/config.py']:
-        if source_sha256(ROOT / code) != original['code_hashes'][code]:
-            raise ValueError('Style definition fingerprint changed')
-    for code in ['src/models/collected.py', 'src/models/recommend.py', 'src/data/source_rights.py']:
-        if source_sha256(ROOT / code) != manifest['code_sha256'][code]:
-            raise ValueError('Collected model source fingerprint changed')
-    model_path = ROOT / info['model_path']
-    if sha256(model_path) != info['model_sha256']: raise ValueError('Model artifact fingerprint changed')
-    preprocessing = json.loads((ROOT / 'reports/collected_preprocessing.json').read_text())
-    frames = {}
-    for table in [EXPERIMENTS[name]['table'], 'collected_player_seasons']:
-        item = preprocessing['outputs'][table]
-        if sha256(ROOT / item['path']) != item['sha256']: raise ValueError('Gallery fingerprint changed')
-        frames[table] = pd.read_parquet(ROOT / item['path'])
-    model = PlayerRecommender.load(model_path)
-    if model.neighbor_method != info['selected_method']: raise ValueError('Model distance method mismatch')
-    return CollectedService(model, frames[EXPERIMENTS[name]['table']], frames['collected_player_seasons'], info, name)

@@ -28,25 +28,24 @@ def test_restricted_data_cannot_fit_or_transform_model(players, column, value):
         model.transform(restricted)
 
 
-def test_archive_acquisition_respects_rights_before_network(tmp_path, monkeypatch):
-    from scripts import worldfootballr_archive as archive
-    monkeypatch.setattr(archive, 'ROOT', tmp_path)
-    with pytest.raises(SourceUseRestricted, match='archive acquisition'):
-        archive.ensure_snapshot(dict(path='missing.rds', category='valuations', original_source='transfermarkt'), download=True)
+def test_archive_path_must_remain_in_raw_sources(tmp_path, monkeypatch):
+    from src.scraping import raw_inputs
+    monkeypatch.setattr(raw_inputs, 'ROOT', tmp_path)
+    with pytest.raises(ValueError, match='inside data/raw/sources'):
+        raw_inputs.ensure_archive(dict(path='../outside.rds', sha256='0'*64), download=True)
 
 
-def test_scorer_evidence_rejects_current_or_wrong_season():
-    from scripts.uploaded_scraper_trial import scorer_evidence
-    with pytest.raises(ValueError, match='not confirmed'):
-        scorer_evidence('<html><title>LaLiga2 25/26</title></html>', 2024)
+def test_archive_restore_rejects_unapproved_host_before_network(tmp_path, monkeypatch):
+    from src.scraping import raw_inputs
+    monkeypatch.setattr(raw_inputs, 'ROOT', tmp_path)
+    with pytest.raises(ValueError, match='recorded secondary GitHub'):
+        raw_inputs.ensure_archive(dict(path='data/raw/sources/a.rds', sha256='0'*64, url='https://example.com/unapproved.rds'), download=True)
 
 
-def test_new_source_probe_reports_proxy_failure_without_aborting(monkeypatch):
-    import requests
-    from scripts.uploaded_scraper_trial import NEW_HOSTS, probe_new_source
-    def denied(*args, **kwargs):
-        raise requests.exceptions.ProxyError('Tunnel connection failed: 403 Forbidden')
-    monkeypatch.setattr(requests.Session, 'get', denied)
-    outcomes = [probe_new_source(source) for source in NEW_HOSTS]
-    assert len(outcomes) == 3
-    assert all(row['status'] == 'environment_network_blocked' for row in outcomes)
+def test_existing_archive_mismatch_preserved(tmp_path, monkeypatch):
+    from src.scraping import raw_inputs
+    monkeypatch.setattr(raw_inputs, 'ROOT', tmp_path)
+    path=tmp_path/'data/raw/sources/a.rds';path.parent.mkdir(parents=True);path.write_bytes(b'Unit-test bytes only')
+    with pytest.raises(ValueError, match='not overwritten'):
+        raw_inputs.ensure_archive(dict(path='data/raw/sources/a.rds', sha256='0'*64), download=True)
+    assert path.read_bytes()==b'Unit-test bytes only'

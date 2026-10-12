@@ -1,4 +1,5 @@
-"""Complete real-data five-league rerun, preserving every earlier experiment."""
+"""Train/evaluate from bundled real CSV inputs; write a separate reproducible run."""
+from pathlib import Path
 import hashlib
 import json
 import os
@@ -22,30 +23,17 @@ from src.preprocessing.collected import normalize_fbref, aggregate_player_season
 from src.models.collected import EXPERIMENTS, fit_experiment, cluster_analysis, evaluate_pair, qualitative_shortlists
 from src.models.validation import resampling_validation, temporal_validation, position_retrieval
 from scripts.top_five_leagues import select_rows, align_category, dominant_league_gallery, MAPPINGS, KEYS, LEAGUES
-from scripts.worldfootballr_archive import ensure_snapshot, read_rds
+from src.preprocessing.review_dataset import fbref_tables, load_raw_csv
 
-REPORT=ROOT/'reports/five_league_pipeline'
-
-
-def preserved_artifacts():
-    previous=json.loads((ROOT/'reports/enrichment/pipeline.json').read_text())
-    hashes={**previous['preserved_input_sha256'],**previous['outputs_sha256'],**previous['code_sha256']}
-    top=json.loads((ROOT/'reports/top_five_leagues/manifest.json').read_text())
-    for item in top['outputs'].values(): hashes[item['path']]=item['sha256']
-    for filename,digest in top['report_sha256'].items(): hashes[f'reports/top_five_leagues/{filename}']=digest
-    for directory in ['reports/top_five_leagues/mlflow_export']:
-        for path in (ROOT/directory).rglob('*'):
-            if path.is_file(): hashes[str(path.relative_to(ROOT))]=sha256(path)
-    for name in ['reports/top_five_leagues/manifest.json','notebooks/10_top_five_leagues.ipynb']:
-        hashes[name]=sha256(ROOT/name)
-    for path,digest in hashes.items():
-        if sha256(ROOT/path)!=digest: raise ValueError(f'Previous artifact changed: {path}')
-    return hashes
+RUN_ROOT=ROOT/'reports/retraining'/datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
+REPORT=RUN_ROOT/'evaluation'
+BOOTSTRAP_TRIALS=30
 
 
 def prepare_data():
-    records=[r for r in json.loads((ROOT/'reports/worldfootballr_sources.json').read_text()) if r['original_source']=='fbref']
-    tables={r['category']:select_rows(read_rds(ensure_snapshot(r,False))[0]) for r in records}
+    raw=json.loads((ROOT/'data/raw/review_manifest.json').read_text(encoding='utf8'))
+    records=[r for r in raw['raw_csvs'] if r['provider']=='fbref']
+    tables={Path(r['path']).stem:select_rows(load_raw_csv(r)) for r in records}
     standard=tables['standard']
     fields=['Player','Nation','Pos','Age','Born','Min_Playing','MP_Playing','Gls','Ast','xG_Expected','xAG_Expected']
     base=standard[KEYS+fields].rename(columns={'Player':'player','Nation':'nation','Pos':'pos','Age':'age','Born':'birth_year',
@@ -68,7 +56,7 @@ def prepare_data():
         offensive_gallery=gallery[gallery.baseline_candidate&~gallery.partial_season].copy())
     outputs={}
     for name,frame in frames.items():
-        path=ROOT/f'data/processed/real/five_league_pipeline_{name}.parquet'
+        path=RUN_ROOT/f'data/{name}.parquet'
         frame.to_parquet(path,index=False)
         outputs[name]=dict(path=str(path.relative_to(ROOT)),sha256=sha256(path),rows=len(frame))
     pd.DataFrame(alignment).to_csv(REPORT/'alignment.csv',index=False)
@@ -105,7 +93,6 @@ def prepare_data():
     fig.tight_layout();fig.savefig(REPORT/'eda_cohorts.png',dpi=140);plt.close(fig)
     return frames,outputs,records,duplicates
 
-
 def models(frames,dataset_version,commit):
     mlflow.set_tracking_uri(f'sqlite:///{ROOT/"mlflow.db"}')
     mlflow.set_experiment('tfm-scouting-five-league-trained-real')
@@ -118,7 +105,7 @@ def models(frames,dataset_version,commit):
         stability,centroids,profiles,sizes,diagnostics=cluster_analysis(rec)
         diagnostics['league_nmi']=float(normalized_mutual_info_score(rec.players.cluster,rec.players.league))
         print('Executing person-block PCA/cluster/ranking validation:',name,flush=True)
-        extra=resampling_validation(rec,trials=30,seed=42)
+        extra=resampling_validation(rec,trials=BOOTSTRAP_TRIALS,seed=42)
         extra.update(temporal_validation(rec,parts))
         extra['position_retrieval']=position_retrieval(details)
         slices=[]
@@ -135,7 +122,7 @@ def models(frames,dataset_version,commit):
             path=REPORT/f'{name}_{suffix}.csv'
             frame.to_csv(path,index=suffix in ['cluster_centroids','cluster_profiles','cluster_sizes'])
             paths.append(path)
-        path=ROOT/f'models/real/five_league_{name}_recommender.joblib'
+        path=RUN_ROOT/f'models/{name}_recommender.joblib'
         rec.save(path)
         figure,axes=plt.subplots(1,3,figsize=(16,4))
         scores.pivot(index='method',columns='phase',values='mrr').plot.bar(ax=axes[0]);axes[0].set_ylabel('Pooled profile retrieval MRR')
@@ -158,7 +145,7 @@ def models(frames,dataset_version,commit):
             'git_dirty':str(bool(subprocess.check_output(['git','status','--porcelain','--','src','scripts','tests'],cwd=ROOT,text=True).strip())),
             'evaluation':'next_season_same_player_proxy_not_transfer_success','price_features':'excluded'}) as active:
             mlflow.log_params(dict(selected_method=selected,selected_k=info['selected_k'],features=','.join(spec['features']),
-                seed=42,bootstrap_person_trials=30,preprocessing_fit='train_only',training_scope='five_leagues'))
+                seed=42,bootstrap_person_trials=BOOTSTRAP_TRIALS,preprocessing_fit='train_only',training_scope='five_leagues'))
             mlflow.log_metrics({key:info[key] for key in ['holdout_mrr','holdout_recall_at_5','holdout_recall_at_10','robustness_top5_jaccard_mean','cluster_oob_ari_mean']})
             for artifact in paths:mlflow.log_artifact(str(artifact),artifact_path='evaluation')
             mlflow.log_artifact(str(path),artifact_path='models')
@@ -178,25 +165,29 @@ def models(frames,dataset_version,commit):
         print(name,'completed:',info['holdout_mrr'],info['holdout_recall_at_5'],flush=True)
     return results
 
-
 def main():
-    REPORT.mkdir(exist_ok=True)
-    preserved=preserved_artifacts()
+    REPORT.mkdir(parents=True,exist_ok=False)
+    (RUN_ROOT/'data').mkdir();(RUN_ROOT/'models').mkdir()
     frames,outputs,records,duplicates=prepare_data()
     code_paths=['scripts/five_league_pipeline.py','scripts/top_five_leagues.py','src/preprocessing/collected.py','src/models/collected.py','src/models/validation.py','src/models/recommend.py','src/features/styles.py','src/data/source_rights.py']
     code={path:sha256(ROOT/path) for path in code_paths}
     version=hashlib.sha256(json.dumps(dict(outputs=outputs,code=code),sort_keys=True).encode()).hexdigest()
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     trained=models(frames,version,commit)
-    for path,digest in preserved.items():assert sha256(ROOT/path)==digest,path
     report=dict(dataset_version=version,git_commit=commit,created_at=datetime.now(timezone.utc).isoformat(),
-        code_sha256=code,outputs=outputs,raw_sources=records,preserved_sha256=preserved,
-        experiments=trained,exact_duplicates_removed=duplicates,counts={name:len(frame) for name,frame in frames.items()},
-        limits=['Future seasons never enter fitting; partial2025/26 excluded','Transfermarkt fields excluded from fitting; cross-source price identities provisional',
-                'Profile retrieval and descriptive tactical affinity are not transfer-success or club relevance labels',
-                'Core/offensive periods differ; attack_on_core is a matched-cohort feature comparison',
-                'Core advanced2024/25 sparse; advancedSegunda missing','Outliers flagged, never automatically removed'])
-    (REPORT/'pipeline.json').write_text(json.dumps(report,indent=2))
-    print('Five-league pipeline completed.',flush=True)
+        code_sha256=code,outputs=outputs,raw_sources=records,experiments=trained,
+        exact_duplicates_removed=duplicates,counts={name:len(frame) for name,frame in frames.items()},
+        limits=['Future seasons excluded from fitting','Prices excluded from models','Evaluation is profile retrieval, not transfer success'])
+    (REPORT/'pipeline.json').write_text(json.dumps(report,indent=2)+'\n')
+    print('Separate real-data training/evaluation run:',RUN_ROOT.relative_to(ROOT),flush=True)
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--models',nargs='+',choices=list(EXPERIMENTS),default=list(EXPERIMENTS))
+    parser.add_argument('--bootstrap-trials',type=int,default=30)
+    args=parser.parse_args()
+    if args.bootstrap_trials<2:parser.error('At least two bootstrap trials are required')
+    BOOTSTRAP_TRIALS=args.bootstrap_trials
+    EXPERIMENTS={name:EXPERIMENTS[name] for name in args.models}
+    main()

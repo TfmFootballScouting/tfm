@@ -40,10 +40,10 @@ def ensure_archive(record, download=False):
             size = 0
             for block in iter(lambda: response.read(1024 * 1024), b''):
                 size += len(block)
-                if size > record['bytes']:
+                if record.get('bytes') is not None and size > record['bytes']:
                     raise ValueError('Downloaded archive exceeds its recorded size')
                 output.write(block)
-        if size != record['bytes'] or digest(temporary) != record['sha256']:
+        if (record.get('bytes') is not None and size != record['bytes']) or digest(temporary) != record['sha256']:
             raise ValueError('Downloaded archive differs from the pinned snapshot; no replacement saved')
         temporary.replace(path)
         return 'downloaded_and_verified'
@@ -59,9 +59,10 @@ def main():
     actions.add_argument('--download', action='store_true')
     parser.add_argument('--include-optional', action='store_true', help='Also restore four-league shot archives')
     args = parser.parse_args()
-    manifest = json.loads((ROOT / 'data/raw/sources_manifest.json').read_text())
+    catalog = json.loads((ROOT / 'data/raw/review_manifest.json').read_text(encoding='utf8'))
+    archives = [dict(path=r['archive_path'], sha256=r['archive_sha256'], url=r['url'], bytes=r.get('archive_bytes'), role='primary') for r in catalog['raw_csvs'] if 'archive_path' in r]
     missing = False
-    for record in manifest['archives']:
+    for record in archives:
         if record['role'] != 'primary' and not args.include_optional:
             continue
         status = ensure_archive(record, download=args.download)

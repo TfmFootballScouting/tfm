@@ -1,10 +1,11 @@
-# Models included for review
+# Current trained models
 
-- `recommender.joblib` is an unchanged copy of the current evaluated five-league Core artifact, under the original project's filename.
-- `metrics.json` contains that model's actual holdout metrics, dataset version, original training Git commit and relative paths.
-- `real/five_league_core_recommender.joblib` is the same binary used by Streamlit; the model/data/source checksum manifests remain authoritative.
-- `real/five_league_offensive_recommender.joblib` and `real/five_league_attack_on_core_recommender.joblib` are actual comparison experiments, not app selectors.
-- Earlier `real/collected_*` and `enrichment_*` artifacts support historical comparisons and preserved evidence.
-- `historical/legacy_mixed_recommender.joblib` and `legacy_metrics.json` retain the original mixed/demo artifact for traceability only. They never serve the app or validate final experiments.
+- `recommender.joblib`: frozen real five-league Core model used by Streamlit.
+- `offensive_recommender.joblib`: current offensive-feature comparison experiment.
+- `attack_on_core_recommender.joblib`: attacking-feature comparison on the Core cohort.
+- `metrics.json`: actual Core evaluation and portable serving metadata.
+- `real/valuation_manifest.json`: verified paths/hashes for the reported-value display inputs; no valuation model is used.
 
-No new fit is claimed merely because these files were organized. No transfer-likelihood or value-estimation model is deployed. Six styles are expert weights; PCA/K-means are unsupervised components, not six supervised models.
+The fitted Core contains the imputer, scaler, neighbors, PCA and K-means. Six styles are expert-defined weights. No legacy, synthetic or transfer-likelihood model is included. Original binary hashes and training commit are preserved in `reports/five_league_pipeline/pipeline.json`. MLflow artifact manifests refer to these same files instead of storing duplicate binaries.
+
+`python -m scripts.five_league_pipeline` fits new experiments from bundled real CSVs and writes a separate timestamped folder, leaving these original served models unchanged.

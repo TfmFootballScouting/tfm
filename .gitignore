@@ -271,3 +271,6 @@ reports/five_league_pipeline/scenario_shortlists.csv
 # Operational participant decisions and blinded evaluation keys are local.
 data/operational/
 data/expert_review/private/
+
+# New reproducible fits are separate from the frozen submitted models.
+/reports/retraining/

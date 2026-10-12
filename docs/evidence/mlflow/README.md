@@ -4,4 +4,4 @@
 
 `core_artifacts.png` shows the original evaluation artifact directory in the same run; its SHA256 is also recorded.
 
-The portable experiment export remains at `reports/five_league_pipeline/mlflow_export/core/`: `run.json`, evaluation figures, diagnostic CSVs and saved model. This screenshot is evidence of that existing local run; a fresh clone does not contain the private local MLflow SQLite database. Training/relogging is a separate reproducible workflow documented in README. No new fit or improvement in metrics is claimed by capturing this evidence.
+The portable experiment export remains at `reports/five_league_pipeline/mlflow_export/core/`: `run.json` and `artifact_manifest.json`, referencing the single-copy original figures/CSV files in `reports/five_league_pipeline/` and model files in `models/`, with exact SHA256 hashes. This screenshot is evidence of that existing local run; a fresh clone does not contain the private local MLflow SQLite database. Training/relogging is a separate reproducible workflow documented in README. No new fit or improvement in metrics is claimed by capturing this evidence.

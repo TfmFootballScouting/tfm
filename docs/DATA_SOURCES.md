@@ -1,49 +1,25 @@
-# Data sources used by ScoutIQ
+# Real-data flow and reproducibility
 
-This document describes the actual data served on `minimal/scoutiq-runtime`. The provenance baseline is research commit `a29e192933e70218de53d658e1b72b59844f751e`; source files and model artifacts were not recollected or retrained when making this branch.
+## Acquisition / raw inputs
 
-| Application data | Original provider | How it was obtained | Actual use |
-|---|---|---|---|
-| Five-league statistics | [FBref](https://fbref.com/) | Six checksum-pinned RDS assets from [worldfootballR_data](https://github.com/JaseZiv/worldfootballR_data), release `fb_big5_advanced_season_stats` | Recommendations, tactical affinity, comparisons, clusters and player development |
-| La Liga shots | [Understat](https://understat.com/league/La_liga) | `la_liga_shot_data.rds`, secondary release `understat_shots` in the same repository | Source-specific shot analysis; not fitted recommendation features |
-| Optional four-league shots | Understat | `epl_shot_data.rds`, `bundesliga_shot_data.rds`, `serie_a_shot_data.rds`, `ligue_1_shot_data.rds` from the same secondary release | Shot analysis only when the local prepared file is present |
-| Optional reported valuations and identity metadata | [Transfermarkt](https://www.transfermarkt.com/), via user-supplied [salimt/football-datasets](https://github.com/salimt/football-datasets) files | Uploaded `player_market_value.csv`, `player_profiles.csv`, `team_details.csv`, `team_competitions_seasons.csv`; upload-to-repository commit not verified | Included post-ranking screening through provisional identity proposals; never model training |
+See `data/raw/review_manifest.json` for the individual source URLs, archive SHA256, retrieval timestamp, CSV SHA256 and export filters. FBref and Understat came from published `JaseZiv/worldfootballR_data` RDS assets on GitHub, then source-preserving CSV export. Four Transfermarkt CSVs were user uploads with declared `salimt/football-datasets` origin. No direct provider scraping produced the current model inputs. `src/scraping/collect.py`, `fbref.py` and `transfermarkt.py` preserve the original scraper implementations; `raw_inputs.py` verifies/restores recorded archive bytes. `export_csv.py` reproduces source-preserving RDS exports, verifies exact CSV hashes, and never replaces a mismatching output. Optional readers: `requirements-archives.txt`. Respect provider access restrictions; a public secondary repository is not proof of unrestricted data licensing.
 
-The raw metadata inventory is [data/raw/sources_manifest.json](../data/raw/sources_manifest.json). It provides exact URLs and file hashes rather than treating the original website and a secondary archive as the same acquisition source. The archival code commit is not proof of the collection date or historical public availability of each football observation. Raw archives are kept locally; [restoration instructions](../data/raw/README.md) are included without adding provider-derived archives to Git.
+Paths: `data/raw/fbref/`, `data/raw/understat/`, `data/raw/transfermarkt/`. Raw files remain unmodified. Historical original RDS bytes/receipts are not necessary in the clone; their recorded hashes and acquisition metadata remain in the manifest.
 
-## FBref lineage and feature meaning
+## Cleaning and joining
 
-```text
-big5_player_{standard,shooting,passing,defense,possession,misc}.rds
-  → select target leagues/seasons and retain original FBref player IDs
-  → align categories on source player ID + league + season + club
-  → check playing-time compatibility before accepting auxiliary category statistics
-  → normalize units and compute per-90 rates
-  → aggregate compatible club stints within player + league + season
-  → five_league_pipeline_player_seasons.parquet (15,948 rows)
-  → model-eligible gallery; choose highest-minutes league per player/season
-  → five_league_pipeline_core_gallery.parquet (7,398 rows)
-  → frozen five_league_core_recommender.joblib
-```
+Entry point: `python -m src.pipeline`. Code: `src/preprocessing/review_dataset.py`, `collected.py`; category alignment helpers: `scripts/top_five_leagues.py`; profile/value normalization: `src/data/salimt_uploaded.py`; identity matching: `src/data/identity.py`, `matching.py`.
 
-`standard` supplies names, age, position, club, minutes, appearances, goals and assists. `shooting` supplies shots and shots on target; `defense` supplies interceptions and tackles won; `misc` supplies crosses and fouls committed/received. Passing and possession archives supply additional observed fields, but these are not all fitted model inputs. The core recommendation model uses nine measured per-90 features: goals, assists, shots, shots on target, crosses, interceptions, tackles won, fouls committed and fouls received. Goals plus assists is excluded as redundant.
+FBref statistical categories join on source player ID, league, season, club and checked exposure; aggregate club stints into player/league/season. Cross-league stints remain separate in history; the gallery chooses the highest-minutes league per source identity and season. Missing counts remain unknown; per-90 rates use minutes/90; invalid values are flagged/quarantined. Understat is a separate shot dataset, not an extra input to the fitted models. Transfermarkt identity proposals use supporting name/club/season metadata; they are provisional, not universal name-only keys.
 
-Same-source joins use FBref IDs, not names. `entity_id` identifies the player across seasons. Player histories remain separate per player/league/season, including transfers between leagues; the recommendation gallery chooses one league per player/season rather than blending competitions. Missing source observations remain unknown. Imputation/scaling are fitted only on training observations; served seasons use frozen transformations.
+Outputs: `data/processed/review/`. Frozen app inputs: `data/processed/real/`. Dictionary: `DATA_DICTIONARY.md`, `data_dictionary_raw.csv`, `data_dictionary_review.csv`.
 
-The requested range is **2020/21–2025/26**, but recent seasons lack sufficiently complete core statistical categories. Standard player-history rows are available for 2024/25 and partial 2025/26; this does not make those seasons complete recommendation galleries. [DATA_COVERAGE.csv](DATA_COVERAGE.csv) contains actual history and gallery counts for all five leagues and all six requested seasons, including zero coverage. [DATA_CATEGORY_COVERAGE.csv](DATA_CATEGORY_COVERAGE.csv) preserves the original raw/category alignment counts and status for every league, season and FBref category. The app offers complete recommendation galleries **2020/21–2023/24**. Training uses 2020/21–2021/22; validation uses 2022/23; the holdout uses 2023/24. The latest complete gallery contains 1,810 players. These are observed season cohorts, not live rosters.
+## Models and app
 
-## Understat lineage
+Training entry point: `python -m scripts.five_league_pipeline`; orchestration now uses the included raw CSVs and writes new timestamped outputs separately. Fitting/evaluation algorithms: `src/models/collected.py`, `validation.py`, `recommend.py`. Chronological splits prevent future-season fitting. Models are in `models/`; the original recorded training commit/hashes and evaluation are in `reports/five_league_pipeline/`. This packaging change does not change original numerical results or pretend the adapted orchestration was used in the earlier recorded run.
 
-The raw La Liga shot archive is parsed and filtered into a source-specific shot table, then normalized into `collected_understat_shots.parquet`: **45,847 observed shots**. Source player IDs and shot IDs are retained. Home/away conflicts are handled explicitly in the viewer; zero-xG shots remain real events. Optional four-league raw archives are prepared separately into `four_league_clean_shots.parquet`: **182,938 shots**, giving 228,785 locally available shots with La Liga. Those optional prepared/raw files are not bundled in Git.
+Streamlit: `src/app/streamlit_app.py`; frozen serving/checks: `trained.py`, `collected.py`; budget/value integrity: `budget.py`, `valuation_data.py`; source shot/history views: `player_analysis.py`. Core has six expert-weighted styles, not six supervised classifiers. Reported values are post-ranking filters with provisional identities and unverified EUR assumption, not transfer fees or historical publication evidence.
 
-Shots span requested seasons where observed; 2025/26 is partial. Some archived 2024/25 league coverage is incomplete. The app displays observed versus expected fixture counts and excludes partial seasons by default. Understat and FBref player identities are not automatically merged for recommendations. Shot records are descriptive source data, not historical transfer validation.
+## Review
 
-## Included valuations
-
-Raw valuation observations are separate from transfer fees. Price screening selects a reported valuation dated on or before the selected cutoff. That date is not proof that the record was publicly known at the historical cutoff. Identity proposals remain unreviewed; source currency is assumed EUR and has not been independently established. These limitations prevent claiming verified historical affordability or using valuations as recommendation model features.
-
-The optional loader requires `collected_salimt_values.parquet` and `europe_review_candidates.parquet` matching `models/real/valuation_manifest.json`. Their underlying user uploads are hashed in the raw manifest. Both prepared files are now included in Git, so a clean clone can use reported-value filtering without importing a separate local bundle. The full research branch also retains the earlier `collected_salimt_identity_candidates.parquet` input needed by its legacy loader. The uploaded Kaggle valuation dataset and historical transfer files are not necessary inputs for the currently served recommender, so they remain on the full research branch/local storage.
-
-## Integrity and reproducibility limits
-
-`models/real/runtime_manifest.json` preserves dataset versions, model/output fingerprints and original training-source fingerprints. `sources_manifest.json` records raw source fingerprints. The app's artifacts remain unchanged; this documentation does not create new evaluation outcomes. Restoration verifies exact archived bytes; preprocessing/training reproduction additionally requires the full research branch and its dependencies. The provider rights attached to raw data are not granted by the secondary repository's software licence. Transfermarkt source-use restrictions remain enforced by `src/data/source_rights.py`.
+Six notebooks cover source EDA, actual temporal/baseline/PCA/cluster validation, editable group exploration and human expert review. Human ratings and operational sessions remain pending. MLflow metadata and single-copy artifact SHA manifests, genuine screenshots, the cloud cost worksheet and original teaching documents remain included. Earlier abandoned experiments can be consulted at Git commit `252e0304a54216eb77bcdfb5c5ef73731043f158`; they are deliberately absent from this clean submission.

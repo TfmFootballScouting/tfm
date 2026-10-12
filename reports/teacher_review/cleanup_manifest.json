@@ -1,0 +1,14 @@
+{
+  "previous_commit": "252e0304a54216eb77bcdfb5c5ef73731043f158",
+  "tracked_files_before": 1152,
+  "removed_count": 904,
+  "removed_categories": [
+    "historical models/datasets/reports",
+    "abandoned transfer likelihood and scenario stages",
+    "duplicate MLflow artifacts",
+    "obsolete scripts/tests/notebooks",
+    "duplicate root tests folder"
+  ],
+  "preserved": "Original documents, real source CSVs/provenance, current cleaned inputs/models, six notebooks, active code/tests and teacher evidence",
+  "recovery": "Historical tracked files remain available in previous Git commit; ignored original research inputs retained outside checkout"
+}

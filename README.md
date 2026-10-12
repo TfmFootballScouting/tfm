@@ -4,14 +4,14 @@ Sistema de recomendación por **afinidad con seis estilos de juego**, con datos 
 
 **Autores:** Iván Galán López, Basma Marso, Carlos Valencia Sánchez.
 
-Rama para revisión: **`review/teacher-submission`**. Conserva la arquitectura y documentos originales, con las modificaciones actuales. La memoria original DOCX no se modifica. Estado de los 19 comentarios del profesor y propuestas pendientes: [TEACHER_FEEDBACK.md](docs/TEACHER_FEEDBACK.md).
+Rama para revisión: **`review/teacher-submission`**. Conserva la arquitectura y documentos originales, con las modificaciones actuales. La memoria original DOCX no se modifica. Estado de los 19 comentarios del profesor y evidencia pendiente: [TEACHER_FEEDBACK.md](docs/TEACHER_FEEDBACK.md).
 
 ## Qué incluye
 
 - Raw CSV separados por FBref, Understat y Transfermarkt, con origen/hashes y exportación documentada.
 - Limpieza, tasas por 90 y tablas CSV/Parquet reproducibles; ninguna sustitución sintética.
 - Seis estilos expertos; recomendador Core de cinco ligas, KNN/distancia, K-means y PCA.
-- Tres experimentos FBref reales conservados (Core, Offensive y Attack-on-Core); Core sirve la app.
+- Tres experimentos FBref reales conservados (Core, Offensive y Attack-on-Core); Core sirve la app; no se conservan modelos de etapas anteriores.
 - MLflow real con dataset/Git/tags, métricas y artefactos originales portables.
 - Streamlit: ranking, similares, comparación multijugador e historial, grupos ajustables/PCA, evolución y tiros.
 - Valores reportados con fecha, identidades provisionales y moneda EUR asumida; no estimador de precios.
@@ -49,7 +49,13 @@ python -m src.pipeline
 
 La entrada reconstruye `data/processed/review/` y verifica paridad numérica/identidades con la galería servida. **No reentrena ni sobrescribe modelos congelados.** Código: `src/preprocessing/review_dataset.py`, `collected.py` y helpers en `scripts/top_five_leagues.py`. CSV grandes se guardan como `.csv.gz`, además de Parquet.
 
-Los entrenamientos completos originales están en `scripts/five_league_pipeline.py` (orquestación/MLflow), `src/models/collected.py` (cohortes/baselines/selección) y `src/models/recommend.py` (imputación/escalado/KNN/PCA/K-means). Para repetir esa ruta de archivos RDS instalar también `requirements-archives.txt` y restaurar los archives mediante `python -m src.scraping.raw_inputs --download`; véase [FIVE_LEAGUE_FULL_PIPELINE.md](docs/FIVE_LEAGUE_FULL_PIPELINE.md). No se afirma haber generado un nuevo entrenamiento por reorganizar esta entrega.
+El entrenamiento/evaluación reproducible desde los CSV incluidos está en `scripts/five_league_pipeline.py` (orquestación/MLflow), `src/models/collected.py` (cohortes/baselines/selección) y `src/models/recommend.py` (imputación/escalado/KNN/PCA/K-means). La orquestación se adaptó a la entrega limpia; los resultados y hashes del entrenamiento original permanecen documentados. Para entrenar sin sobrescribir los modelos incluidos:
+
+```powershell
+python -m scripts.five_league_pipeline
+```
+
+Guarda nuevos resultados en `reports/retraining/<fecha>/`. Para una comprobación breve del flujo completo: `python -m scripts.five_league_pipeline --models core --bootstrap-trials 2`. Dos repeticiones son una comprobación de ejecución, no sustituyen la validación original con 30 repeticiones. No es necesario reentrenar para abrir la app.
 
 ### MLflow UI
 
@@ -58,7 +64,7 @@ python -m pip install -r requirements-research.lock.txt
 python -m mlflow ui --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlartifacts --host 127.0.0.1 --port 5000
 ```
 
-La DB local no se incluye en Git. La evidencia original del run principal está en `reports/five_league_pipeline/mlflow_export/core/`, con `run.json`, evaluación y modelo. Una DB vacía de un clon no muestra automáticamente los runs históricos. Capturas reales/reproducción se detallan en la matriz del profesor; no se presentan screenshots inexistentes.
+La DB local no se incluye en Git. La evidencia original del run principal está en `reports/five_league_pipeline/mlflow_export/core/`, con `run.json` y un `artifact_manifest.json` que enlaza las copias únicas de evaluación/modelo con sus SHA256. Una DB vacía de un clon no muestra automáticamente los runs históricos. Las capturas reales del run original están en `docs/evidence/mlflow/`.
 
 ## Estructura
 
@@ -68,8 +74,8 @@ tfm/
 │   ├── raw/{fbref,understat,transfermarkt}/  # CSV fuente y manifiesto de procedencia
 │   └── processed/{review,real}/             # CSV/Parquet limpios y artefactos servidos
 ├── docs/                  # documentos originales, diccionario y revisión del profesor
-├── models/                # recommender.joblib/metrics.json actuales; comparativas en real/
-├── notebooks/             # EDA por fuente, análisis de modelos y etapas históricas
+├── models/                # recommender.joblib/metrics.json actuales y dos modelos de comparación
+├── notebooks/             # tres EDA, validación de modelos, grupos y revisión experta
 ├── src/
 │   ├── scraping/          # código original/archivos publicados; no crawling nuevo implícito
 │   ├── preprocessing/     # limpieza y reconstrucción de CSV
@@ -80,11 +86,11 @@ tfm/
 │   ├── process/           # event log operativo
 │   ├── tests/             # pruebas de componentes implementados
 │   └── pipeline.py
-├── scripts/               # reproducción, ingesta y MLflow
-└── reports/               # evidencia/diccionarios/plots/runs originales y revisión
+├── scripts/               # solo reproducción/EDA/diccionario/MLflow necesarios
+└── reports/               # solo evaluación actual y reporte final de revisión
 ```
 
-Se usa la grafía original `scraping` y `preprocessing` para conservar imports. `requirements.txt` contiene solo 8 dependencias directas de app; `requirements-research*` separa notebooks/MLflow/tests; `requirements-archives.txt` es opcional para RDS.
+Se usa la grafía original `scraping` y `preprocessing` para conservar imports. `requirements.txt` contiene solo 8 dependencias directas de app; `requirements-research*` separa notebooks/MLflow/tests.
 
 ## Estilos de juego
 
@@ -107,7 +113,7 @@ Son pesos expertos sobre estadísticas estandarizadas, no seis modelos supervisa
 
 FBref/Understat fueron descargados como **RDS desde GitHub**, después exportados a CSV con el subconjunto objetivo sin limpiar campos. No se llaman falsamente CSV descargados directamente. Los uploads de Transfermarkt se copian byte a byte. `data/raw/review_manifest.json` documenta esa diferencia. Originales RDS/receipts se preservan localmente; el scraping original no es la ruta de datos de los experimentos actuales.
 
-Los datasets originales mixtos/demo y los reportes antiguos se conservan como evidencia de etapas anteriores; **no entran en `src.pipeline` ni en los experimentos finales**. El periodo 2025/26 es parcial; Segunda no es una galería táctica actual. No se añade transfer likelihood ni predicción futura.
+Se han retirado de esta rama los datasets demo/mixtos, modelos antiguos, escenarios, transfer likelihood, scripts abandonados y reportes históricos. La versión anterior queda accesible en el historial Git; no forma parte de esta entrega limpia. El periodo 2025/26 es parcial; Segunda no es una galería táctica actual. No se añade transfer likelihood ni predicción futura.
 
 ## Notebooks y validación
 
@@ -118,7 +124,7 @@ Orden recomendado para el profesor:
 3. [Transfermarkt EDA](notebooks/transfermarkt_eda.ipynb): perfiles, valores fechados, ceros/nulos/outliers y uso restringido.
 4. [Modelos y validación](notebooks/11_five_league_full_pipeline.ipynb): splits temporales, baselines, PCA/K-means, bootstrap y MLflow.
 
-Los notebooks numerados anteriores conservan resultados de sus etapas, no métricas del dataset actual. El análisis de escenarios permanece académico, sin pestaña adicional en la app.
+Solo se incluyen seis notebooks: los tres EDA, validación de los modelos actuales, exploración de grupos y revisión experta. No se incluyen notebooks de etapas abandonadas.
 
 Core holdout: MRR 0,095498; Recall@5 12,95%; Recall@10 19,51%. La tarea recupera la identidad estadística futura del mismo jugador; **no demuestra éxito de fichajes**. Validación experta y transferencia real permanecen pendientes.
 
@@ -129,7 +135,7 @@ python -m pip install -r requirements-research.lock.txt
 python -m pytest -q
 ```
 
-El workflow CI ejecuta un conjunto portable de contratos/modelo/UI/datos actuales; las pruebas completas incluyen integraciones históricas que requieren archivos originales locales y lectores opcionales. El informe de revisión distingue tests completos en el workspace de smoke tests de un clon limpio; no afirma que un hosted CI con entradas ausentes haya pasado. Fixtures artificiales son solo pruebas unitarias.
+El conjunto de tests de esta rama utiliza únicamente los archivos incluidos. Fixtures artificiales se usan solo en pruebas unitarias, nunca en los experimentos finales. La comprobación del checkout limpio se documenta en `reports/teacher_review/`.
 
 ## Documentación
 
@@ -145,7 +151,7 @@ El workflow CI ejecuta un conjunto portable de contratos/modelo/UI/datos actuale
 
 ## Stack
 
-Python 3.12, pandas, NumPy/SciPy, scikit-learn, Parquet/CSV, Plotly, Streamlit. MLflow, Matplotlib/Seaborn, Jupyter y pytest en entorno research. SQLite de MLflow no sustituye una base operativa de decisiones; esa mejora espera aprobación.
+Python 3.12, pandas, NumPy/SciPy, scikit-learn, Parquet/CSV, Plotly, Streamlit. MLflow, Matplotlib/Seaborn, Jupyter y pytest en entorno research. SQLite operativo para solicitudes/decisiones es independiente de MLflow; los registros de participantes permanecen locales.
 
 ### Teacher-review additions
 
@@ -154,3 +160,7 @@ The review branch includes complete prepared-field and raw-source catalogs, a re
 The app records iterative scouting requests and player decisions in a separate local SQLite database. See [operational tracking](docs/OPERATIONAL_TRACKING.md). Participant records stay local and are not pushed to GitHub.
 
 The [cloud cost worksheet](docs/evidence/cloud/README.md) separates compute/storage/transfer/backups/requests. Official AWS rates and a dated exchange quote remain pending after network access returned 403. Run `python -m scripts.cloud_cost_report`; unknown prices do not produce a fabricated total.
+
+### Limpieza de la entrega
+
+Se conserva la estructura original `data/`, `docs/`, `models/`, `notebooks/` y `src/{app,models,preprocessing,scraping,tests}`. Las carpetas `features`, `data` y `process` dentro de `src` son dependencias reales de la aplicación; `scripts` contiene los ejecutables de reproducción y `reports` los resultados actuales revisables. No hay una carpeta de tests duplicada en la raíz. [DATA_SOURCES.md](docs/DATA_SOURCES.md) explica el recorrido exacto de las fuentes y el código correspondiente.

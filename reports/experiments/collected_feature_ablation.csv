@@ -1,3 +1,0 @@
-phase,queries,method,mrr_core,mrr_attack,mrr_difference,difference_ci_low,difference_ci_high,design
-holdout,249,euclidean_profile,0.22335190005016758,0.06590902250227865,0.1574428775478889,0.12463067979977968,0.1924983591763071,post_hoc_matched_cohort_diagnostic_not_independent_confirmation
-validation,248,euclidean_profile,0.22764237689483555,0.07861133503730273,0.14903104185753283,0.1104848651718207,0.18690520816921702,post_hoc_matched_cohort_diagnostic_not_independent_confirmation

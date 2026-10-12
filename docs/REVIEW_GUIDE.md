@@ -1,23 +1,15 @@
-# Teacher review guide
+# Teacher review — clean submission
 
-Start at the root README. It retains the original sections and authors while describing the actual current system.
+This branch contains current project inputs/code/models/notebooks and required evidence only. Historical stages and duplicate artifacts were removed; the previous snapshot remains in Git history at `252e030`.
 
-1. Read `modulo2_caso_uso.md` and `memoria_resumen.md` for the problem, scope and evaluation limits.
-2. Inspect `data/raw/review_manifest.json` and the 15 CSVs in the three source folders. RDS-to-CSV exports are distinguished from unchanged user-provided CSVs.
-3. Run `python -m src.pipeline` with research dependencies to recreate clean CSV/Parquet tables under `data/processed/review/`. The frozen gallery/model are not overwritten; parity is checked.
-4. Read the three source EDA notebooks: `fbref_eda`, `understat_eda`, `transfermarkt_eda`. They execute on retained real data and include interpretation, missingness, distributions/outliers and source-specific limitations.
-5. Read notebook 11 for actual chronological model selection, baselines, PCA/K-means diagnostics, stability and MLflow. Its original results are not newly fabricated for this branch.
-6. Inspect `models/recommender.joblib`, `metrics.json` and `models/README.md`; open the current main run under `reports/five_league_pipeline/mlflow_export/core/`.
-7. Run Streamlit and exercise the six styles, five-league filters, reported-value budget, similar players, comparisons, groups, development and shot analysis.
-8. Review `src/tests/` and `reports/teacher_review/`. Full retained-workspace tests and clean-clone checks are separate claims; optional archive integrations need retained inputs.
-9. Read the original Module 9 documents and `TEACHER_FEEDBACK.md` for the 19-comment matrix, approval proposals and manual evidence instructions.
+Read in this order:
 
-Original DOCX proposal remains byte-for-byte unchanged. Historical-stage notebooks/reports/raw demo files are retained for traceability and identified as historical; they are not the current source inputs or proof of transfer outcomes. There are no fabricated expert ratings, human process sessions, AWS quotations or MLflow screenshots.
+1. `README.md`: app startup, CSV cleaning and separate training commands.
+2. `DATA_SOURCES.md`: acquisition, raw paths, joins, temporal handling and model code.
+3. `DATA_DICTIONARY.md` and raw/prepared CSV glossaries.
+4. Three source EDA notebooks, notebook 11 for current model evaluation, notebook 12 for group analysis, and `expert_validation.ipynb` for human review (ratings pending).
+5. Original Module 2/9 documents and `memoria_resumen.md`.
+6. `TEACHER_FEEDBACK.md`: all 19 comments and real remaining manual tasks.
+7. `reports/teacher_review/CLEANUP_REPORT.md`: final clean-branch verification; `docs/evidence/mlflow/` and `docs/evidence/cloud/` for experiment/cost evidence.
 
-## Executed checks on this branch
-
-135 tests passed with retained original inputs (14 dependency deprecation warnings); 56 portable tests passed in a fresh clone. The fresh clone rebuilt all eight CSV/Parquet outputs with exactly matching hashes. Runtime-only app startup and reported-value budget filtering passed. Desktop/mobile development and shot charts rendered without JavaScript errors or horizontal mobile overflow. Native Windows, genuine expert sessions, AWS quotes and MLflow screenshots remain unverified/pending. Reports: `reports/teacher_review/verification.json`, `tests.xml`, `clean_clone_tests.xml`.
-
-## Approved A/B/C additions
-
-Read `reports/teacher_review/APPROVED_IMPROVEMENTS.md` for the current completion/limitations report. The extended suite passed 140 tests. Actual MLflow screenshots are in `docs/evidence/mlflow/`; the expert notebook is executed with pending ratings. Operational SQLite and decision feedback are implemented. The detailed cloud worksheet is executable, but official price/FX evidence is blocked by HTTP 403 and requires the documented manual capture.
+Current Core is expert style affinity plus nearest-player profiles, PCA and K-means. Evaluation uses chronological same-player future-profile retrieval, not observed transfer success. Real reported values are post-ranking filters; identity matching and currency remain provisional. Human ratings, real operational sessions, official AWS pricing/FX evidence and native Windows verification remain pending.

@@ -1,13 +1,11 @@
-# Raw data for teacher review
+# Raw real data and provenance
 
-Current review inputs are the CSVs in `fbref/`, `understat/` and `transfermarkt/`. `review_manifest.json` lists every file, source/provider, exact hash, row count, source columns and extraction rule.
+Only the 15 source CSV inputs and `review_manifest.json` are part of this clean submission:
 
-- FBref: six source-preserving target-season CSV exports from the retained `JaseZiv/worldfootballR_data` RDS release assets.
-- Understat: five source-preserving shot CSV exports from the same secondary GitHub repository.
-- Transfermarkt: four unchanged CSV uploads with claimed origin `salimt/football-datasets`; exact upstream repository commit was not verified.
+- `fbref/`: six statistical categories exported without cleaning from checksum-pinned `JaseZiv/worldfootballR_data` GitHub release RDS files; five leagues and target season subset.
+- `understat/`: five league shot CSVs exported from the same repository's release archives; original source values retained.
+- `transfermarkt/`: four byte-preserved user-uploaded CSVs; `salimt/football-datasets` origin declared by the uploader, not commit-verified.
 
-FBref/Understat files were downloaded as **RDS, not CSV**. CSV export preserves source columns/values while selecting the declared five-league/2020–2025 target range; it does not clean, merge or impute them. Archive URLs/checksums and original acquisition timestamps remain in the manifest; original RDS bytes are locally preserved under `sources/` and can be restored using `src/scraping/raw_inputs.py`. No new provider crawl or synthetic replacement occurs during packaging.
+The manifest records source URL/claimed repository, exact CSV and source-archive SHA256, acquisition timestamp, export reader/filter and columns. FBref/Understat were downloaded as RDS, then exported; they were not directly scraped or downloaded as CSV. Transfermarkt inputs were uploaded. Original scraper implementations remain under `src/scraping/`; they were not the acquisition route for the served models.
 
-Older `players_raw.*` and HTML samples are historical original-stage evidence, including mixed/demo content. They are not listed in the review-input manifest and are never inputs to `python -m src.pipeline` or final model experiments. Original receipts and source-use restrictions are retained; GitHub hosting does not establish provider training permission.
-
-Preprocessing: `src/preprocessing/review_dataset.py` and `collected.py`. Prepared outputs and their hashes: `data/processed/review/manifest.json`. Code to recreate these exports from retained archives/uploads: `scripts/build_review_csvs.py` (requires optional archive readers).
+Raw CSVs are never rewritten by the cleaning/training pipeline. Historical mixed/demo samples, failed scraper trials and unused transfer/Kaggle datasets were removed from this review branch. Earlier versions remain in Git history. Source archives are optional, not needed to reproduce cleaning or training. `src/scraping/raw_inputs.py` can restore recorded GitHub archive bytes with exact SHA verification; it does not crawl provider pages. Source access/rights restrictions remain documented and enforced.

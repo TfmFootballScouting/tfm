@@ -1,6 +1,6 @@
 # Data dictionary — current teacher-review datasets
 
-Machine-readable catalogs: `docs/data_dictionary_review.csv` (prepared tables), `data/raw/review_manifest.json` (every raw column, source, selection and checksum), and original source-specific dictionaries under `reports/`. Some extended/raw definitions still require provider-glossary verification; those entries are explicitly marked pending rather than guessed.
+Machine-readable catalogs: `docs/data_dictionary_review.csv` (prepared tables), `data/raw/review_manifest.json` (every raw column, source, selection and checksum), and `docs/data_dictionary_raw.csv` (source-field glossary). Some extended/raw definitions still require provider-glossary verification; those entries are explicitly marked pending rather than guessed.
 
 ## Grain and keys
 
@@ -57,10 +57,13 @@ Core uses nine per-90 fields: gls, ast, sh, sot, crs, int, tklw, fls, fld. Exper
 
 ## Model evaluation fields
 
-MRR is the mean reciprocal rank of the same player's next-season identity; Recall@5/10 is its top-K hit probability, including fair tie handling. They are not transfer success rates. Silhouette describes clustering separation; adjusted Rand index describes partition stability; top-five Jaccard compares shortlist overlap; PCA explained variance describes retained standardized-feature variation. Their cohorts and uncertainty limits are in notebook 11 and `FIVE_LEAGUE_FULL_PIPELINE.md`.
+MRR is the mean reciprocal rank of the same player's next-season identity; Recall@5/10 is its top-K hit probability, including fair tie handling. They are not transfer success rates. Silhouette describes clustering separation; adjusted Rand index describes partition stability; top-five Jaccard compares shortlist overlap; PCA explained variance describes retained standardized-feature variation. Their cohorts and uncertainty limits are in notebook 11 and `reports/five_league_pipeline/`.
 
 ## Approved extended glossary
 
 `docs/data_dictionary_review.csv` now defines every prepared-table field, including per-90 calculations, flags, shot aggregation and temporal provenance. Rebuild with `python scripts/complete_review_dictionary.py`.
 
 `docs/data_dictionary_raw.csv` catalogs every retained raw CSV field and source-specific unit. Rebuild with `python -m scripts.raw_review_dictionary`. Two unused Transfermarkt team fields, `season_points_for` and `season_points_against`, remain explicitly unverified; no semantics or calculations are invented for them. FBref progressive metrics use the provider's definitions, which may change across seasons; distance metrics are yards. Current profile metadata must not be treated as historical knowledge. Raw values' currency is still unverified.
+
+
+Clean submission update: obsolete stage files and duplicate artifacts were removed. Use `DATA_SOURCES.md` for current paths and `reports/teacher_review/CLEANUP_REPORT.md` for current verification. Earlier verification counts refer to the pre-cleanup branch snapshot.
