@@ -113,5 +113,3 @@ Scouting scenario evaluation remains in `notebooks/09_scouting_scenarios.ipynb` 
 ## Transfer-likelihood feasibility
 
 The real-data label audit and executed notebook are documented in [TRANSFER_LIKELIHOOD.md](docs/TRANSFER_LIKELIHOOD.md). It finds reported positive candidates but no verified negative labels; no transfer model has been trained.
-
-The **Datos disponibles** page now displays the transfer-model feasibility audit, with observed case counts and an explicit untrained/unvalidated status. No transfer probabilities are shown.
