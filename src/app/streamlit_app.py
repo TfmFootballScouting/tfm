@@ -20,6 +20,7 @@ from src.app.budget import candidate_links, attach_reported_values, screen_budge
 from src.app.presentation import CSS as MODERN_CSS, shortlist_cards
 from src.app.trained import load_trained_service
 from src.app.europe_budget import load_europe_budget_inputs
+from src.app.valuation_data import input_signature as valuation_input_signature
 from src.app.scouting_views import field_label, display_frame, group_profiles, POSITIONS
 
 # ── Paleta verde fútbol ──────────────────────────────────────────────────────
@@ -45,7 +46,7 @@ STYLE_ICONS = {
 
 
 @st.cache_data
-def load_reported_budget_data():
+def load_reported_budget_data(signature):
     return load_europe_budget_inputs()
 
 
@@ -225,19 +226,24 @@ def main() -> None:
         styles = {key: value for key, value in styles.items() if key in service.supported_styles}
     style_labels = {k: v["label"] for k, v in styles.items()}
     price_data_status = "available"
+    price_data_error = None
+    price_signature = None
     try:
-        reported_values, price_candidates, canonical_profiles = load_reported_budget_data()
+        price_signature = valuation_input_signature()
+        reported_values, price_candidates, canonical_profiles = load_reported_budget_data(price_signature)
         price_links = candidate_links(rec.players, price_candidates, canonical_profiles)
         season_prices = attach_reported_values(rec.players, price_links, reported_values, reported_values.valuation_date.max().date())
         budget_data_available = bool(season_prices.reported_value_screenable.any())
-    except FileNotFoundError:
+    except FileNotFoundError as exc:
         reported_values = price_links = None
         budget_data_available = False
         price_data_status = "missing"
-    except (ValueError, KeyError):
+        price_data_error = str(exc)
+    except (ValueError, KeyError) as exc:
         reported_values = price_links = None
         budget_data_available = False
         price_data_status = "invalid"
+        price_data_error = f"{type(exc).__name__}: {exc}"
 
     # ── Sidebar ───────────────────────────────────────────────────────────────
     with st.sidebar:
@@ -290,13 +296,16 @@ def main() -> None:
                 max_budget = st.number_input("Presupuesto máximo (M€)", min_value=0.01, value=10.0, step=1.0)
                 st.caption("Se excluyen valores desconocidos y ceros ambiguos. No se estiman precios faltantes.")
         elif price_data_status == "missing":
-            st.info("Filtro por valor de mercado no disponible: faltan los datos locales de valoraciones. "
-                    "Consulta la instalación de datos opcionales en el README.")
+            st.info("Filtro por valor de mercado no disponible: falta un archivo incluido de valoraciones. "
+                    "Actualiza el proyecto para recuperar los archivos incluidos.")
         elif price_data_status == "invalid":
-            st.error("No se pueden cargar las valoraciones: los archivos no superan las comprobaciones de integridad. "
+            st.error("No se pueden cargar las valoraciones: ha fallado una comprobación de datos. "
                      "Las recomendaciones siguen disponibles sin filtro de valor.")
         else:
             st.info("No hay valores reportados utilizables para los perfiles de esta temporada.")
+        if price_data_error:
+            with st.expander("Detalle del problema de valoraciones"):
+                st.code(price_data_error, language="text")
         top_n = st.slider("Nº de resultados", 5, 30, 10, key="scout_filter_top_n")
 
         st.divider()
@@ -344,7 +353,7 @@ def main() -> None:
     # ── Tab 1: Recomendaciones ────────────────────────────────────────────────
     with tab1:
         filters = (style_key, position, tuple(selected_leagues), season, max_age, max_budget, str(valuation_cutoff), top_n,
-                   model_kind, min_minutes, excluded_club, scope, training)
+                   model_kind, min_minutes, excluded_club, scope, training, price_signature)
         if run or "last_result" not in st.session_state or st.session_state.get('last_filters') != filters:
             if not run and st.session_state.get('last_filters') != filters:
                 st.session_state.pop('scouting_case', None)
