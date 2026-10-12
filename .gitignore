@@ -261,3 +261,6 @@ reports/five_league_pipeline/scenario_shortlists.csv
 !/data/processed/real/collected_salimt_values.parquet
 !/data/processed/real/collected_salimt_identity_candidates.parquet
 !/data/processed/real/europe_review_candidates.parquet
+
+# Per-player transfer label review remains separate from released app inputs.
+/data/processed/real/transfer_likelihood_label_candidates.parquet

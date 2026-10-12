@@ -109,3 +109,7 @@ The minimal serving branch is `minimal/scoutiq-runtime`; the full preparation, t
 The included prepared valuation files make the reported-value budget filter available after cloning. Source identity links remain provisional, values retain their dates, and currency remains assumed EUR. Valuations do not enter recommendation model fitting.
 
 Scouting scenario evaluation remains in `notebooks/09_scouting_scenarios.ipynb` and `src/app/scenarios.py`. The separate Streamlit scenarios tab has been removed; everyday recruitment requirements are handled by the main recommendation filters.
+
+## Transfer-likelihood feasibility
+
+The real-data label audit and executed notebook are documented in [TRANSFER_LIKELIHOOD.md](docs/TRANSFER_LIKELIHOOD.md). It finds reported positive candidates but no verified negative labels; no transfer model has been trained.
