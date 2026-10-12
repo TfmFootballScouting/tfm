@@ -49,21 +49,23 @@ def test_empty_and_invalid_requirements(inputs):
         with pytest.raises(ValueError): run_scenario(rec, replace(req, **changes), links, values)
 
 
-def test_scenario_app_execution_export_and_stale_invalidation(monkeypatch, tmp_path):
-    log = tmp_path / 'scenario_events.jsonl'
+def test_main_budget_search_replaces_scenario_page(monkeypatch, tmp_path):
+    log = tmp_path / 'scouting_events.jsonl'
     monkeypatch.setenv('TFM_EVENT_LOG', str(log))
     app = AppTest.from_file(str(ROOT/'src/app/streamlit_app.py'), default_timeout=60).run()
     assert not app.exception
-    next(s for s in app.selectbox if s.label == 'Plantilla de requisitos').select('Ataque vertical').run()
-    next(b for b in app.button if b.label == 'Ejecutar escenario').click().run()
+    assert not any('Escenarios' in tab.label for tab in app.tabs)
+    assert not any(s.label == 'Plantilla de requisitos' for s in app.selectbox)
+    app.checkbox(key='scout_filter_budget_enabled').check().run()
+    next(b for b in app.button if b.label == '🔍 Buscar jugadores').click().run()
     assert not app.exception
-    rows = app.session_state['scenario_result']['shortlist']
-    assert len(rows) > 0 and rows.reported_valuation_date.le('2024-06-30').all()
-    case = app.session_state['scenario_case']
+    rows = app.session_state['last_result']
+    assert len(rows) > 0 and rows.reported_value_screenable.all()
+    assert rows.reported_market_value_eur.between(1, 10_000_000).all()
+    assert any(w.proto.label == 'Descargar shortlist CSV' for w in app.get('download_button'))
+    case = app.session_state['scouting_case']
     events = [json.loads(line) for line in log.read_text().splitlines()]
     assert [e['activity'] for e in events if e['case_id'] == case] == ['need_defined', 'search_executed', 'ranking_generated']
-    next(b for b in app.button if b.label == 'Registrar revisión del escenario').click().run()
+    next(b for b in app.button if b.label == 'Registrar revisión de shortlist').click().run()
+    assert not app.exception
     assert json.loads(log.read_text().splitlines()[-1])['activity'] == 'shortlist_reviewed'
-    next(n for n in app.number_input if n.label == 'Edad máxima del escenario').set_value(24).run()
-    assert 'scenario_result' not in app.session_state.filtered_state
-    assert 'scenario_case' not in app.session_state.filtered_state

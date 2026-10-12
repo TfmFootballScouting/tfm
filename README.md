@@ -107,3 +107,5 @@ python -m src.scraping.raw_inputs --download
 The minimal serving branch is `minimal/scoutiq-runtime`; the full preparation, training, notebooks and research reports remain on this branch. Prepared valuation files and identity proposals are included for budget screening after cloning; provider-derived raw archives remain local.
 
 The included prepared valuation files make the reported-value budget filter available after cloning. Source identity links remain provisional, values retain their dates, and currency remains assumed EUR. Valuations do not enter recommendation model fitting.
+
+Scouting scenario evaluation remains in `notebooks/09_scouting_scenarios.ipynb` and `src/app/scenarios.py`. The separate Streamlit scenarios tab has been removed; everyday recruitment requirements are handled by the main recommendation filters.
