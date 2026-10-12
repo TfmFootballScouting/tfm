@@ -1,0 +1,31 @@
+source,league,season,category,history_rows,gallery_rows,status,app_recommendation_season
+FBref via worldfootballR,La Liga,2020-2021,player_history_and_core_gallery,570,393,observed,True
+FBref via worldfootballR,La Liga,2021-2022,player_history_and_core_gallery,603,396,observed,True
+FBref via worldfootballR,La Liga,2022-2023,player_history_and_core_gallery,583,385,observed,True
+FBref via worldfootballR,La Liga,2023-2024,player_history_and_core_gallery,598,391,observed,True
+FBref via worldfootballR,La Liga,2024-2025,player_history_and_core_gallery,589,1,observed,False
+FBref via worldfootballR,La Liga,2025-2026,player_history_and_core_gallery,435,0,partial,False
+FBref via worldfootballR,Premier League,2020-2021,player_history_and_core_gallery,524,369,observed,True
+FBref via worldfootballR,Premier League,2021-2022,player_history_and_core_gallery,537,368,observed,True
+FBref via worldfootballR,Premier League,2022-2023,player_history_and_core_gallery,554,377,observed,True
+FBref via worldfootballR,Premier League,2023-2024,player_history_and_core_gallery,570,371,observed,True
+FBref via worldfootballR,Premier League,2024-2025,player_history_and_core_gallery,562,0,observed,False
+FBref via worldfootballR,Premier League,2025-2026,player_history_and_core_gallery,402,0,partial,False
+FBref via worldfootballR,Bundesliga,2020-2021,player_history_and_core_gallery,496,338,observed,True
+FBref via worldfootballR,Bundesliga,2021-2022,player_history_and_core_gallery,511,322,observed,True
+FBref via worldfootballR,Bundesliga,2022-2023,player_history_and_core_gallery,506,328,observed,True
+FBref via worldfootballR,Bundesliga,2023-2024,player_history_and_core_gallery,494,324,observed,True
+FBref via worldfootballR,Bundesliga,2024-2025,player_history_and_core_gallery,481,0,observed,False
+FBref via worldfootballR,Bundesliga,2025-2026,player_history_and_core_gallery,356,0,partial,False
+FBref via worldfootballR,Serie A,2020-2021,player_history_and_core_gallery,594,383,observed,True
+FBref via worldfootballR,Serie A,2021-2022,player_history_and_core_gallery,608,395,observed,True
+FBref via worldfootballR,Serie A,2022-2023,player_history_and_core_gallery,577,394,observed,True
+FBref via worldfootballR,Serie A,2023-2024,player_history_and_core_gallery,589,390,observed,True
+FBref via worldfootballR,Serie A,2024-2025,player_history_and_core_gallery,599,2,observed,False
+FBref via worldfootballR,Serie A,2025-2026,player_history_and_core_gallery,408,0,partial,False
+FBref via worldfootballR,Ligue 1,2020-2021,player_history_and_core_gallery,574,377,observed,True
+FBref via worldfootballR,Ligue 1,2021-2022,player_history_and_core_gallery,589,382,observed,True
+FBref via worldfootballR,Ligue 1,2022-2023,player_history_and_core_gallery,585,377,observed,True
+FBref via worldfootballR,Ligue 1,2023-2024,player_history_and_core_gallery,526,334,observed,True
+FBref via worldfootballR,Ligue 1,2024-2025,player_history_and_core_gallery,542,1,observed,False
+FBref via worldfootballR,Ligue 1,2025-2026,player_history_and_core_gallery,386,0,partial,False

@@ -35,7 +35,7 @@ python -m streamlit run src/app/streamlit_app.py
 
 ```text
 data/
-  raw/                      # original layout; raw archives remain on research branch/local storage
+  raw/                      # original layout; raw archives retained locally; pinned manifest and restoration utility included
   external/                 # original layout
   processed/real/           # real player gallery, player history and La Liga shots
 models/real/                # frozen five-league model and checksum/provenance manifest
@@ -68,3 +68,7 @@ These are provisional reported market assessments, with unverified cross-source 
 La Liga shot data is supplied. Additional four-league shot analysis needs the local `data/processed/real/four_league_clean_shots.parquet` matching the manifest. Obtain/prepare optional data using the workflows on the research branch, observing source access and licensing requirements. Optional provider-derived files are ignored by Git and are not published by this branch. Missing optional files hide their controls or show an availability message; a checksum mismatch is an error and must be investigated.
 
 Observed scouting sessions write locally to ignored `data/events/scouting.jsonl`; `TFM_EVENT_LOG` can select another path. No simulated event log is bundled. Keep all source attribution and restrictions when using the retained artifacts. This application extends the original [tfm_futbol](https://github.com/valen28030/tfm_futbol) project.
+
+## Data provenance
+
+See [data sources and lineage](docs/DATA_SOURCES.md), [coverage](docs/DATA_COVERAGE.csv) and [raw input restoration](data/raw/README.md). Raw archives are retained locally with verified original checksums; metadata and restoration commands are included in this branch.
