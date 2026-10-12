@@ -76,5 +76,3 @@ See [data sources and lineage](docs/DATA_SOURCES.md), [coverage](docs/DATA_COVER
 Recruitment scenario analysis is retained in the research branch (`notebooks/09_scouting_scenarios.ipynb` and `src/app/scenarios.py`). It is not exposed as a separate Streamlit page; the main recommendation filters cover everyday scouting searches.
 
 Transfer-likelihood feasibility is documented in [TRANSFER_LIKELIHOOD.md](docs/TRANSFER_LIKELIHOOD.md). The audit code, executed notebook and aggregate results are on the full research branch. No transfer predictor is trained or exposed in this application.
-
-The app’s **Datos disponibles** section includes **Probabilidad de transferencia · estado del proyecto**, with the real label-audit counts and an explicit untrained/unvalidated status. It does not display transfer probabilities.

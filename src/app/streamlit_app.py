@@ -608,19 +608,6 @@ def main() -> None:
         st.dataframe(display_frame(available), hide_index=True, use_container_width=True)
         st.caption('Solo se ofrecen jugadores con al menos 450 minutos y suficientes estadísticas. Un valor desconocido no equivale a cero. La evaluación técnica está documentada en los notebooks del proyecto.')
 
-        with st.expander('Probabilidad de transferencia · estado del proyecto'):
-            transfer_status = json.loads((ROOT / 'models/real/transfer_likelihood_status.json').read_text(encoding='utf-8'))
-            st.info('En preparación: el modelo de probabilidad de transferencia todavía no está entrenado ni validado.')
-            st.write('Objetivo: estimar la probabilidad de un cambio permanente de club durante los próximos 12 meses.')
-            st.write(f"La auditoría analizó {transfer_status['cases']:,} casos jugador-temporada de datos reales.")
-            counts = transfer_status['status_counts']
-            st.write(f"• {counts['reported_permanent_transfer_pending_review']:,} casos con transferencia reportada pendiente de revisión.")
-            st.write(f"• {counts['no_recorded_permanent_transfer_followup_unknown']:,} casos sin transferencia registrada y seguimiento sin verificar.")
-            st.write(f"• {counts['identity_unmapped']:,} casos sin cruce de identidad respaldado.")
-            st.caption('Faltan casos verificados de jugadores que no cambiaron de club, revisión de identidades y autorización de uso para entrenar. '
-                       'La ausencia de un registro no demuestra que un jugador permaneciera. No se muestran probabilidades de transferencia.')
-            st.markdown('[Ver auditoría y requisitos](https://github.com/TfmFootballScouting/tfm/blob/improve/reproducible-scouting/docs/TRANSFER_LIKELIHOOD.md)')
-
     from src.app.player_analysis import render_development, render_shots
     with tabs[5]:
         render_development(service, selected_leagues)
