@@ -56,16 +56,16 @@ The application supports six tactical styles; selecting one or several of La Lig
 
 The supplied model, gallery, history and shot dataset are unchanged real-data artifacts from the research branch. `models/real/runtime_manifest.json` records their original SHA-256 fingerprints, dataset version and research commit. Exact training/preprocessing source files are retained because the loader checks their fingerprints; training scripts, evaluation exports and duplicate models are excluded. The full branch holds source coverage, provenance records, validation limitations and original acquisition snapshots. Existing dataset rows retain their source/provenance fields; this branch performs no downloads or synthetic fallback.
 
-## Optional local data
+## Included valuations and optional shot data
 
-A clean clone runs without private valuation data. Budget screening appears only when the following locally retained files match the manifest:
+A clean clone includes the prepared valuation files below. Budget screening is available when their original checksums match the manifest:
 
 - `data/processed/real/collected_salimt_values.parquet`
 - `data/processed/real/europe_review_candidates.parquet`
 
 These are provisional reported market assessments, with unverified cross-source identities and currency assumptions; they are not predicted prices, fees or proof of historical affordability. They never enter recommendation model training.
 
-La Liga shot data is supplied. Additional four-league shot analysis needs the local `data/processed/real/four_league_clean_shots.parquet` matching the manifest. Obtain/prepare optional data using the workflows on the research branch, observing source access and licensing requirements. Optional provider-derived files are ignored by Git and are not published by this branch. Missing optional files hide their controls or show an availability message; a checksum mismatch is an error and must be investigated.
+La Liga shot data is supplied. Additional four-league shot analysis needs the local `data/processed/real/four_league_clean_shots.parquet` matching the manifest. Obtain/prepare optional data using the workflows on the research branch, observing source access and licensing requirements. The optional four-league shot file remains ignored by Git. The two prepared valuation files are included in this branch. Missing optional files hide their controls or show an availability message; a checksum mismatch is an error and must be investigated.
 
 Observed scouting sessions write locally to ignored `data/events/scouting.jsonl`; `TFM_EVENT_LOG` can select another path. No simulated event log is bundled. Keep all source attribution and restrictions when using the retained artifacts. This application extends the original [tfm_futbol](https://github.com/valen28030/tfm_futbol) project.
 

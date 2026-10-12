@@ -7,7 +7,7 @@ This document describes the actual data served on `minimal/scoutiq-runtime`. The
 | Five-league statistics | [FBref](https://fbref.com/) | Six checksum-pinned RDS assets from [worldfootballR_data](https://github.com/JaseZiv/worldfootballR_data), release `fb_big5_advanced_season_stats` | Recommendations, tactical affinity, comparisons, clusters and player development |
 | La Liga shots | [Understat](https://understat.com/league/La_liga) | `la_liga_shot_data.rds`, secondary release `understat_shots` in the same repository | Source-specific shot analysis; not fitted recommendation features |
 | Optional four-league shots | Understat | `epl_shot_data.rds`, `bundesliga_shot_data.rds`, `serie_a_shot_data.rds`, `ligue_1_shot_data.rds` from the same secondary release | Shot analysis only when the local prepared file is present |
-| Optional reported valuations and identity metadata | [Transfermarkt](https://www.transfermarkt.com/), via user-supplied [salimt/football-datasets](https://github.com/salimt/football-datasets) files | Uploaded `player_market_value.csv`, `player_profiles.csv`, `team_details.csv`, `team_competitions_seasons.csv`; upload-to-repository commit not verified | Optional post-ranking screening through provisional identity proposals; never model training |
+| Optional reported valuations and identity metadata | [Transfermarkt](https://www.transfermarkt.com/), via user-supplied [salimt/football-datasets](https://github.com/salimt/football-datasets) files | Uploaded `player_market_value.csv`, `player_profiles.csv`, `team_details.csv`, `team_competitions_seasons.csv`; upload-to-repository commit not verified | Included post-ranking screening through provisional identity proposals; never model training |
 
 The raw metadata inventory is [data/raw/sources_manifest.json](../data/raw/sources_manifest.json). It provides exact URLs and file hashes rather than treating the original website and a secondary archive as the same acquisition source. The archival code commit is not proof of the collection date or historical public availability of each football observation. Raw archives are kept locally; [restoration instructions](../data/raw/README.md) are included without adding provider-derived archives to Git.
 
@@ -38,11 +38,11 @@ The raw La Liga shot archive is parsed and filtered into a source-specific shot 
 
 Shots span requested seasons where observed; 2025/26 is partial. Some archived 2024/25 league coverage is incomplete. The app displays observed versus expected fixture counts and excludes partial seasons by default. Understat and FBref player identities are not automatically merged for recommendations. Shot records are descriptive source data, not historical transfer validation.
 
-## Optional valuations
+## Included valuations
 
 Raw valuation observations are separate from transfer fees. Price screening selects a reported valuation dated on or before the selected cutoff. That date is not proof that the record was publicly known at the historical cutoff. Identity proposals remain unreviewed; source currency is assumed EUR and has not been independently established. These limitations prevent claiming verified historical affordability or using valuations as recommendation model features.
 
-The optional loader requires `collected_salimt_values.parquet` and `europe_review_candidates.parquet` matching `models/real/runtime_manifest.json`. Their underlying user uploads are hashed in the raw manifest. A clean clone runs without them and hides price-dependent controls. The uploaded Kaggle valuation dataset and historical transfer files are not necessary inputs for the currently served recommender, so they remain on the full research branch/local storage.
+The optional loader requires `collected_salimt_values.parquet` and `europe_review_candidates.parquet` matching `models/real/runtime_manifest.json`. Their underlying user uploads are hashed in the raw manifest. Both prepared files are now included in Git, so a clean clone can use reported-value filtering without importing a separate local bundle. The uploaded Kaggle valuation dataset and historical transfer files are not necessary inputs for the currently served recommender, so they remain on the full research branch/local storage.
 
 ## Integrity and reproducibility limits
 

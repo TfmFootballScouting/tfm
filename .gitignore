@@ -256,3 +256,7 @@ reports/five_league_pipeline/scenario_shortlists.csv
 # Source-specific shot preprocessing and provisional identity rows, retained locally
 /data/processed/real/four_league_*.parquet
 /reports/four_league_preprocessing/identity_review_queue.csv
+
+# Prepared valuation inputs explicitly included for reproducible app budget screening.
+!/data/processed/real/collected_salimt_values.parquet
+!/data/processed/real/europe_review_candidates.parquet
