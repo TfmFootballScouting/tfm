@@ -94,3 +94,14 @@ Current entry points: [completion report](docs/COMPLETION_REPORT.md), [first-sub
 Earlier stage evidence remains available: [archive acquisition](docs/WORLDFOOTBALLR_TRIAL.md), [collected preprocessing](docs/COLLECTED_PREPROCESSING.md), [collected models](docs/COLLECTED_MODELS.md), [extended validation](docs/COLLECTED_VALIDATION.md), [enrichment](docs/ENRICHED_PIPELINE.md), [uploaded values](docs/SALIMT_UPLOADED_AUDIT.md), [uploaded histories](docs/SALIMT_HISTORY_AUDIT.md), [budget interpretation](docs/REPORTED_VALUE_BUDGET.md) and [scouting scenarios](docs/SCOUTING_SCENARIOS.md). Original author documents and preliminary legacy artifacts are retained for traceability; they are not the app's current training dataset.
 
 Work stays on `improve/reproducible-scouting`; main is not modified. Preserve the existing folder structure, raw provenance, source restrictions and historical experiment evidence. Cloud tasks already have isolated checkouts; use the existing repository rather than creating an unsolicited worktree.
+
+## Source lineage and raw archive restoration
+
+See [data sources and pipeline paths](docs/DATA_SOURCES.md), [player-season coverage](docs/DATA_COVERAGE.csv), [category coverage](docs/DATA_CATEGORY_COVERAGE.csv) and [raw archive restoration](data/raw/README.md). The raw source manifest records original providers, secondary download URLs, checksums and optional private uploads.
+
+```bash
+python -m src.scraping.raw_inputs --verify
+python -m src.scraping.raw_inputs --download
+```
+
+The minimal serving branch is `minimal/scoutiq-runtime`; the full preparation, training, notebooks and research reports remain on this branch. Private valuations and provider-derived raw archives remain local.
