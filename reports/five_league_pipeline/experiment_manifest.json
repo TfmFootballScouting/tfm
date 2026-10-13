@@ -144,14 +144,14 @@
     "dataset_consolidation": "One prepared dataset set shared by app and notebooks; all common columns checked against original frozen inputs at rtol=atol=1e-12 before removing redundant copies. Original model binary unchanged."
   },
   "serving_code_sha256": {
-    "src/models/recommender.py": "fc92931cd24f54ecfb232b4c3d4bff1ff0f2302f978a652404cafef80e449f1b",
+    "src/models/recommender.py": "ab05b55d445ee7bd14703f2ca9d1201f858d0767c46eea6c6a264dd45447da6d",
     "src/models/recommend.py": "319490729cf36f60a3f2e6a027ef2fdd53a9a43d5e9c89123f113f790fd1df05",
     "src/models/experiments.py": "0d10a32ca70983baf01f5bdd55e6c8f469fd49cdcaf0c0c8e065dbc7b2108bea",
     "src/models/robustness_validation.py": "8336b9874d6bf5b755bc83231f33588c217210d5f503a776ffb14ff1d11bad28",
-    "src/preprocessing/football_stats.py": "5ddf26d1cd495fcb316603b701fbe800cb049115b3cc7303b4e59f566f2420c9",
+    "src/preprocessing/football_stats.py": "6128b6620f5548c60b1cf141f8fe1d0fcde8281ceb29aa73d5132f583accd122",
     "src/features/styles.py": "d033f056cee418b9fcf97811dd271a734adf9d34ded2107008f654bb0dc46a57",
-    "src/data/source_rights.py": "b781fbcf71490d47178dcaba45bf83e3810660afdaa6c37e2c2cbf5f0df0a81f",
-    "src/app/model_loader.py": "558b8a536f1af4f2182aeedbca0d297d97285165c4b35895ea1d2feaca1955b8"
+    "src/data_preparation/source_rights.py": "b781fbcf71490d47178dcaba45bf83e3810660afdaa6c37e2c2cbf5f0df0a81f",
+    "src/app/model_loader.py": "376403f1bc511ce436ce8efbec48c27306bd07f3bb98922648892374be18c725"
   },
   "serving_model": {
     "selected_method": "euclidean_profile",
@@ -167,8 +167,8 @@
     ],
     "cluster_diagnostics": {
       "position_nmi": 0.3752879391427972,
-      "season_nmi": 6.0465276022529e-05,
-      "seed_ari_mean": 1.0,
+      "season_nmi": 0.000060465276022529,
+      "seed_ari_mean": 1,
       "league_nmi": 0.00016963272978491535
     },
     "robustness_top5_jaccard_mean": 0.9740740740740741,
@@ -210,8 +210,8 @@
       ],
       "cluster_diagnostics": {
         "position_nmi": 0.3752879391427972,
-        "season_nmi": 6.0465276022529e-05,
-        "seed_ari_mean": 1.0,
+        "season_nmi": 0.000060465276022529,
+        "seed_ari_mean": 1,
         "league_nmi": 0.00016963272978491535
       },
       "robustness_top5_jaccard_mean": 0.9740740740740741,
@@ -248,8 +248,8 @@
       ],
       "cluster_diagnostics": {
         "position_nmi": 0.313311477842955,
-        "season_nmi": 2.2202732039311226e-06,
-        "seed_ari_mean": 1.0,
+        "season_nmi": 0.0000022202732039311226,
+        "seed_ari_mean": 1,
         "league_nmi": 0.001389142698656548
       },
       "robustness_top5_jaccard_mean": 0.9740740740740741,
