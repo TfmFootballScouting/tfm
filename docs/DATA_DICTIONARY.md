@@ -1,6 +1,6 @@
 # Data dictionary — current teacher-review datasets
 
-Machine-readable catalogs: `docs/data_dictionary_review.csv` (prepared tables), `data/raw/review_manifest.json` (every raw column, source, selection and checksum), and `docs/data_dictionary_raw.csv` (source-field glossary). Some extended/raw definitions still require provider-glossary verification; those entries are explicitly marked pending rather than guessed.
+Machine-readable catalogs: `docs/data_dictionary_review.csv` (prepared tables), `data/raw/source_manifest.json` (every raw column, source, selection and checksum), and `docs/data_dictionary_raw.csv` (source-field glossary). Some extended/raw definitions still require provider-glossary verification; those entries are explicitly marked pending rather than guessed.
 
 ## Grain and keys
 
@@ -8,7 +8,7 @@ Machine-readable catalogs: `docs/data_dictionary_review.csv` (prepared tables), 
 |---|---|---|
 | FBref club seasons | A source player, club, league and season stint | source_player_id + team + league + season |
 | FBref history | Aggregated compatible club stints within a league/season | entity_id + league + season |
-| Core gallery | Eligible player in one selected league per season | entity_id + season; dominant league by minutes |
+| Scouting gallery | Eligible player in one selected league per season | entity_id + season; dominant league by minutes |
 | Understat shots | An observed source shot event | league + shot_id |
 | Understat summaries | Observed shots for a player in a league/season | league + source_player_id + season |
 | Transfermarkt profiles | Current uploaded source profile | source_player_id |
@@ -26,7 +26,7 @@ For each count C with observed positive minutes M, **C_p90 = C × 90 / M**. Unkn
 | age, birth_year | Source season age and birth year; not an inferred exact DOB | years; calendar year |
 | gls, gls_p90 | Goals including source-defined penalties | goals; goals/90; standard |
 | ast, ast_p90 | Source-defined assists | assists; assists/90; standard |
-| ga, ga_p90 | gls + ast, only if both observed | events; events/90; excluded as redundant from Core fitting |
+| ga, ga_p90 | gls + ast, only if both observed | events; events/90; excluded as redundant from recommendation fitting |
 | sh, sh_p90 | Shots | shots; shots/90; shooting |
 | sot, sot_p90 | Shots on target | shots; shots/90; shooting |
 | crs, crs_p90 | Crosses | crosses; crosses/90; misc |
@@ -38,12 +38,12 @@ For each count C with observed positive minutes M, **C_p90 = C × 90 / M**. Unkn
 | xag, xag_p90 | Expected assisted goals, when supplied | expected goals; /90; source-specific definition |
 | passes_completed, passes_attempted | Provider recorded passes | counts; passing |
 | pass_completion_pct | completed / attempted × 100 with positive observed denominator | percent |
-| key_passes, touches, successful_take_ons | Provider recorded attacking involvement | counts; extended fields are not all used by Core |
+| key_passes, touches, successful_take_ons | Provider recorded attacking involvement | counts; extended fields are not all used by the recommender |
 | pos, pos_main | Source position and broad normalized GK/DF/MF/FW | category; no fine tactical role inferred |
 | club_count, clubs | Number/list of observed clubs aggregated within league/season | count; JSON list |
 | partial_season | 2025/26 partial source snapshot indicator | boolean; does not certify other seasons' completeness |
 
-Core uses nine per-90 fields: gls, ast, sh, sot, crs, int, tklw, fls, fld. Expert style affinity is a weighted standardized score, not a probability. Distances, PCA coordinates and cluster labels are model outputs, not observed football statistics.
+The recommender uses nine per-90 fields: gls, ast, sh, sot, crs, int, tklw, fls, fld. Expert style affinity is a weighted standardized score, not a probability. Distances, PCA coordinates and cluster labels are model outputs, not observed football statistics.
 
 ## Understat-specific fields
 
@@ -57,13 +57,13 @@ Core uses nine per-90 fields: gls, ast, sh, sot, crs, int, tklw, fls, fld. Exper
 
 ## Model evaluation fields
 
-MRR is the mean reciprocal rank of the same player's next-season identity; Recall@5/10 is its top-K hit probability, including fair tie handling. They are not transfer success rates. Silhouette describes clustering separation; adjusted Rand index describes partition stability; top-five Jaccard compares shortlist overlap; PCA explained variance describes retained standardized-feature variation. Their cohorts and uncertainty limits are in notebook 11 and `reports/five_league_pipeline/`.
+MRR is the mean reciprocal rank of the same player's next-season identity; Recall@5/10 is its top-K hit probability, including fair tie handling. They are not transfer success rates. Silhouette describes clustering separation; adjusted Rand index describes partition stability; top-five Jaccard compares shortlist overlap; PCA explained variance describes retained standardized-feature variation. Their cohorts and uncertainty limits are in notebook 04 and `reports/five_league_pipeline/`.
 
 ## Approved extended glossary
 
-`docs/data_dictionary_review.csv` now defines every prepared-table field, including per-90 calculations, flags, shot aggregation and temporal provenance. Rebuild with `python scripts/complete_review_dictionary.py`.
+`docs/data_dictionary_review.csv` now defines every prepared-table field, including per-90 calculations, flags, shot aggregation and temporal provenance. Rebuild with `python scripts/build_processed_dictionary.py`.
 
-`docs/data_dictionary_raw.csv` catalogs every retained raw CSV field and source-specific unit. Rebuild with `python -m scripts.raw_review_dictionary`. Two unused Transfermarkt team fields, `season_points_for` and `season_points_against`, remain explicitly unverified; no semantics or calculations are invented for them. FBref progressive metrics use the provider's definitions, which may change across seasons; distance metrics are yards. Current profile metadata must not be treated as historical knowledge. Raw values' currency is still unverified.
+`docs/data_dictionary_raw.csv` catalogs every retained raw CSV field and source-specific unit. Rebuild with `python -m scripts.build_raw_dictionary`. Two unused Transfermarkt team fields, `season_points_for` and `season_points_against`, remain explicitly unverified; no semantics or calculations are invented for them. FBref progressive metrics use the provider's definitions, which may change across seasons; distance metrics are yards. Current profile metadata must not be treated as historical knowledge. Raw values' currency is still unverified.
 
 
 Clean submission update: obsolete stage files and duplicate artifacts were removed. Use `DATA_SOURCES.md` for current paths and `reports/teacher_review/CLEANUP_REPORT.md` for current verification. Earlier verification counts refer to the pre-cleanup branch snapshot.

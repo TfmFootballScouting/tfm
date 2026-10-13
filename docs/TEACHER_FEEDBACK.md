@@ -21,7 +21,7 @@ Review branch: `review/teacher-submission`. This is the clean package, not an ar
 | 15 | Evaluation plots | Actual figures/CSV diagnostics retained with exact artifact hashes | Original artifact copies shared rather than duplicated |
 | 16 | Synthetic separation | Real-data final pipeline; demo datasets/models/notebooks removed | Artificial unit fixtures are tests only |
 | 17 | Portable MLflow | Relative artifact manifests point to current single-copy model/evaluation files | Local MLflow DB not included in clone; run training to populate a new local DB |
-| 18 | Screenshots | Actual original Core overview and artifacts captured, run ID and hashes included | No new fit is implied by the screenshots |
+| 18 | Screenshots | Actual original main-run overview and artifacts captured, run ID and hashes included | No new fit is implied by the screenshots |
 | 19 | Production | Auth/HTTPS/monitoring/backups/scaling described | Not claimed deployed; real infrastructure implementation is future work |
 
 The approved A/B/C implementation is retained: dictionaries/expert tools/MLflow evidence, operational tracking and cloud formulas. No transfer-likelihood predictor or extra scenarios page was added. Use `reports/teacher_review/CLEANUP_REPORT.md` for final verification after removing obsolete files.

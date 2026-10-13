@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from streamlit.testing.v1 import AppTest
 from src.config import ROOT
-from src.app.trained import load_trained_service
+from src.app.model_loader import load_scouting_service
 from src.app.player_analysis import load_analysis_shots,shot_map,development_plot_data
 
 
@@ -19,7 +19,7 @@ def test_real_shot_loading_and_zero_xg_events_remain_visible():
 
 
 def test_development_plot_has_unknown_gaps_without_changing_source():
-    history=load_trained_service('core').history.copy()
+    history=load_scouting_service().history.copy()
     group=next(g for _,g in history[~history.partial_season].groupby(['entity_id','league']) if 1<len(g)<4)
     original=group.copy(deep=True)
     group['Jugador del historial']=group.player.iloc[0]
@@ -38,7 +38,7 @@ def test_app_development_shots_partial_and_missing_coverage(monkeypatch,tmp_path
     assert not app.exception and not app.error
     assert any('Evolución del jugador' in t.label for t in app.tabs)
     assert any('Análisis de tiros' in t.label for t in app.tabs)
-    source=load_trained_service('core').history
+    source=load_scouting_service().history
     eligible=source[~source.partial_season & source.minutes.ge(450)].sort_values('season').drop_duplicates('entity_id',keep='last')
     pair=next(g for _,g in eligible.groupby(['player','league']) if len(g)>1)
     names=pair.entity_id.head(2).tolist()+eligible[~eligible.entity_id.isin(pair.entity_id)].entity_id.head(1).tolist()
@@ -60,7 +60,7 @@ def test_app_development_shots_partial_and_missing_coverage(monkeypatch,tmp_path
 
 
 def test_cross_league_transfer_season_stays_separate():
-    history=load_trained_service('core').history.copy()
+    history=load_scouting_service().history.copy()
     overlapping=history[history.duplicated(['entity_id','season'],keep=False)]
     entity=overlapping.entity_id.iloc[0]
     real=history[history.entity_id.eq(entity)].copy()

@@ -2,15 +2,15 @@
 
 ## Evidencias existentes
 - App y dependencia runtime separada: `requirements.txt` / `requirements.lock.txt`; research/test en `requirements-research*`.
-- CSV raw con hashes/procedencia: `data/raw/review_manifest.json`; CSV/Parquet limpios: `data/processed/review/manifest.json`.
-- Código de preprocessing: `src/preprocessing/review_dataset.py`, `collected.py`; CSV reconstruye las métricas de la galería congelada sin reentrenar.
-- EDA por fuente: `notebooks/fbref_eda.ipynb`, `understat_eda.ipynb`, `transfermarkt_eda.ipynb`.
-- Modelos reales y evaluación: `models/real/five_league_*`, `models/metrics.json`, notebook 11, `reports/five_league_pipeline/`.
-- Run principal MLflow: `reports/five_league_pipeline/mlflow_export/core/run.json`; tags, parámetros, métricas y artefactos originales portables. El Git registrado corresponde al entrenamiento original.
+- CSV raw con hashes/procedencia: `data/raw/source_manifest.json`; CSV/Parquet limpios: `data/processed/review/manifest.json`.
+- Código de preprocessing: `src/preprocessing/prepare_datasets.py`, `football_stats.py`; CSV reconstruye las métricas de la galería congelada sin reentrenar.
+- EDA por fuente: `notebooks/01_fbref_data_exploration.ipynb`, `02_understat_data_exploration.ipynb`, `03_transfermarkt_data_exploration.ipynb`.
+- Modelos reales y evaluación: `models/scouting_recommender.joblib` y los dos modelos de comparación, `models/metrics.json`, notebook 04, `reports/five_league_pipeline/`.
+- Run principal MLflow: `reports/five_league_pipeline/mlflow_export/scouting/run.json`; tags, parámetros, métricas y artefactos originales portables. El Git registrado corresponde al entrenamiento original.
 - Tests implementados: `src/tests/`. El reporte de verificación de esta rama se guarda en `reports/teacher_review/` después de ejecutarlos.
 - Registro de eventos y SQLite operativo: `src/process/events.py`, `store.py`; solicitudes, decisiones y feedback separados de MLflow. Véase `OPERATIONAL_TRACKING.md`.
-- Capturas reales de MLflow: `docs/evidence/mlflow/core_run.png`, `core_artifacts.png`; hash y run ID en `capture.json`.
-- Paquetes ciegos y análisis de expertos: `docs/expert_review/`, `notebooks/expert_validation.ipynb`; ratings pendientes.
+- Capturas reales de MLflow: `docs/evidence/mlflow/main_experiment.png`, `evaluation_artifacts.png`; hash y run ID en `capture.json`.
+- Paquetes ciegos y análisis de expertos: `docs/expert_review/`, `notebooks/06_expert_recommendation_validation.ipynb`; ratings pendientes.
 - Hoja de costes ejecutable: `docs/evidence/cloud/`; tarifas sin evidencia quedan pendientes.
 
 ## Evidencias pendientes

@@ -1,11 +1,9 @@
-# Current trained models
+# Single six-style scouting recommender
 
-- `recommender.joblib`: frozen real five-league Core model used by Streamlit.
-- `offensive_recommender.joblib`: current offensive-feature comparison experiment.
-- `attack_on_core_recommender.joblib`: attacking-feature comparison on the Core cohort.
-- `metrics.json`: actual Core evaluation and portable serving metadata.
-- `real/valuation_manifest.json`: verified paths/hashes for the reported-value display inputs; no valuation model is used.
+`scouting_recommender.joblib` is the only saved recommendation model in this submission. It contains the fitted imputer/scaler, nearest-profile index, PCA and K-means. The six original styles are expert weights, not six separate classifiers.
 
-The fitted Core contains the imputer, scaler, neighbors, PCA and K-means. Six styles are expert-defined weights. No legacy, synthetic or transfer-likelihood model is included. Original binary hashes and training commit are preserved in `reports/five_league_pipeline/pipeline.json`. MLflow artifact manifests refer to these same files instead of storing duplicate binaries.
+`metrics.json` records the actual evaluation; `valuation_manifest.json` verifies the reported-value/identity inputs used after ranking. There is no separate value estimator or transfer predictor.
 
-`python -m scripts.five_league_pipeline` fits new experiments from bundled real CSVs and writes a separate timestamped folder, leaving these original served models unchanged.
+The notebook `04_feature_comparison_and_model_validation.ipynb` compares alternative attribute sets on the same cohort using the existing genuine results. Alternate fitted model files are not part of the current app or training workflow. `python -m scripts.train_models` fits one six-style recommender and writes a separate timestamped run without replacing this frozen artifact.
+
+The original MLflow run name/code hashes remain immutable historical lineage. Current packaged source fingerprints are recorded separately. `src/models/recommend.py` is the compatibility import required by this original joblib; implementation lives in `recommender.py`.

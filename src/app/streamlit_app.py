@@ -16,12 +16,12 @@ if str(ROOT) not in sys.path:
 
 from src.config import PLAY_STYLES
 from src.features.styles import list_styles
-from src.app.budget import candidate_links, attach_reported_values, screen_budget
-from src.app.presentation import CSS as MODERN_CSS, shortlist_cards
-from src.app.trained import load_trained_service
-from src.app.europe_budget import load_europe_budget_inputs
-from src.app.valuation_data import input_signature as valuation_input_signature
-from src.app.scouting_views import field_label, display_frame, group_profiles, POSITIONS
+from src.app.market_value_filter import candidate_links, attach_reported_values, screen_budget
+from src.app.ui_theme import CSS as MODERN_CSS, shortlist_cards
+from src.app.model_loader import load_scouting_service
+from src.app.valuation_loader import load_valuation_inputs
+from src.app.valuation_loader import input_signature as valuation_input_signature
+from src.app.ui_helpers import field_label, display_frame, group_profiles, POSITIONS
 
 # ── Paleta verde fútbol ──────────────────────────────────────────────────────
 GREEN_PRIMARY   = "#239b83"   # verde campo
@@ -47,12 +47,12 @@ STYLE_ICONS = {
 
 @st.cache_data
 def load_reported_budget_data(signature):
-    return load_europe_budget_inputs()
+    return load_valuation_inputs()
 
 
 @st.cache_resource
 def scouting_service():
-    return load_trained_service('core')
+    return load_scouting_service()
 
 
 @st.cache_data
@@ -195,7 +195,7 @@ def main() -> None:
     st.caption("Encuentra perfiles, compara alternativas y define tus necesidades de scouting.")
     st.sidebar.markdown("## ScoutIQ")
     st.sidebar.caption("Define el mercado y el perfil que necesitas.")
-    model_kind = 'core'
+    model_kind = 'scouting'
     scope = 'Cinco grandes ligas'
     training = 'Cinco ligas · reentrenado'
 
@@ -248,7 +248,7 @@ def main() -> None:
     # ── Sidebar ───────────────────────────────────────────────────────────────
     with st.sidebar:
         st.markdown("### Perfil objetivo")
-        from src.app.presentation import reset_search_filters
+        from src.app.ui_theme import reset_search_filters
         st.button("Restablecer filtros", on_click=reset_search_filters, use_container_width=True)
         st.divider()
 

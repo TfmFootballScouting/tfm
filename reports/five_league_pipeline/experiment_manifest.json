@@ -1,0 +1,275 @@
+{
+  "dataset_version": "d7a70a7349eb58b62cd18c540129203cd411aeb97706cdf074cbcbe74f8ad49a",
+  "git_commit": "f5eb8225cb01c77ecb8795312e0f29f82d9166b1",
+  "created_at": "2026-10-11T20:43:08.648526+00:00",
+  "code_sha256": {
+    "scripts/five_league_pipeline.py": "664e4786c821bb54bdf1ccae43f25957f267ff445668d22bab511f41c50f7f1f",
+    "scripts/top_five_leagues.py": "5fc289a85581d2049deed11574114045e85a9209384cb8029f5a7c87a01fd6d7",
+    "src/preprocessing/collected.py": "92cabb8336851a02adb0550fbd688536122d075c7f49b6007e9c06ddafa4bf54",
+    "src/models/collected.py": "b1f6c8922fcb2026ec53b538a833eafc56c4a3680c7ec34e6e2ecba63e89b66f",
+    "src/models/validation.py": "fca8f68d6a38ef1ca36eba726725933e2f5d0ee15d380970c1ce6cd6d27fa530",
+    "src/models/recommend.py": "fc92931cd24f54ecfb232b4c3d4bff1ff0f2302f978a652404cafef80e449f1b",
+    "src/features/styles.py": "d033f056cee418b9fcf97811dd271a734adf9d34ded2107008f654bb0dc46a57",
+    "src/data/source_rights.py": "b781fbcf71490d47178dcaba45bf83e3810660afdaa6c37e2c2cbf5f0df0a81f"
+  },
+  "outputs": {
+    "player_club_seasons": {
+      "path": "data/processed/real/fbref_player_club_seasons.parquet",
+      "sha256": "cfaf8bb5ef1ebfc902483e58fa43590ae59a80464e23e567f5609e269220d52c",
+      "rows": 16334
+    },
+    "player_seasons": {
+      "path": "data/processed/real/fbref_player_seasons.parquet",
+      "sha256": "52337690992d5e186181ccbaa12554c52b1492adfbfd79effe184ceed818821f",
+      "rows": 15948
+    },
+    "scouting_gallery": {
+      "path": "data/processed/real/scouting_player_gallery.parquet",
+      "sha256": "18b9ebb4ca78fde9f5330e329894823d83ec249c59e2df52a7f184d139606192",
+      "rows": 7398
+    }
+  },
+  "raw_sources": [
+    {
+      "source": "fbref_worldfootballr",
+      "url": "https://github.com/JaseZiv/worldfootballR_data/releases/download/fb_big5_advanced_season_stats/big5_player_standard.rds",
+      "retrieved_at": "2026-10-11T09:42:46.622470+00:00",
+      "sha256": "a299c971c5f1a1a58e57de123e7430c9d23d2eb472569244c0e5056a109faa91",
+      "path": "data/raw/sources/fbref_worldfootballr/a299c971c5f1a1a58e57de123e7430c9d23d2eb472569244c0e5056a109faa91.rds",
+      "original_source": "fbref",
+      "category": "standard",
+      "acquisition": "published_GitHub_release",
+      "archive_repository": "JaseZiv/worldfootballR_data",
+      "archive_code_commit": "2df143967509ff45584e261a2a033687346d654b",
+      "last_modified": "Thu, 18 Sep 2025 17:39:49 GMT",
+      "etag": "\"0x8DDF6DA5DDFFDBE\"",
+      "license_status": "Provider rights not resolved by software license; local research only"
+    },
+    {
+      "source": "fbref_worldfootballr",
+      "url": "https://github.com/JaseZiv/worldfootballR_data/releases/download/fb_big5_advanced_season_stats/big5_player_shooting.rds",
+      "retrieved_at": "2026-10-11T09:43:54.793274+00:00",
+      "sha256": "1bac446d04a7e9925b4d9ff09dfd1f63c468bc274d9ef438217ac64027bab449",
+      "path": "data/raw/sources/fbref_worldfootballr/1bac446d04a7e9925b4d9ff09dfd1f63c468bc274d9ef438217ac64027bab449.rds",
+      "original_source": "fbref",
+      "category": "shooting",
+      "acquisition": "published_GitHub_release",
+      "archive_repository": "JaseZiv/worldfootballR_data",
+      "archive_code_commit": "2df143967509ff45584e261a2a033687346d654b",
+      "last_modified": "Thu, 18 Sep 2025 17:40:20 GMT",
+      "etag": "\"0x8DDF6DA7040C19B\"",
+      "license_status": "Provider rights not resolved by software license; local research only"
+    },
+    {
+      "source": "fbref_worldfootballr",
+      "url": "https://github.com/JaseZiv/worldfootballR_data/releases/download/fb_big5_advanced_season_stats/big5_player_passing.rds",
+      "retrieved_at": "2026-10-11T09:44:02.116951+00:00",
+      "sha256": "886126b93b1c3b48e06d5c0848dfc5078e082afc94e389da583c2280ed74e00c",
+      "path": "data/raw/sources/fbref_worldfootballr/886126b93b1c3b48e06d5c0848dfc5078e082afc94e389da583c2280ed74e00c.rds",
+      "original_source": "fbref",
+      "category": "passing",
+      "acquisition": "published_GitHub_release",
+      "archive_repository": "JaseZiv/worldfootballR_data",
+      "archive_code_commit": "2df143967509ff45584e261a2a033687346d654b",
+      "last_modified": "Thu, 18 Sep 2025 17:40:30 GMT",
+      "etag": "\"0x8DDF6DA7682C922\"",
+      "license_status": "Provider rights not resolved by software license; local research only"
+    },
+    {
+      "source": "fbref_worldfootballr",
+      "url": "https://github.com/JaseZiv/worldfootballR_data/releases/download/fb_big5_advanced_season_stats/big5_player_defense.rds",
+      "retrieved_at": "2026-10-11T09:44:08.101838+00:00",
+      "sha256": "8bc9fd8218c1dc0725f7d009940d90d64ad600a8e09ce6607917f962aeac4837",
+      "path": "data/raw/sources/fbref_worldfootballr/8bc9fd8218c1dc0725f7d009940d90d64ad600a8e09ce6607917f962aeac4837.rds",
+      "original_source": "fbref",
+      "category": "defense",
+      "acquisition": "published_GitHub_release",
+      "archive_repository": "JaseZiv/worldfootballR_data",
+      "archive_code_commit": "2df143967509ff45584e261a2a033687346d654b",
+      "last_modified": "Thu, 17 Oct 2024 17:41:09 GMT",
+      "etag": "\"0x8DCEED2E2B7BA5C\"",
+      "license_status": "Provider rights not resolved by software license; local research only"
+    },
+    {
+      "source": "fbref_worldfootballr",
+      "url": "https://github.com/JaseZiv/worldfootballR_data/releases/download/fb_big5_advanced_season_stats/big5_player_possession.rds",
+      "retrieved_at": "2026-10-11T09:44:13.993317+00:00",
+      "sha256": "a41db96bcf4376dc4547829c9d61ea4e4d69a15dbc958a3fa4c89f84c4978efd",
+      "path": "data/raw/sources/fbref_worldfootballr/a41db96bcf4376dc4547829c9d61ea4e4d69a15dbc958a3fa4c89f84c4978efd.rds",
+      "original_source": "fbref",
+      "category": "possession",
+      "acquisition": "published_GitHub_release",
+      "archive_repository": "JaseZiv/worldfootballR_data",
+      "archive_code_commit": "2df143967509ff45584e261a2a033687346d654b",
+      "last_modified": "Thu, 17 Oct 2024 17:41:19 GMT",
+      "etag": "\"0x8DCEED2E8AE10BF\"",
+      "license_status": "Provider rights not resolved by software license; local research only"
+    },
+    {
+      "source": "fbref_worldfootballr",
+      "url": "https://github.com/JaseZiv/worldfootballR_data/releases/download/fb_big5_advanced_season_stats/big5_player_misc.rds",
+      "retrieved_at": "2026-10-11T09:44:20.567542+00:00",
+      "sha256": "744708cd039a2154f5fd578679264b247a8a527584141bfd7c03d9a7f7cb6ded",
+      "path": "data/raw/sources/fbref_worldfootballr/744708cd039a2154f5fd578679264b247a8a527584141bfd7c03d9a7f7cb6ded.rds",
+      "original_source": "fbref",
+      "category": "misc",
+      "acquisition": "published_GitHub_release",
+      "archive_repository": "JaseZiv/worldfootballR_data",
+      "archive_code_commit": "2df143967509ff45584e261a2a033687346d654b",
+      "last_modified": "Thu, 17 Oct 2024 17:41:32 GMT",
+      "etag": "\"0x8DCEED2F0AF9D3B\"",
+      "license_status": "Provider rights not resolved by software license; local research only"
+    }
+  ],
+  "exact_duplicates_removed": 0,
+  "counts": {
+    "player_club_seasons": 16334,
+    "player_seasons": 15948,
+    "scouting_gallery": 7398
+  },
+  "limits": [
+    "Future seasons never enter fitting; partial 2025/26 excluded",
+    "Reported market values are post-ranking filters only; identities and currency remain provisional",
+    "Profile retrieval and descriptive tactical affinity are not transfer-success or club relevance labels",
+    "One six-style recommender is served; attribute comparisons are notebook-only research",
+    "Complete nine-feature gallery ends in 2023/24; advanced Segunda data unavailable",
+    "Outliers are flagged, not automatically removed"
+  ],
+  "packaging": {
+    "historical_evidence_commit": "252e0304a54216eb77bcdfb5c5ef73731043f158",
+    "removed_historical_preservation_entries": 335,
+    "note": "Historical experiment dependencies omitted from clean submission. Original training hashes/metrics retained; retraining orchestration adapted to bundled CSVs.",
+    "file_renames": "docs/PROJECT_MAP.md",
+    "single_recommender": "One served model with six expert playing styles. Two feature-set evaluations remain notebook-only; alternate saved models removed."
+  },
+  "serving_code_sha256": {
+    "src/models/recommender.py": "fc92931cd24f54ecfb232b4c3d4bff1ff0f2302f978a652404cafef80e449f1b",
+    "src/models/recommend.py": "319490729cf36f60a3f2e6a027ef2fdd53a9a43d5e9c89123f113f790fd1df05",
+    "src/models/experiments.py": "0d10a32ca70983baf01f5bdd55e6c8f469fd49cdcaf0c0c8e065dbc7b2108bea",
+    "src/models/robustness_validation.py": "8336b9874d6bf5b755bc83231f33588c217210d5f503a776ffb14ff1d11bad28",
+    "src/preprocessing/football_stats.py": "bfc84980239af028141f84d9b4908a0eee0ad9fd2f9fe42ae5a9e663dd3fea9e",
+    "src/features/styles.py": "d033f056cee418b9fcf97811dd271a734adf9d34ded2107008f654bb0dc46a57",
+    "src/data/source_rights.py": "b781fbcf71490d47178dcaba45bf83e3810660afdaa6c37e2c2cbf5f0df0a81f",
+    "src/app/model_loader.py": "c0c4d49d5f71440288fa4ecc5c1ca149eb2f31f739c3d6175279a8acea52e02f"
+  },
+  "serving_model": {
+    "selected_method": "euclidean_profile",
+    "selected_k": 2,
+    "holdout_mrr": 0.09549844955925278,
+    "holdout_recall_at_5": 0.12954186413902052,
+    "holdout_recall_at_10": 0.19510268562401265,
+    "pca_explained_variance": [
+      0.4254997317534587,
+      0.15418642616632044,
+      0.14432679137223203,
+      0.07687988833121528
+    ],
+    "cluster_diagnostics": {
+      "position_nmi": 0.3752879391427972,
+      "season_nmi": 6.0465276022529e-05,
+      "seed_ari_mean": 1.0,
+      "league_nmi": 0.00016963272978491535
+    },
+    "robustness_top5_jaccard_mean": 0.9740740740740741,
+    "cluster_oob_ari_mean": 0.9819258990337122,
+    "rows_by_split": {
+      "train": 3723,
+      "validation": 1861,
+      "holdout": 1810
+    },
+    "train_seasons": [
+      "2020-2021",
+      "2021-2022"
+    ],
+    "validation_season": "2022-2023",
+    "holdout_season": "2023-2024",
+    "model_path": "models/scouting_recommender.joblib",
+    "model_sha256": "3cd87ab619555f57d66b12ec2a4066ea72b37aaa312811c0b0ff53379ce4c7d3",
+    "training_scope": "five_leagues",
+    "dataset_version": "d7a70a7349eb58b62cd18c540129203cd411aeb97706cdf074cbcbe74f8ad49a",
+    "mlflow_run_id": "85b7e82117814713b9094a5385308f6f",
+    "original_model_path": "models/real/five_league_core_recommender.joblib",
+    "original_exported_artifact_count": 26,
+    "artifact_manifest": "reports/five_league_pipeline/mlflow_export/scouting/artifact_manifest.json",
+    "name": "scouting",
+    "playing_styles": 6
+  },
+  "feature_comparisons": {
+    "full_profile": {
+      "selected_method": "euclidean_profile",
+      "selected_k": 2,
+      "holdout_mrr": 0.09549844955925278,
+      "holdout_recall_at_5": 0.12954186413902052,
+      "holdout_recall_at_10": 0.19510268562401265,
+      "pca_explained_variance": [
+        0.4254997317534587,
+        0.15418642616632044,
+        0.14432679137223203,
+        0.07687988833121528
+      ],
+      "cluster_diagnostics": {
+        "position_nmi": 0.3752879391427972,
+        "season_nmi": 6.0465276022529e-05,
+        "seed_ari_mean": 1.0,
+        "league_nmi": 0.00016963272978491535
+      },
+      "robustness_top5_jaccard_mean": 0.9740740740740741,
+      "cluster_oob_ari_mean": 0.9819258990337122,
+      "rows_by_split": {
+        "train": 3723,
+        "validation": 1861,
+        "holdout": 1810
+      },
+      "train_seasons": [
+        "2020-2021",
+        "2021-2022"
+      ],
+      "validation_season": "2022-2023",
+      "holdout_season": "2023-2024",
+      "training_scope": "five_leagues",
+      "dataset_version": "d7a70a7349eb58b62cd18c540129203cd411aeb97706cdf074cbcbe74f8ad49a",
+      "mlflow_run_id": "85b7e82117814713b9094a5385308f6f",
+      "original_exported_artifact_count": 26,
+      "original_fit_sha256": "3cd87ab619555f57d66b12ec2a4066ea72b37aaa312811c0b0ff53379ce4c7d3",
+      "evaluation_prefix": "full_profile"
+    },
+    "attacking_features": {
+      "selected_method": "euclidean_profile",
+      "selected_k": 2,
+      "holdout_mrr": 0.024099950267373254,
+      "holdout_recall_at_5": 0.02843601895734597,
+      "holdout_recall_at_10": 0.04344391785150079,
+      "pca_explained_variance": [
+        0.6924426013557657,
+        0.19772033111609238,
+        0.04413121625451796,
+        0.03547142293959733
+      ],
+      "cluster_diagnostics": {
+        "position_nmi": 0.313311477842955,
+        "season_nmi": 2.2202732039311226e-06,
+        "seed_ari_mean": 1.0,
+        "league_nmi": 0.001389142698656548
+      },
+      "robustness_top5_jaccard_mean": 0.9740740740740741,
+      "cluster_oob_ari_mean": 0.9810204378204957,
+      "rows_by_split": {
+        "train": 3723,
+        "validation": 1861,
+        "holdout": 1810
+      },
+      "train_seasons": [
+        "2020-2021",
+        "2021-2022"
+      ],
+      "validation_season": "2022-2023",
+      "holdout_season": "2023-2024",
+      "training_scope": "five_leagues",
+      "dataset_version": "d7a70a7349eb58b62cd18c540129203cd411aeb97706cdf074cbcbe74f8ad49a",
+      "mlflow_run_id": "8c9b96e63c57430f9662f917908e571b",
+      "original_exported_artifact_count": 26,
+      "original_fit_sha256": "50942f08437b081092cdcb2d4b27bc659d0330c050387da80ba1cb400bf18a85",
+      "evaluation_prefix": "attacking_features"
+    }
+  }
+}

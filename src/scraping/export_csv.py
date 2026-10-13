@@ -26,7 +26,7 @@ def read_archive(path):
 
 
 def main():
-    catalog=json.loads((ROOT/'data/raw/review_manifest.json').read_text(encoding='utf8'))
+    catalog=json.loads((ROOT/'data/raw/source_manifest.json').read_text(encoding='utf8'))
     leagues=['La Liga','Premier League','Bundesliga','Serie A','Ligue 1']
     for record in catalog['raw_csvs']:
         if record['provider']=='transfermarkt':

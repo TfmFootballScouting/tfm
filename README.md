@@ -6,12 +6,18 @@ Sistema de recomendación por **afinidad con seis estilos de juego**, con datos 
 
 Rama para revisión: **`review/teacher-submission`**. Conserva la arquitectura y documentos originales, con las modificaciones actuales. La memoria original DOCX no se modifica. Estado de los 19 comentarios del profesor y evidencia pendiente: [TEACHER_FEEDBACK.md](docs/TEACHER_FEEDBACK.md).
 
+## Por dónde empezar
+
+Para ejecutar la app, ve a **Quick start**. Para comprender el proyecto, lee los notebooks **01 → 06**. Para seguir el código, utiliza [PROJECT_MAP.md](docs/PROJECT_MAP.md): fuentes → limpieza → atributos/modelos → validación → Streamlit.
+
+El notebook **04_feature_comparison_and_model_validation.ipynb** muestra los atributos comparados y la selección por validación. No realiza búsqueda exhaustiva de todas las combinaciones posibles.
+
 ## Qué incluye
 
 - Raw CSV separados por FBref, Understat y Transfermarkt, con origen/hashes y exportación documentada.
 - Limpieza, tasas por 90 y tablas CSV/Parquet reproducibles; ninguna sustitución sintética.
-- Seis estilos expertos; recomendador Core de cinco ligas, KNN/distancia, K-means y PCA.
-- Tres experimentos FBref reales conservados (Core, Offensive y Attack-on-Core); Core sirve la app; no se conservan modelos de etapas anteriores.
+- Seis estilos expertos; recomendador de cinco ligas, KNN/distancia, K-means y PCA.
+- Un único recomendador con seis estilos. Las comparaciones de atributos quedan solo en el notebook de análisis; no hay modelos Core/Offensive separados.
 - MLflow real con dataset/Git/tags, métricas y artefactos originales portables.
 - Streamlit: ranking, similares, comparación multijugador e historial, grupos ajustables/PCA, evolución y tiros.
 - Valores reportados con fecha, identidades provisionales y moneda EUR asumida; no estimador de precios.
@@ -47,15 +53,15 @@ python -m pip install -r requirements-research.lock.txt
 python -m src.pipeline
 ```
 
-La entrada reconstruye `data/processed/review/` y verifica paridad numérica/identidades con la galería servida. **No reentrena ni sobrescribe modelos congelados.** Código: `src/preprocessing/review_dataset.py`, `collected.py` y helpers en `scripts/top_five_leagues.py`. CSV grandes se guardan como `.csv.gz`, además de Parquet.
+La entrada reconstruye `data/processed/review/` y verifica paridad numérica/identidades con la galería servida. **No reentrena ni sobrescribe modelos congelados.** Código: `src/preprocessing/prepare_datasets.py`, `football_stats.py` y helpers en `src/preprocessing/fbref_categories.py`. CSV grandes se guardan como `.csv.gz`, además de Parquet.
 
-El entrenamiento/evaluación reproducible desde los CSV incluidos está en `scripts/five_league_pipeline.py` (orquestación/MLflow), `src/models/collected.py` (cohortes/baselines/selección) y `src/models/recommend.py` (imputación/escalado/KNN/PCA/K-means). La orquestación se adaptó a la entrega limpia; los resultados y hashes del entrenamiento original permanecen documentados. Para entrenar sin sobrescribir los modelos incluidos:
+El entrenamiento/evaluación reproducible desde los CSV incluidos está en `scripts/train_models.py` (orquestación/MLflow), `src/models/experiments.py` (cohortes/baselines/selección) y `src/models/recommender.py` (imputación/escalado/KNN/PCA/K-means). La orquestación se adaptó a la entrega limpia; los resultados y hashes del entrenamiento original permanecen documentados. Para entrenar sin sobrescribir los modelos incluidos:
 
 ```powershell
-python -m scripts.five_league_pipeline
+python -m scripts.train_models
 ```
 
-Guarda nuevos resultados en `reports/retraining/<fecha>/`. Para una comprobación breve del flujo completo: `python -m scripts.five_league_pipeline --models core --bootstrap-trials 2`. Dos repeticiones son una comprobación de ejecución, no sustituyen la validación original con 30 repeticiones. No es necesario reentrenar para abrir la app.
+Guarda nuevos resultados en `reports/retraining/<fecha>/`. Para una comprobación breve del flujo completo: `python -m scripts.train_models --bootstrap-trials 2`. Dos repeticiones son una comprobación de ejecución, no sustituyen la validación original con 30 repeticiones. No es necesario reentrenar para abrir la app.
 
 ### MLflow UI
 
@@ -64,7 +70,7 @@ python -m pip install -r requirements-research.lock.txt
 python -m mlflow ui --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlartifacts --host 127.0.0.1 --port 5000
 ```
 
-La DB local no se incluye en Git. La evidencia original del run principal está en `reports/five_league_pipeline/mlflow_export/core/`, con `run.json` y un `artifact_manifest.json` que enlaza las copias únicas de evaluación/modelo con sus SHA256. Una DB vacía de un clon no muestra automáticamente los runs históricos. Las capturas reales del run original están en `docs/evidence/mlflow/`.
+La DB local no se incluye en Git. La evidencia original del run principal está en `reports/five_league_pipeline/mlflow_export/scouting/`, con `run.json` y un `artifact_manifest.json` que enlaza las copias únicas de evaluación/modelo con sus SHA256. Una DB vacía de un clon no muestra automáticamente los runs históricos. Las capturas reales del run original están en `docs/evidence/mlflow/`.
 
 ## Estructura
 
@@ -74,7 +80,7 @@ tfm/
 │   ├── raw/{fbref,understat,transfermarkt}/  # CSV fuente y manifiesto de procedencia
 │   └── processed/{review,real}/             # CSV/Parquet limpios y artefactos servidos
 ├── docs/                  # documentos originales, diccionario y revisión del profesor
-├── models/                # recommender.joblib/metrics.json actuales y dos modelos de comparación
+├── models/                # scouting_recommender.joblib/metrics.json: un único modelo con seis estilos
 ├── notebooks/             # tres EDA, validación de modelos, grupos y revisión experta
 ├── src/
 │   ├── scraping/          # código original/archivos publicados; no crawling nuevo implícito
@@ -103,7 +109,7 @@ Se usa la grafía original `scraping` y `preprocessing` para conservar imports. 
 | solidez_defensiva | Solidez defensiva |
 | desborde_banda | Desborde / banda |
 
-Son pesos expertos sobre estadísticas estandarizadas, no seis modelos supervisados. Core usa nueve tasas por 90; Euclidean profile es el método elegido con validación. La PCA guardada tiene cuatro componentes y K-means dos grupos; la exploración permite otros números de grupos sin reentrenar el recomendador.
+Son pesos expertos sobre estadísticas estandarizadas, no seis modelos supervisados. El recomendador usa nueve tasas por 90; Euclidean profile es el método elegido con validación. La PCA guardada tiene cuatro componentes y K-means dos grupos; la exploración permite otros números de grupos sin reentrenar el recomendador.
 
 ## Datos
 
@@ -111,7 +117,7 @@ Son pesos expertos sobre estadísticas estandarizadas, no seis modelos supervisa
 - **Understat:** 228.785 tiros de cinco ligas; no se inventan minutos/posiciones ni se unen identidades sin revisión.
 - **Transfermarkt:** cuatro CSV del usuario con origen `salimt/football-datasets` declarado, no commit verificado. 901.429 valores fechados; moneda asumida EUR, no fees, no features de entrenamiento. En 2023/24, 1.601 perfiles tienen valor positivo utilizable al último cutoff disponible; no son necesariamente precios de 2023/24.
 
-FBref/Understat fueron descargados como **RDS desde GitHub**, después exportados a CSV con el subconjunto objetivo sin limpiar campos. No se llaman falsamente CSV descargados directamente. Los uploads de Transfermarkt se copian byte a byte. `data/raw/review_manifest.json` documenta esa diferencia. Originales RDS/receipts se preservan localmente; el scraping original no es la ruta de datos de los experimentos actuales.
+FBref/Understat fueron descargados como **RDS desde GitHub**, después exportados a CSV con el subconjunto objetivo sin limpiar campos. No se llaman falsamente CSV descargados directamente. Los uploads de Transfermarkt se copian byte a byte. `data/raw/source_manifest.json` documenta esa diferencia. Originales RDS/receipts se preservan localmente; el scraping original no es la ruta de datos de los experimentos actuales.
 
 Se han retirado de esta rama los datasets demo/mixtos, modelos antiguos, escenarios, transfer likelihood, scripts abandonados y reportes históricos. La versión anterior queda accesible en el historial Git; no forma parte de esta entrega limpia. El periodo 2025/26 es parcial; Segunda no es una galería táctica actual. No se añade transfer likelihood ni predicción futura.
 
@@ -119,14 +125,14 @@ Se han retirado de esta rama los datasets demo/mixtos, modelos antiguos, escenar
 
 Orden recomendado para el profesor:
 
-1. [FBref EDA](notebooks/fbref_eda.ipynb): calidad, nulos, distribuciones/outliers, correlación y posiciones/ligas/temporadas.
-2. [Understat EDA](notebooks/understat_eda.ipynb): tiros, xG, cobertura, nulos, perfiles ofensivos y límites.
-3. [Transfermarkt EDA](notebooks/transfermarkt_eda.ipynb): perfiles, valores fechados, ceros/nulos/outliers y uso restringido.
-4. [Modelos y validación](notebooks/11_five_league_full_pipeline.ipynb): splits temporales, baselines, PCA/K-means, bootstrap y MLflow.
+1. [FBref EDA](notebooks/01_fbref_data_exploration.ipynb): calidad, nulos, distribuciones/outliers, correlación y posiciones/ligas/temporadas.
+2. [Understat EDA](notebooks/02_understat_data_exploration.ipynb): tiros, xG, cobertura, nulos, perfiles ofensivos y límites.
+3. [Transfermarkt EDA](notebooks/03_transfermarkt_data_exploration.ipynb): perfiles, valores fechados, ceros/nulos/outliers y uso restringido.
+4. [Modelos y validación](notebooks/04_feature_comparison_and_model_validation.ipynb): splits temporales, baselines, PCA/K-means, bootstrap y MLflow.
 
 Solo se incluyen seis notebooks: los tres EDA, validación de los modelos actuales, exploración de grupos y revisión experta. No se incluyen notebooks de etapas abandonadas.
 
-Core holdout: MRR 0,095498; Recall@5 12,95%; Recall@10 19,51%. La tarea recupera la identidad estadística futura del mismo jugador; **no demuestra éxito de fichajes**. Validación experta y transferencia real permanecen pendientes.
+Holdout del recomendador: MRR 0,095498; Recall@5 12,95%; Recall@10 19,51%. La tarea recupera la identidad estadística futura del mismo jugador; **no demuestra éxito de fichajes**. Validación experta y transferencia real permanecen pendientes.
 
 ## Tests
 
@@ -159,7 +165,7 @@ The review branch includes complete prepared-field and raw-source catalogs, a re
 
 The app records iterative scouting requests and player decisions in a separate local SQLite database. See [operational tracking](docs/OPERATIONAL_TRACKING.md). Participant records stay local and are not pushed to GitHub.
 
-The [cloud cost worksheet](docs/evidence/cloud/README.md) separates compute/storage/transfer/backups/requests. Official AWS rates and a dated exchange quote remain pending after network access returned 403. Run `python -m scripts.cloud_cost_report`; unknown prices do not produce a fabricated total.
+The [cloud cost worksheet](docs/evidence/cloud/README.md) separates compute/storage/transfer/backups/requests. Official AWS rates and a dated exchange quote remain pending after network access returned 403. Run `python -m scripts.estimate_cloud_costs`; unknown prices do not produce a fabricated total.
 
 ### Limpieza de la entrega
 

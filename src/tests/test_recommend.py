@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from src.models.recommend import PlayerRecommender
+from src.models.recommender import PlayerRecommender
 
 
 def test_recommendation_filters_and_excludes_self(players):

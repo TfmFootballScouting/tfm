@@ -1,375 +1,375 @@
 table,field,unit,definition,definition_status,provenance_manifest
-data/raw/fbref/standard.csv,Season_End_Year,year,Season end calendar year,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Squad,text,Source club/squad name,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Comp,text,Source competition name,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Player,source label,Provider display name; names are not unique cross-source keys,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Nation,source label,Provider nationality code/text; not independently verified citizenship,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Pos,source label,Provider position label; multiple positions may be listed,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Age,years,Source-reported age for the season; not current age,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Born,year,Reported birth year,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,MP_Playing,appearances,Match appearances,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Starts_Playing,appearances,Starting appearances,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Min_Playing,minutes,Playing minutes,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Mins_Per_90_Playing,90-minute equivalents,Playing minutes divided by 90,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Gls,count or expected events,"Goals scored, provider season total",documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Ast,count or expected events,"Assists, provider season total",documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,G+A,count,Goals plus assists,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,G_minus_PK,count,Goals excluding penalties,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,PK,count,Penalty goals,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,PKatt,count,Penalty attempts,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,CrdY,count,Yellow cards,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,CrdR,count,Red cards,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,PrgC_Progression,count,Progressive carries by provider definition; group Progression,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,PrgP_Progression,count,Progressive passes by provider definition; group Progression,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,PrgR_Progression,count,Progressive passes received by provider definition; group Progression,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Gls_Per,count or expected events per 90 minutes,"Goals scored, provider season total; provider rate per 90 minutes",documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Ast_Per,count or expected events per 90 minutes,"Assists, provider season total; provider rate per 90 minutes",documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,G+A_Per,count per 90 minutes,Goals plus assists; provider rate per 90 minutes,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,G_minus_PK_Per,count per 90 minutes,Goals excluding penalties; provider rate per 90 minutes,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,G+A_minus_PK_Per,count per 90 minutes,Goals plus assists excluding penalty goals; provider rate per 90 minutes,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,xG_Expected,probability 0–1,Provider shot probability of scoring; group Expected,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,npxG_Expected,expected goals,Non-penalty expected goals; group Expected,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,xAG_Expected,count or expected events,Expected assisted goals: provider sum of xG on assisted shots; group Expected,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,npxG+xAG_Expected,expected events,Non-penalty xG plus expected assisted goals; group Expected,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,xG_Per,probability 0–1 per 90 minutes,Provider shot probability of scoring; provider rate per 90 minutes,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,xAG_Per,count or expected events per 90 minutes,Expected assisted goals: provider sum of xG on assisted shots; provider rate per 90 minutes,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,xG+xAG_Per,expected events per 90 minutes,Expected goals plus expected assisted goals; provider rate per 90 minutes,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,npxG_Per,expected goals per 90 minutes,Non-penalty expected goals; provider rate per 90 minutes,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,npxG+xAG_Per,expected events per 90 minutes,Non-penalty xG plus expected assisted goals; provider rate per 90 minutes,documented,data/raw/review_manifest.json
-data/raw/fbref/standard.csv,Url,URL,"Source player profile URL, from which FBref ID is parsed",documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,league,category,Competition label,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,id,source text/category,"Original provider shot identifier, retained alongside normalized shot_id",documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,minute,minutes,Recorded match minute,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,result,source text/category,"Provider shot outcome, including Goal and OwnGoal",documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,X,fraction 0–1,Normalized longitudinal shot coordinate,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,Y,fraction 0–1,Normalized lateral shot coordinate,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,xG,probability 0–1,Provider shot probability of scoring,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,player,source text/category,Provider display name; names are not unique cross-source keys,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,h_a,source text/category,"Primary shot team side: h=home, a=away",documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,player_id,identifier,Provider-specific player identifier,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,situation,source text/category,"Provider shot situation category, such as open play or penalty",documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,season,year,Original Understat season start year,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,shotType,source text/category,Provider body-part/shot type label,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,match_id,source text/category,Provider-specific match identifier,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,home_team,source text/category,Provider home team name,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,away_team,source text/category,Provider away team name,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,home_goals,goals,Final observed home-team match goals,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,away_goals,goals,Final observed away-team match goals,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,date,source text/category,Provider match timestamp as supplied; not acquisition or publication time,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,player_assisted,source text/category,"Provider name of assisting player, if recorded",documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,lastAction,source text/category,Provider action immediately preceding shot,documented,data/raw/review_manifest.json
-data/raw/understat/la_liga_shots.csv,home_away,source text/category,Alternate provider home/away side field; checked against h_a,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,Season_End_Year,year,Season end calendar year,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,Squad,text,Source club/squad name,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,Comp,text,Source competition name,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,Player,source label,Provider display name; names are not unique cross-source keys,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,Nation,source label,Provider nationality code/text; not independently verified citizenship,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,Pos,source label,Provider position label; multiple positions may be listed,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,Age,years,Source-reported age for the season; not current age,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,Born,year,Reported birth year,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,Mins_Per_90,90-minute equivalents,Playing minutes divided by 90,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,Gls_Standard,count or expected events,"Goals scored, provider season total; group Standard",documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,Sh_Standard,count or expected events,"Shots attempted, season count; group Standard",documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,SoT_Standard,count or expected events,"Shots on target, season count; group Standard",documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,SoT_percent_Standard,percent,100 * shots on target / shots; group Standard,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,Sh_per_90_Standard,shots per 90 minutes,Shots * 90 / minutes; group Standard,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,SoT_per_90_Standard,shots per 90 minutes,Shots on target * 90 / minutes; group Standard,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,G_per_Sh_Standard,ratio,Non-penalty goals per non-penalty shot; group Standard,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,G_per_SoT_Standard,ratio,Non-penalty goals per non-penalty shot on target; group Standard,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,Dist_Standard,yards,Average shot distance; group Standard,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,PK_Standard,count,Penalty goals; group Standard,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,PKatt_Standard,count,Penalty attempts; group Standard,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,FK_Standard,count,Shots from free kicks; group Standard,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,xG_Expected,probability 0–1,Provider shot probability of scoring; group Expected,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,npxG_Expected,expected goals,Non-penalty expected goals; group Expected,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,npxG_per_Sh_Expected,expected goals per shot,Non-penalty expected goals per shot; group Expected,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,G_minus_xG_Expected,goals,Goals minus expected goals; group Expected,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,np:G_minus_xG_Expected,goals,Non-penalty goals minus non-penalty xG; group Expected,documented,data/raw/review_manifest.json
-data/raw/fbref/shooting.csv,Url,URL,"Source player profile URL, from which FBref ID is parsed",documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Season_End_Year,year,Season end calendar year,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Squad,text,Source club/squad name,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Comp,text,Source competition name,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Player,source label,Provider display name; names are not unique cross-source keys,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Nation,source label,Provider nationality code/text; not independently verified citizenship,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Pos,source label,Provider position label; multiple positions may be listed,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Age,years,Source-reported age for the season; not current age,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Born,year,Reported birth year,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Mins_Per_90,90-minute equivalents,Playing minutes divided by 90,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Cmp_Total,count,Completed passes; group Total,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Att_Total,count,Attempted passes; group Total,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Cmp_percent_Total,percent,100 * completed / attempted passes; group Total,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,TotDist_Total,yards,"Total pass/carry distance, according to table category; group Total",documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,PrgDist_Total,yards,"Distance towards opposing goal by passes/carries, according to table category; group Total",documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Cmp_Short,count,Completed passes; group Short,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Att_Short,count,Attempted passes; group Short,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Cmp_percent_Short,percent,100 * completed / attempted passes; group Short,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Cmp_Medium,count,Completed passes; group Medium,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Att_Medium,count,Attempted passes; group Medium,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Cmp_percent_Medium,percent,100 * completed / attempted passes; group Medium,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Cmp_Long,count,Completed passes; group Long,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Att_Long,count,Attempted passes; group Long,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Cmp_percent_Long,percent,100 * completed / attempted passes; group Long,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Ast,count or expected events,"Assists, provider season total",documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,xA,count or expected events,Expected assists: provider expected-assist total; not interchangeable with xAG,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,A_minus_xA,assists,Assists minus expected assists,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,KP,count,Key passes directly leading to shots,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Final_Third,count,Passes entering final third,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,PPA,count,Completed passes entering penalty area,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,CrsPA,count,Completed crosses entering penalty area,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Prog,count,Legacy progressive passes field,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,Url,URL,"Source player profile URL, from which FBref ID is parsed",documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,xAG,count or expected events,Expected assisted goals: provider sum of xG on assisted shots,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,A_minus_xAG,assists,Assists minus expected assisted goals,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,PrgP,count,Progressive passes by provider definition,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,xA_Expected,count or expected events,Expected assists: provider expected-assist total; not interchangeable with xAG; group Expected,documented,data/raw/review_manifest.json
-data/raw/fbref/passing.csv,A_minus_xAG_Expected,assists,Assists minus expected assisted goals; group Expected,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Season_End_Year,year,Season end calendar year,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Squad,text,Source club/squad name,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Comp,text,Source competition name,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Player,source label,Provider display name; names are not unique cross-source keys,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Nation,source label,Provider nationality code/text; not independently verified citizenship,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Pos,source label,Provider position label; multiple positions may be listed,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Age,years,Source-reported age for the season; not current age,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Born,year,Reported birth year,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Mins_Per_90,90-minute equivalents,Playing minutes divided by 90,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Tkl_Tackles,count,Tackles; challenges table counts dribblers tackled; group Tackles,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,TklW_Tackles,count,Tackles won; group Tackles,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Def 3rd_Tackles,count,"Events in defensive third, as specified by table group; group Tackles",documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Mid 3rd_Tackles,count,"Events in middle third, as specified by table group; group Tackles",documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Att 3rd_Tackles,count,"Events in attacking third, as specified by table group; group Tackles",documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Tkl_Challenges,count,Tackles; challenges table counts dribblers tackled; group Challenges,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Att_Challenges,count,Challenges against dribbling opponents,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Tkl_percent_Challenges,percent,100 * dribblers tackled / dribbler challenges; group Challenges,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Lost_Challenges,count,Unsuccessful dribbler challenges; group Challenges,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Blocks_Blocks,count,Blocked shots and passes; group Blocks,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Sh_Blocks,count,Shots blocked,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Pass_Blocks,count,Blocked passes; group Blocks,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Int,count or expected events,"Interceptions, season count",documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Tkl+Int,count,Tackles plus interceptions,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Clr,count,Clearances,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Err,count,Errors leading to an opponent shot,documented,data/raw/review_manifest.json
-data/raw/fbref/defense.csv,Url,URL,"Source player profile URL, from which FBref ID is parsed",documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Season_End_Year,year,Season end calendar year,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Squad,text,Source club/squad name,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Comp,text,Source competition name,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Player,source label,Provider display name; names are not unique cross-source keys,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Nation,source label,Provider nationality code/text; not independently verified citizenship,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Pos,source label,Provider position label; multiple positions may be listed,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Age,years,Source-reported age for the season; not current age,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Born,year,Reported birth year,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Mins_Per_90,90-minute equivalents,Playing minutes divided by 90,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Touches_Touches,count or expected events,"Ball touches recorded by provider, season count; group Touches",documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Def Pen_Touches,count,Touches in own penalty area; group Touches,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Def 3rd_Touches,count,"Events in defensive third, as specified by table group; group Touches",documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Mid 3rd_Touches,count,"Events in middle third, as specified by table group; group Touches",documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Att 3rd_Touches,count,"Events in attacking third, as specified by table group; group Touches",documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Att Pen_Touches,count,Touches in opposing penalty area; group Touches,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Live_Touches,count,Live-ball touches; group Touches,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Att_Take,count,Attempted take-ons,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Succ_Take,count,Successful take-ons; group Take,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Succ_percent_Take,percent,100 * successful / attempted take-ons; group Take,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Tkld_Take,count,Times tackled during a take-on; group Take,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Tkld_percent_Take,percent,100 * tackled / attempted take-ons; group Take,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Carries_Carries,count,Ball carries; group Carries,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,TotDist_Carries,yards,"Total pass/carry distance, according to table category; group Carries",documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,PrgDist_Carries,yards,"Distance towards opposing goal by passes/carries, according to table category; group Carries",documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,PrgC_Carries,count,Progressive carries by provider definition; group Carries,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Final_Third_Carries,count,Carries entering final third,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,CPA_Carries,count,Carries into penalty area; group Carries,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Mis_Carries,count,Miscontrols; group Carries,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Dis_Carries,count,Times dispossessed; group Carries,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Rec_Receiving,count,Passes received; group Receiving,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,PrgR_Receiving,count,Progressive passes received by provider definition; group Receiving,documented,data/raw/review_manifest.json
-data/raw/fbref/possession.csv,Url,URL,"Source player profile URL, from which FBref ID is parsed",documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Season_End_Year,year,Season end calendar year,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Squad,text,Source club/squad name,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Comp,text,Source competition name,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Player,source label,Provider display name; names are not unique cross-source keys,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Nation,source label,Provider nationality code/text; not independently verified citizenship,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Pos,source label,Provider position label; multiple positions may be listed,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Age,years,Source-reported age for the season; not current age,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Born,year,Reported birth year,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Mins_Per_90,90-minute equivalents,Playing minutes divided by 90,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,CrdY,count,Yellow cards,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,CrdR,count,Red cards,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,2CrdY,count,Second-yellow dismissals,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Fls,count or expected events,"Fouls committed, season count",documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Fld,count or expected events,"Fouls drawn, season count",documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Off,count,Offsides,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Crs,count or expected events,"Crosses, season count",documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Int,count or expected events,"Interceptions, season count",documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,TklW,count,Tackles won,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,PKwon,count,Penalties won,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,PKcon,count,Penalties conceded,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,OG,count,Own goals,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Recov,count,Loose-ball recoveries,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Won_Aerial,count,Aerial duels won; group Aerial,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Lost_Aerial,count,Aerial duels lost,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Won_percent_Aerial,percent,100 * won / total aerial duels; group Aerial,documented,data/raw/review_manifest.json
-data/raw/fbref/misc.csv,Url,URL,"Source player profile URL, from which FBref ID is parsed",documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,league,category,Competition label,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,id,source text/category,"Original provider shot identifier, retained alongside normalized shot_id",documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,minute,minutes,Recorded match minute,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,result,source text/category,"Provider shot outcome, including Goal and OwnGoal",documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,X,fraction 0–1,Normalized longitudinal shot coordinate,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,Y,fraction 0–1,Normalized lateral shot coordinate,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,xG,probability 0–1,Provider shot probability of scoring,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,player,source text/category,Provider display name; names are not unique cross-source keys,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,h_a,source text/category,"Primary shot team side: h=home, a=away",documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,player_id,identifier,Provider-specific player identifier,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,situation,source text/category,"Provider shot situation category, such as open play or penalty",documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,season,year,Original Understat season start year,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,shotType,source text/category,Provider body-part/shot type label,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,match_id,source text/category,Provider-specific match identifier,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,home_team,source text/category,Provider home team name,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,away_team,source text/category,Provider away team name,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,home_goals,goals,Final observed home-team match goals,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,away_goals,goals,Final observed away-team match goals,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,date,source text/category,Provider match timestamp as supplied; not acquisition or publication time,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,player_assisted,source text/category,"Provider name of assisting player, if recorded",documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,lastAction,source text/category,Provider action immediately preceding shot,documented,data/raw/review_manifest.json
-data/raw/understat/premier_league_shots.csv,home_away,source text/category,Alternate provider home/away side field; checked against h_a,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,league,category,Competition label,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,id,source text/category,"Original provider shot identifier, retained alongside normalized shot_id",documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,minute,minutes,Recorded match minute,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,result,source text/category,"Provider shot outcome, including Goal and OwnGoal",documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,X,fraction 0–1,Normalized longitudinal shot coordinate,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,Y,fraction 0–1,Normalized lateral shot coordinate,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,xG,probability 0–1,Provider shot probability of scoring,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,player,source text/category,Provider display name; names are not unique cross-source keys,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,h_a,source text/category,"Primary shot team side: h=home, a=away",documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,player_id,identifier,Provider-specific player identifier,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,situation,source text/category,"Provider shot situation category, such as open play or penalty",documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,season,year,Original Understat season start year,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,shotType,source text/category,Provider body-part/shot type label,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,match_id,source text/category,Provider-specific match identifier,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,home_team,source text/category,Provider home team name,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,away_team,source text/category,Provider away team name,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,home_goals,goals,Final observed home-team match goals,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,away_goals,goals,Final observed away-team match goals,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,date,source text/category,Provider match timestamp as supplied; not acquisition or publication time,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,player_assisted,source text/category,"Provider name of assisting player, if recorded",documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,lastAction,source text/category,Provider action immediately preceding shot,documented,data/raw/review_manifest.json
-data/raw/understat/bundesliga_shots.csv,home_away,source text/category,Alternate provider home/away side field; checked against h_a,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,league,category,Competition label,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,id,source text/category,"Original provider shot identifier, retained alongside normalized shot_id",documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,minute,minutes,Recorded match minute,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,result,source text/category,"Provider shot outcome, including Goal and OwnGoal",documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,X,fraction 0–1,Normalized longitudinal shot coordinate,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,Y,fraction 0–1,Normalized lateral shot coordinate,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,xG,probability 0–1,Provider shot probability of scoring,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,player,source text/category,Provider display name; names are not unique cross-source keys,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,h_a,source text/category,"Primary shot team side: h=home, a=away",documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,player_id,identifier,Provider-specific player identifier,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,situation,source text/category,"Provider shot situation category, such as open play or penalty",documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,season,year,Original Understat season start year,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,shotType,source text/category,Provider body-part/shot type label,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,match_id,source text/category,Provider-specific match identifier,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,home_team,source text/category,Provider home team name,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,away_team,source text/category,Provider away team name,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,home_goals,goals,Final observed home-team match goals,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,away_goals,goals,Final observed away-team match goals,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,date,source text/category,Provider match timestamp as supplied; not acquisition or publication time,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,player_assisted,source text/category,"Provider name of assisting player, if recorded",documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,lastAction,source text/category,Provider action immediately preceding shot,documented,data/raw/review_manifest.json
-data/raw/understat/serie_a_shots.csv,home_away,source text/category,Alternate provider home/away side field; checked against h_a,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,league,category,Competition label,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,id,source text/category,"Original provider shot identifier, retained alongside normalized shot_id",documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,minute,minutes,Recorded match minute,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,result,source text/category,"Provider shot outcome, including Goal and OwnGoal",documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,X,fraction 0–1,Normalized longitudinal shot coordinate,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,Y,fraction 0–1,Normalized lateral shot coordinate,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,xG,probability 0–1,Provider shot probability of scoring,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,player,source text/category,Provider display name; names are not unique cross-source keys,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,h_a,source text/category,"Primary shot team side: h=home, a=away",documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,player_id,identifier,Provider-specific player identifier,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,situation,source text/category,"Provider shot situation category, such as open play or penalty",documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,season,year,Original Understat season start year,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,shotType,source text/category,Provider body-part/shot type label,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,match_id,source text/category,Provider-specific match identifier,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,home_team,source text/category,Provider home team name,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,away_team,source text/category,Provider away team name,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,home_goals,goals,Final observed home-team match goals,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,away_goals,goals,Final observed away-team match goals,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,date,source text/category,Provider match timestamp as supplied; not acquisition or publication time,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,player_assisted,source text/category,"Provider name of assisting player, if recorded",documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,lastAction,source text/category,Provider action immediately preceding shot,documented,data/raw/review_manifest.json
-data/raw/understat/ligue_1_shots.csv,home_away,source text/category,Alternate provider home/away side field; checked against h_a,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,player_id,identifier,Provider-specific player identifier,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,player_slug,text,Source URL slug for player,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,player_name,text/category,"Source player name; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,player_image_url,URL,Source player image URL,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,name_in_home_country,text/category,"Source name in home country; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,date_of_birth,source date,"Source date of birth date; current snapshot, not historical publication evidence",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,place_of_birth,text/category,"Source place of birth; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,country_of_birth,text/category,"Source country of birth; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,height,"source height, assumed cm",Provider-reported height; normalizer treats positive numeric values as centimetres,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,citizenship,text/category,"Source citizenship; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,is_eu,boolean,Source European Union membership flag; not independently verified eligibility,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,position,text/category,"Source position; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,main_position,source text/category,Normalized primary profile position; current profile scope,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,foot,source text/category,Source preferred-foot text; unknown preserved,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,current_club_id,source text/category,Provider club ID in current profile snapshot; not historical club membership,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,current_club_name,source text/category,Club name in current profile snapshot; not historical club membership,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,joined,source date,"Source joined date; current snapshot, not historical publication evidence",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,contract_expires,source date,"Source contract expires date; current snapshot, not historical publication evidence",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,outfitter,text/category,"Source outfitter; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,social_media_url,URL,Source social media URL,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,player_agent_id,identifier,Provider-specific player agent identifier; not universal,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,player_agent_name,text/category,"Source player agent name; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,contract_option,text/category,"Source contract option; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,date_of_last_contract_extension,source date,"Source date of last contract extension date; current snapshot, not historical publication evidence",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,on_loan_from_club_id,identifier,Provider-specific on loan from club identifier; not universal,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,on_loan_from_club_name,text/category,"Source on loan from club name; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,contract_there_expires,source date,"Source contract there expires date; current snapshot, not historical publication evidence",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,second_club_url,URL,Source second club URL,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,second_club_name,text/category,"Source second club name; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,third_club_url,URL,Source third club URL,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,third_club_name,text/category,"Source third club name; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,fourth_club_url,URL,Source fourth club URL,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,fourth_club_name,text/category,"Source fourth club name; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_profiles.csv,date_of_death,source date,"Source date of death date; current snapshot, not historical publication evidence",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_market_value.csv,player_id,identifier,Provider-specific player identifier,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_market_value.csv,date_unix,YYYY-MM-DD,"Despite its name, supplied CSV contains ISO calendar value dates, not Unix seconds",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/player_market_value.csv,value,source amount,"Reported market assessment; EUR assumed by normalizer, currency unverified; not transfer fee",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_details.csv,club_id,identifier,Provider-specific club identifier; not universal,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_details.csv,club_slug,text,Source URL slug for club,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_details.csv,club_name,text/category,"Source club name; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_details.csv,logo_url,URL,Source logo URL,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_details.csv,country_name,text/category,"Source country name; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_details.csv,season_id,identifier,Provider-specific season identifier; not universal,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_details.csv,competition_id,identifier,Provider-specific competition identifier; not universal,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_details.csv,competition_slug,text,Source URL slug for competition,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_details.csv,competition_name,text/category,"Source competition name; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_details.csv,club_division,text/category,"Source club division; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_details.csv,source_url,URL,Source source URL,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_details.csv,_last_modified_at,timestamp,Secondary dataset modification timestamp; not proof of provider publication,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,club_division,text/category,"Source club division; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,club_id,identifier,Provider-specific club identifier; not universal,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,competition_id,identifier,Provider-specific competition identifier; not universal,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,competition_name,text/category,"Source competition name; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_draws,count/points/rank as named,Reported team-season draws,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_goal_difference,count/points/rank as named,Reported team-season goals scored minus conceded,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_goals_against,count/points/rank as named,Reported team-season goals conceded,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_goals_for,count/points/rank as named,Reported team-season goals scored,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_id,identifier,Provider-specific season identifier; not universal,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_is_two_point_system,boolean,Whether source competition uses two points for a win,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_league_competition_id,identifier,Provider-specific season league competition identifier; not universal,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_league_league_name,text/category,"Source season league league name; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_league_league_slug,text,Source URL slug for season league league,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_league_level_level_name,text/category,"Source season league level level name; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_league_level_level_number,count/points/rank as named,Reported team-season competition tier number,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_league_season_id,identifier,Provider-specific season league season identifier; not universal,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_losses,count/points/rank as named,Reported team-season losses,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_manager,source text/object,Source manager metadata; may contain serialized structure,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_manager_manager_id,identifier,Provider-specific season manager manager identifier; not universal,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_manager_manager_name,text/category,"Source season manager manager name; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_manager_manager_slug,text,Source URL slug for season manager manager,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_points,count/points/rank as named,Reported team-season league points,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_points_against,provider-defined; unverified,"Source field points_against; interpretation unverified, not used in pipeline",pending_provider_glossary,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_points_for,provider-defined; unverified,"Source field points_for; interpretation unverified, not used in pipeline",pending_provider_glossary,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_rank,count/points/rank as named,Reported team-season league standing rank,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_season,season label,Source season display label,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_total_matches,count/points/rank as named,Reported team-season matches,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,season_wins,count/points/rank as named,Reported team-season wins,documented,data/raw/review_manifest.json
-data/raw/transfermarkt/team_competitions_seasons.csv,team_name,text/category,"Source team name; snapshot metadata, not independently verified",documented,data/raw/review_manifest.json
+data/raw/fbref/standard.csv,Season_End_Year,year,Season end calendar year,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Squad,text,Source club/squad name,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Comp,text,Source competition name,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Player,source label,Provider display name; names are not unique cross-source keys,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Nation,source label,Provider nationality code/text; not independently verified citizenship,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Pos,source label,Provider position label; multiple positions may be listed,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Age,years,Source-reported age for the season; not current age,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Born,year,Reported birth year,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,MP_Playing,appearances,Match appearances,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Starts_Playing,appearances,Starting appearances,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Min_Playing,minutes,Playing minutes,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Mins_Per_90_Playing,90-minute equivalents,Playing minutes divided by 90,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Gls,count or expected events,"Goals scored, provider season total",documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Ast,count or expected events,"Assists, provider season total",documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,G+A,count,Goals plus assists,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,G_minus_PK,count,Goals excluding penalties,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,PK,count,Penalty goals,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,PKatt,count,Penalty attempts,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,CrdY,count,Yellow cards,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,CrdR,count,Red cards,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,PrgC_Progression,count,Progressive carries by provider definition; group Progression,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,PrgP_Progression,count,Progressive passes by provider definition; group Progression,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,PrgR_Progression,count,Progressive passes received by provider definition; group Progression,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Gls_Per,count or expected events per 90 minutes,"Goals scored, provider season total; provider rate per 90 minutes",documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Ast_Per,count or expected events per 90 minutes,"Assists, provider season total; provider rate per 90 minutes",documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,G+A_Per,count per 90 minutes,Goals plus assists; provider rate per 90 minutes,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,G_minus_PK_Per,count per 90 minutes,Goals excluding penalties; provider rate per 90 minutes,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,G+A_minus_PK_Per,count per 90 minutes,Goals plus assists excluding penalty goals; provider rate per 90 minutes,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,xG_Expected,probability 0–1,Provider shot probability of scoring; group Expected,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,npxG_Expected,expected goals,Non-penalty expected goals; group Expected,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,xAG_Expected,count or expected events,Expected assisted goals: provider sum of xG on assisted shots; group Expected,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,npxG+xAG_Expected,expected events,Non-penalty xG plus expected assisted goals; group Expected,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,xG_Per,probability 0–1 per 90 minutes,Provider shot probability of scoring; provider rate per 90 minutes,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,xAG_Per,count or expected events per 90 minutes,Expected assisted goals: provider sum of xG on assisted shots; provider rate per 90 minutes,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,xG+xAG_Per,expected events per 90 minutes,Expected goals plus expected assisted goals; provider rate per 90 minutes,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,npxG_Per,expected goals per 90 minutes,Non-penalty expected goals; provider rate per 90 minutes,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,npxG+xAG_Per,expected events per 90 minutes,Non-penalty xG plus expected assisted goals; provider rate per 90 minutes,documented,data/raw/source_manifest.json
+data/raw/fbref/standard.csv,Url,URL,"Source player profile URL, from which FBref ID is parsed",documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,league,category,Competition label,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,id,source text/category,"Original provider shot identifier, retained alongside normalized shot_id",documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,minute,minutes,Recorded match minute,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,result,source text/category,"Provider shot outcome, including Goal and OwnGoal",documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,X,fraction 0–1,Normalized longitudinal shot coordinate,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,Y,fraction 0–1,Normalized lateral shot coordinate,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,xG,probability 0–1,Provider shot probability of scoring,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,player,source text/category,Provider display name; names are not unique cross-source keys,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,h_a,source text/category,"Primary shot team side: h=home, a=away",documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,player_id,identifier,Provider-specific player identifier,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,situation,source text/category,"Provider shot situation category, such as open play or penalty",documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,season,year,Original Understat season start year,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,shotType,source text/category,Provider body-part/shot type label,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,match_id,source text/category,Provider-specific match identifier,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,home_team,source text/category,Provider home team name,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,away_team,source text/category,Provider away team name,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,home_goals,goals,Final observed home-team match goals,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,away_goals,goals,Final observed away-team match goals,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,date,source text/category,Provider match timestamp as supplied; not acquisition or publication time,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,player_assisted,source text/category,"Provider name of assisting player, if recorded",documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,lastAction,source text/category,Provider action immediately preceding shot,documented,data/raw/source_manifest.json
+data/raw/understat/la_liga_shots.csv,home_away,source text/category,Alternate provider home/away side field; checked against h_a,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,Season_End_Year,year,Season end calendar year,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,Squad,text,Source club/squad name,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,Comp,text,Source competition name,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,Player,source label,Provider display name; names are not unique cross-source keys,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,Nation,source label,Provider nationality code/text; not independently verified citizenship,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,Pos,source label,Provider position label; multiple positions may be listed,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,Age,years,Source-reported age for the season; not current age,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,Born,year,Reported birth year,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,Mins_Per_90,90-minute equivalents,Playing minutes divided by 90,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,Gls_Standard,count or expected events,"Goals scored, provider season total; group Standard",documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,Sh_Standard,count or expected events,"Shots attempted, season count; group Standard",documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,SoT_Standard,count or expected events,"Shots on target, season count; group Standard",documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,SoT_percent_Standard,percent,100 * shots on target / shots; group Standard,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,Sh_per_90_Standard,shots per 90 minutes,Shots * 90 / minutes; group Standard,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,SoT_per_90_Standard,shots per 90 minutes,Shots on target * 90 / minutes; group Standard,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,G_per_Sh_Standard,ratio,Non-penalty goals per non-penalty shot; group Standard,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,G_per_SoT_Standard,ratio,Non-penalty goals per non-penalty shot on target; group Standard,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,Dist_Standard,yards,Average shot distance; group Standard,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,PK_Standard,count,Penalty goals; group Standard,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,PKatt_Standard,count,Penalty attempts; group Standard,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,FK_Standard,count,Shots from free kicks; group Standard,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,xG_Expected,probability 0–1,Provider shot probability of scoring; group Expected,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,npxG_Expected,expected goals,Non-penalty expected goals; group Expected,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,npxG_per_Sh_Expected,expected goals per shot,Non-penalty expected goals per shot; group Expected,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,G_minus_xG_Expected,goals,Goals minus expected goals; group Expected,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,np:G_minus_xG_Expected,goals,Non-penalty goals minus non-penalty xG; group Expected,documented,data/raw/source_manifest.json
+data/raw/fbref/shooting.csv,Url,URL,"Source player profile URL, from which FBref ID is parsed",documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Season_End_Year,year,Season end calendar year,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Squad,text,Source club/squad name,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Comp,text,Source competition name,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Player,source label,Provider display name; names are not unique cross-source keys,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Nation,source label,Provider nationality code/text; not independently verified citizenship,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Pos,source label,Provider position label; multiple positions may be listed,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Age,years,Source-reported age for the season; not current age,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Born,year,Reported birth year,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Mins_Per_90,90-minute equivalents,Playing minutes divided by 90,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Cmp_Total,count,Completed passes; group Total,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Att_Total,count,Attempted passes; group Total,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Cmp_percent_Total,percent,100 * completed / attempted passes; group Total,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,TotDist_Total,yards,"Total pass/carry distance, according to table category; group Total",documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,PrgDist_Total,yards,"Distance towards opposing goal by passes/carries, according to table category; group Total",documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Cmp_Short,count,Completed passes; group Short,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Att_Short,count,Attempted passes; group Short,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Cmp_percent_Short,percent,100 * completed / attempted passes; group Short,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Cmp_Medium,count,Completed passes; group Medium,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Att_Medium,count,Attempted passes; group Medium,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Cmp_percent_Medium,percent,100 * completed / attempted passes; group Medium,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Cmp_Long,count,Completed passes; group Long,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Att_Long,count,Attempted passes; group Long,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Cmp_percent_Long,percent,100 * completed / attempted passes; group Long,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Ast,count or expected events,"Assists, provider season total",documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,xA,count or expected events,Expected assists: provider expected-assist total; not interchangeable with xAG,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,A_minus_xA,assists,Assists minus expected assists,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,KP,count,Key passes directly leading to shots,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Final_Third,count,Passes entering final third,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,PPA,count,Completed passes entering penalty area,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,CrsPA,count,Completed crosses entering penalty area,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Prog,count,Legacy progressive passes field,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,Url,URL,"Source player profile URL, from which FBref ID is parsed",documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,xAG,count or expected events,Expected assisted goals: provider sum of xG on assisted shots,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,A_minus_xAG,assists,Assists minus expected assisted goals,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,PrgP,count,Progressive passes by provider definition,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,xA_Expected,count or expected events,Expected assists: provider expected-assist total; not interchangeable with xAG; group Expected,documented,data/raw/source_manifest.json
+data/raw/fbref/passing.csv,A_minus_xAG_Expected,assists,Assists minus expected assisted goals; group Expected,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Season_End_Year,year,Season end calendar year,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Squad,text,Source club/squad name,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Comp,text,Source competition name,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Player,source label,Provider display name; names are not unique cross-source keys,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Nation,source label,Provider nationality code/text; not independently verified citizenship,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Pos,source label,Provider position label; multiple positions may be listed,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Age,years,Source-reported age for the season; not current age,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Born,year,Reported birth year,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Mins_Per_90,90-minute equivalents,Playing minutes divided by 90,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Tkl_Tackles,count,Tackles; challenges table counts dribblers tackled; group Tackles,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,TklW_Tackles,count,Tackles won; group Tackles,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Def 3rd_Tackles,count,"Events in defensive third, as specified by table group; group Tackles",documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Mid 3rd_Tackles,count,"Events in middle third, as specified by table group; group Tackles",documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Att 3rd_Tackles,count,"Events in attacking third, as specified by table group; group Tackles",documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Tkl_Challenges,count,Tackles; challenges table counts dribblers tackled; group Challenges,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Att_Challenges,count,Challenges against dribbling opponents,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Tkl_percent_Challenges,percent,100 * dribblers tackled / dribbler challenges; group Challenges,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Lost_Challenges,count,Unsuccessful dribbler challenges; group Challenges,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Blocks_Blocks,count,Blocked shots and passes; group Blocks,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Sh_Blocks,count,Shots blocked,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Pass_Blocks,count,Blocked passes; group Blocks,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Int,count or expected events,"Interceptions, season count",documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Tkl+Int,count,Tackles plus interceptions,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Clr,count,Clearances,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Err,count,Errors leading to an opponent shot,documented,data/raw/source_manifest.json
+data/raw/fbref/defense.csv,Url,URL,"Source player profile URL, from which FBref ID is parsed",documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Season_End_Year,year,Season end calendar year,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Squad,text,Source club/squad name,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Comp,text,Source competition name,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Player,source label,Provider display name; names are not unique cross-source keys,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Nation,source label,Provider nationality code/text; not independently verified citizenship,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Pos,source label,Provider position label; multiple positions may be listed,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Age,years,Source-reported age for the season; not current age,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Born,year,Reported birth year,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Mins_Per_90,90-minute equivalents,Playing minutes divided by 90,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Touches_Touches,count or expected events,"Ball touches recorded by provider, season count; group Touches",documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Def Pen_Touches,count,Touches in own penalty area; group Touches,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Def 3rd_Touches,count,"Events in defensive third, as specified by table group; group Touches",documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Mid 3rd_Touches,count,"Events in middle third, as specified by table group; group Touches",documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Att 3rd_Touches,count,"Events in attacking third, as specified by table group; group Touches",documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Att Pen_Touches,count,Touches in opposing penalty area; group Touches,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Live_Touches,count,Live-ball touches; group Touches,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Att_Take,count,Attempted take-ons,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Succ_Take,count,Successful take-ons; group Take,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Succ_percent_Take,percent,100 * successful / attempted take-ons; group Take,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Tkld_Take,count,Times tackled during a take-on; group Take,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Tkld_percent_Take,percent,100 * tackled / attempted take-ons; group Take,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Carries_Carries,count,Ball carries; group Carries,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,TotDist_Carries,yards,"Total pass/carry distance, according to table category; group Carries",documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,PrgDist_Carries,yards,"Distance towards opposing goal by passes/carries, according to table category; group Carries",documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,PrgC_Carries,count,Progressive carries by provider definition; group Carries,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Final_Third_Carries,count,Carries entering final third,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,CPA_Carries,count,Carries into penalty area; group Carries,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Mis_Carries,count,Miscontrols; group Carries,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Dis_Carries,count,Times dispossessed; group Carries,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Rec_Receiving,count,Passes received; group Receiving,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,PrgR_Receiving,count,Progressive passes received by provider definition; group Receiving,documented,data/raw/source_manifest.json
+data/raw/fbref/possession.csv,Url,URL,"Source player profile URL, from which FBref ID is parsed",documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Season_End_Year,year,Season end calendar year,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Squad,text,Source club/squad name,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Comp,text,Source competition name,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Player,source label,Provider display name; names are not unique cross-source keys,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Nation,source label,Provider nationality code/text; not independently verified citizenship,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Pos,source label,Provider position label; multiple positions may be listed,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Age,years,Source-reported age for the season; not current age,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Born,year,Reported birth year,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Mins_Per_90,90-minute equivalents,Playing minutes divided by 90,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,CrdY,count,Yellow cards,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,CrdR,count,Red cards,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,2CrdY,count,Second-yellow dismissals,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Fls,count or expected events,"Fouls committed, season count",documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Fld,count or expected events,"Fouls drawn, season count",documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Off,count,Offsides,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Crs,count or expected events,"Crosses, season count",documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Int,count or expected events,"Interceptions, season count",documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,TklW,count,Tackles won,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,PKwon,count,Penalties won,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,PKcon,count,Penalties conceded,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,OG,count,Own goals,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Recov,count,Loose-ball recoveries,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Won_Aerial,count,Aerial duels won; group Aerial,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Lost_Aerial,count,Aerial duels lost,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Won_percent_Aerial,percent,100 * won / total aerial duels; group Aerial,documented,data/raw/source_manifest.json
+data/raw/fbref/misc.csv,Url,URL,"Source player profile URL, from which FBref ID is parsed",documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,league,category,Competition label,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,id,source text/category,"Original provider shot identifier, retained alongside normalized shot_id",documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,minute,minutes,Recorded match minute,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,result,source text/category,"Provider shot outcome, including Goal and OwnGoal",documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,X,fraction 0–1,Normalized longitudinal shot coordinate,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,Y,fraction 0–1,Normalized lateral shot coordinate,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,xG,probability 0–1,Provider shot probability of scoring,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,player,source text/category,Provider display name; names are not unique cross-source keys,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,h_a,source text/category,"Primary shot team side: h=home, a=away",documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,player_id,identifier,Provider-specific player identifier,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,situation,source text/category,"Provider shot situation category, such as open play or penalty",documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,season,year,Original Understat season start year,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,shotType,source text/category,Provider body-part/shot type label,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,match_id,source text/category,Provider-specific match identifier,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,home_team,source text/category,Provider home team name,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,away_team,source text/category,Provider away team name,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,home_goals,goals,Final observed home-team match goals,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,away_goals,goals,Final observed away-team match goals,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,date,source text/category,Provider match timestamp as supplied; not acquisition or publication time,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,player_assisted,source text/category,"Provider name of assisting player, if recorded",documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,lastAction,source text/category,Provider action immediately preceding shot,documented,data/raw/source_manifest.json
+data/raw/understat/premier_league_shots.csv,home_away,source text/category,Alternate provider home/away side field; checked against h_a,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,league,category,Competition label,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,id,source text/category,"Original provider shot identifier, retained alongside normalized shot_id",documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,minute,minutes,Recorded match minute,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,result,source text/category,"Provider shot outcome, including Goal and OwnGoal",documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,X,fraction 0–1,Normalized longitudinal shot coordinate,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,Y,fraction 0–1,Normalized lateral shot coordinate,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,xG,probability 0–1,Provider shot probability of scoring,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,player,source text/category,Provider display name; names are not unique cross-source keys,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,h_a,source text/category,"Primary shot team side: h=home, a=away",documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,player_id,identifier,Provider-specific player identifier,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,situation,source text/category,"Provider shot situation category, such as open play or penalty",documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,season,year,Original Understat season start year,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,shotType,source text/category,Provider body-part/shot type label,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,match_id,source text/category,Provider-specific match identifier,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,home_team,source text/category,Provider home team name,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,away_team,source text/category,Provider away team name,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,home_goals,goals,Final observed home-team match goals,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,away_goals,goals,Final observed away-team match goals,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,date,source text/category,Provider match timestamp as supplied; not acquisition or publication time,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,player_assisted,source text/category,"Provider name of assisting player, if recorded",documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,lastAction,source text/category,Provider action immediately preceding shot,documented,data/raw/source_manifest.json
+data/raw/understat/bundesliga_shots.csv,home_away,source text/category,Alternate provider home/away side field; checked against h_a,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,league,category,Competition label,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,id,source text/category,"Original provider shot identifier, retained alongside normalized shot_id",documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,minute,minutes,Recorded match minute,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,result,source text/category,"Provider shot outcome, including Goal and OwnGoal",documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,X,fraction 0–1,Normalized longitudinal shot coordinate,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,Y,fraction 0–1,Normalized lateral shot coordinate,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,xG,probability 0–1,Provider shot probability of scoring,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,player,source text/category,Provider display name; names are not unique cross-source keys,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,h_a,source text/category,"Primary shot team side: h=home, a=away",documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,player_id,identifier,Provider-specific player identifier,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,situation,source text/category,"Provider shot situation category, such as open play or penalty",documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,season,year,Original Understat season start year,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,shotType,source text/category,Provider body-part/shot type label,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,match_id,source text/category,Provider-specific match identifier,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,home_team,source text/category,Provider home team name,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,away_team,source text/category,Provider away team name,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,home_goals,goals,Final observed home-team match goals,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,away_goals,goals,Final observed away-team match goals,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,date,source text/category,Provider match timestamp as supplied; not acquisition or publication time,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,player_assisted,source text/category,"Provider name of assisting player, if recorded",documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,lastAction,source text/category,Provider action immediately preceding shot,documented,data/raw/source_manifest.json
+data/raw/understat/serie_a_shots.csv,home_away,source text/category,Alternate provider home/away side field; checked against h_a,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,league,category,Competition label,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,id,source text/category,"Original provider shot identifier, retained alongside normalized shot_id",documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,minute,minutes,Recorded match minute,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,result,source text/category,"Provider shot outcome, including Goal and OwnGoal",documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,X,fraction 0–1,Normalized longitudinal shot coordinate,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,Y,fraction 0–1,Normalized lateral shot coordinate,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,xG,probability 0–1,Provider shot probability of scoring,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,player,source text/category,Provider display name; names are not unique cross-source keys,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,h_a,source text/category,"Primary shot team side: h=home, a=away",documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,player_id,identifier,Provider-specific player identifier,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,situation,source text/category,"Provider shot situation category, such as open play or penalty",documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,season,year,Original Understat season start year,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,shotType,source text/category,Provider body-part/shot type label,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,match_id,source text/category,Provider-specific match identifier,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,home_team,source text/category,Provider home team name,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,away_team,source text/category,Provider away team name,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,home_goals,goals,Final observed home-team match goals,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,away_goals,goals,Final observed away-team match goals,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,date,source text/category,Provider match timestamp as supplied; not acquisition or publication time,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,player_assisted,source text/category,"Provider name of assisting player, if recorded",documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,lastAction,source text/category,Provider action immediately preceding shot,documented,data/raw/source_manifest.json
+data/raw/understat/ligue_1_shots.csv,home_away,source text/category,Alternate provider home/away side field; checked against h_a,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,player_id,identifier,Provider-specific player identifier,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,player_slug,text,Source URL slug for player,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,player_name,text/category,"Source player name; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,player_image_url,URL,Source player image URL,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,name_in_home_country,text/category,"Source name in home country; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,date_of_birth,source date,"Source date of birth date; current snapshot, not historical publication evidence",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,place_of_birth,text/category,"Source place of birth; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,country_of_birth,text/category,"Source country of birth; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,height,"source height, assumed cm",Provider-reported height; normalizer treats positive numeric values as centimetres,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,citizenship,text/category,"Source citizenship; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,is_eu,boolean,Source European Union membership flag; not independently verified eligibility,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,position,text/category,"Source position; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,main_position,source text/category,Normalized primary profile position; current profile scope,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,foot,source text/category,Source preferred-foot text; unknown preserved,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,current_club_id,source text/category,Provider club ID in current profile snapshot; not historical club membership,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,current_club_name,source text/category,Club name in current profile snapshot; not historical club membership,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,joined,source date,"Source joined date; current snapshot, not historical publication evidence",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,contract_expires,source date,"Source contract expires date; current snapshot, not historical publication evidence",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,outfitter,text/category,"Source outfitter; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,social_media_url,URL,Source social media URL,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,player_agent_id,identifier,Provider-specific player agent identifier; not universal,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,player_agent_name,text/category,"Source player agent name; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,contract_option,text/category,"Source contract option; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,date_of_last_contract_extension,source date,"Source date of last contract extension date; current snapshot, not historical publication evidence",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,on_loan_from_club_id,identifier,Provider-specific on loan from club identifier; not universal,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,on_loan_from_club_name,text/category,"Source on loan from club name; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,contract_there_expires,source date,"Source contract there expires date; current snapshot, not historical publication evidence",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,second_club_url,URL,Source second club URL,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,second_club_name,text/category,"Source second club name; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,third_club_url,URL,Source third club URL,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,third_club_name,text/category,"Source third club name; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,fourth_club_url,URL,Source fourth club URL,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,fourth_club_name,text/category,"Source fourth club name; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_profiles.csv,date_of_death,source date,"Source date of death date; current snapshot, not historical publication evidence",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_market_value.csv,player_id,identifier,Provider-specific player identifier,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_market_value.csv,date_unix,YYYY-MM-DD,"Despite its name, supplied CSV contains ISO calendar value dates, not Unix seconds",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/player_market_value.csv,value,source amount,"Reported market assessment; EUR assumed by normalizer, currency unverified; not transfer fee",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_details.csv,club_id,identifier,Provider-specific club identifier; not universal,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_details.csv,club_slug,text,Source URL slug for club,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_details.csv,club_name,text/category,"Source club name; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_details.csv,logo_url,URL,Source logo URL,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_details.csv,country_name,text/category,"Source country name; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_details.csv,season_id,identifier,Provider-specific season identifier; not universal,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_details.csv,competition_id,identifier,Provider-specific competition identifier; not universal,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_details.csv,competition_slug,text,Source URL slug for competition,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_details.csv,competition_name,text/category,"Source competition name; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_details.csv,club_division,text/category,"Source club division; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_details.csv,source_url,URL,Source source URL,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_details.csv,_last_modified_at,timestamp,Secondary dataset modification timestamp; not proof of provider publication,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,club_division,text/category,"Source club division; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,club_id,identifier,Provider-specific club identifier; not universal,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,competition_id,identifier,Provider-specific competition identifier; not universal,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,competition_name,text/category,"Source competition name; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_draws,count/points/rank as named,Reported team-season draws,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_goal_difference,count/points/rank as named,Reported team-season goals scored minus conceded,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_goals_against,count/points/rank as named,Reported team-season goals conceded,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_goals_for,count/points/rank as named,Reported team-season goals scored,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_id,identifier,Provider-specific season identifier; not universal,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_is_two_point_system,boolean,Whether source competition uses two points for a win,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_league_competition_id,identifier,Provider-specific season league competition identifier; not universal,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_league_league_name,text/category,"Source season league league name; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_league_league_slug,text,Source URL slug for season league league,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_league_level_level_name,text/category,"Source season league level level name; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_league_level_level_number,count/points/rank as named,Reported team-season competition tier number,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_league_season_id,identifier,Provider-specific season league season identifier; not universal,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_losses,count/points/rank as named,Reported team-season losses,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_manager,source text/object,Source manager metadata; may contain serialized structure,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_manager_manager_id,identifier,Provider-specific season manager manager identifier; not universal,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_manager_manager_name,text/category,"Source season manager manager name; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_manager_manager_slug,text,Source URL slug for season manager manager,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_points,count/points/rank as named,Reported team-season league points,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_points_against,provider-defined; unverified,"Source field points_against; interpretation unverified, not used in pipeline",pending_provider_glossary,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_points_for,provider-defined; unverified,"Source field points_for; interpretation unverified, not used in pipeline",pending_provider_glossary,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_rank,count/points/rank as named,Reported team-season league standing rank,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_season,season label,Source season display label,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_total_matches,count/points/rank as named,Reported team-season matches,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,season_wins,count/points/rank as named,Reported team-season wins,documented,data/raw/source_manifest.json
+data/raw/transfermarkt/team_competitions_seasons.csv,team_name,text/category,"Source team name; snapshot metadata, not independently verified",documented,data/raw/source_manifest.json

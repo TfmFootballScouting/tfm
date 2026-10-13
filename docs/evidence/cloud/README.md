@@ -5,8 +5,8 @@ The dated original Module 9 estimate remains an historical assumption. `cost_inp
 Run from the project root:
 
 ```bash
-python -m scripts.cloud_cost_report
-python -m scripts.cloud_cost_report --usd-per-eur YOUR_VERIFIED_USD_PER_EUR
+python -m scripts.estimate_cloud_costs
+python -m scripts.estimate_cloud_costs --usd-per-eur YOUR_VERIFIED_USD_PER_EUR
 ```
 
 The rate is **USD for one EUR**: EUR total = USD total / rate. Preserve the ECB publication date and downloaded quote separately; this formula does not verify a user-entered quote. Tax, support plans, credits, burst CPU charges and allowances must be reconciled with the official selected configuration. No AWS resource is provisioned by this worksheet.

@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import pytest
-from src.preprocessing.clean import clean_players
+from src.preprocessing.player_records import clean_players
 from src.data.fbref import merge_tables
 from src.data.matching import propose_matches,value_asof
 from src.scraping.collect import parse_understat,parse_fbref,Client,AccessBlocked

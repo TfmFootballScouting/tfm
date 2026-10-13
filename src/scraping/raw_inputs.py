@@ -59,7 +59,7 @@ def main():
     actions.add_argument('--download', action='store_true')
     parser.add_argument('--include-optional', action='store_true', help='Also restore four-league shot archives')
     args = parser.parse_args()
-    catalog = json.loads((ROOT / 'data/raw/review_manifest.json').read_text(encoding='utf8'))
+    catalog = json.loads((ROOT / 'data/raw/source_manifest.json').read_text(encoding='utf8'))
     archives = [dict(path=r['archive_path'], sha256=r['archive_sha256'], url=r['url'], bytes=r.get('archive_bytes'), role='primary') for r in catalog['raw_csvs'] if 'archive_path' in r]
     missing = False
     for record in archives:

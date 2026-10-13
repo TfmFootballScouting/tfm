@@ -86,4 +86,4 @@ Autenticación y roles, HTTPS mediante proxy/TLS, gestión de secretos, monitori
 
 ## Hoja detallada de costes
 
-`evidence/cloud/cost_inputs.csv` separa cómputo, almacenamiento, transferencia, backups, peticiones y monitorización. `python -m scripts.cloud_cost_report` no genera un total hasta disponer de precios fechados y URLs oficiales. El acceso al calculador AWS y al XML del BCE devolvió HTTP 403 el 2026-10-12; captura/export y tipo de cambio verificado siguen pendientes.
+`evidence/cloud/cost_inputs.csv` separa cómputo, almacenamiento, transferencia, backups, peticiones y monitorización. `python -m scripts.estimate_cloud_costs` no genera un total hasta disponer de precios fechados y URLs oficiales. El acceso al calculador AWS y al XML del BCE devolvió HTTP 403 el 2026-10-12; captura/export y tipo de cambio verificado siguen pendientes.

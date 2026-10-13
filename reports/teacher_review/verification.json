@@ -11,14 +11,13 @@
     "fresh_checkout": true
   },
   "raw_csv_hashes_verified": 15,
-  "original_three_model_binary_hashes_unchanged": true,
   "original_docx_unchanged": true,
   "csv_pipeline_executed_in_fresh_checkout": true,
   "all_16_csv_parquet_outputs_byte_identical": true,
   "retained_notebooks_executed": [
-    "fbref_eda",
-    "understat_eda",
-    "transfermarkt_eda",
+    "01_fbref_data_exploration",
+    "02_understat_data_exploration",
+    "03_transfermarkt_data_exploration",
     "11_five_league_full_pipeline",
     "12_scouting_group_exploration",
     "expert_validation"
@@ -52,5 +51,25 @@
   },
   "human_expert_validation_performed": false,
   "native_windows_verified": false,
-  "aws_calculator_evidence_captured": false
+  "aws_calculator_evidence_captured": false,
+  "current_single_recommender_verification": {
+    "verified_at_utc": "2026-10-13T15:25:14.797540+00:00",
+    "tests_passed": 64,
+    "only_saved_recommender": "models/scouting_recommender.joblib",
+    "six_styles_verified": true,
+    "original_served_binary_hash_unchanged": true,
+    "alternate_model_binaries_removed": true,
+    "no_model_choice_argument_in_loader_or_training": true,
+    "all_six_renamed_notebooks_executed": true,
+    "attribute_selection_notebook": "notebooks/04_feature_comparison_and_model_validation.ipynb",
+    "attribute_comparisons": "Two predefined feature sets, same cohort; highest validation MRR selected; not exhaustive or transfer-success validation",
+    "csv_pipeline_executed": true,
+    "all_prepared_hashes_verified": true,
+    "separate_real_data_training_check": {
+      "one_recommender": true,
+      "bootstrap_trials": 2,
+      "served_model_overwritten": false,
+      "not_replacement_for_original_30_trial_validation": true
+    }
+  }
 }

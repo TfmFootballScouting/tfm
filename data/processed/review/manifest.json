@@ -15,11 +15,11 @@
       "parquet_path": "data/processed/review/fbref_player_seasons.parquet",
       "parquet_sha256": "52337690992d5e186181ccbaa12554c52b1492adfbfd79effe184ceed818821f"
     },
-    "fbref_core_gallery": {
+    "fbref_scouting_gallery": {
       "rows": 7398,
-      "csv_path": "data/processed/review/fbref_core_gallery.csv",
+      "csv_path": "data/processed/review/fbref_scouting_gallery.csv",
       "csv_sha256": "222dc0e2a163f218d4353f0544cb07408134e926987b51a988a24d549a1fdd4e",
-      "parquet_path": "data/processed/review/fbref_core_gallery.parquet",
+      "parquet_path": "data/processed/review/fbref_scouting_gallery.parquet",
       "parquet_sha256": "18b9ebb4ca78fde9f5330e329894823d83ec249c59e2df52a7f184d139606192"
     },
     "understat_shots": {

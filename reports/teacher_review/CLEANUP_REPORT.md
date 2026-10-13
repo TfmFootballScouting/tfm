@@ -7,7 +7,7 @@ Branch: `review/teacher-submission`. The previous archive-style package at `252e
 - `data/raw/`: 15 real source CSVs, acquisition/export provenance and hashes, raw README.
 - `data/processed/`: the eight source-separated prepared CSV/Parquet tables and six frozen app/gallery/value inputs.
 - `docs/`: original teaching documents and current source flow, dictionary, teacher status, expert protocol, MLflow screenshots and cloud worksheet.
-- `models/`: one Core serving binary and the two current comparison models; metrics and valuation integrity manifest. No historical/synthetic binaries or duplicate exported models.
+- `models/`: one saved scouting recommender with six styles; metrics and valuation integrity manifest. No historical/synthetic binaries or duplicate exported models.
 - `notebooks/`: six executable notebooks: FBref/Understat/Transfermarkt EDA, current model analysis, groups, expert validation.
 - `src/app`, `src/models`, `src/preprocessing`, `src/scraping`, `src/tests`: actual app/pipeline/model/original scraper implementations and current tests. Required feature/identity/process helpers remain under `src`.
 - `scripts/`: seven current EDA/dictionary/training/cost/expert/alignment entry points. Acquisition and optional archive export code live under `src/scraping`.
@@ -16,14 +16,14 @@ Branch: `review/teacher-submission`. The previous archive-style package at `252e
 
 ## Removed
 
-Old collected/enrichment models, synthetic/mixed samples, unused Kaggle/transfer-history stages, transfer-likelihood and scenario notebooks/code, historical stage reports, abandoned scraper trials, redundant copies of evaluation/model artifacts, obsolete tests and the root test-cache folder. Ignored original raw archives/receipts were moved outside the project checkout, preserving their bytes. Raw CSVs/provenance, original DOCX and all three current model binaries were verified unchanged.
+Old collected/enrichment models, synthetic/mixed samples, unused Kaggle/transfer-history stages, transfer-likelihood and scenario notebooks/code, historical stage reports, abandoned scraper trials, redundant copies of evaluation/model artifacts, obsolete tests and the root test-cache folder. Ignored original raw archives/receipts were moved outside the project checkout, preserving their bytes. Raw CSVs/provenance, original DOCX and the served model binary was verified unchanged; alternate model binaries were removed.
 
 ## Executed verification
 
-- Complete retained suite: 61 passed. Tests now use only bundled clean-submission inputs; CI runs the complete retained suite.
+- Complete retained suite: 64 passed. Tests now use only bundled clean-submission inputs; CI runs the complete retained suite.
 - `python -m src.pipeline`: rebuilt all eight real prepared tables; verified frozen-gallery numerical parity.
 - All six retained notebooks re-executed successfully. Human-analysis notebook reports ratings pending.
-- Separate Core training/evaluation from the bundled raw CSVs with two bootstrap trials completed. This is execution verification, not a replacement for the original 30-trial evaluation. Frozen served model unchanged; new outputs separate.
+- Separate single-recommender training/evaluation from the bundled raw CSVs with two bootstrap trials completed. This is execution verification, not a replacement for the original 30-trial evaluation. Frozen served model unchanged; new outputs separate.
 - Optional RDS archive-to-CSV export reproduced all source CSV hashes without changing their bytes.
 - Actual browser group and shot graphs rendered without JavaScript errors.
 
@@ -32,3 +32,7 @@ Fresh checkout: 61 tests passed; all 16 CSV/Parquet outputs reproduced byte-for-
 ## Still pending
 
 Independent expert ratings, genuine organizational sessions, official AWS/ECB evidence (network returned HTTP 403), native Windows verification, provisional player-identity and assumed currency checks. No successful-signing or transfer prediction claims were added.
+
+## File naming and single-model correction
+
+Notebooks are numbered 01–06. Current implementation files are named by purpose; `docs/PROJECT_MAP.md` gives the reading order. Only `scouting_recommender.joblib` is served/saved in the submission. The loader has no model-type argument; default training fits one six-style recommender. Notebook 04 compares two attribute sets and selects the highest recorded validation MRR on the same cohort, without using holdout for selection. Core/Offensive product alternatives and their saved binaries/gallery were removed. Original run names remain immutable historical evidence only.

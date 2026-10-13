@@ -1,6 +1,6 @@
 {
   "status": "evaluated_real_fbref_five_league_core",
-  "model_path": "models/recommender.joblib",
+  "model_path": "models/scouting_recommender.joblib",
   "dataset_version": "d7a70a7349eb58b62cd18c540129203cd411aeb97706cdf074cbcbe74f8ad49a",
   "training_git_commit": "f5eb8225cb01c77ecb8795312e0f29f82d9166b1",
   "six_styles": [

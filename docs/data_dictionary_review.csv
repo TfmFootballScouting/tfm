@@ -162,89 +162,89 @@ fbref_player_seasons,quality_inconsistent_counts,bool,identifier/text/boolean; s
 fbref_player_seasons,clubs,object,identifier/text/boolean; source-specific,JSON list of source-reported clubs; not a current-club claim,documented,0,Unknown preserved; no global replacement with zero
 fbref_player_seasons,club_count,int64,identifier/text/boolean; source-specific,Number of distinct clubs in aggregated player-season observation,documented,0,Unknown preserved; no global replacement with zero
 fbref_player_seasons,metadata_conflict,bool,identifier/text/boolean; source-specific,"Within player-season, differing nonmissing name/age/birth-year/nationality metadata",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,source_player_id,object,identifier,Provider-specific player ID; not universal,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,league,object,category,Observed source competition,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,season,object,YYYY-YYYY,Consecutive source season label,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,team,object,identifier/text/boolean; source-specific,Actual club at stint grain; N clubs label at aggregated multi-club grain,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,player,object,identifier/text/boolean; source-specific,Provider display name; names are not unique cross-source keys,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,nation,object,identifier/text/boolean; source-specific,Provider nationality code/text; not independently verified citizenship,documented,3,Unknown preserved; no global replacement with zero
-fbref_core_gallery,pos,object,identifier/text/boolean; source-specific,Provider position label; multiple positions may be listed,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,age,float64,years (source season age),Source-reported age for the season; not current age,documented,1,Unknown preserved; no global replacement with zero
-fbref_core_gallery,birth_year,float64,calendar year,Source birth calendar year; does not establish exact birth date,documented,1,Unknown preserved; no global replacement with zero
-fbref_core_gallery,minutes,float64,minutes,Observed season playing minutes; unavailable for shot-only Understat exports,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,mp,float64,appearances,Provider season match appearances,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,gls,float64,event count,"Goals scored, provider season total",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,ast,float64,event count,"Assists, provider season total",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,xg,float64,expected event total,Expected goals: sum of provider shot probabilities; provider model is not reproduced,documented,8,Unknown preserved; no global replacement with zero
-fbref_core_gallery,xag,float64,expected event total,Expected assisted goals: provider sum of xG on assisted shots,documented,8,Unknown preserved; no global replacement with zero
-fbref_core_gallery,sh,float64,event count,"Shots attempted, season count",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,sot,float64,event count,"Shots on target, season count",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,int,float64,event count,"Interceptions, season count",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,tklw,float64,event count,"Tackles won, season count",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,crs,float64,event count,"Crosses, season count",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,fls,float64,event count,"Fouls committed, season count",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,fld,float64,event count,"Fouls drawn, season count",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,passes_completed,float64,event count,"Completed passes, season count",documented,14,Unknown preserved; no global replacement with zero
-fbref_core_gallery,passes_attempted,float64,event count,"Attempted passes, season count",documented,14,Unknown preserved; no global replacement with zero
-fbref_core_gallery,key_passes,float64,event count,"Passes directly leading to a shot, season count",documented,14,Unknown preserved; no global replacement with zero
-fbref_core_gallery,touches,float64,event count,"Ball touches recorded by provider, season count",documented,8,Unknown preserved; no global replacement with zero
-fbref_core_gallery,successful_take_ons,float64,event count,"Successful attempts to beat a defender while dribbling, season count",documented,8,Unknown preserved; no global replacement with zero
-fbref_core_gallery,source,object,identifier/text/boolean; source-specific,Named provider and secondary acquisition channel,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,provenance_status,object,identifier/text/boolean; source-specific,Secondary archive provenance status; does not imply direct provider acquisition,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,period_status,object,identifier/text/boolean; source-specific,Coverage/completeness annotation; 2025-2026 is a September 2025 partial snapshot,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,age_source_text,object,identifier/text/boolean; source-specific,Unmodified provider age text retained for audit,documented,1,Unknown preserved; no global replacement with zero
-fbref_core_gallery,ga,float64,event count,Gls + Ast; missing propagates; exclude redundant G+A from model features,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,xa,float64,expected event total,Expected assists: provider expected-assist total; not interchangeable with xAG,documented,7398,Unknown preserved; no global replacement with zero
-fbref_core_gallery,pos_main,object,identifier/text/boolean; source-specific,First normalized position token; not a inferred tactical role,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,entity_id,object,identifier,Source-specific person identity across seasons,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,observation_id,object,identifier,Source/league/season observation identity,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,player_id,int64,identifier,Stable derived observation key,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,date_of_birth,object,ISO date,Uploaded source profile DOB,documented,7398,Unknown preserved; no global replacement with zero
-fbref_core_gallery,height_cm,object,centimetres,Clean positive height; invalid/zero raw values become missing,documented,7398,Unknown preserved; no global replacement with zero
-fbref_core_gallery,foot,object,identifier/text/boolean; source-specific,Source preferred-foot text; unknown preserved,documented,7398,Unknown preserved; no global replacement with zero
-fbref_core_gallery,market_value_eur,object,amount; EUR assumed,"Reported assessment, not fee/estimated value",documented,7398,Unknown preserved; no global replacement with zero
-fbref_core_gallery,currency,object,ISO currency code,Normalized EUR assumption for values; source currency not independently verified,documented,7398,Unknown preserved; no global replacement with zero
-fbref_core_gallery,valuation_date,object,ISO date,"Reported effective date, not historical publication proof",documented,7398,Unknown preserved; no global replacement with zero
-fbref_core_gallery,valuation_known_at,object,identifier/text/boolean; source-specific,UTC upload receipt timestamp: first known acquisition time in this project; not proof of original publication date,documented,7398,Unknown preserved; no global replacement with zero
-fbref_core_gallery,valuation_source,object,identifier/text/boolean; source-specific,Named provenance of reported market amount; not a model estimate or transfer fee,documented,7398,Unknown preserved; no global replacement with zero
-fbref_core_gallery,age_reference,object,identifier/text/boolean; source-specific,Explanation of source season-age temporal scope,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,partial_season,bool,boolean,Source 2025/26 partial snapshot indicator,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,knowledge_date,datetime64[ns],ISO/source timestamp,Unknown historical publication time; cannot establish strict as-of availability,documented,7398,Unknown preserved; no global replacement with zero
-fbref_core_gallery,ml_use_status,object,category,Provider/source-use status,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,nineties,float64,minutes / 90,Playing minutes / 90; exposure denominator for season rates,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,gls_p90,float64,events per 90 minutes,"Goals scored, provider season total; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,ast_p90,float64,events per 90 minutes,"Assists, provider season total; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,ga_p90,float64,events / 90 minutes; unknown exposure or count stays missing,Required core per-90 scouting feature,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,sh_p90,float64,events per 90 minutes,"Shots attempted, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,sot_p90,float64,events per 90 minutes,"Shots on target, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,crs_p90,float64,events per 90 minutes,"Crosses, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,int_p90,float64,events per 90 minutes,"Interceptions, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,tklw_p90,float64,events per 90 minutes,"Tackles won, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,fls_p90,float64,events per 90 minutes,"Fouls committed, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,fld_p90,float64,events per 90 minutes,"Fouls drawn, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,xg_p90,float64,expected events per 90 minutes,Expected goals: sum of provider shot probabilities; provider model is not reproduced; rate = season total * 90 / minutes; zero/unknown minutes remain missing,documented,8,Unknown preserved; no global replacement with zero
-fbref_core_gallery,xag_p90,float64,expected events per 90 minutes,Expected assisted goals: provider sum of xG on assisted shots; rate = season total * 90 / minutes; zero/unknown minutes remain missing,documented,8,Unknown preserved; no global replacement with zero
-fbref_core_gallery,xa_p90,float64,expected events per 90 minutes,Expected assists: provider expected-assist total; not interchangeable with xAG; rate = season total * 90 / minutes; zero/unknown minutes remain missing,documented,7398,Unknown preserved; no global replacement with zero
-fbref_core_gallery,passes_completed_p90,float64,events per 90 minutes,"Completed passes, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,14,Unknown preserved; no global replacement with zero
-fbref_core_gallery,passes_attempted_p90,float64,events per 90 minutes,"Attempted passes, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,14,Unknown preserved; no global replacement with zero
-fbref_core_gallery,key_passes_p90,float64,events per 90 minutes,"Passes directly leading to a shot, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,14,Unknown preserved; no global replacement with zero
-fbref_core_gallery,touches_p90,float64,events per 90 minutes,"Ball touches recorded by provider, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,8,Unknown preserved; no global replacement with zero
-fbref_core_gallery,successful_take_ons_p90,float64,events per 90 minutes,"Successful attempts to beat a defender while dribbling, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,8,Unknown preserved; no global replacement with zero
-fbref_core_gallery,pass_completion_pct,float64,completed / attempted passes × 100,100 * passes_completed / passes_attempted; zero denominator gives missing,documented,14,Unknown preserved; no global replacement with zero
-fbref_core_gallery,minutes_eligible,bool,identifier/text/boolean; source-specific,Whether minutes meet the code-defined minimum exposure threshold,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,complete_core_features,bool,identifier/text/boolean; source-specific,All nine core rate features are present,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,baseline_candidate,bool,ISO/source timestamp,"450+ minutes, known outfield position, measured goals and assists",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,tactical_proxy_candidate,bool,ISO/source timestamp,Baseline candidate with all ten core features observed,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,experiment_split,object,identifier/text/boolean; source-specific,"Chronological experiment membership assigned from source season, not random rows",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,core_proxy_split,object,identifier/text/boolean; source-specific,Chronological membership for core next-season retrieval experiment,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,historical_candidate,bool,ISO/source timestamp,Baseline candidate outside partial 2025/26; not an as-of validation claim,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,age_filter_supported,bool,identifier/text/boolean; source-specific,Whether source age metadata can support the app age filter,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,budget_filter_supported,bool,identifier/text/boolean; source-specific,False: no approved dated as-of valuations are attached,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,quality_outlier,bool,identifier/text/boolean; source-specific,"Review flag, not automatic clipping/removal",documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,quality_inconsistent_counts,bool,identifier/text/boolean; source-specific,Shots on target exceed shots OR completed passes exceed attempts,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,clubs,object,identifier/text/boolean; source-specific,JSON list of source-reported clubs; not a current-club claim,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,club_count,int64,identifier/text/boolean; source-specific,Number of distinct clubs in aggregated player-season observation,documented,0,Unknown preserved; no global replacement with zero
-fbref_core_gallery,metadata_conflict,bool,identifier/text/boolean; source-specific,"Within player-season, differing nonmissing name/age/birth-year/nationality metadata",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,source_player_id,object,identifier,Provider-specific player ID; not universal,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,league,object,category,Observed source competition,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,season,object,YYYY-YYYY,Consecutive source season label,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,team,object,identifier/text/boolean; source-specific,Actual club at stint grain; N clubs label at aggregated multi-club grain,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,player,object,identifier/text/boolean; source-specific,Provider display name; names are not unique cross-source keys,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,nation,object,identifier/text/boolean; source-specific,Provider nationality code/text; not independently verified citizenship,documented,3,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,pos,object,identifier/text/boolean; source-specific,Provider position label; multiple positions may be listed,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,age,float64,years (source season age),Source-reported age for the season; not current age,documented,1,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,birth_year,float64,calendar year,Source birth calendar year; does not establish exact birth date,documented,1,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,minutes,float64,minutes,Observed season playing minutes; unavailable for shot-only Understat exports,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,mp,float64,appearances,Provider season match appearances,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,gls,float64,event count,"Goals scored, provider season total",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,ast,float64,event count,"Assists, provider season total",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,xg,float64,expected event total,Expected goals: sum of provider shot probabilities; provider model is not reproduced,documented,8,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,xag,float64,expected event total,Expected assisted goals: provider sum of xG on assisted shots,documented,8,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,sh,float64,event count,"Shots attempted, season count",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,sot,float64,event count,"Shots on target, season count",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,int,float64,event count,"Interceptions, season count",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,tklw,float64,event count,"Tackles won, season count",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,crs,float64,event count,"Crosses, season count",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,fls,float64,event count,"Fouls committed, season count",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,fld,float64,event count,"Fouls drawn, season count",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,passes_completed,float64,event count,"Completed passes, season count",documented,14,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,passes_attempted,float64,event count,"Attempted passes, season count",documented,14,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,key_passes,float64,event count,"Passes directly leading to a shot, season count",documented,14,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,touches,float64,event count,"Ball touches recorded by provider, season count",documented,8,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,successful_take_ons,float64,event count,"Successful attempts to beat a defender while dribbling, season count",documented,8,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,source,object,identifier/text/boolean; source-specific,Named provider and secondary acquisition channel,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,provenance_status,object,identifier/text/boolean; source-specific,Secondary archive provenance status; does not imply direct provider acquisition,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,period_status,object,identifier/text/boolean; source-specific,Coverage/completeness annotation; 2025-2026 is a September 2025 partial snapshot,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,age_source_text,object,identifier/text/boolean; source-specific,Unmodified provider age text retained for audit,documented,1,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,ga,float64,event count,Gls + Ast; missing propagates; exclude redundant G+A from model features,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,xa,float64,expected event total,Expected assists: provider expected-assist total; not interchangeable with xAG,documented,7398,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,pos_main,object,identifier/text/boolean; source-specific,First normalized position token; not a inferred tactical role,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,entity_id,object,identifier,Source-specific person identity across seasons,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,observation_id,object,identifier,Source/league/season observation identity,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,player_id,int64,identifier,Stable derived observation key,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,date_of_birth,object,ISO date,Uploaded source profile DOB,documented,7398,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,height_cm,object,centimetres,Clean positive height; invalid/zero raw values become missing,documented,7398,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,foot,object,identifier/text/boolean; source-specific,Source preferred-foot text; unknown preserved,documented,7398,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,market_value_eur,object,amount; EUR assumed,"Reported assessment, not fee/estimated value",documented,7398,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,currency,object,ISO currency code,Normalized EUR assumption for values; source currency not independently verified,documented,7398,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,valuation_date,object,ISO date,"Reported effective date, not historical publication proof",documented,7398,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,valuation_known_at,object,identifier/text/boolean; source-specific,UTC upload receipt timestamp: first known acquisition time in this project; not proof of original publication date,documented,7398,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,valuation_source,object,identifier/text/boolean; source-specific,Named provenance of reported market amount; not a model estimate or transfer fee,documented,7398,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,age_reference,object,identifier/text/boolean; source-specific,Explanation of source season-age temporal scope,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,partial_season,bool,boolean,Source 2025/26 partial snapshot indicator,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,knowledge_date,datetime64[ns],ISO/source timestamp,Unknown historical publication time; cannot establish strict as-of availability,documented,7398,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,ml_use_status,object,category,Provider/source-use status,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,nineties,float64,minutes / 90,Playing minutes / 90; exposure denominator for season rates,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,gls_p90,float64,events per 90 minutes,"Goals scored, provider season total; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,ast_p90,float64,events per 90 minutes,"Assists, provider season total; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,ga_p90,float64,events / 90 minutes; unknown exposure or count stays missing,Required core per-90 scouting feature,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,sh_p90,float64,events per 90 minutes,"Shots attempted, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,sot_p90,float64,events per 90 minutes,"Shots on target, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,crs_p90,float64,events per 90 minutes,"Crosses, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,int_p90,float64,events per 90 minutes,"Interceptions, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,tklw_p90,float64,events per 90 minutes,"Tackles won, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,fls_p90,float64,events per 90 minutes,"Fouls committed, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,fld_p90,float64,events per 90 minutes,"Fouls drawn, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,xg_p90,float64,expected events per 90 minutes,Expected goals: sum of provider shot probabilities; provider model is not reproduced; rate = season total * 90 / minutes; zero/unknown minutes remain missing,documented,8,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,xag_p90,float64,expected events per 90 minutes,Expected assisted goals: provider sum of xG on assisted shots; rate = season total * 90 / minutes; zero/unknown minutes remain missing,documented,8,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,xa_p90,float64,expected events per 90 minutes,Expected assists: provider expected-assist total; not interchangeable with xAG; rate = season total * 90 / minutes; zero/unknown minutes remain missing,documented,7398,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,passes_completed_p90,float64,events per 90 minutes,"Completed passes, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,14,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,passes_attempted_p90,float64,events per 90 minutes,"Attempted passes, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,14,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,key_passes_p90,float64,events per 90 minutes,"Passes directly leading to a shot, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,14,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,touches_p90,float64,events per 90 minutes,"Ball touches recorded by provider, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,8,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,successful_take_ons_p90,float64,events per 90 minutes,"Successful attempts to beat a defender while dribbling, season count; rate = season total * 90 / minutes; zero/unknown minutes remain missing",documented,8,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,pass_completion_pct,float64,completed / attempted passes × 100,100 * passes_completed / passes_attempted; zero denominator gives missing,documented,14,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,minutes_eligible,bool,identifier/text/boolean; source-specific,Whether minutes meet the code-defined minimum exposure threshold,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,complete_core_features,bool,identifier/text/boolean; source-specific,All nine core rate features are present,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,baseline_candidate,bool,ISO/source timestamp,"450+ minutes, known outfield position, measured goals and assists",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,tactical_proxy_candidate,bool,ISO/source timestamp,Baseline candidate with all ten core features observed,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,experiment_split,object,identifier/text/boolean; source-specific,"Chronological experiment membership assigned from source season, not random rows",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,core_proxy_split,object,identifier/text/boolean; source-specific,Chronological membership for core next-season retrieval experiment,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,historical_candidate,bool,ISO/source timestamp,Baseline candidate outside partial 2025/26; not an as-of validation claim,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,age_filter_supported,bool,identifier/text/boolean; source-specific,Whether source age metadata can support the app age filter,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,budget_filter_supported,bool,identifier/text/boolean; source-specific,False: no approved dated as-of valuations are attached,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,quality_outlier,bool,identifier/text/boolean; source-specific,"Review flag, not automatic clipping/removal",documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,quality_inconsistent_counts,bool,identifier/text/boolean; source-specific,Shots on target exceed shots OR completed passes exceed attempts,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,clubs,object,identifier/text/boolean; source-specific,JSON list of source-reported clubs; not a current-club claim,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,club_count,int64,identifier/text/boolean; source-specific,Number of distinct clubs in aggregated player-season observation,documented,0,Unknown preserved; no global replacement with zero
+fbref_scouting_gallery,metadata_conflict,bool,identifier/text/boolean; source-specific,"Within player-season, differing nonmissing name/age/birth-year/nationality metadata",documented,0,Unknown preserved; no global replacement with zero
 understat_shots,league,object,category,Observed source competition,documented,0,Unknown preserved; no global replacement with zero
 understat_shots,id,int64,source-specific; pending verification,"Original provider shot identifier, retained alongside normalized shot_id",documented,0,Unknown preserved; no global replacement with zero
 understat_shots,minute,int64,match minute,"Time of shot, not player exposure",documented,0,Unknown preserved; no global replacement with zero
