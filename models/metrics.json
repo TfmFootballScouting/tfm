@@ -25,5 +25,5 @@
   ],
   "validation_season": "2022-2023",
   "holdout_season": "2023-2024",
-  "serving_model_path": "models/real/five_league_core_recommender.joblib"
+  "note": "Packaged serving model. A later local MLflow retraining run is separate and does not replace this model until its artifact and manifest are validated and promoted."
 }
