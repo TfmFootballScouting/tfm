@@ -1,0 +1,56 @@
+{
+  "branch": "review/teacher-submission",
+  "verified_at_utc": "2026-10-13T00:01:11.704102+00:00",
+  "cleanup_commit": "eba6c01",
+  "obsolete_tracked_files_removed": 904,
+  "full_clean_suite": {
+    "passed": 61,
+    "failed": 0,
+    "errors": 0,
+    "report": "reports/teacher_review/tests.xml",
+    "fresh_checkout": true
+  },
+  "raw_csv_hashes_verified": 15,
+  "original_three_model_binary_hashes_unchanged": true,
+  "original_docx_unchanged": true,
+  "csv_pipeline_executed_in_fresh_checkout": true,
+  "all_16_csv_parquet_outputs_byte_identical": true,
+  "retained_notebooks_executed": [
+    "fbref_eda",
+    "understat_eda",
+    "transfermarkt_eda",
+    "11_five_league_full_pipeline",
+    "12_scouting_group_exploration",
+    "expert_validation"
+  ],
+  "refit_execution_check": {
+    "model": "core",
+    "bootstrap_trials": 2,
+    "inputs": "included real CSVs",
+    "outputs": "separate timestamped folder, retained outside checkout",
+    "frozen_served_model_changed": false,
+    "not_final_validation_replacement": true
+  },
+  "optional_archive_csv_exports_exactly_verified": true,
+  "browser_graph_check": {
+    "group_graph_rendered": true,
+    "shot_graph_rendered": true,
+    "javascript_errors": [],
+    "kind": "automated_application_check"
+  },
+  "browser_feedback_check": {
+    "feedback_saved_confirmation": true,
+    "javascript_errors": [],
+    "iterative_search_same_request": true,
+    "event_counts": {
+      "decision_recorded": 1,
+      "need_defined": 1,
+      "ranking_generated": 2,
+      "search_executed": 2
+    },
+    "kind": "automated_test_not_human_validation"
+  },
+  "human_expert_validation_performed": false,
+  "native_windows_verified": false,
+  "aws_calculator_evidence_captured": false
+}

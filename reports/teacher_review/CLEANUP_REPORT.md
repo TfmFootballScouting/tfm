@@ -27,7 +27,7 @@ Old collected/enrichment models, synthetic/mixed samples, unused Kaggle/transfer
 - Optional RDS archive-to-CSV export reproduced all source CSV hashes without changing their bytes.
 - Actual browser group and shot graphs rendered without JavaScript errors.
 
-Fresh-checkout and feedback verification results are recorded in `verification.json` after execution.
+Fresh checkout: 61 tests passed; all 16 CSV/Parquet outputs reproduced byte-for-byte. Browser feedback saving and two searches within one request passed with no JavaScript errors. See `verification.json` and `tests.xml`.
 
 ## Still pending
 
