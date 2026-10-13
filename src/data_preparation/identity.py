@@ -9,7 +9,7 @@ import unicodedata
 
 import pandas as pd
 
-from src.data.matching import normalize_name
+from src.data_preparation.matching import normalize_name
 
 # Explicit spelling aliases observed in the retained three-source La Liga tables.
 # Do not strip generic prefixes globally: that could merge different clubs.
