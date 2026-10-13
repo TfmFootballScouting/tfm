@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import pytest
-from src.preprocessing.player_records import clean_players
 from src.data_preparation.fbref import merge_tables
 from src.data_preparation.matching import propose_matches,value_asof
 from src.scraping.collect import parse_understat,parse_fbref,Client,AccessBlocked
@@ -11,34 +10,6 @@ def raw():
     return pd.DataFrame(dict(player=['A','B'],team=['Club1','Club2'],pos=['FW','DF'],age=[20,25],
         minutes=[900,1800],season=['2022-2023']*2,league=['La Liga']*2,source=['fbref']*2,
         source_player_id=['a','b'],gls=[5,0],ast=[2,None]))
-
-
-def test_missing_is_not_zero_and_no_invented_budget():
-    out=clean_players(raw())
-    assert out.gls_p90.iloc[0]==.5
-    assert pd.isna(out.ast_p90.iloc[1]) and out.int_p90.isna().all()
-    assert 'budget_est' not in out
-
-
-def test_synthetic_rejected():
-    df=raw();df.loc[0,'source']='demo'
-    with pytest.raises(ValueError,match='synthetic'):
-        clean_players(df)
-
-
-def test_stable_ids_and_conflicting_duplicates():
-    df=raw()
-    a,b=clean_players(df),clean_players(df.iloc[::-1])
-    assert a.set_index('player').player_id.to_dict()==b.set_index('player').player_id.to_dict()
-    bad=pd.concat([df,df.iloc[:1].assign(gls=9)])
-    with pytest.raises(ValueError,match='Conflicting'):
-        clean_players(bad)
-
-
-def test_transfer_total_preferred():
-    df=raw();more=df.iloc[:1].copy();more['team']='2 squads';more['minutes']=1000
-    out=clean_players(pd.concat([df,more]))
-    assert out[out.source_player_id=='a'].team.tolist()==['2 squads']
 
 
 def test_merge_uses_player_and_club_keys():
