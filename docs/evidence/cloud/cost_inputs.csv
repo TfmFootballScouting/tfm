@@ -7,3 +7,4 @@ object_storage,GB-month,10,,,,eu-west-1,optional model artifacts assumption
 put_requests,1000 requests,1,,,,eu-west-1,1000 requests assumed
 get_requests,1000 requests,10,,,,eu-west-1,10000 requests assumed
 monitoring,billable metric-month,5,,,,eu-west-1,optional monitoring assumption
+public_ipv4,address-hour,730,,,,eu-west-1,one address assumed while instance is reachable; confirm retained address hours and avoid double counting

@@ -95,6 +95,18 @@
       "assumption": "optional monitoring assumption",
       "status": "pending_price_evidence",
       "monthly_usd": null
+    },
+    {
+      "component": "public_ipv4",
+      "unit": "address-hour",
+      "quantity": 730,
+      "usd_per_unit": "",
+      "source_url": "",
+      "price_date": "",
+      "region": "eu-west-1",
+      "assumption": "one address assumed while instance is reachable; confirm retained address hours and avoid double counting",
+      "status": "pending_price_evidence",
+      "monthly_usd": null
     }
   ],
   "complete": false,

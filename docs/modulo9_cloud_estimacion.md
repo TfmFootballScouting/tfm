@@ -1,9 +1,9 @@
-> Revisión actual: los precios y el tipo de cambio de este documento se conservan como hipótesis históricas, no como cotización AWS verificada a la fecha de entrega. Falta captura/export de AWS Calculator, fecha y referencia de cambio. Compute, disco y transferencia están desglosados; backup/snapshots y request charges necesitan evidencia. Instrucciones en `TEACHER_FEEDBACK.md`.
+> Revisión actual: los precios y el tipo de cambio de este documento se conservan como hipótesis históricas, no como cotización AWS verificada a la fecha de entrega. Falta captura/export de AWS Calculator, fecha y referencia de cambio. Compute, disco y transferencia están desglosados; backup/snapshots y request charges necesitan evidencia. Guía paso a paso en `evidence/cloud/README.md`; no hace falta desplegar recursos para preparar la estimación.
 
 # Módulo 9 — Estimación de recursos cloud
 
 ## 1. Premisas de carga
-- Dataset pequeño: ~1.500–2.500 jugadores, >40 métricas
+- Galería más reciente: 1.810 jugadores; 9 métricas por 90 minutos para los seis estilos, más históricos y 228.785 tiros separados
 - Modelos ligeros: scikit-learn (similitud coseno, KNN, PCA, K-Means)
 - App: Streamlit (pocos usuarios concurrentes en fase TFM/demo)
 - Experiment tracking: MLflow (`sqlite:///mlflow.db` + artefactos en `mlruns/`)
