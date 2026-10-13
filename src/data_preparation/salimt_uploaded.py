@@ -2,8 +2,8 @@
 import re
 import numpy as np
 import pandas as pd
-from src.data.matching import normalize_name
-from src.data.source_rights import RESTRICTED
+from src.data_preparation.matching import normalize_name
+from src.data_preparation.source_rights import RESTRICTED
 
 
 def normalize_profiles(raw):
