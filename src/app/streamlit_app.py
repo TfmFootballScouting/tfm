@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import sys
+import logging
 from pathlib import Path
 
 import numpy as np
@@ -206,20 +207,16 @@ def main() -> None:
         seasons = service.available_seasons
         season = st.sidebar.selectbox('Temporada observada', seasons)
         rec = service.for_season(season)
-    except Exception as exc:
-        st.error(
-            "No se pueden cargar los perfiles de scouting. Revisa el detalle del error. "
-            "Actualiza el proyecto y verifica que los archivos de datos y perfiles están completos."
-        )
-        st.exception(exc)
+    except Exception:
+        logging.getLogger(__name__).exception('Scouting profiles unavailable')
+        st.error('Los perfiles no están disponibles en este momento. Contacta con el responsable de la aplicación.')
         return
 
     import json
     st.caption(f"Temporada {season} · estadísticas disponibles de las cinco grandes ligas · 450+ minutos")
     with st.expander('Cómo interpretar las recomendaciones'):
         st.write('La afinidad compara las estadísticas del jugador con el estilo elegido. No es una probabilidad de éxito de fichaje. Los estilos son aproximaciones y necesitan revisión deportiva.')
-        st.caption('Estadísticas utilizadas: ' + ', '.join(field_label(c) for c in rec.artifacts.feature_cols))
-        st.caption('Los datos disponibles de perfiles completos terminan en 2023/24. En cambios de liga se conserva la liga con más minutos por temporada.')
+        st.caption('Los perfiles disponibles llegan hasta la temporada 2023/24.')
     from src.features.styles import measured_weight_fraction
     styles = {k:v for k,v in list_styles().items() if measured_weight_fraction(k, rec.artifacts.feature_cols) >= .6}
     if service is not None:
@@ -288,13 +285,10 @@ def main() -> None:
                 price_links, reported_values, valuation_cutoff)
             st.caption(f"{int(priced_market.reported_value_screenable.sum())} de {len(priced_market)} perfiles "
                        f"con valor reportado disponible hasta {valuation_cutoff} en las ligas seleccionadas.")
-            st.caption('Importes mostrados como EUR por la normalización previa; el archivo de valores no indica la moneda explícitamente. Moneda pendiente de verificación.')
-            st.caption(f"Valoraciones registradas hasta {reported_values.valuation_date.max().date()}. "
-                       "Cruces de identidad provisionales. Precio de mercado reportado, no coste de fichaje. "
-                       "La fecha original de publicación es desconocida; este filtro no valida presupuestos históricos.")
+            st.caption('Valores reportados en euros, con moneda por confirmar. Confirma el jugador y el precio antes de negociar; no son costes de fichaje.')
             if budget_enabled:
                 max_budget = st.number_input("Presupuesto máximo (M€)", min_value=0.01, value=10.0, step=1.0)
-                st.caption("Se excluyen valores desconocidos y ceros ambiguos. No se estiman precios faltantes.")
+                st.caption("Solo se muestran jugadores con un valor disponible dentro del presupuesto.")
         elif price_data_status == "missing":
             st.info("Filtro por valor de mercado no disponible: falta un archivo incluido de valoraciones. "
                     "Actualiza el proyecto para recuperar los archivos incluidos.")
@@ -304,13 +298,11 @@ def main() -> None:
         else:
             st.info("No hay valores reportados utilizables para los perfiles de esta temporada.")
         if price_data_error:
-            with st.expander("Detalle del problema de valoraciones"):
-                st.code(price_data_error, language="text")
+            logging.getLogger(__name__).warning('Valuation loading failed: %s', price_data_error)
         top_n = st.slider("Nº de resultados", 5, 30, 10, key="scout_filter_top_n")
 
         st.divider()
-        participant = st.text_input("Alias del participante", value="scout", key="participant_alias")
-        st.caption("Alias declarado, sin autenticación. Las decisiones se guardan localmente.")
+        participant = 'anonymous_scout'
         if st.button("Nueva solicitud de scouting"):
             st.session_state.pop('scouting_case', None)
         run = st.button("🔍 Buscar jugadores", type="primary", use_container_width=True)
@@ -320,7 +312,7 @@ def main() -> None:
             new_case = not st.session_state.get('scouting_case')
             if new_case:
                 st.session_state['scouting_case'] = str(uuid.uuid4())
-            attrs = dict(participant_alias=participant.strip() or 'scout', training_scope=training, gallery_scope=scope, style=style_key, position=position, season=season, league=league, max_age=max_age,
+            attrs = dict(training_scope=training, gallery_scope=scope, style=style_key, position=position, season=season, league=league, max_age=max_age,
                          model=model_kind, dataset_version=service.info.get('gallery_dataset_version'), model_sha256=service.info.get('model_sha256'), min_minutes=min_minutes, exclude_club=excluded_club,
                          reported_value_budget_million=max_budget, reported_value_cutoff=str(valuation_cutoff),
                          price_match_status='provisional', historical_budget_validation=False)
@@ -414,7 +406,7 @@ def main() -> None:
                         selected_row = result.loc[result.entity_id.astype(str).eq(chosen)].iloc[0]
                         details.update(season=season, observation_id=str(selected_row.get('observation_id', '')), style=style_key)
                         record_event(st.session_state.scouting_case, 'decision_recorded', participant.strip() or 'scout', details)
-                        st.success("Decisión guardada en la base de datos operativa local.")
+                        st.success("Decisión guardada.")
         icon = STYLE_ICONS.get(style_key, "⚽")
         st.subheader(f"{icon} Ranking · {style_labels[style_key]}")
         st.caption(f"{league} · {season} · {POSITIONS.get(position, position)} · mínimo {min_minutes:,} minutos · {len(result)} alternativas")
@@ -426,21 +418,21 @@ def main() -> None:
             show = result.copy()
             shortlist_cards(result)
             show["affinity"] = show["affinity"].round(3)
-            details = st.checkbox('Ver estadísticas y trazabilidad', value=False)
+            details = st.checkbox('Ver estadísticas', value=False)
             if 'reported_value_status' in show:
                 show['reported_value_status'] = show.reported_value_status.map({
                     'reported_positive': 'Valor reportado disponible',
                     'reported_zero_ambiguous': 'Cero reportado; significado desconocido',
-                    'unmatched': 'Jugador sin cruce de identidad',
+                    'unmatched': 'Valor no disponible',
                     'no_record_on_or_before_cutoff': 'Sin valor anterior a la fecha límite',
                     'invalid_or_unknown': 'Valor desconocido o no válido',
                 })
                 show['price_identity_status'] = show.price_identity_status.map({
-                    'provisional_not_reviewed': 'Provisional, sin revisión individual', 'unmatched': 'Sin cruce'})
+                    'provisional_not_reviewed': 'Pendiente de confirmar', 'unmatched': 'Sin valor disponible'})
             visible = ['player', 'team', 'league', 'season', 'pos', 'age', 'minutes', 'affinity']
             if details: visible += rec.artifacts.feature_cols
             visible += ['reported_market_value_eur', 'reported_value_status']
-            if details: visible += ['reported_valuation_date', 'reported_value_source', 'price_identity_status']
+            if details: visible += ['reported_valuation_date']
             visible = list(dict.fromkeys(column for column in visible if column in show))
             st.dataframe(
                 display_frame(show[visible]).rename(columns={
@@ -465,7 +457,7 @@ def main() -> None:
             # Gráficos
             top = result.iloc[0]
             feats = rec.artifacts.feature_cols
-            st.caption('Radar relativo al percentil 95 de la temporada; valores desconocidos quedan sin trazar.')
+            st.caption('Compara las fortalezas de los jugadores en esta temporada.')
             c1, c2 = st.columns(2)
 
             with c1:
@@ -494,8 +486,7 @@ def main() -> None:
     # ── Tab 2: Similares ──────────────────────────────────────────────────────
     with tab2:
         st.subheader("🔗 Jugadores similares")
-        st.caption('Distancia de perfil estandarizado; menor distancia indica mayor cercanía. '
-                   'La puntuación de similitud no es una probabilidad de éxito.')
+        st.caption('Encuentra jugadores con características de juego parecidas a tu referencia.')
 
         references = market_players
         if position != 'Todas':
@@ -529,8 +520,8 @@ def main() -> None:
             sim = sim.head(top_n)
             st.session_state['similar_result'] = sim
             st.dataframe(
-                display_frame(sim[[column for column in ['player', 'team', 'pos', 'age', 'league', 'season', 'distance', 'similarity',
-                     'reported_market_value_eur', 'reported_valuation_date', 'price_identity_status'] if column in sim]]).rename(columns={
+                display_frame(sim[[column for column in ['player', 'team', 'pos', 'age', 'league', 'season', 'similarity',
+                     'reported_market_value_eur', 'reported_valuation_date'] if column in sim]]).rename(columns={
                     "player": "Jugador", "team": "Equipo", "pos": "Pos",
                     "age": "Edad", "league": "Liga", "similarity": "Puntuación de similitud",
                     'distance': 'Distancia de perfil', 'season': 'Temporada',
@@ -557,7 +548,7 @@ def main() -> None:
 
     with tab3:
         st.subheader('Grupos de jugadores con perfiles parecidos')
-        st.caption('Elige cuántos grupos quieres explorar. Se agrupan las estadísticas de los jugadores de las ligas y temporada seleccionadas; esto no modifica las recomendaciones ni los seis estilos.')
+        st.caption('Elige el número de grupos y descubre jugadores con perfiles de juego parecidos.')
         indices = rec.players.index.get_indexer(market_players.index)
         matrix = rec.X[indices]
         maximum = min(12, len(np.unique(matrix, axis=0)))
@@ -575,7 +566,7 @@ def main() -> None:
             st.plotly_chart(group_map_figure(grouped, chosen), use_container_width=True, key='explore_group_map')
             st.caption('Cada punto es un jugador. El color indica su grupo y el grupo elegido aparece resaltado. Pasa el cursor para ver el nombre, club, liga y posición; usa la leyenda para mostrar u ocultar grupos. Esta vista resume las estadísticas, no representa posiciones en el campo.')
             members = grouped[grouped.group.eq(chosen)].sort_values(['pos_main', 'player'])
-            st.caption(f'Grupo {chosen} · {len(members)} jugadores. Los números de grupo pueden cambiar al modificar el mercado o el número de grupos.')
+            st.caption(f'Grupo {chosen} · {len(members)} jugadores. Explora sus jugadores en la tabla inferior.')
             st.markdown('**Estadísticas medias del grupo**')
             averages = members[rec.artifacts.feature_cols].mean().rename(index=field_label).round(2)
             st.dataframe(averages.rename('Media').rename_axis('Estadística').reset_index(), hide_index=True)
@@ -604,7 +595,7 @@ def main() -> None:
             if budget_data_available:
                 compared = attach_reported_values(compared, price_links, reported_values, valuation_cutoff)
                 fields += ['reported_market_value_eur', 'reported_valuation_date']
-                st.caption('Valoraciones reportadas; identidades y moneda pendientes de verificación. Los importes se muestran como EUR supuesto; no son costes de fichaje.')
+                st.caption('Valores orientativos en euros, pendientes de confirmar. No son costes de fichaje.')
             st.dataframe(display_frame(compared[fields]), hide_index=True, use_container_width=True)
             st.download_button('Descargar comparación', display_frame(compared[fields]).to_csv(index=False).encode(),
                                file_name='scouting_comparison.csv', mime='text/csv')
@@ -618,7 +609,7 @@ def main() -> None:
             combined.update_layout(radar_figure(compared.iloc[0], rec.artifacts.feature_cols, 'Comparación de perfiles', rec.players).layout)
             combined.update_layout(showlegend=True, height=520)
             st.plotly_chart(combined, use_container_width=True, key='comparison_radar')
-            st.caption('Escala relativa al percentil 95 de la temporada. Los valores desconocidos quedan sin trazar, no se sustituyen por cero.')
+            st.caption('Compara las fortalezas de los jugadores en esta temporada.')
             for row in compared.itertuples(index=False):
                 with st.expander(f'Perfil e historial · {row.player} · {row.team}', expanded=True):
                     st.plotly_chart(radar_figure(compared[compared.player_id.eq(row.player_id)].iloc[0],
@@ -629,10 +620,10 @@ def main() -> None:
 
     with tab5:
         st.subheader('Datos disponibles')
-        st.caption('Estadísticas FBref de temporadas observadas. Los perfiles completos que permiten los seis estilos llegan hasta 2023/24; las temporadas incompletas no se ofrecen.')
+        st.caption('Consulta cuántos jugadores están disponibles por liga y temporada. Los perfiles llegan hasta 2023/24.')
         available = service.gallery.groupby(['season', 'league']).agg(Jugadores=('entity_id', 'nunique')).reset_index()
         st.dataframe(display_frame(available), hide_index=True, use_container_width=True)
-        st.caption('Solo se ofrecen jugadores con al menos 450 minutos y suficientes estadísticas. Un valor desconocido no equivale a cero. La evaluación técnica está documentada en los notebooks del proyecto.')
+        st.caption('Se incluyen jugadores con al menos 450 minutos y estadísticas suficientes para comparar sus perfiles.')
 
     from src.app.player_analysis import render_development, render_shots
     with tabs[5]:

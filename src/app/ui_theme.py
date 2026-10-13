@@ -35,7 +35,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #51deb2 !important; o
 
 
 def shortlist_cards(result):
-    st.caption('Alternativas destacadas · revisa el perfil y la procedencia antes de decidir.')
+    st.caption('Alternativas destacadas · revisa el perfil antes de decidir.')
     for column, (_, row) in zip(st.columns(min(3,len(result))), result.head(3).iterrows()):
         with column.container(border=True):
             st.write(str(row.player))
@@ -44,7 +44,7 @@ def shortlist_cards(result):
             age=str(int(row.age)) if pd.notna(row.age) else 'desconocida'
             st.caption(f'Edad: {age} · {int(row.minutes):,} minutos')
             if 'reported_value_screenable' in row and row.reported_value_screenable:
-                st.caption(f'Valor reportado: €{row.reported_market_value_eur:,.0f} · {row.reported_valuation_date:%d/%m/%Y} · identidad provisional')
+                st.caption(f'Valor reportado: €{row.reported_market_value_eur:,.0f} · {row.reported_valuation_date:%d/%m/%Y} · pendiente de confirmar')
 
 
 def reset_search_filters():

@@ -10,7 +10,7 @@ Review branch: `review/teacher-submission`. This is the clean package, not an ar
 | 4 | Market values | Reported dated values after ranking; no heuristic estimator, missing/zero exclusion and uncertainty labels | Verify player links and currency; values are not fees or historical affordability evidence |
 | 5 | Dictionary | All prepared fields and raw-source catalog documented | Two unused team points fields remain provider-unverified |
 | 6 | Process case ID | UUID scouting_request_id/case_id; repeated searches share a request | Business completion/approval policy for a real club |
-| 7 | Event log | UTC timestamps, filters/styles, declared aliases, IDs and result counts | Aliases are not authenticated identities |
+| 7 | Event log | UTC timestamps, filters/styles, anonymous scout role, IDs and result counts | Individual users are not identified |
 | 8 | Process variants | Directly-follows transitions, waiting times and case durations implemented | Real human sessions required; no organizational outcomes fabricated |
 | 9 | Collection | Explicit Streamlit search/review/decision triggers; SQLite and JSONL/export | Test sessions excluded from human evidence |
 | 10 | Operational vs MLflow | Separate operational requests/events/feedback SQLite database | Authentication, consent/retention administration and managed multi-instance DB |

@@ -1,5 +1,6 @@
 """Source-specific player development and shot exploration without identity merges."""
 import json
+import logging
 import pandas as pd
 import plotly.express as px
 import streamlit as st
@@ -48,8 +49,8 @@ def shot_map(frame):
         title='Mapa de tiros observados')
     fig.add_shape(type='rect',x0=0,y0=0,x1=100,y1=100,line=dict(color='#b8c7d8',width=1))
     fig.update_layout(template='plotly_dark',height=500,paper_bgcolor='#172536',plot_bgcolor='#101b28',
-        xaxis=dict(range=[0,100],title='Hacia la portería → · coordenada de la fuente (%)'),
-        yaxis=dict(range=[0,100],title='Ancho · coordenada de la fuente (%)'),
+        xaxis=dict(range=[0,100],title='Hacia la portería →'),
+        yaxis=dict(range=[0,100],title='Ancho del campo'),
         legend=dict(orientation='h',y=-.2),margin=dict(l=40,r=15,t=50,b=85))
     return fig
 
@@ -69,7 +70,7 @@ def development_plot_data(history, seasons):
 
 def render_development(service,selected_leagues):
     st.subheader('Evolución del jugador')
-    st.caption('Historial FBref por identidad de esta fuente. Cambios de minutos, club y liga afectan las comparaciones; una tendencia no demuestra mejora de talento.')
+    st.caption('Compara la evolución de los jugadores por temporada y liga.')
     candidates=service.history[service.history.league.isin(selected_leagues)].sort_values(['season','player'])
     latest=candidates.drop_duplicates('entity_id',keep='last').sort_values('player')
     labels={r.entity_id:f'{r.player} · {r.team} · último registro {r.season}' for r in latest.itertuples()}
@@ -103,7 +104,7 @@ def render_development(service,selected_leagues):
         labels={'season':'Temporada',metric:field_label(metric),'team':'Equipo','league':'Liga','minutes':'Minutos'},hover_data=['team','league','minutes'],template='plotly_dark')
     fig.update_traces(connectgaps=False)
     st.plotly_chart(fig,use_container_width=True,key='development_chart')
-    st.caption('Valores desconocidos quedan sin trazar. Los minutos son observados; los indicadores por 90 usan el denominador FBref. Cada jugador tiene una serie por liga; sus estadísticas no se suman entre competiciones.')
+    st.caption('Cada línea muestra una liga. Las temporadas sin datos aparecen como huecos.')
     fields=['player','season','league','team','minutes','gls','ast',metric,'partial_season']
     fields=list(dict.fromkeys(fields))
     visible=display_frame(history[fields])
@@ -113,17 +114,16 @@ def render_development(service,selected_leagues):
 
 def render_shots(selected_leagues):
     st.subheader('Análisis de tiros')
-    st.caption('Identidades Understat: selecciona un jugador de esta fuente. Los cruces con FBref siguen pendientes de revisión. La vista describe oportunidades y resultados observados.')
+    st.caption('Selecciona un jugador para explorar sus tiros, goles y calidad de las oportunidades.')
     try:shots=load_analysis_shots()
     except (FileNotFoundError,ValueError,KeyError) as exc:
-        st.error('No se pueden verificar los datos de tiros.');st.caption(str(exc));return
+        logging.getLogger(__name__).exception('Shot data unavailable')
+        st.error('Los datos de tiros no están disponibles en este momento.');return
     available=[] if shots.empty else sorted(set(shots.league)&set(selected_leagues))
     if not available:
-        st.info('No hay archivos de tiros preparados para las ligas seleccionadas.')
-        st.code('python -m scripts.four_league_acquisition --download --public-only\npython -m scripts.four_league_preprocessing')
-        st.caption('Instala requirements-archives.txt para reproducir la preparación, luego reinicia Streamlit.');return
+        st.info('No hay datos de tiros para las ligas seleccionadas.');return
     missing=set(selected_leagues)-set(available)
-    if missing:st.caption('Sin archivos locales preparados: '+', '.join(sorted(missing)))
+    if missing:st.caption('Sin datos disponibles: '+', '.join(sorted(missing)))
     league=st.selectbox('Liga para analizar tiros',available,index=available.index('Premier League') if 'Premier League' in available else 0,key='shots_league')
     allow_partial=st.checkbox('Incluir temporadas parciales de tiros',value=False,key='shots_partial')
     pool=shots[shots.league.eq(league)]
@@ -135,7 +135,7 @@ def render_shots(selected_leagues):
     observed,expected=shot_coverage(shots,league,season)
     if cohort.partial_season.any():st.warning(f'Temporada parcial: {observed}/{expected} partidos registrados. No compares totales con una temporada completa.')
     elif observed<expected:st.warning(f'Cobertura incompleta: {observed}/{expected} partidos registrados; faltan {expected-observed}.')
-    else:st.caption(f'{observed}/{expected} partidos registrados. El recuento no confirma independientemente que estén todos los tiros.')
+    else:st.caption(f'{observed}/{expected} partidos registrados. ')
     attempts=cohort[cohort.result.ne('OwnGoal')]
     players=attempts.groupby('source_player_id').agg(player=('player',lambda s:s.mode().iloc[0]),attempts=('shot_id','size'),clubs=('team',lambda s:', '.join(sorted(s.dropna().unique())))).sort_values(['attempts','player'],ascending=[False,True])
     if players.empty:st.info('No hay intentos de tiro registrados.');return
@@ -148,12 +148,12 @@ def render_shots(selected_leagues):
     a.metric('Tiros observados',len(player));b.metric('Goles',int(player.result.eq('Goal').sum()))
     c.metric('Goles esperados',f'{player.xG.sum():.2f}');d.metric('Goles esperados por tiro',f'{player.xG.mean():.3f}')
     st.plotly_chart(shot_map(player),use_container_width=True,key='source_shot_map')
-    st.caption('Tamaño del punto: calidad de la oportunidad según xG. Las coordenadas están normalizadas, no son metros reales. Los autogoles se excluyen de los intentos y goles de esta vista. No hay tasas por 90 sin minutos verificados.')
+    st.caption('Los puntos más grandes representan mejores oportunidades de gol. No se incluyen autogoles.')
     trend=attempts[attempts.source_player_id.eq(identifier)&attempts.situation.isin(situations)].groupby('shot_date').agg(Tiros=('shot_id','size'),Goles_esperados=('xG','sum')).reset_index().sort_values('shot_date')
     # This is a match-date series, not a filled appearance log.
     fig=px.bar(trend,x='shot_date',y='Goles_esperados',labels={'shot_date':'Fecha con tiros registrados','Goles_esperados':'Goles esperados'},hover_data=['Tiros'],template='plotly_dark')
     st.plotly_chart(fig,use_container_width=True,key='source_shot_trend')
-    st.caption('Solo fechas con tiros registrados; los partidos sin tiros del jugador no se inventan como apariciones.')
+    st.caption('El gráfico muestra los partidos en los que el jugador realizó tiros.')
     table=player[['shot_date','team','minute','result','situation','shotType','xG']].copy()
     table['result']=table.result.map(OUTCOMES);table['situation']=table.situation.map(SITUATIONS)
     table['shotType']=table.shotType.map({'RightFoot':'Pie derecho','LeftFoot':'Pie izquierdo','Head':'Cabeza','OtherBodyPart':'Otra parte del cuerpo'})
