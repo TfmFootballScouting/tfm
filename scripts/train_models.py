@@ -17,8 +17,8 @@ import pandas as pd
 import seaborn as sns
 from sklearn.metrics import normalized_mutual_info_score
 from src.config import ROOT
-from src.data.provenance import sha256
-from src.data.source_rights import require_model_data_use
+from src.data_preparation.provenance import sha256
+from src.data_preparation.source_rights import require_model_data_use
 from src.preprocessing.football_stats import normalize_fbref, aggregate_player_seasons, data_dictionary, quality_tables
 from src.models.experiments import FEATURE_SETS, fit_experiment, cluster_analysis, evaluate_pair, qualitative_shortlists
 from src.models.robustness_validation import resampling_validation, temporal_validation, position_retrieval
@@ -168,7 +168,7 @@ def main():
     REPORT.mkdir(parents=True,exist_ok=False)
     (RUN_ROOT/'data').mkdir();(RUN_ROOT/'models').mkdir()
     frames,outputs,records,duplicates=prepare_data()
-    code_paths=['scripts/train_models.py','src/preprocessing/fbref_categories.py','src/preprocessing/football_stats.py','src/models/experiments.py','src/models/robustness_validation.py','src/models/recommender.py','src/features/styles.py','src/data/source_rights.py']
+    code_paths=['scripts/train_models.py','src/preprocessing/fbref_categories.py','src/preprocessing/football_stats.py','src/models/experiments.py','src/models/robustness_validation.py','src/models/recommender.py','src/features/styles.py','src/data_preparation/source_rights.py']
     code={path:sha256(ROOT/path) for path in code_paths}
     version=hashlib.sha256(json.dumps(dict(outputs=outputs,code=code),sort_keys=True).encode()).hexdigest()
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()

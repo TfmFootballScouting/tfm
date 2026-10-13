@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 from src.config import ROOT
-from src.data.source_rights import require_model_data_use
+from src.data_preparation.source_rights import require_model_data_use
 from src.models.recommender import PlayerRecommender
 from src.features.styles import measured_weight_fraction
 

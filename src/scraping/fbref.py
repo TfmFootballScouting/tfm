@@ -46,7 +46,7 @@ def _read_fbref_html_table(path: Path) -> pd.DataFrame | None:
 def load_from_soccerdata_cache(league_key="ESP-La Liga", season="2324"):
     """Compatibility adapter; join cached HTML by stable source IDs, never row index."""
     from src.scraping.collect import parse_fbref
-    from src.data.fbref import merge_tables
+    from src.data_preparation.fbref import merge_tables
     frames = {}
     for stat in STAT_TYPES:
         path = SOCCERDATA_FBREF / f"players_{league_key}_{season}_{stat}.html"

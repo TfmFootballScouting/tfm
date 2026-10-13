@@ -14,8 +14,8 @@ import numpy as np
 import pandas as pd
 
 from src.config import ROOT, MIN_MINUTES, FEATURE_COLS
-from src.data.matching import normalize_name
-from src.data.provenance import sha256
+from src.data_preparation.matching import normalize_name
+from src.data_preparation.provenance import sha256
 from src.scraping.transfermarkt import scorer_sample
 from src.features.requirements import (ALL_COUNTS, BUDGET_COLUMNS, MODEL_CANDIDATE_FEATURES,
                                        feature_contract, style_coverage)

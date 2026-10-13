@@ -3,9 +3,9 @@ import json
 from pathlib import Path
 import pandas as pd
 from src.config import ROOT
-from src.data.provenance import sha256
-from src.data.source_rights import RESTRICTED
-from src.data.salimt_uploaded import normalize_profiles, normalize_values
+from src.data_preparation.provenance import sha256
+from src.data_preparation.source_rights import RESTRICTED
+from src.data_preparation.salimt_uploaded import normalize_profiles, normalize_values
 from src.preprocessing.football_stats import normalize_fbref, aggregate_player_seasons
 from src.preprocessing.fbref_categories import select_rows, align_category, dominant_league_gallery, MAPPINGS, KEYS
 

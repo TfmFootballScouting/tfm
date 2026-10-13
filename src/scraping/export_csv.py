@@ -8,7 +8,7 @@ from pathlib import Path
 import tempfile
 import pandas as pd
 from src.config import ROOT
-from src.data.provenance import sha256
+from src.data_preparation.provenance import sha256
 from src.scraping.raw_inputs import ensure_archive
 
 

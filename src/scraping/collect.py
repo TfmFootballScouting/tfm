@@ -16,8 +16,8 @@ import requests
 from bs4 import BeautifulSoup, Comment
 
 from src.config import ROOT
-from src.data.provenance import snapshot
-from src.data.source_rights import require_source_use, SourceUseRestricted
+from src.data_preparation.provenance import snapshot
+from src.data_preparation.source_rights import require_source_use, SourceUseRestricted
 
 SEASONS = [f'{y}-{y+1}' for y in range(2020, 2026)]
 CATEGORIES = {

@@ -4,7 +4,7 @@ import pandas as pd
 from src.config import ROOT
 from src.app.scouting_service import ScoutingService
 from src.app.integrity import source_sha256
-from src.data.provenance import sha256
+from src.data_preparation.provenance import sha256
 from src.models.recommender import PlayerRecommender
 
 

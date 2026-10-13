@@ -5,10 +5,10 @@ import numpy as np
 import pandas as pd
 
 from src.config import ROOT
-from src.data.identity import club_key
-from src.data.matching import normalize_name
-from src.data.provenance import sha256
-from src.data.source_rights import RESTRICTED
+from src.data_preparation.identity import club_key
+from src.data_preparation.matching import normalize_name
+from src.data_preparation.provenance import sha256
+from src.data_preparation.source_rights import RESTRICTED
 
 
 def candidate_links(players, candidates, fbref):

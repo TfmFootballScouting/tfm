@@ -4,7 +4,7 @@ import json
 import pandas as pd
 
 from src.config import ROOT
-from src.data.provenance import sha256
+from src.data_preparation.provenance import sha256
 
 MANIFEST_PATH = 'models/valuation_manifest.json'
 

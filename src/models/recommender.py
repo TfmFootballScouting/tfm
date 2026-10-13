@@ -14,7 +14,7 @@ from sklearn.preprocessing import StandardScaler
 
 from src.config import FEATURE_COLS, MODELS_DIR, RANDOM_SEED
 from src.features.styles import affinity_scores, measured_weight_fraction
-from src.data.source_rights import require_model_data_use
+from src.data_preparation.source_rights import require_model_data_use
 
 
 @dataclass

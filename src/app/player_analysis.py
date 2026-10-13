@@ -5,7 +5,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 from src.config import ROOT
-from src.data.provenance import sha256
+from src.data_preparation.provenance import sha256
 from src.app.ui_helpers import display_frame,field_label
 
 SITUATIONS={'OpenPlay':'Juego abierto','FromCorner':'Tras un córner','SetPiece':'Balón parado','DirectFreekick':'Tiro libre directo','Penalty':'Penalti'}
