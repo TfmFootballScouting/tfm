@@ -26,4 +26,4 @@ def load_scouting_service():
     if model.neighbor_method!=info['selected_method']:
         raise ValueError('Distance method differs from recorded evaluation')
     return ScoutingService(model,frames['scouting_gallery'],frames['player_seasons'],
-        {**info,'gallery_scope':'five_leagues','gallery_dataset_version':report['dataset_version']},'scouting')
+        {**info,'gallery_scope':'five_leagues','gallery_dataset_version':report['serving_dataset_version']},'scouting')

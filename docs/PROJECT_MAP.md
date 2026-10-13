@@ -48,3 +48,5 @@ Notebook 04 analyzes actual executed experiments. It compares two attribute sets
 Other scripts are named by their purpose: `build_eda_notebooks.py`, `build_processed_dictionary.py`, `build_raw_dictionary.py`, `prepare_expert_review.py`, `estimate_cloud_costs.py`. Read `TEACHER_FEEDBACK.md` only when reviewing the professor's comments and remaining manual evidence.
 
 Current deployment/training uses one recommender with six styles, without Core/Offensive model choices. Alternative attributes are compared only in notebook 04. The original saved binary and genuine metrics are unchanged.
+
+Prepared data: one shared set directly under `data/processed/`; CSV for inspection, Parquet for execution. See `data/processed/README.md`.

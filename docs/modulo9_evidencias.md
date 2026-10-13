@@ -2,7 +2,7 @@
 
 ## Evidencias existentes
 - App y dependencia runtime separada: `requirements.txt` / `requirements.lock.txt`; research/test en `requirements-research*`.
-- CSV raw con hashes/procedencia: `data/raw/source_manifest.json`; CSV/Parquet limpios: `data/processed/review/manifest.json`.
+- CSV raw con hashes/procedencia: `data/raw/source_manifest.json`; CSV/Parquet limpios: `data/processed/manifest.json`.
 - Código de preprocessing: `src/preprocessing/prepare_datasets.py`, `football_stats.py`; CSV reconstruye las métricas de la galería congelada sin reentrenar.
 - EDA por fuente: `notebooks/01_fbref_data_exploration.ipynb`, `02_understat_data_exploration.ipynb`, `03_transfermarkt_data_exploration.ipynb`.
 - Modelos reales y evaluación: `models/scouting_recommender.joblib` y los dos modelos de comparación, `models/metrics.json`, notebook 04, `reports/five_league_pipeline/`.

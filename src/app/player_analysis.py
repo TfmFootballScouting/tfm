@@ -15,7 +15,7 @@ SHOT_FIELDS={'player':'Jugador','team':'Equipo','season':'Temporada','shot_date'
 
 @st.cache_data
 def load_analysis_shots():
-    report=json.loads((ROOT/'data/processed/review/manifest.json').read_text(encoding='utf8'))
+    report=json.loads((ROOT/'data/processed/manifest.json').read_text(encoding='utf8'))
     info=report['outputs']['understat_shots']
     path=ROOT/info['parquet_path']
     if sha256(path)!=info['parquet_sha256']:

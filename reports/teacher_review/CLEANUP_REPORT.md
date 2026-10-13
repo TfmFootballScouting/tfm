@@ -36,3 +36,7 @@ Independent expert ratings, genuine organizational sessions, official AWS/ECB ev
 ## File naming and single-model correction
 
 Notebooks are numbered 01–06. Current implementation files are named by purpose; `docs/PROJECT_MAP.md` gives the reading order. Only `scouting_recommender.joblib` is served/saved in the submission. The loader has no model-type argument; default training fits one six-style recommender. Notebook 04 compares two attribute sets and selects the highest recorded validation MRR on the same cohort, without using holdout for selection. Core/Offensive product alternatives and their saved binaries/gallery were removed. Original run names remain immutable historical evidence only.
+
+## Prepared-data simplification
+
+`data/processed/` now holds one shared dataset set directly. The `review/` and `real/` folders and four redundant Parquet copies were removed after comparing all common columns (tolerance 1e-12). The app, notebooks and value filter now share the canonical tables. Current serving hashes/version are recorded separately from original training lineage; the trained recommender binary is unchanged. Identity links remain a verified included audit input rather than being falsely described as recreated by the CSV pipeline.

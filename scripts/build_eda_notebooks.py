@@ -19,7 +19,7 @@ while not (ROOT/'src/config.py').exists():
 import sys
 sys.path.insert(0,str(ROOT))
 from src.data.provenance import sha256
-manifest=json.loads((ROOT/'data/processed/review/manifest.json').read_text(encoding='utf-8'))
+manifest=json.loads((ROOT/'data/processed/manifest.json').read_text(encoding='utf-8'))
 def table(name):
     info=manifest['outputs'][name]
     path=ROOT/info['parquet_path']

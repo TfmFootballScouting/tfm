@@ -14,17 +14,17 @@
   },
   "outputs": {
     "player_club_seasons": {
-      "path": "data/processed/real/fbref_player_club_seasons.parquet",
+      "path": "data/processed/fbref_player_club_seasons.parquet",
       "sha256": "cfaf8bb5ef1ebfc902483e58fa43590ae59a80464e23e567f5609e269220d52c",
       "rows": 16334
     },
     "player_seasons": {
-      "path": "data/processed/real/fbref_player_seasons.parquet",
+      "path": "data/processed/fbref_player_seasons.parquet",
       "sha256": "52337690992d5e186181ccbaa12554c52b1492adfbfd79effe184ceed818821f",
       "rows": 15948
     },
     "scouting_gallery": {
-      "path": "data/processed/real/scouting_player_gallery.parquet",
+      "path": "data/processed/fbref_scouting_gallery.parquet",
       "sha256": "18b9ebb4ca78fde9f5330e329894823d83ec249c59e2df52a7f184d139606192",
       "rows": 7398
     }
@@ -140,17 +140,18 @@
     "removed_historical_preservation_entries": 335,
     "note": "Historical experiment dependencies omitted from clean submission. Original training hashes/metrics retained; retraining orchestration adapted to bundled CSVs.",
     "file_renames": "docs/PROJECT_MAP.md",
-    "single_recommender": "One served model with six expert playing styles. Two feature-set evaluations remain notebook-only; alternate saved models removed."
+    "single_recommender": "One served model with six expert playing styles. Two feature-set evaluations remain notebook-only; alternate saved models removed.",
+    "dataset_consolidation": "One prepared dataset set shared by app and notebooks; all common columns checked against original frozen inputs at rtol=atol=1e-12 before removing redundant copies. Original model binary unchanged."
   },
   "serving_code_sha256": {
     "src/models/recommender.py": "fc92931cd24f54ecfb232b4c3d4bff1ff0f2302f978a652404cafef80e449f1b",
     "src/models/recommend.py": "319490729cf36f60a3f2e6a027ef2fdd53a9a43d5e9c89123f113f790fd1df05",
     "src/models/experiments.py": "0d10a32ca70983baf01f5bdd55e6c8f469fd49cdcaf0c0c8e065dbc7b2108bea",
     "src/models/robustness_validation.py": "8336b9874d6bf5b755bc83231f33588c217210d5f503a776ffb14ff1d11bad28",
-    "src/preprocessing/football_stats.py": "bfc84980239af028141f84d9b4908a0eee0ad9fd2f9fe42ae5a9e663dd3fea9e",
+    "src/preprocessing/football_stats.py": "5ddf26d1cd495fcb316603b701fbe800cb049115b3cc7303b4e59f566f2420c9",
     "src/features/styles.py": "d033f056cee418b9fcf97811dd271a734adf9d34ded2107008f654bb0dc46a57",
     "src/data/source_rights.py": "b781fbcf71490d47178dcaba45bf83e3810660afdaa6c37e2c2cbf5f0df0a81f",
-    "src/app/model_loader.py": "c0c4d49d5f71440288fa4ecc5c1ca149eb2f31f739c3d6175279a8acea52e02f"
+    "src/app/model_loader.py": "558b8a536f1af4f2182aeedbca0d297d97285165c4b35895ea1d2feaca1955b8"
   },
   "serving_model": {
     "selected_method": "euclidean_profile",
@@ -271,5 +272,23 @@
       "original_fit_sha256": "50942f08437b081092cdcb2d4b27bc659d0330c050387da80ba1cb400bf18a85",
       "evaluation_prefix": "attacking_features"
     }
-  }
+  },
+  "original_training_outputs": {
+    "player_club_seasons": {
+      "path": "data/processed/real/fbref_player_club_seasons.parquet",
+      "sha256": "cfaf8bb5ef1ebfc902483e58fa43590ae59a80464e23e567f5609e269220d52c",
+      "rows": 16334
+    },
+    "player_seasons": {
+      "path": "data/processed/real/fbref_player_seasons.parquet",
+      "sha256": "52337690992d5e186181ccbaa12554c52b1492adfbfd79effe184ceed818821f",
+      "rows": 15948
+    },
+    "scouting_gallery": {
+      "path": "data/processed/real/scouting_player_gallery.parquet",
+      "sha256": "18b9ebb4ca78fde9f5330e329894823d83ec249c59e2df52a7f184d139606192",
+      "rows": 7398
+    }
+  },
+  "serving_dataset_version": "833cc79306f7f3a09547642e8f8a2b8246de031bbeab18ec487e765bf8d70552"
 }

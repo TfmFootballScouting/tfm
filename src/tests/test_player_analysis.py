@@ -78,9 +78,9 @@ def test_cross_league_transfer_season_stays_separate():
 def test_shot_corruption_is_rejected(monkeypatch,tmp_path):
     import pytest
     import src.app.player_analysis as analysis
-    directory=tmp_path/'data/processed/review';directory.mkdir(parents=True)
+    directory=tmp_path/'data/processed';directory.mkdir(parents=True)
     path=directory/'understat_shots.parquet';path.write_bytes(b'corrupt')
-    (directory/'manifest.json').write_text(json.dumps({'outputs':{'understat_shots':{'parquet_path':'data/processed/review/understat_shots.parquet','parquet_sha256':'0'*64}}}))
+    (directory/'manifest.json').write_text(json.dumps({'outputs':{'understat_shots':{'parquet_path':'data/processed/understat_shots.parquet','parquet_sha256':'0'*64}}}))
     analysis.load_analysis_shots.clear()
     try:
         monkeypatch.setattr(analysis,'ROOT',tmp_path)

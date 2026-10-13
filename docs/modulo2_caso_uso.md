@@ -13,7 +13,7 @@ Director deportivo, scout o analista del club. La interfaz evita selectores de e
 ¿Qué jugadores observados se ajustan al perfil solicitado y merecen investigación adicional, dadas las restricciones y cobertura disponibles?
 
 ## 5. Datos realmente utilizados
-FBref de cinco ligas: 15.948 registros jugador/liga/temporada y 7.398 candidatos de galería; temporadas completas de los seis estilos hasta 2023/24. Understat aporta 228.785 tiros para exploración separada. Las valoraciones proceden de CSV proporcionados por el usuario con origen GitHub declarado; moneda EUR supuesta e identidades provisionales. Segunda no forma parte de la galería táctica actual. CSV y procedencia: `data/raw/source_manifest.json`; tablas limpias: `data/processed/review/`.
+FBref de cinco ligas: 15.948 registros jugador/liga/temporada y 7.398 candidatos de galería; temporadas completas de los seis estilos hasta 2023/24. Understat aporta 228.785 tiros para exploración separada. Las valoraciones proceden de CSV proporcionados por el usuario con origen GitHub declarado; moneda EUR supuesta e identidades provisionales. Segunda no forma parte de la galería táctica actual. CSV y procedencia: `data/raw/source_manifest.json`; tablas limpias: `data/processed/`.
 
 ## 6. Pipeline de ciencia de datos
 1. Archivos publicados de GitHub y uploads preservados; los CSV de FBref/Understat son exportaciones documentadas de RDS, no scraping nuevo.

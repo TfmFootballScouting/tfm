@@ -3,16 +3,16 @@
   "research_commit": "a29e192933e70218de53d658e1b72b59844f751e",
   "inputs": {
     "values": {
-      "path": "data/processed/real/reported_market_values.parquet",
-      "sha256": "c05d1b1e2b424fb3a19d5281f11640668c099cfbd9e098d0408bb3588b5f0dd7"
+      "path": "data/processed/transfermarkt_values.parquet",
+      "sha256": "5c4898b401a42ced34966335dafc0a2b6ee56df1d7c269d070d525824b198e9b"
     },
     "identity_candidates": {
-      "path": "data/processed/real/player_identity_links.parquet",
+      "path": "data/processed/player_identity_links.parquet",
       "sha256": "1693a587b9dc6c23b3743d07ca750f42d7cc548be604340b9726c34182d6229c",
       "rows": 5405
     },
     "player_seasons": {
-      "path": "data/processed/real/fbref_player_seasons.parquet",
+      "path": "data/processed/fbref_player_seasons.parquet",
       "sha256": "52337690992d5e186181ccbaa12554c52b1492adfbfd79effe184ceed818821f",
       "rows": 15948
     }

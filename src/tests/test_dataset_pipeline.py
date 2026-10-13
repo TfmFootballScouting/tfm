@@ -15,19 +15,22 @@ def test_raw_source_csvs_are_present_and_byte_verified():
         assert sha256(ROOT/item['path'])==item['sha256']
 
 
-def test_csv_preprocessing_matches_served_real_gallery():
-    manifest=json.loads((ROOT/'data/processed/review/manifest.json').read_text(encoding='utf-8'))
-    assert manifest['frozen_gallery_numeric_parity_verified'] and not manifest['model_fitting_performed']
-    info=manifest['outputs']['fbref_scouting_gallery']
-    rebuilt=pd.read_parquet(ROOT/info['parquet_path'])
-    frozen=pd.read_parquet(ROOT/'data/processed/real/scouting_player_gallery.parquet')
-    columns=['entity_id','season','league','minutes','gls_p90','ast_p90','sh_p90','sot_p90','crs_p90','int_p90','tklw_p90','fls_p90','fld_p90']
-    order=['entity_id','season']
-    pd.testing.assert_frame_equal(rebuilt.sort_values(order)[columns].reset_index(drop=True),frozen.sort_values(order)[columns].reset_index(drop=True),check_dtype=False,rtol=1e-12,atol=1e-12)
+def test_shared_dataset_matches_original_model_training_observations():
+    from src.models.recommender import PlayerRecommender
+    manifest=json.loads((ROOT/'data/processed/manifest.json').read_text())
+    assert manifest['shared_by_app_and_notebooks'] and not manifest['model_fitting_performed']
+    saved=PlayerRecommender.load(ROOT/'models/scouting_recommender.joblib')
+    prepared=pd.read_parquet(ROOT/manifest['outputs']['fbref_scouting_gallery']['parquet_path'])
+    keys=['entity_id','league','season']
+    training=saved.players[keys+saved.artifacts.feature_cols].sort_values(keys).reset_index(drop=True)
+    rebuilt=prepared.merge(training[keys],on=keys,how='inner',validate='one_to_one')
+    rebuilt=rebuilt[keys+saved.artifacts.feature_cols].sort_values(keys).reset_index(drop=True)
+    pd.testing.assert_frame_equal(rebuilt,training,check_dtype=False,rtol=1e-12,atol=1e-12)
+    assert len(training)>0
 
 
 def test_all_review_outputs_have_verified_fingerprints():
-    manifest=json.loads((ROOT/'data/processed/review/manifest.json').read_text(encoding='utf-8'))
+    manifest=json.loads((ROOT/'data/processed/manifest.json').read_text(encoding='utf-8'))
     for info in manifest['outputs'].values():
         for kind in ['csv','parquet']:
             assert sha256(ROOT/info[f'{kind}_path'])==info[f'{kind}_sha256']

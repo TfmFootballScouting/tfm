@@ -12,7 +12,7 @@ Entry point: `python -m src.pipeline`. Code: `src/preprocessing/prepare_datasets
 
 FBref statistical categories join on source player ID, league, season, club and checked exposure; aggregate club stints into player/league/season. Cross-league stints remain separate in history; the gallery chooses the highest-minutes league per source identity and season. Missing counts remain unknown; per-90 rates use minutes/90; invalid values are flagged/quarantined. Understat is a separate shot dataset, not an extra input to the fitted models. Transfermarkt identity proposals use supporting name/club/season metadata; they are provisional, not universal name-only keys.
 
-Outputs: `data/processed/review/`. Frozen app inputs: `data/processed/real/`. Dictionary: `DATA_DICTIONARY.md`, `data_dictionary_raw.csv`, `data_dictionary_review.csv`.
+Outputs: `data/processed/`. The app uses these same prepared tables; no separate app dataset copies are retained. Dictionary: `DATA_DICTIONARY.md`, `data_dictionary_raw.csv`, `data_dictionary_review.csv`.
 
 ## Models and app
 

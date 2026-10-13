@@ -5,7 +5,7 @@ Autores: Iván Galán López, Basma Marso, Carlos Valencia Sánchez.
 El TFM mantiene su problema y arquitectura original: scouting por seis estilos expertos, Python/scikit-learn, KNN, PCA, K-means, MLflow y Streamlit. La entrega actual usa datos reales separados por fuente y evita valores inventados, mezclas sintéticas y uniones por orden de filas.
 
 ## Datos y preparación
-Los CSV revisables están en `data/raw/fbref/`, `understat/` y `transfermarkt/`; su manifiesto distingue GitHub/RDS, uploads y transformaciones. `python -m src.pipeline` reproduce tablas limpias de CSV y verifica paridad numérica con la galería congelada, sin reentrenar ni sustituir artefactos. Los outputs CSV/Parquet están en `data/processed/review/` y la app conserva los Parquet con checksums de `data/processed/real/`.
+Los CSV revisables están en `data/raw/fbref/`, `understat/` y `transfermarkt/`; su manifiesto distingue GitHub/RDS, uploads y transformaciones. `python -m src.pipeline` reproduce tablas limpias de CSV y verifica los hashes de entrada del recomendador, sin reentrenar ni sustituir artefactos. Los outputs CSV/Parquet están en `data/processed/` y la app usa exactamente las mismas tablas, con checksums verificados.
 
 FBref: 15.948 registros jugador/liga/temporada; galería 7.398, con 1.810 candidatos en 2023/24. Understat: 228.785 tiros explorables, independientes del modelo. Transfermarkt: 901.429 observaciones de valor reportado; no fees, no estimaciones ML, moneda asumida EUR y enlaces provisionales. No se presenta Segunda ni 2025/26 como galería táctica completa.
 

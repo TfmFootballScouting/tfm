@@ -53,7 +53,7 @@ python -m pip install -r requirements-research.lock.txt
 python -m src.pipeline
 ```
 
-La entrada reconstruye `data/processed/review/` y verifica paridad numérica/identidades con la galería servida. **No reentrena ni sobrescribe modelos congelados.** Código: `src/preprocessing/prepare_datasets.py`, `football_stats.py` y helpers en `src/preprocessing/fbref_categories.py`. CSV grandes se guardan como `.csv.gz`, además de Parquet.
+La entrada reconstruye `data/processed/`; la app y los notebooks utilizan las mismas tablas. Se verifican hashes de fuentes, enlaces de identidad y entradas del recomendador. **No reentrena ni sobrescribe modelos congelados.** Código: `src/preprocessing/prepare_datasets.py`, `football_stats.py` y helpers en `src/preprocessing/fbref_categories.py`. CSV grandes se guardan como `.csv.gz`, además de Parquet.
 
 El entrenamiento/evaluación reproducible desde los CSV incluidos está en `scripts/train_models.py` (orquestación/MLflow), `src/models/experiments.py` (cohortes/baselines/selección) y `src/models/recommender.py` (imputación/escalado/KNN/PCA/K-means). La orquestación se adaptó a la entrega limpia; los resultados y hashes del entrenamiento original permanecen documentados. Para entrenar sin sobrescribir los modelos incluidos:
 
@@ -78,7 +78,7 @@ La DB local no se incluye en Git. La evidencia original del run principal está 
 tfm/
 ├── data/
 │   ├── raw/{fbref,understat,transfermarkt}/  # CSV fuente y manifiesto de procedencia
-│   └── processed/{review,real}/             # CSV/Parquet limpios y artefactos servidos
+│   └── processed/             # CSV/Parquet limpios y artefactos servidos
 ├── docs/                  # documentos originales, diccionario y revisión del profesor
 ├── models/                # scouting_recommender.joblib/metrics.json: un único modelo con seis estilos
 ├── notebooks/             # tres EDA, validación de modelos, grupos y revisión experta
@@ -170,3 +170,5 @@ The [cloud cost worksheet](docs/evidence/cloud/README.md) separates compute/stor
 ### Limpieza de la entrega
 
 Se conserva la estructura original `data/`, `docs/`, `models/`, `notebooks/` y `src/{app,models,preprocessing,scraping,tests}`. Las carpetas `features`, `data` y `process` dentro de `src` son dependencias reales de la aplicación; `scripts` contiene los ejecutables de reproducción y `reports` los resultados actuales revisables. No hay una carpeta de tests duplicada en la raíz. [DATA_SOURCES.md](docs/DATA_SOURCES.md) explica el recorrido exacto de las fuentes y el código correspondiente.
+
+Los datos preparados están directamente en `data/processed/`, sin carpetas `review`/`real` ni copias separadas para la app. Consulta [el inventario de datasets](data/processed/README.md).
