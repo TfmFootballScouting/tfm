@@ -8,7 +8,7 @@ Paths: `data/raw/fbref/`, `data/raw/understat/`, `data/raw/transfermarkt/`. Raw 
 
 ## Cleaning and joining
 
-Entry point: `python -m src.pipeline`. Code: `src/preprocessing/prepare_datasets.py`, `football_stats.py`; category alignment helpers: `src/preprocessing/fbref_categories.py`; profile/value normalization: `src/data/salimt_uploaded.py`; identity matching: `src/data/identity.py`, `matching.py`.
+Entry point: `python -m src.pipeline`. Code: `src/preprocessing/prepare_datasets.py`, `football_stats.py`; category alignment helpers: `src/preprocessing/fbref_categories.py`; profile/value normalization: `src/data_preparation/salimt_uploaded.py`; identity matching: `src/data_preparation/identity.py`, `matching.py`.
 
 FBref statistical categories join on source player ID, league, season, club and checked exposure; aggregate club stints into player/league/season. Cross-league stints remain separate in history; the gallery chooses the highest-minutes league per source identity and season. Missing counts remain unknown; per-90 rates use minutes/90; invalid values are flagged/quarantined. Understat is a separate shot dataset, not an extra input to the fitted models. Transfermarkt identity proposals use supporting name/club/season metadata; they are provisional, not universal name-only keys.
 

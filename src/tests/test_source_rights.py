@@ -1,6 +1,6 @@
 import pytest
 
-from src.data.source_rights import SourceUseRestricted, RESTRICTED
+from src.data_preparation.source_rights import SourceUseRestricted, RESTRICTED
 from src.models.recommender import PlayerRecommender
 from src.scraping.collect import AccessBlocked, Client
 

@@ -2,8 +2,8 @@
 import pandas as pd
 import pytest
 
-from src.data.identity import build_crosswalk, club_key, join_preview, match_identities
-from src.data.source_rights import require_model_data_use
+from src.data_preparation.identity import build_crosswalk, club_key, join_preview, match_identities
+from src.data_preparation.source_rights import require_model_data_use
 
 
 def people(ids=('a',), names=('Álex García',), teams=('Betis',), years=(1998,), season='2020-2021'):

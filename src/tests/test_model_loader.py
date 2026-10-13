@@ -3,7 +3,7 @@ import json
 import shutil
 import pytest
 from src.config import ROOT
-from src.data.provenance import sha256
+from src.data_preparation.provenance import sha256
 from src.app.model_loader import load_scouting_service
 
 
