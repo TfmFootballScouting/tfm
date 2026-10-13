@@ -4,7 +4,7 @@ Sistema de recomendación por **afinidad con seis estilos de juego**, con datos 
 
 **Autores:** Iván Galán López, Basma Marso, Carlos Valencia Sánchez.
 
-Rama para revisión: **`review/teacher-submission`**. Conserva la arquitectura y documentos originales, con las modificaciones actuales. La memoria original DOCX no se modifica. Estado de los 19 comentarios del profesor y evidencia pendiente: [TEACHER_FEEDBACK.md](docs/TEACHER_FEEDBACK.md).
+
 
 ## Por dónde empezar
 
@@ -28,7 +28,7 @@ El notebook **04_feature_comparison_and_model_validation.ipynb** muestra los atr
 Python **3.12**. Desde la raíz:
 
 ```powershell
-git clone --branch review/teacher-submission --single-branch https://github.com/TfmFootballScouting/tfm.git
+git clone https://github.com/TfmFootballScouting/tfm.git
 cd tfm
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
@@ -79,7 +79,7 @@ tfm/
 ├── data/
 │   ├── raw/{fbref,understat,transfermarkt}/  # CSV fuente y manifiesto de procedencia
 │   └── processed/             # CSV/Parquet limpios y artefactos servidos
-├── docs/                  # documentos originales, diccionario y revisión del profesor
+├── docs/                  # documentos originales y diccionario
 ├── models/                # scouting_recommender.joblib/metrics.json: un único modelo con seis estilos
 ├── notebooks/             # tres EDA, validación de modelos, grupos y revisión experta
 ├── src/
@@ -123,7 +123,6 @@ Se han retirado de esta rama los datasets demo/mixtos, modelos antiguos, escenar
 
 ## Notebooks y validación
 
-Orden recomendado para el profesor:
 
 1. [FBref EDA](notebooks/01_fbref_data_exploration.ipynb): calidad, nulos, distribuciones/outliers, correlación y posiciones/ligas/temporadas.
 2. [Understat EDA](notebooks/02_understat_data_exploration.ipynb): tiros, xG, cobertura, nulos, perfiles ofensivos y límites.
@@ -141,7 +140,7 @@ python -m pip install -r requirements-research.lock.txt
 python -m pytest -q
 ```
 
-El conjunto de tests de esta rama utiliza únicamente los archivos incluidos. Fixtures artificiales se usan solo en pruebas unitarias, nunca en los experimentos finales. La comprobación del checkout limpio se documenta en `reports/teacher_review/`.
+El conjunto de tests de esta rama utiliza únicamente los archivos incluidos. Fixtures artificiales se usan solo en pruebas unitarias, nunca en los experimentos finales.
 
 ## Documentación
 
@@ -153,19 +152,11 @@ El conjunto de tests de esta rama utiliza únicamente los archivos incluidos. Fi
 | [modulo9_evidencias.md](docs/modulo9_evidencias.md) | Evidencia real y pendientes |
 | [memoria_resumen.md](docs/memoria_resumen.md) | Resumen técnico actualizado |
 | [DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md) | Variables, cálculos, unidades y gaps explícitos |
-| [TEACHER_FEEDBACK.md](docs/TEACHER_FEEDBACK.md) | Los 19 comentarios: arreglado/parcial/propuesto/manual |
 
 ## Stack
 
 Python 3.12, pandas, NumPy/SciPy, scikit-learn, Parquet/CSV, Plotly, Streamlit. MLflow, Matplotlib/Seaborn, Jupyter y pytest en entorno research. SQLite operativo para solicitudes/decisiones es independiente de MLflow; los registros de participantes permanecen locales.
 
-### Teacher-review additions
-
-The review branch includes complete prepared-field and raw-source catalogs, a real-data blind expert-review packet and an executed analysis notebook that reports human ratings as pending. See [expert review](docs/expert_review/README.md) and [actual MLflow screenshot evidence](docs/evidence/mlflow/README.md).
-
-The app records iterative scouting requests and player decisions in a separate local SQLite database. See [operational tracking](docs/OPERATIONAL_TRACKING.md). Participant records stay local and are not pushed to GitHub.
-
-The [cloud cost worksheet](docs/evidence/cloud/README.md) separates compute/storage/transfer/backups/requests. Official AWS rates and a dated exchange quote remain pending after network access returned 403. Run `python -m scripts.estimate_cloud_costs`; unknown prices do not produce a fabricated total.
 
 ### Limpieza de la entrega
 
