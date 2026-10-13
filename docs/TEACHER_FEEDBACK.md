@@ -1,6 +1,6 @@
 # Teacher feedback — current clean submission
 
-Review branch: `review/teacher-submission`. This is the clean package, not an archive of every experiment. Original teaching documents remain; current code/data/evidence are documented in `DATA_SOURCES.md` and `REVIEW_GUIDE.md`.
+Review branch: `review/teacher-submission`. This is the clean package, not an archive of every experiment. Original teaching documents remain; current code/data/evidence are documented in `DATA_SOURCES.md` and `README.md`.
 
 | # | Comment | Implemented | Remaining / manual |
 |---|---|---|---|
@@ -14,16 +14,16 @@ Review branch: `review/teacher-submission`. This is the clean package, not an ar
 | 8 | Process variants | Directly-follows transitions, waiting times and case durations implemented | Real human sessions required; no organizational outcomes fabricated |
 | 9 | Collection | Explicit Streamlit search/review/decision triggers; SQLite and JSONL/export | Test sessions excluded from human evidence |
 | 10 | Operational vs MLflow | Separate operational requests/events/feedback SQLite database | Authentication, consent/retention administration and managed multi-instance DB |
-| 11 | AWS evidence | User calculator screenshots reviewed; observed EC2 subtotal documented at 41.17 USD/month | Save original screenshots/export/share link; confirm capture date; add IPv4 cost and dated ECB quote |
+| 11 | AWS evidence | Official AWS Calculator export saved: EC2/EBS 41.17 USD + public IPv4 3.65 USD = 44.82 USD/month; link and date 13/10/2026 | Upload original PNG captures; optional dated FX rate and separate compute/storage/egress/backup pricing |
 | 12 | Cloud breakdown | Tested compute/storage/egress/backup/request/monitoring worksheet; unknown rates prevent a total | Enter dated official unit prices and verify workload/allowance/tax assumptions |
 | 13 | MLflow versions | Dataset SHA and original training Git commit preserved | New retraining gets its own version/commit; no false replacement of original lineage |
 | 14 | Tags | owner, dataset, environment, project and evaluation tags recorded | Completed for existing runs |
 | 15 | Evaluation plots | Actual figures/CSV diagnostics retained with exact artifact hashes | Original artifact copies shared rather than duplicated |
 | 16 | Synthetic separation | Real-data final pipeline; demo datasets/models/notebooks removed | Artificial unit fixtures are tests only |
 | 17 | Portable MLflow | Relative artifact manifests point to current single-copy model/evaluation files | Local MLflow DB not included in clone; run training to populate a new local DB |
-| 18 | Screenshots | Actual original main-run overview and artifacts captured, run ID and hashes included | No new fit is implied by the screenshots |
+| 18 | Screenshots | New local run completed on 13/10/2026; tags, metrics and artifact views shown in screenshots supplied for review | Upload new run screenshots and record its run ID/hashes; historical screenshots are not current evidence |
 | 19 | Production | Auth/HTTPS/monitoring/backups/scaling described | Not claimed deployed; real infrastructure implementation is future work |
 
 The approved A/B/C implementation is retained: dictionaries/expert tools/MLflow evidence, operational tracking and cloud formulas. No transfer-likelihood predictor or extra scenarios page was added. Use `reports/teacher_review/CLEANUP_REPORT.md` for final verification after removing obsolete files.
 
-Manual expert collection: `expert_review/README.md`. Operational session collection/export: `OPERATIONAL_TRACKING.md`. AWS/FX capture: `evidence/cloud/README.md`. Native Windows: clean clone, Python 3.12, runtime lock, `pip check`, app filters/values/comparisons/group graph/history/shot checks.
+Manual expert collection: `expert_review/README.md`. Operational session collection/export: `OPERATIONAL_TRACKING.md`. AWS official estimate: `evidence/aws/README.md`; optional cost worksheet: `evidence/cloud/README.md`. Native Windows: clean clone, Python 3.12, runtime lock, `pip check`, app filters/values/comparisons/group graph/history/shot checks.
