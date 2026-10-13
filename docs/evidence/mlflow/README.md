@@ -1,9 +1,25 @@
-# Actual MLflow run evidence
+# MLflow — evidencia de la ejecución actual
 
-`main_experiment.png` is an unmodified browser screenshot of the existing local MLflow run `85b7e82117814713b9094a5385308f6f`, experiment 6, FINISHED. Capture metadata and SHA256 are in `capture.json`. It shows the original dataset hash, training Git commit, parameters and five recorded metrics. The short logged run duration is the logging interval; it must not be described as total training wall time.
+Experimento: `tfm-scouting-six-styles-real`. Run: `five_league_scouting_real_refit`, ejecutado localmente el **13/10/2026**, estado **FINISHED**.
 
-`evaluation_artifacts.png` shows the original evaluation artifact directory in the same run; its SHA256 is also recorded.
+La ejecución actual usa `scripts/train_models.py`, datos reales FBref de cinco ligas y un único recomendador de seis estilos. El entrenamiento registra parámetros, métricas, tags (`owner`, `project`, `dataset`, `dataset_kind`, `environment`, `git_commit`) y artefactos bajo `evaluation/` y `models/`.
 
-The portable experiment export remains at `reports/five_league_pipeline/mlflow_export/scouting/`: `run.json` and `artifact_manifest.json`, referencing the single-copy original figures/CSV files in `reports/five_league_pipeline/` and model files in `models/`, with exact SHA256 hashes. This screenshot is evidence of that existing local run; a fresh clone does not contain the private local MLflow SQLite database. Training/relogging is a separate reproducible workflow documented in README. No new fit or improvement in metrics is claimed by capturing this evidence.
+Métricas mostradas en las capturas facilitadas:
+- Holdout MRR: **0,09549844955925278**
+- Recall@5: **0,12954186413902052**
+- Recall@10: **0,19510268562401265**
+- Ranking bootstrap top-5 Jaccard: **0,9740740740740741**
+- Cluster bootstrap ARI: **0,9819258990337122**
 
-The original run name visible in these historical screenshots predates the single-recommender correction. It is preserved as evidence and is not a current app model choice.
+Estas métricas miden recuperación de perfiles estadísticos futuros y estabilidad, **no éxito de fichajes**. El experimento utiliza 30 repeticiones bootstrap y selecciona `euclidean_profile`, con K-Means `k=2`. Los seis estilos son criterios tácticos definidos por expertos, no seis clusters.
+
+## Capturas actuales pendientes de incorporar al repositorio
+1. `00_experiment_overview.png` — lista de runs y estado.
+2. `01_run_details.png` — run ID, fecha, estado, dataset hash y Git commit.
+3. `02_parameters_metrics.png` — siete parámetros y cinco métricas.
+4. `03_artifacts.png` — artefactos `evaluation/` y `models/`.
+5. `04_evaluation_graph.png` — comparación MRR, PCA y estabilidad.
+
+**Importante:** las capturas anteriores de `docs/evidence/mlflow/` correspondían a un run histórico diferente y no deben utilizarse para acreditar la ejecución actual. La base de datos SQLite local no se versiona en Git.
+
+Para reproducir: `python -m scripts.train_models`. Los resultados nuevos se guardan en `reports/retraining/<timestamp>/`. La interfaz se abre con `python -m mlflow ui --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlartifacts --host 127.0.0.1 --port 5000`.
