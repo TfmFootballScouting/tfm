@@ -1,0 +1,57 @@
+{
+  "Name": "My Estimate",
+  "Total Cost": {
+    "monthly": "44.82",
+    "upfront": "0.00",
+    "12 months": "537.84"
+  },
+  "Metadata": {
+    "Currency": "USD",
+    "Locale": "en_US",
+    "Created On": "13/10/2026 18:32:00",
+    "Legal Disclaimer": "AWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.",
+    "Share Url": "https://calculator.aws/#/estimate?id=5de04cff4f4167e7baf5ebdc7346fa5734f87989"
+  },
+  "Groups": {
+    "Services": [
+      {
+        "Service Name": "Amazon EC2 ",
+        "Description": "ScoutIQ — academic demonstration",
+        "Region": "Europe (Ireland)",
+        "Status": "",
+        "Service Cost": {
+          "monthly": "41.17",
+          "upfront": "0.00",
+          "12 months": "494.02"
+        },
+        "Properties": {
+          "Tenancy": "Shared Instances",
+          "Operating system": "Linux",
+          "Workload": "Consistent, Number of instances: 1",
+          "Advance EC2 instance": "t3.medium",
+          "Pricing strategy": "On-Demand Utilization: 100 %Utilized/Month",
+          "Enable monitoring": "disabled",
+          "EBS Storage amount": "50 GB",
+          "DT Inbound: Not selected": "0 TB per month",
+          "DT Outbound: Internet": "10 GB per month",
+          "DT Intra-Region:": "0 TB per month"
+        }
+      },
+      {
+        "Service Name": "Public IPv4 Address",
+        "Description": "ScoutIQ — public IPv4 address",
+        "Region": "Europe (Ireland)",
+        "Status": "",
+        "Service Cost": {
+          "monthly": "3.65",
+          "upfront": "0.00",
+          "12 months": "43.80"
+        },
+        "Properties": {
+          "Number of In-use public IPv4 addresses": "1",
+          "Number of Idle public IPv4 addresses": "0"
+        }
+      }
+    ]
+  }
+}
