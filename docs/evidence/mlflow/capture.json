@@ -1,8 +1,0 @@
-{
-  "captured_at_utc": "2026-10-12T23:24:43.927863+00:00",
-  "run_id": "85b7e82117814713b9094a5385308f6f",
-  "experiment_id": "6",
-  "source": "Existing local MLflow database; actual original run, not a new training run",
-  "screenshot_sha256": "a67498787369f7c394159b66d53827236fe8b3fbadf6d8b310d715a309be0156",
-  "artifacts_screenshot_sha256": "e40023123b1628636040c6766d2f5496d961c49e377afd7fda6bdd409f836409"
-}
