@@ -22,10 +22,10 @@ Este directorio contiene documentación técnica, entregables de módulos y evid
 
 ## Evidencias
 - [AWS — calculadora oficial](evidence/aws/README.md): estimación del 13/10/2026, **44,82 USD/mes** (EC2 con EBS 41,17 + IPv4 3,65). Las capturas PNG todavía deben incorporarse al repositorio.
-- [MLflow — evidencia histórica](evidence/mlflow/README.md): capturas de una ejecución anterior; **no** deben presentarse como capturas de la ejecución del 13/10/2026.
+- [MLflow — ejecución actual](evidence/mlflow/README.md): documentación de la ejecución del 13/10/2026; sus capturas nuevas están pendientes de subir. Un archivo PNG histórico sigue pendiente de eliminación.
 - [Cloud — hoja de trabajo](evidence/cloud/README.md): descomposición y supuestos; no reemplaza la cotización oficial.
 
-## Evidencia nueva de MLflow pendiente de subir
+## Capturas nuevas de MLflow pendientes de subir
 Se ejecutó localmente `five_league_scouting_real_refit` el 13/10/2026 en `tfm-scouting-six-styles-real`. Antes de sustituir la evidencia histórica, subir capturas del run (overview/tags, parámetros/métricas, artefactos y gráfica), actualizar el identificador de run y sus hashes. No inferir nuevas métricas a partir de las capturas antiguas.
 
 **Criterio de conservación:** los documentos académicos originales y la evidencia histórica no se eliminan automáticamente; se etiquetan o archivan cuando la evidencia actual esté verificada.
