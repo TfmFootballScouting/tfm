@@ -1,4 +1,6 @@
-> Revisión actual: los precios y el tipo de cambio de este documento se conservan como hipótesis históricas, no como cotización AWS verificada a la fecha de entrega. Falta captura/export de AWS Calculator, fecha y referencia de cambio. Compute, disco y transferencia están desglosados; backup/snapshots y request charges necesitan evidencia. Guía paso a paso en `evidence/cloud/README.md`; no hace falta desplegar recursos para preparar la estimación.
+> Estimación nueva recibida: capturas del calculador aportadas por el usuario el 2026-10-13 muestran **41,17 USD/mes** y **494,04 USD/12 meses** para EC2 Linux t3.medium, Irlanda, 730 h, gp3 50 GB, snapshots semanales (1 GB cambiado) y 10 GB de salida. Faltan export/link, confirmación de fecha, coste IPv4 y cambio EUR. Las cifras antiguas de abajo son históricas y no deben usarse como presupuesto final.
+
+> Revisión histórica: los precios y el tipo de cambio de este documento se conservan como hipótesis históricas, no como cotización AWS verificada a la fecha de entrega. Falta captura/export de AWS Calculator, fecha y referencia de cambio. Compute, disco y transferencia están desglosados; backup/snapshots y request charges necesitan evidencia. Guía paso a paso en `evidence/cloud/README.md`; no hace falta desplegar recursos para preparar la estimación.
 
 # Módulo 9 — Estimación de recursos cloud
 
@@ -87,3 +89,17 @@ Autenticación y roles, HTTPS mediante proxy/TLS, gestión de secretos, monitori
 ## Hoja detallada de costes
 
 `evidence/cloud/cost_inputs.csv` separa cómputo, almacenamiento, transferencia, backups, peticiones y monitorización. `python -m scripts.estimate_cloud_costs` no genera un total hasta disponer de precios fechados y URLs oficiales. El acceso al calculador AWS y al XML del BCE devolvió HTTP 403 el 2026-10-12; captura/export y tipo de cambio verificado siguen pendientes.
+
+## Estimación observada en capturas del usuario
+
+| Concepto | Configuración observada | USD/mes mostrado |
+|---|---|---:|
+| EC2 | 1 t3.medium Linux On-Demand, 730 h, 0,0456 USD/h | 33,29 |
+| Disco | 50 GB gp3, 0,088 USD/GB-mes, 3000 IOPS/125 MBps | 4,40 |
+| Backups | Snapshot inicial 50 GB y 3 incrementos de 1 GB con factor parcial 50%; 0,05 USD/GB-mes | 2,58 |
+| Transferencia | 10 GB Internet a 0,09 USD/GB según el calculador | 0,90 |
+| **Subtotal mostrado** | No se acredita coste de IPv4 ni cambio EUR | **41,17** |
+
+El resumen muestra 0 USD iniciales y 494,04 USD para 12 meses. El cálculo sin redondear es 41,163 USD; se conserva el subtotal mostrado por la calculadora. Capturas recibidas el 2026-10-13; fecha real de captura no confirmada. `evidence/cloud/calculator_observation.json` transcribe la evidencia, sin simular imágenes ni un despliegue. Se requiere export/link y archivos originales para completar el expediente.
+
+Las cantidades son supuestos, no uso medido. La retención de 30 días no aparece como opción confirmada. Deben verificarse costes de IPv4, allowances/taxes/créditos CPU y tipo de cambio. Este subtotal no acredita una factura ni un coste completo de producción. La configuración de CPU/RAM tampoco ha sido validada mediante despliegue.

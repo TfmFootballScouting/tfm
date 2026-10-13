@@ -1,0 +1,64 @@
+{
+  "evidence": "Eight AWS Pricing Calculator screenshots supplied by the user in conversation",
+  "screenshots_received_date": "2026-10-13",
+  "capture_date_confirmed": false,
+  "calculator_share_link": null,
+  "original_screenshot_files_in_repository": false,
+  "estimate_export_in_repository": false,
+  "region": "eu-west-1",
+  "service": "Amazon EC2",
+  "description": "ScoutIQ — academic demonstration",
+  "configuration": {
+    "operating_system": "Linux",
+    "tenancy": "Shared Instances",
+    "instance_type": "t3.medium",
+    "vcpus": 2,
+    "memory_gib": 4,
+    "instances": 1,
+    "purchase_option": "On-Demand",
+    "utilization_percent": 100,
+    "instance_hours_month": 730,
+    "volume_type": "gp3",
+    "storage_gb": 50,
+    "iops": 3000,
+    "throughput_mbps": 125,
+    "snapshot_frequency": "Weekly",
+    "changed_gb_per_snapshot": 1,
+    "snapshot_retention_confirmed": false,
+    "outbound_destination": "Internet",
+    "outbound_gb_month": 10
+  },
+  "visible_prices": {
+    "compute_usd_per_hour": 0.0456,
+    "storage_usd_per_gb_month": 0.088,
+    "snapshot_usd_per_gb_month": 0.05,
+    "outbound_usd_per_gb": 0.09
+  },
+  "visible_calculations": {
+    "compute_monthly_usd_unrounded": 33.288,
+    "storage_monthly_usd": 4.4,
+    "initial_snapshot_monthly_usd": 2.5,
+    "incremental_snapshots": 3,
+    "partial_month_factor_for_incremental_snapshots": 0.5,
+    "incremental_snapshot_monthly_usd": 0.075,
+    "snapshots_monthly_usd_unrounded": 2.575,
+    "snapshots_monthly_usd_displayed": 2.58,
+    "ebs_total_monthly_usd_displayed": 6.98,
+    "outbound_monthly_usd": 0.9
+  },
+  "calculator_summary": {
+    "upfront_usd_displayed": 0.0,
+    "monthly_usd_displayed": 41.17,
+    "twelve_months_usd_displayed": 494.04,
+    "complete_architecture_cost_verified": false
+  },
+  "pending": [
+    "Calculator export/share link and original screenshot files",
+    "Actual screenshot capture date confirmation",
+    "Public IPv4 address pricing/inclusion",
+    "Applicable data-transfer allowances, taxes and extra CPU-credit charges",
+    "Backup retention policy and actual used/changed storage are not measured or configured",
+    "Dated USD-per-EUR exchange quote"
+  ],
+  "deployment_performed": false
+}

@@ -1,10 +1,6 @@
 component,unit,quantity,usd_per_unit,source_url,price_date,region,assumption
-compute,instance-hour,730,,,,eu-west-1,t3.medium proposed continuous prototype
-primary_storage,GB-month,50,,,,eu-west-1,gp3 size assumption
-outbound_transfer,billable-GB,10,,,,eu-west-1,assumed volume after documented allowances
-backup,stored-GB-month,50,,,,eu-west-1,assumed retained incremental snapshots
-object_storage,GB-month,10,,,,eu-west-1,optional model artifacts assumption
-put_requests,1000 requests,1,,,,eu-west-1,1000 requests assumed
-get_requests,1000 requests,10,,,,eu-west-1,10000 requests assumed
-monitoring,billable metric-month,5,,,,eu-west-1,optional monitoring assumption
+compute,instance-hour,730,0.0456,https://calculator.aws/,,eu-west-1,User screenshot: Linux t3.medium On-Demand 100 percent utilization; capture date and share link pending
+primary_storage,GB-month,50,0.088,https://calculator.aws/,,eu-west-1,User screenshot: gp3 50 GB with 3000 IOPS and 125 MBps; no additional IOPS/throughput charge shown
+outbound_transfer,billable-GB,10,0.09,https://calculator.aws/,,eu-west-1,User screenshot charges 10 GB Internet egress; applicable allowances need confirmation
+backup,stored-GB-month,51.5,0.05,https://calculator.aws/,,eu-west-1,Derived billed GB-month equivalent: initial 50 GB plus 3 increments of 1 GB times 0.5 partial-month factor; snapshot retention not confirmed
 public_ipv4,address-hour,730,,,,eu-west-1,one address assumed while instance is reachable; confirm retained address hours and avoid double counting

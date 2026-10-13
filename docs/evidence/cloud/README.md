@@ -117,3 +117,13 @@ This is a later step that can incur charges. The calculator does not deploy anyt
 7. After the demo, stop the instance to stop its running-compute charges, and check the retained disks, snapshots, static addresses and other resources that may still be billed. Delete only resources/data you intentionally no longer need, after preserving required evidence/backups.
 
 No AWS resources are created, backups scheduled, HTTPS configured or deployment validated by the files in this folder. If the assignment only asks for cost evidence, complete Steps 1–6 and keep running the project locally.
+
+## Calculator screenshots now received
+
+The user supplied eight screenshots on 2026-10-13 showing the Linux t3.medium On-Demand configuration and a calculator summary of **41.17 USD/month**, **494.04 USD for 12 months**, and **0 USD upfront**. `calculator_observation.json` faithfully transcribes the visible settings, unit prices, calculations and limitations. The images have not been saved as original repository files; a calculator export/share link and capture-date confirmation are still needed.
+
+Visible breakdown: compute 33.29 USD/month; gp3 disk 4.40; snapshots 2.58; Internet transfer 0.90. These displayed rounded lines sum to 41.17. Unrounded component arithmetic is 41.163; the calculator's rounded display is retained rather than silently replacing it with a different rounding rule.
+
+`cost_inputs.csv` now contains the observed rates. Its price dates remain blank because the screenshots' reception date is not proof of the capture date. Optional S3/request/paid monitoring rows have been omitted because those services are not part of the shown estimate. Public IPv4 remains a pending row. Consequently the automated complete-cost report still reports pending, correctly distinguishing the observed calculator subtotal from a complete verified architecture budget.
+
+The snapshot row's 51.5 GB-month is a **derived billing equivalent**, not a changed disk size: the calculator uses 50 GB initial snapshot plus three 1 GB increments with a 50% partial-month factor. Keep 50 GB disk and 1 GB changed per weekly snapshot in the calculator. No 30-day retention setting is evidenced. Verify free allowances, tax/extra credit charges, IP costs and FX before finalizing the TFM quote.

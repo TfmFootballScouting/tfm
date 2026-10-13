@@ -14,7 +14,7 @@ Review branch: `review/teacher-submission`. This is the clean package, not an ar
 | 8 | Process variants | Directly-follows transitions, waiting times and case durations implemented | Real human sessions required; no organizational outcomes fabricated |
 | 9 | Collection | Explicit Streamlit search/review/decision triggers; SQLite and JSONL/export | Test sessions excluded from human evidence |
 | 10 | Operational vs MLflow | Separate operational requests/events/feedback SQLite database | Authentication, consent/retention administration and managed multi-instance DB |
-| 11 | AWS evidence | Detailed official-evidence instructions and recorded blocked access attempt | Official calculator export/screenshot, date/region/currency and ECB quote; requests returned HTTP 403 |
+| 11 | AWS evidence | User calculator screenshots reviewed; observed EC2 subtotal documented at 41.17 USD/month | Save original screenshots/export/share link; confirm capture date; add IPv4 cost and dated ECB quote |
 | 12 | Cloud breakdown | Tested compute/storage/egress/backup/request/monitoring worksheet; unknown rates prevent a total | Enter dated official unit prices and verify workload/allowance/tax assumptions |
 | 13 | MLflow versions | Dataset SHA and original training Git commit preserved | New retraining gets its own version/commit; no false replacement of original lineage |
 | 14 | Tags | owner, dataset, environment, project and evaluation tags recorded | Completed for existing runs |
